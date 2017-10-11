@@ -18,8 +18,12 @@
     "babel-preset-react": "^6.24.1",
     "express": "^4.16.2",
     "nodemon": "^1.12.1",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "sequelize": "^4.13.8",
+    "sequelize-cli": "^3.0.0",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0"
   },
