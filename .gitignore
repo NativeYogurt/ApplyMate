@@ -1,5 +1,6 @@
 node_modules
 www/bundle.js
+public/bundle.js
 
 .DS_Store
 package-lock.json
