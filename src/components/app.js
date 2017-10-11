@@ -1,7 +1,5 @@
 import React from 'react';
 import firebase from 'firebase';
-import axios from 'axios';
-import Resume from './resumeUpload';
 import { browserHistory, Route, Redirect, Switch } from 'react-router-dom';
 
 import Signup from './signup.js';
@@ -29,6 +27,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       user: null,
+      isLoggedIn: false
     };
     this.signUp = this.signUp.bind(this);
     this.signIn = this.signIn.bind(this);
@@ -59,6 +58,7 @@ class App extends React.Component {
         .then((user) => {
           this.setState({
             user,
+            isLoggedIn: true,
           });
           console.log('logged in as:', user);
         })
@@ -71,7 +71,6 @@ class App extends React.Component {
       alert('Your passwords do not match.');
     }
   }
-
   signIn(e) {
     e.preventDefault();
     firebase.auth().signInWithEmailAndPassword(
@@ -81,6 +80,7 @@ class App extends React.Component {
       .then((user) => {
         this.setState({
           user,
+          isLoggedIn: true,
         });
         console.log(console.log('logged in as:', user));
       })
@@ -97,6 +97,7 @@ class App extends React.Component {
       .then(() => {
         this.setState({
           user: null,
+          isLoggedIn: false,
         });
         console.log('Signed out');
       })
@@ -106,72 +107,44 @@ class App extends React.Component {
         alert(error.message);
       });
   }
-
-
   TESTBUTTON(e) {
     e.preventDefault();
     console.log('firebase.auth().currentUser', firebase.auth().currentUser);
     console.log('this.state.user', this.state.user);
   }
-
-
-  render() {
+  requireAuth() {
+    return !this.state.isLoggedIn;
+  }
+  routes(reRoutePath, isAuthReq, isAuthNotReq) {
     return (
-      <div id="temp">Hello World
-        <form id="signUp" onSubmit={e => this.signUp(e)}>
-          <input ref={(input) => { this.signUpUsername = input; }} type="text" placeholder="E-Mail Address" /><br />
-          <input ref={(input) => { this.signUpPassword = input; }} type="password" placeholder="Password" /><br />
-          <input ref={(input) => { this.signUpPassword2 = input; }} type="password" placeholder="Verify Password" /><br />
-          <button type="submit">Sign Up</button>
-        </form>
-        <br /><br />
-        <form id="signIn" onSubmit={e => this.signIn(e)}>
-          <input ref={(input) => { this.signInUsername = input; }} type="text" placeholder="E-Mail Address" /> <br />
-          <input ref={(input) => { this.signInPassword = input; }} type="password" placeholder="Password" /> <br />
-          <button type="submit">Sign In</button>
-        </form>
-        <br /><br />
-        <button id="signOut" onClick={e => this.signOut(e)}>SignOut</button>
-        <br />
-        <button id="BUTTON" onClick={e => this.TESTBUTTON(e)}>TEST BUTTON</button>
-        <br /><br />
-      </div>
+      <Route
+        path={reRoutePath}
+        render={() => (
+        this.requireAuth() ? (
+        isAuthReq
+      ) : (
+        isAuthNotReq
+      )
+      )}
+      />
     );
-
-    this.readPDF = this.readPDF.bind(this);
   }
-
-  readPDF(event) {
-    const reader = new FileReader();
-    console.log(this);
-    reader.onload = () => {
-      const { result } = reader;
-      axios.post('/api/resume', {
-        result,
-      });
-    };
-    reader.readAsBinaryString(event.target.files[0]);
-  }
-
   render() {
-    return (<Resume readPDF={this.readPDF} />);
-
     return (
       <div>
         <Switch>
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/home" component={Home} />
-          <Redirect exact from="/" to="/home" />
+          {this.routes('/signup', <Signup signUp={this.signUp} TESTBUTTON={this.TESTBUTTON} />, <Redirect to="/home" />)}
+          {this.routes('/login', <Login signIn={this.signIn} signOut={this.signOut} TESTBUTTON={this.TESTBUTTON} />, <Redirect to="/home" />)}
+          {this.routes('/home', <Redirect to="/login" />, <Home signOut={this.signOut} user={this.state.user} />)}
           <Route
+            exact
             path="*"
-            render={() => {
-              return <p>Page Not Found</p>
-            }}
+            render={() => (
+              <Redirect to="/login" />
+          )}
           />
         </Switch>
       </div>);
-
   }
 }
 
