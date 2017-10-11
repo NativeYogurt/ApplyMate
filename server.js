@@ -4,11 +4,14 @@ const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const path = require('path');
 
+const router = require('./backend/router/routes.js');
+
 const app = express();
 
 const compiler = webpack(webpackConfig);
 
 app.use(express.static(path.join(__dirname, '/public')));
+app.use('/api', router);
 
 app.use(webpackDevMiddleware(compiler, {
   hot: true,
