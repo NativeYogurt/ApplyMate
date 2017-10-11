@@ -1,5 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
+import axios from 'axios';
+import Resume from './resumeUpload';
 
 class App extends React.Component {
   static GitAuth(e) {
@@ -38,6 +40,7 @@ class App extends React.Component {
       storageBucket: '',
       messagingSenderId: '239144843563',
     };
+
     firebase.initializeApp(config);
   }
 
@@ -129,6 +132,24 @@ class App extends React.Component {
         <br /><br />
       </div>
     );
+
+    this.readPDF = this.readPDF.bind(this);
+  }
+
+  readPDF(event) {
+    const reader = new FileReader();
+    console.log(this);
+    reader.onload = () => {
+      const { result } = reader;
+      axios.post('/api/resume', {
+        result,
+      });
+    };
+    reader.readAsBinaryString(event.target.files[0]);
+  }
+
+  render() {
+    return (<Resume readPDF={this.readPDF} />);
   }
 }
 
