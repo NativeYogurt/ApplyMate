@@ -19,6 +19,7 @@
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "firebase": "^4.5.0",
     "nodemon": "^1.12.1",
     "pdf2json": "^1.1.7",
     "pg": "^7.3.0",
