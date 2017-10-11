@@ -4,7 +4,10 @@ const webpack = require('webpack');
 const bodyParser = require('body-parser');
 const webpackConfig = require('./webpack.config.js');
 const path = require('path');
-const db = require('./backend/db/db');
+const env = require('dotenv').config();
+const db = require('./backend/db/db.js');
+const User = require('./backend/models/User');
+const SavedJobs = require('./backend/models/SavedJobs');
 
 const router = require('./backend/router/routes.js');
 
