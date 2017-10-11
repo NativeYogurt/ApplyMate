@@ -2,6 +2,11 @@ import React from 'react';
 import firebase from 'firebase';
 import axios from 'axios';
 import Resume from './resumeUpload';
+import { browserHistory, Route, Redirect, Switch } from 'react-router-dom';
+
+import Signup from './signup.js';
+import Login from './login.js';
+import Home from './home.js';
 
 class App extends React.Component {
   static GitAuth(e) {
@@ -150,6 +155,23 @@ class App extends React.Component {
 
   render() {
     return (<Resume readPDF={this.readPDF} />);
+
+    return (
+      <div>
+        <Switch>
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/home" component={Home} />
+          <Redirect exact from="/" to="/home" />
+          <Route
+            path="*"
+            render={() => {
+              return <p>Page Not Found</p>
+            }}
+          />
+        </Switch>
+      </div>);
+
   }
 }
 

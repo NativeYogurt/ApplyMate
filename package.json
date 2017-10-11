@@ -27,6 +27,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-router-dom": "^4.2.2",
     "sequelize": "^4.13.8",
     "sequelize-cli": "^3.0.0",
     "webpack": "^3.6.0",
