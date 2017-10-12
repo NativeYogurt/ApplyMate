@@ -10,15 +10,40 @@ class Dashboard extends React.Component {
       url: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addJob = this.addJob.bind(this);
   }
-  handleSubmit(event) {
-    event.preventDefault();
-    var form = document.forms.jobAdd;
-    alert('form submitted', form.company.value);
+  addJob(job) {
+    console.log('new job',job);
+    fetch('/api/job', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(job)
+		}).then(function(res){ return res.json(); })
+			.then(function(data){
+        console.log('post result', data);
+	});
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    const form = document.forms.jobAdd;
+    this.addJob({
+      company: form.company.value,
+      jobTitle: form.jobtitle.value,
+      description: form.description.value,
+      url: form.url.value,
+      skills: [],
+      userId: this.props.userId,
+    });
+    // clear the form for the next input
+    form.company.value = '';
+    form.jobtitle.value = '';
+    form.description.value = '';
+    form.url.value = '';
   }
   render() {
-    console.log('dashboard');
-
     return (
       <div>
         <h2>Add a new job</h2>
