@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Nav from './nav.js';
+import NavBar from './navbar.js';
 import Main from './mainBoard.js';
 
 class Home extends React.Component {
@@ -12,8 +12,14 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Nav signOut={this.props.signOut} />
-        <Main user={this.props.user} />
+        <h1>ApplyMate</h1>
+        <div className="navHolder">
+          <NavBar
+            history= { this.props.history }
+            signOut={ this.props.signOut }
+          />
+        </div>
+        <Main />
       </div>);
   }
 }
