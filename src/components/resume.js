@@ -27,8 +27,4 @@ class Resume extends React.Component {
   }
 }
 
-Resume.propTypes = {
-  readPDF: PropTypes.func.isRequired,
-};
-
 export default Resume;
