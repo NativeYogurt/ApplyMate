@@ -15,9 +15,9 @@ class Main extends React.Component {
     return (
       <div>
         <Switch>
-          <Route path="/home/resume" component={Resume} />
-          <Route path="/home/resources" component={Resources} />
-          <Route component={Dashboard} />
+          <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} />)} />
+          <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} />)} />
+          <Route render={() => (<Dashboard userId={this.props.userId} />)} />
         </Switch>
       </div>
     );

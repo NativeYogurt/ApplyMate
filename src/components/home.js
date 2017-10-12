@@ -15,11 +15,11 @@ class Home extends React.Component {
         <h1>ApplyMate</h1>
         <div className="navHolder">
           <NavBar
-            history= { this.props.history }
-            signOut={ this.props.signOut }
+            history={this.props.history}
+            signOut={this.props.signOut}
           />
         </div>
-        <Main />
+        <Main userId={this.props.user.uid}/>
       </div>);
   }
 }
