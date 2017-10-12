@@ -14,7 +14,7 @@ const router = require('./backend/router/routes.js');
 const app = express();
 
 const compiler = webpack(webpackConfig);
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/api', router);
 

@@ -18,7 +18,7 @@ class Resume extends React.Component {
         result,
       });
     };
-    reader.readAsBinaryString(event.target.files[0]);
+    reader.readAsDataURL(event.target.files[0]);
   }
   render() {
     return (
