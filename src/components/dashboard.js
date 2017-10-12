@@ -17,6 +17,8 @@ class Dashboard extends React.Component {
     alert('form submitted', form.company.value);
   }
   render() {
+    console.log('dashboard');
+
     return (
       <div>
         <h2>Add a new job</h2>
@@ -25,18 +27,22 @@ class Dashboard extends React.Component {
             Company:
             <input type="text" name="company" />
           </label>
+          <br />
           <label htmlFor="jobtitle">
             Job Title:
             <input type="text" name="jobtitle" />
           </label>
+          <br />
           <label htmlFor="description">
             Description:
             <input type="text" name="description" />
           </label>
+          <br />
           <label htmlFor="url">
             URL:
             <input type="text" name="url" />
           </label>
+          <br />
           <input type="submit" value="Add" />
         </form>
       </div>);
