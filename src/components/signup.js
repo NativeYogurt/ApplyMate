@@ -12,7 +12,7 @@ class Signup extends React.Component {
   handleSignUp(e) {
     e.preventDefault();
     if (this.signUpPassword.value === this.signUpPassword2.value) {
-      this.props.signUp(this.signUpUsername.value, this.signUpPassword.value);
+      this.props.signUp(this.signUpUsername.value, this.signUpPassword.value, this.firstName.value, this.lastName.value);
     } else {
       alert('Your passwords do not match.');
     }
@@ -22,6 +22,8 @@ class Signup extends React.Component {
     return (
       <div id="temp">Hello World
         <form id="signUp" onSubmit={e => this.handleSignUp(e)}>
+          <input ref={(input) => { this.firstName = input; }} type="text" placeholder="First Name" /><br />
+          <input ref={(input) => { this.lastName = input; }} type="text" placeholder="Last Name" /><br />
           <input ref={(input) => { this.signUpUsername = input; }} type="text" placeholder="E-Mail Address" /><br />
           <input ref={(input) => { this.signUpPassword = input; }} type="password" placeholder="Password" /><br />
           <input ref={(input) => { this.signUpPassword2 = input; }} type="password" placeholder="Verify Password" /><br />
