@@ -1,39 +1,33 @@
 import React from 'react';
 import firebase from 'firebase';
+import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     };
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  componentDidMount() {
-    const config = {
-      apiKey: 'AIzaSyDCJr00bBeK0fBXZWA9IkDHSyh1DA-QVCE',
-      authDomain: 'applymate-fc379.firebaseapp.com',
-      databaseURL: 'https://applymate-fc379.firebaseio.com',
-      projectId: 'applymate-fc379',
-      storageBucket: '',
-      messagingSenderId: '239144843563',
-    };
-
-    firebase.initializeApp(config);
+  handleLogin(e) {
+    e.preventDefault();
+    this.props.signIn(this.signInUsername.value, this.signInPassword.value);
   }
 
   render() {
+    console.log(this.props);
     return (
-      <div id="temp">Hello World
-        <form id="signIn" onSubmit={e => this.props.signIn(e)}>
+      <div id="temp">Hello World {this.props.signIn}
+        <form id="signIn" onSubmit={e => this.handleLogin(e)}>
           <input ref={(input) => { this.signInUsername = input; }} type="text" placeholder="E-Mail Address" /> <br />
           <input ref={(input) => { this.signInPassword = input; }} type="password" placeholder="Password" /> <br />
           <button type="submit">Sign In</button>
         </form>
-        <br /><br />
-        <button id="signOut" onClick={e => this.props.signOut(e)}>SignOut</button>
-        <br />
-        <button id="BUTTON" onClick={e => this.props.TESTBUTTON(e)}>TEST BUTTON</button>
-        <br /><br />
+        <Link to="/signup">
+          <button>Sign Up
+          </button>
+        </Link>
       </div>
     );
   }
