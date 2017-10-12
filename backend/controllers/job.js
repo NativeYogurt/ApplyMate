@@ -10,26 +10,30 @@ const Xray = require('x-ray');
 const striptags = require('striptags');
 const x = Xray();
 
-exports.uploadHandler = (req, res) => {
-  x('https://jobs.jobvite.com/careers/ww-corporate/job/oI7X4fwA?__jvst=Job%20Board&__jvsd=Indeed', (['ol'],['ul'], ['li']))((err, data) => {
-    //data = striptags(data)
-    res.send(data);
-  });
-};
-
 exports.handleJobAdd = (req, res) => {
   console.log('req', req.body);
-  SavedJobs
-  .build(req.body)
-  .save()
-  .then((data) => {
-    console.log('saved job', data);
-  })
-  .catch(error => {
-    throw error;
-  })
+  let reqSkills = [];
+  x(req.body.url, (['ol'],['ul'], ['li']))((err, data) => {
+    reqSkills = data;
+    const newJob = {
+      company: req.body.company,
+      jobTitle: req.body.jobTitle,
+      description: req.body.description,
+      url: req.body.url,
+      skills: reqSkills,
+      userId: req.body.userId,
+    };
+    SavedJobs
+      .build(newJob)
+      .save()
+      .then((data) => {
+        console.log('saved job', data);
+        res.send(data);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
+
+
 };
-
-// module.exports = handleJobAdd;
-
-
