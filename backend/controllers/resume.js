@@ -51,8 +51,9 @@ exports.uploadHandler = async (req, res) => {
     let pdfURL = await uploadPDFtoCloudinary(result);
     pdfURL = pdfURL.url;
     const textURL = await convertPDFtoText(pdfURL);
-    const text = await retrieveText(textURL);
-    console.log(text);
+    let text = await retrieveText(textURL);
+    text = text.replace(/[^a-zA-Z0-9,. ]\n/g, ' ');
+    res.send(text);
   } catch (e) {
     console.error(e);
   }
