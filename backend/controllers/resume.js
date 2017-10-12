@@ -46,7 +46,7 @@ const retrieveText = (url) => {
 };
 
 exports.uploadHandler = async (req, res) => {
-  //const textURL = '//host123d1qw.cloudconvert.com/download/~qeog7zKafisKFqZDqJtI0VoWsUc';
+  // const textURL = '//host123d1qw.cloudconvert.com/download/~qeog7zKafisKFqZDqJtI0VoWsUc';
   try {
     const { body: { result, userId } } = req;
     let pdfURL = await uploadPDFtoCloudinary(result);
