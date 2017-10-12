@@ -15,9 +15,13 @@ class Login extends React.Component {
     this.props.signIn(this.signInUsername.value, this.signInPassword.value);
   }
 
+  handleTest(e) {
+    e.preventDefault();
+    this.props.TESTBUTTON();
+  }
   render() {
     return (
-      <div id="temp">Hello World
+      <div>Hello World
         <form id="signIn" onSubmit={e => this.handleLogin(e)}>
           <input ref={(input) => { this.signInUsername = input; }} type="text" placeholder="E-Mail Address" /> <br />
           <input ref={(input) => { this.signInPassword = input; }} type="password" placeholder="Password" /> <br />
@@ -27,6 +31,7 @@ class Login extends React.Component {
           <button>Sign Up
           </button>
         </Link>
+        <button onClick={e => this.handleTest(e)}>TESTBUTTON</button>
       </div>
     );
   }
