@@ -17,6 +17,7 @@ class Home extends React.Component {
           <NavBar
             history={this.props.history}
             signOut={this.props.signOut}
+            TESTBUTTON={this.props.TESTBUTTON}
           />
         </div>
         <Main userId={this.props.user ? this.props.user.uid : null} />

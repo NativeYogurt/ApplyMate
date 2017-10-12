@@ -8,6 +8,12 @@ class Navbar extends React.Component {
     this.state = {
     };
   }
+
+  handleTest(e) {
+    e.preventDefault();
+    this.props.TESTBUTTON();
+  }
+
   render() {
     return (
       <div className="navBar">
@@ -16,6 +22,7 @@ class Navbar extends React.Component {
           <li><Link to="/home/resume">Resume</Link></li>
           <li><Link to="/home/resources">Resources</Link></li>
           <li onClick={this.props.signOut}><Link to="/">Sign Out</Link></li>
+          <button onClick={e => this.handleTest(e)}>TESTBUTTON</button>
         </nav>
       </div>
     );
