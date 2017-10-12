@@ -2,31 +2,31 @@ import React from 'react';
 import fire from './Firebase.js';
 import firebase from 'firebase';
 
-exports.signUp = (user, pass) => {
+exports.signUp = (user, pass, cb) => {
   fire.auth().createUserWithEmailAndPassword(user, pass)
     .then((newUser) => {
-      console.log(newUser);
+      cb(undefined, newUser);
     })
     .catch((error) => {
-      console.error(error.message);
+      cb(error.message);
     });
 };
-exports.signIn = (user, pass) => {
+exports.signIn = (user, pass, cb) => {
   fire.auth().signInWithEmailAndPassword(user, pass)
     .then((win) => {
-      console.log(win);
+      cb(undefined, win);
     })
     .catch((error) => {
-      console.error(error.message);
+      cb(error.message);
     });
 };
-exports.signOut = () => {
+exports.signOut = (cb) => {
   fire.auth().signOut()
     .then(() => {
-      console.log('signed out');
+      cb(undefined, null);
     })
     .catch((error) => {
-      console.error('sign out error', error);
+      cb(error);
     });
 };
 exports.gitAuth = () => {
