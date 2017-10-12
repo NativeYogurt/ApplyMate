@@ -11,11 +11,11 @@ class Resume extends React.Component {
   }
   readPDF(event) {
     const reader = new FileReader();
-    console.log(this);
     reader.onload = () => {
       const { result } = reader;
       axios.post('/api/resume', {
         result,
+        userId: this.props.userId,
       });
     };
     reader.readAsDataURL(event.target.files[0]);

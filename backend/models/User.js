@@ -16,6 +16,12 @@ const User = sequelize.define('user', {
   email: {
     type: Sequelize.STRING,
   },
+  resume: {
+    type: Sequelize.TEXT,
+  },
+  resumeURL: {
+    type: Sequelize.STRING,
+  },
   skills: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
   },
