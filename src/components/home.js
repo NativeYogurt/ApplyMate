@@ -19,7 +19,7 @@ class Home extends React.Component {
             signOut={this.props.signOut}
           />
         </div>
-        <Main userId={this.props.user.uid}/>
+        <Main userId={this.props.user ? this.props.user.uid : null} />
       </div>);
   }
 }
