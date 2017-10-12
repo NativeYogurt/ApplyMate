@@ -17,6 +17,10 @@ class Signup extends React.Component {
       alert('Your passwords do not match.');
     }
   }
+  handleTest(e) {
+    e.preventDefault();
+    this.props.TESTBUTTON();
+  }
 
   render() {
     return (
@@ -32,6 +36,7 @@ class Signup extends React.Component {
         <Link to="/login">
           <button>Log In
           </button>
+          <button onClick={e => this.handleTest(e)}>TESTBUTTON</button>
         </Link>
       </div>
     );
