@@ -3,23 +3,32 @@ const sequelize = require('../db/db');
 const User = require('./User.js');
 
 const SavedJobs = sequelize.define('saved_jobs', {
-  job_id: {
-    type: Sequelize.STRING,
+  jobId: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
-    allowNull: false,
   },
-  skills: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
+  company: {
+    type: Sequelize.STRING,
+  },
+  jobTitle: {
+    type: Sequelize.STRING,
+  },
+  description: {
+    type: Sequelize.STRING,
   },
   url: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  user_id: {
+  skills: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+  },
+  userId: {
     type: Sequelize.STRING,
     references: {
       model: User,
-      key: 'user_id',
+      key: 'userId',
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
     },
   },
