@@ -1,9 +1,9 @@
 import React from 'react';
 import { browserHistory, Route, Switch } from 'react-router-dom';
 
-// import Dashboard from './dashboard.js';
+import Dashboard from './dashboard.js';
 import Resume from './resume.js';
-// import Resources from './resources.js';
+import Resources from './resources.js';
 
 class Main extends React.Component {
   constructor(props) {
@@ -15,7 +15,9 @@ class Main extends React.Component {
     return (
       <main>
         <Switch>
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/resume" component={Resume} />
+          <Route path="/resources" component={Resources} />
         </Switch>
       </main>);
   }
