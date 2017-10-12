@@ -16,9 +16,8 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div id="temp">Hello World {this.props.signIn}
+      <div id="temp">Hello World
         <form id="signIn" onSubmit={e => this.handleLogin(e)}>
           <input ref={(input) => { this.signInUsername = input; }} type="text" placeholder="E-Mail Address" /> <br />
           <input ref={(input) => { this.signInPassword = input; }} type="password" placeholder="Password" /> <br />

@@ -1,11 +1,25 @@
 import React from 'react';
 import fire from './Firebase.js';
 import firebase from 'firebase';
-
-exports.signUp = (user, pass, cb) => {
+import axios from 'axios'
+exports.signUp = (user, pass, first, last, cb) => {
   fire.auth().createUserWithEmailAndPassword(user, pass)
     .then((newUser) => {
       cb(undefined, newUser);
+      axios.post('/api/signUp', {
+        data: {
+          id: newUser.uid,
+          firstName: first,
+          lastName: last,
+          email: newUser.email,
+        },
+      })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.error(err);
+        })
     })
     .catch((error) => {
       cb(error.message);

@@ -47,8 +47,8 @@ class App extends React.Component {
       isLoggedIn: bool,
     });
   }
-  signUp(user, pass) {
-    Auth.signUp(user, pass, (err, win) => {
+  signUp(user, pass, first, last) {
+    Auth.signUp(user, pass, first, last, (err, win) => {
       if (err) alert(err);
       else {
         this.setUser(win);
