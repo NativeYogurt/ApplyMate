@@ -37,9 +37,21 @@ class App extends React.Component {
     this.signOut = this.signOut.bind(this);
     this.TESTBUTTON = this.TESTBUTTON.bind(this);
   }
-  setUser(user) {
+  componentWillMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          user,
+          isLoggedIn: true,
+        });
+      }
+    });
+  }
+
+  setUser(user, bool) {
     this.setState({
       user,
+      isLoggedIn: bool,
     });
   }
   setIsLoggedIn(bool) {
@@ -51,8 +63,7 @@ class App extends React.Component {
     Auth.signUp(user, pass, first, last, (err, win) => {
       if (err) alert(err);
       else {
-        this.setUser(win);
-        this.setIsLoggedIn(true);
+        this.setUser(win, true);
       }
     });
   }
@@ -60,8 +71,7 @@ class App extends React.Component {
     Auth.signIn(user, pass, (err, win) => {
       if (err) alert(err);
       else {
-        this.setUser(win);
-        this.setIsLoggedIn(true);
+        this.setUser(win, true);
       }
     });
   }
@@ -69,16 +79,15 @@ class App extends React.Component {
     Auth.signOut((err, win) => {
       if (err) alert(err);
       else {
-        this.setUser(win);
-        this.setIsLoggedIn(false);
+        this.setUser(win, false);
       }
     });
   }
 
   TESTBUTTON(e) {
-    e.preventDefault();
     console.log('firebase.auth().currentUser', firebase.auth().currentUser);
     console.log('this.state.user', this.state.user);
+    console.log('this.state.isLoggedIn', this.state.isLoggedIn);
   }
   requireAuth() {
     return !this.state.isLoggedIn;
@@ -101,9 +110,9 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
-          {this.routes('/signup', <Signup signUp={this.signUp} setUser={this.setUser} setIsLoggedIn={this.setIsLoggedIn} />, <Redirect to="/home" />)}
-          {this.routes('/login', <Login signIn={this.signIn} setUser={this.setUser} setIsLoggedIn={this.setIsLoggedIn} />, <Redirect to="/home" />)}
-          {this.routes('/home', <Redirect to="/login" />, <Home signOut={this.signOut} user={this.state.user} />)}
+          {this.routes('/signup', <Signup signUp={this.signUp} TESTBUTTON={this.TESTBUTTON} />, <Redirect to="/home" />)}
+          {this.routes('/login', <Login signIn={this.signIn} TESTBUTTON={this.TESTBUTTON} />, <Redirect to="/home" />)}
+          {this.routes('/home', <Redirect to="/login" />, <Home signOut={this.signOut} user={this.state.user} TESTBUTTON={this.TESTBUTTON} />)}
           <Route
             exact
             path="*"
