@@ -20,3 +20,13 @@ exports.handleJobAdd = (req, res) => {
 };
 
 // module.exports = handleJobAdd;
+const Xray = require('x-ray');
+const striptags = require('striptags');
+const x = Xray();
+
+exports.uploadHandler = (req, res) => {
+  x('https://jobs.jobvite.com/careers/ww-corporate/job/oI7X4fwA?__jvst=Job%20Board&__jvsd=Indeed', (['ol'],['ul'], ['li']))((err, data) => {
+    //data = striptags(data)
+    res.send(data);
+  });
+};
