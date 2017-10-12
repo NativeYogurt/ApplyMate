@@ -12,8 +12,8 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
-        <Main />
+        <Nav onLogout={this.props.signOut} />
+        <Main user={this.props.user} />
       </div>);
   }
 }

@@ -15,10 +15,11 @@ class Nav extends React.Component {
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/resume">Resume</Link></li>
             <li><Link to="/resources">Resources</Link></li>
+            <li href="#" onClick={this.props.onLogout}>Logout</li>
           </ul>
         </nav>
       </header>
-      );
+    );
   }
 }
 
