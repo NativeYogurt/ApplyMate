@@ -12,7 +12,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav signOut={this.props.signOut}/>
         <Main />
       </div>);
   }
