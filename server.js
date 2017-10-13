@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const webpackConfig = require('./webpack.config.js');
 const path = require('path');
 const env = require('dotenv').config();
-const db = require('./backend/db/db.js');
+const db = require('./backend/db/db');
 const User = require('./backend/models/User');
 const SavedJobs = require('./backend/models/SavedJobs');
 
