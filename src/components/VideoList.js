@@ -52,6 +52,7 @@ class VideoList extends React.Component {
   render() {
     return (
       <div className="video-list">
+        <h3>Video Tutorial</h3>
         {this.state.videos.map((video) =>
           <VideoListEntry
             key={video.etag}
