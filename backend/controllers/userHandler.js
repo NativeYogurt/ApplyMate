@@ -8,4 +8,5 @@ exports.signUp = (req, res) => {
     lastName: req.body.data.lastName,
     email: req.body.data.email,
   })
+  console.log(User);
 };
