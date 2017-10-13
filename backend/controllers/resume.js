@@ -70,7 +70,7 @@ exports.uploadHandler = async (req, res) => {
         where: {
           userId,
         },
-      },
+      }
     )
       .then(data => res.send(data));
   } catch (e) {
