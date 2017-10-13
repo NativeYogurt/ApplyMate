@@ -8,16 +8,14 @@ class VideoListEntry extends React.Component {
   }
   render() {
     return (
-      <div className="video-list-entry media">
-        <div className="media-left media-middle">
+      <div className="video-list-entry">
+        <div>
           <img className="media-object" src={this.props.video.snippet.thumbnails.default.url} alt="" />
         </div>
         <div className="media-body">
           <div
             className="video-list-entry-title"
             onClick={()=> {
-              console.log('i am here', this.props.video.id.videoId);
-              console.log('this video', this.props.video)
               window.open(`https://www.youtube.com/embed/${this.props.video.id.videoId}`, "_blank")}}
 
           >

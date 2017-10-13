@@ -17,16 +17,16 @@ class VideoList extends React.Component {
     console.log('componentDidMount', this.state.currentVideo);
   }
   getYouTubeVideos(query) {
+    console.log(process.env.REACT_APP_YOUTUBE_KEY);
     var options = {
       query: query
     };
     console.log('query', query);
     $.get('https://www.googleapis.com/youtube/v3/search', {
       part: 'snippet',
-      key: 'AIzaSyCRQ8Ak7NSjUfh_rdER2_iMSzQ171VNLOo',
-      // key: process.env.YOUTUBE_KEY,
+      key: process.env.REACT_APP_YOUTUBE_KEY,
       q: query,
-      maxResults: 5,
+      maxResults: 3,
       type: 'video',
       // videoEmbeddable: 'true',
       order: 'viewCount',
@@ -52,6 +52,7 @@ class VideoList extends React.Component {
   render() {
     return (
       <div className="video-list">
+        <h3>Video Tutorial</h3>
         {this.state.videos.map((video) =>
           <VideoListEntry
             key={video.etag}
