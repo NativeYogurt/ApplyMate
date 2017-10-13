@@ -19,9 +19,8 @@ class TutorialList extends React.Component {
     };
     console.log('query', query);
     $.get('https://www.googleapis.com/customsearch/v1?parameters', {
-      cx: '009271936799338995815:cwbl2stajg0',
-      key: 'AIzaSyDKRhtDd9b4RU7QXN9OLJo3zylZ3d4KRpU',
-      // key: process.env.YOUTUBE_KEY,
+      cx: process.env.REACT_APP_GOOGLE_CX,
+      key: process.env.REACT_APP_GOOGLE_KEY,
       q: query,
       num: 3,
     })
