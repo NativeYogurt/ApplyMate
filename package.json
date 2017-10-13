@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "webpack",
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -18,11 +18,13 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.2",
+    "child_process": "^1.0.2",
     "cloudconvert": "^1.1.2",
     "cloudinary": "^1.9.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "firebase": "^4.5.0",
+    "fs": "0.0.1-security",
     "nodemon": "^1.12.1",
     "pdf2json": "^1.1.7",
     "pg": "^7.3.0",
@@ -47,6 +49,7 @@
     "eslint-config-airbnb": "^16.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0"
+    "eslint-plugin-react": "^7.4.0",
+    "jest": "^21.2.1"
   }
 }
