@@ -4,7 +4,7 @@ import { browserHistory, Route, Switch } from 'react-router-dom';
 import Dashboard from './dashboard.js';
 import Resume from './resume.js';
 import Resources from './resources.js';
-import Profile from './Profile.js';
+import Profile from './Profile';
 
 class Main extends React.Component {
   constructor(props) {
