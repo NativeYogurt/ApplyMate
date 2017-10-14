@@ -7,7 +7,6 @@ import Main from './mainBoard';
 function Home(props) {
   return (
     <div>
-      <h1>ApplyMate</h1>
       <div className="navHolder">
         <NavBar
           signOut={props.signOut}

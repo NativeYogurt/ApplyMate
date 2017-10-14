@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
           <br />
           <label htmlFor="description">
             Description:
-            <input type="text" name="description" />
+            <textarea name="description" />
           </label>
           <br />
           <label htmlFor="url">
