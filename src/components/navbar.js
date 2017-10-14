@@ -1,14 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Auth from './Auth.js';
+import PropTypes from 'prop-types';
+
+import Auth from './Auth';
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
   handleTest(e) {
     e.preventDefault();
     this.props.TESTBUTTON();
@@ -28,5 +24,8 @@ class Navbar extends React.Component {
     );
   }
 }
-
+Navbar.propTypes = {
+  TESTBUTTON: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
+};
 export default Navbar;

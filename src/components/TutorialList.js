@@ -1,6 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
-import TutorialListEntry from './TutorialListEntry.js';
+import PropTypes from 'prop-types';
+
+import TutorialListEntry from './TutorialListEntry';
 
 class TutorialList extends React.Component {
   constructor(props) {
@@ -14,10 +16,6 @@ class TutorialList extends React.Component {
     this.getTutorials(this.props.skill);
   }
   getTutorials(query) {
-    var options = {
-      query: query
-    };
-    console.log('query', query);
     $.get('https://www.googleapis.com/customsearch/v1?parameters', {
       cx: process.env.REACT_APP_GOOGLE_CX,
       key: process.env.REACT_APP_GOOGLE_KEY,
@@ -28,7 +26,6 @@ class TutorialList extends React.Component {
         this.setState({
           tutorials: items,
         });
-        console.log('search result', this.state.tutorials);
       })
       .fail(({ responseJSON }) => {
         responseJSON.error.errors.forEach(err =>
@@ -39,15 +36,16 @@ class TutorialList extends React.Component {
     return (
       <div className="Tutorial-list">
         <h3>Tutorial Sites</h3>
-        {this.state.tutorials ? this.state.tutorials.map((tutorial) =>
-          <TutorialListEntry
+        {this.state.tutorials ? this.state.tutorials.map(tutorial =>
+          (<TutorialListEntry
             key={tutorial.title}
-            Tutorial={tutorial}
-          />
-        ) : null}
+            tutorial={tutorial}
+          />)) : null }
       </div>
     );
   }
 }
-
+TutorialList.propTypes = {
+  skill: PropTypes.string.isRequired,
+};
 export default TutorialList;
