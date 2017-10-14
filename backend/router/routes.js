@@ -9,8 +9,8 @@ const comparison = require('../controllers/comparison.js');
 router.post('/resume', resume.uploadHandler);
 router.post('/signUp', userHandler.signUp);
 router.post('/job', job.handleJobAdd);
+router.get('/comparison', comparison.getComparison);
 router.post('/findUser', user.handleUserFind);
 router.put('/updateUser', user.handleUpdateUser);
-router.get('/comparison', comparison.getComparison);
 
 module.exports = router;

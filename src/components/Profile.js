@@ -24,7 +24,6 @@ class Profile extends React.Component {
     })
       .then((res) => {
         return res.json();
-        console.log(res);
       })
       .then((data) => {
         this.setState({
@@ -36,15 +35,15 @@ class Profile extends React.Component {
       .catch(error => console.log('error getting data'));
   }
 
-  updateUser(user) {
-    console.log(user);
+  updateUser() {
     axios.put('api/updateUser/', {
+      userId: this.props.userId,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
     })
       .then((data) => {
-        console.log(data);
+        console.log('User has been updated!');
       })
       .catch((error) => {
         console.log(error);
@@ -54,11 +53,11 @@ class Profile extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.updateUser;
-    this.updateUser({
-      firstName: form.firstName.value,
-      lastName: form.lastName.value,
-      email: form.email.value,
-    });
+    this.setState({
+      firstName: form.firstName.value || this.state.firstName,
+      lastName: form.lastName.value || this.state.lastName,
+      email: form.email.value || this.state.email,
+    }, () => this.updateUser());
     // clear the form for the next input
     form.firstName.value = '';
     form.lastName.value = '';
@@ -70,7 +69,6 @@ class Profile extends React.Component {
       <div className="user-profile">
         <h3>Hello, {this.state.firstName} {this.state.lastName}!</h3>
         <br />
-
         <strong>Update Your Info:</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">
