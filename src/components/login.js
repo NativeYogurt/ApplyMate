@@ -6,25 +6,41 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      password : '',
+      email : '',
     };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
   }
 
   handleLogin(e) {
     e.preventDefault();
-    this.props.signIn(this.signInUsername.value, this.signInPassword.value);
+    this.props.signIn(this.state.email, this.state.password);
   }
 
   handleTest(e) {
     e.preventDefault();
     this.props.TESTBUTTON();
   }
+  handleEmail(e) {
+    e.preventDefault();
+    this.setState({
+      email: e.target.value,
+    });
+  }
+  handlePassword(e) {
+    e.preventDefault();
+    this.setState({
+      password: e.target.value,
+    });
+  }
   render() {
     return (
       <div>Hello World
         <form id="signIn" onSubmit={e => this.handleLogin(e)}>
-          <input ref={(input) => { this.signInUsername = input; }} type="text" placeholder="E-Mail Address" /> <br />
-          <input ref={(input) => { this.signInPassword = input; }} type="password" placeholder="Password" /> <br />
+          <input onChange={this.handleEmail} type="text" placeholder="E-Mail Address" /> <br />
+          <input onChange={this.handlePassword} type="password" placeholder="Password" /> <br />
           <button type="submit">Sign In</button>
         </form>
         <Link to="/signup">
