@@ -2,15 +2,17 @@ const SavedJobs = require('../models/SavedJobs.js');
 const User = require('../models/User.js');
 
 exports.getComparison = async (req, res) => {
-  const userId = req.query.userId;
+  const { query: { userId } } = req;
+  let jobs = [];
+  let userSkills = [];
   try {
-    let userSkills = await User.findAll({
+    userSkills = await User.findAll({
       attributes: ['skills'],
       where: {
         userId,
       },
     });
-    let jobs = await SavedJobs.findAll({
+    jobs = await SavedJobs.findAll({
       where: {
         userId,
       },
