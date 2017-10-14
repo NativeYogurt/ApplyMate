@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -7,12 +8,13 @@ class Profile extends React.Component {
       firstName: '',
       lastName: '',
       email: '',
-      resume: ''
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/user', {
+    fetch('/api/findUser', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -22,22 +24,71 @@ class Profile extends React.Component {
     })
       .then((res) => {
         return res.json();
+        console.log(res);
       })
-      .then((data) => console.log('get result', data));
+      .then((data) => {
+        this.setState({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+        });
+      })
+      .catch(error => console.log('error getting data'));
+  }
+
+  updateUser(user) {
+    console.log(user);
+    axios.put('api/updateUser/', {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+    })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const form = document.forms.updateUser;
+    this.updateUser({
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      email: form.email.value,
+    });
+    // clear the form for the next input
+    form.firstName.value = '';
+    form.lastName.value = '';
+    form.email.value = '';
   }
 
   render() {
     return (
       <div className="user-profile">
-        <p>STATIC USER INFO HERE</p>
+        <h3>Hello, {this.state.firstName} {this.state.lastName}!<br />{this.state.email}</h3>
+        <br />
+
         <strong>Update Your Info:</strong><br />
-        <form>
-          <label>First Name</label><br />
-          <input type="text" name="firstName" /><input type="submit" value="Submit" /><br />
-          <label>Change Last Name</label><br />
-          <input type="text" name="lastName" /><input type="submit" value="Submit" /><br />
-          <label>Change Email</label><br />
-          <input type="text" name="email" /><input type="submit" value="Submit" />
+        <form name="updateUser" onSubmit={this.handleSubmit}>
+          <label htmlFor="firstName">
+            First Name:
+            <input type="text" name="firstName" />
+          </label>
+          <br />
+          <label htmlFor="firstName">
+            Last Name:
+            <input type="text" name="lastName" />
+          </label>
+          <br />
+          <label htmlFor="email">
+            Email:
+            <input type="text" name="email" />
+          </label>
+          <br />
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );

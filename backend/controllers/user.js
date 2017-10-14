@@ -1,15 +1,19 @@
 const User = require('../models/User');
 
 exports.handleUserFind = (req, res) => {
-  const id = req.body.id;
-  console.log('userID in controller', req.body.userId);
-
   User.findOne({ where: { userId: req.body.userId } }).then(user => {
     res.send(user);
   });
+};
 
-  // gets all users as expected:
-  // User.findAll().then(users => {
-  //   res.send(users);
-  // });
+exports.handleUpdateUser = (req, res) => {
+  const newData = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+  };
+
+  User.update(newData, { where: { userId: req.body.userId } })
+    .then(result => res.send(result))
+    .catch(err => console.log('error updating user', err));
 };

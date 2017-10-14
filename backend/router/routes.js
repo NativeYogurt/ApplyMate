@@ -8,7 +8,8 @@ const user = require('../controllers/user');
 router.post('/resume', resume.uploadHandler);
 router.post('/signUp', userHandler.signUp);
 router.post('/job', job.handleJobAdd);
-router.post('/user', user.handleUserFind);
+router.post('/findUser', user.handleUserFind);
+router.put('/updateUser', user.handleUpdateUser);
 
 
 module.exports = router;
