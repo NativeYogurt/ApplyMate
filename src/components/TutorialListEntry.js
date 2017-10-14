@@ -1,23 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class TutorialListEntry extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  render() {
-    return (
-      <div className="Tutorial-list-entry">
-        <div>
-          <div className="Tutorial-list-entry-title">
-            {this.props.Tutorial.title}
-          </div>
-          <div className="Tutorial-list-entry-detail"><a href={this.props.Tutorial.link} target="_blank">{this.props.Tutorial.link}</a></div>
+function TutorialListEntry(props) {
+  return (
+    <div className="Tutorial-list-entry">
+      <div>
+        <div className="Tutorial-list-entry-title">
+          {props.tutorial.title}
         </div>
+        <div className="Tutorial-list-entry-detail"><a href={props.tutorial.link} target="_blank">{props.tutorial.link}</a></div>
       </div>
-    );
-  }
+    </div>
+  );
 }
-// onClick={() => this.props.handleTutorialListEntryTitleClick(Tutorial)}
+TutorialListEntry.propTypes = {
+  tutorial: PropTypes.object.isRequired,
+};
 export default TutorialListEntry;

@@ -1,23 +1,19 @@
 import React from 'react';
-import $ from 'jquery';
-import VideoList from './VideoList.js';
-import TutorialList from './TutorialList.js';
+import PropTypes from 'prop-types';
 
-class SkillEntry extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  render() {
-    return (
-      <div className="skill-list-entry">
-        <h2>{this.props.skill}</h2>
-        <VideoList skill={this.props.skill + 'tutorial'} />
-        <TutorialList skill={this.props.skill + '+tutorial'} />
-      </div>
-    );
-  }
+import VideoList from './VideoList';
+import TutorialList from './TutorialList';
+
+function SkillEntry(props) {
+  return (
+    <div className="skill-list-entry">
+      <h2>{props.skill}</h2>
+      <VideoList skill={`${props.skill}tutorial`} />
+      <TutorialList skill={`${props.skill}+tutorial`} />
+    </div>
+  );
 }
-
+SkillEntry.propTypes = {
+  skill: PropTypes.string.isRequired,
+};
 export default SkillEntry;
