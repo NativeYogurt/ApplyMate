@@ -28,5 +28,5 @@
     "jsx-a11y/anchor-is-valid": "off",
     "arrow-parens": "off",
     "arrow-body-style": "off"
-  }
+  },
 }
