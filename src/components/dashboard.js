@@ -4,27 +4,23 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: '',
-      jobtitle: '',
-      description: '',
-      url: '',
+      successVisible: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addJob = this.addJob.bind(this);
   }
   addJob(job) {
-    console.log('new job',job);
     fetch('/api/job', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(job)
-		}).then(function(res){ return res.json(); })
-			.then(function(data){
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(job)
+    }).then(res => res.json())
+      .then((data) => {
         console.log('post result', data);
-	});
+      });
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -42,8 +38,14 @@ class Dashboard extends React.Component {
     form.jobtitle.value = '';
     form.description.value = '';
     form.url.value = '';
+    this.setState({ successVisible: true });
   }
   render() {
+    const success = (
+      <div className="alert">
+        The job has been added.
+      </div>
+    );
     return (
       <div>
         <h2>Add a new job</h2>
@@ -70,6 +72,7 @@ class Dashboard extends React.Component {
           <br />
           <input type="submit" value="Add" />
         </form>
+        {this.state.successVisible ? success : null}
       </div>);
   }
 }

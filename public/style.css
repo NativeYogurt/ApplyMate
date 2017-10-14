@@ -37,5 +37,13 @@ li:hover {
     text-transform: uppercase;
     list-style: none;
     float: left;
-    width: 20%;
+    width: 15%;
+}
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
 }

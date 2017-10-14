@@ -67,23 +67,23 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="user-profile">
-        <h3>Hello, {this.state.firstName} {this.state.lastName}!<br />{this.state.email}</h3>
+        <h3>Hello, {this.state.firstName} {this.state.lastName}!</h3>
         <br />
         <strong>Update Your Info:</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">
             First Name:
-            <input type="text" name="firstName" />
+            <input type="text" name="firstName" value={this.state.firstName} />
           </label>
           <br />
           <label htmlFor="firstName">
             Last Name:
-            <input type="text" name="lastName" />
+            <input type="text" name="lastName" value={this.state.lastName} />
           </label>
           <br />
           <label htmlFor="email">
             Email:
-            <input type="text" name="email" />
+            <input type="text" name="email" value={this.state.email} />
           </label>
           <br />
           <input type="submit" value="Submit" />

@@ -1,31 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-class VideoListEntry extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  render() {
-    return (
-      <div className="video-list-entry">
-        <div>
-          <img className="media-object" src={this.props.video.snippet.thumbnails.default.url} alt="" />
-        </div>
-        <div className="media-body">
-          <div
-            className="video-list-entry-title"
-            onClick={()=> {
-              window.open(`https://www.youtube.com/embed/${this.props.video.id.videoId}`, "_blank")}}
-
-          >
-            {this.props.video.snippet.title}
-          </div>
-          <div className="video-list-entry-detail">{this.props.video.snippet.description}</div>
-        </div>
+function VideoListEntry(props) {
+  return (
+    <div className="video-list-entry">
+      <div>
+        <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
       </div>
-    );
-  }
+      <div className="media-body">
+        <div
+          className="video-list-entry-title"
+          onClick={()=> {
+            window.open(`https://www.youtube.com/embed/${props.video.id.videoId}`, "_blank")}}
+        >
+          {props.video.snippet.title}
+        </div>
+        <div className="video-list-entry-detail">{props.video.snippet.description}</div>
+      </div>
+    </div>
+  );
 }
-// onClick={() => this.props.handleVideoListEntryTitleClick(video)}
+VideoListEntry.propTypes = {
+  video: PropTypes.object.isRequired,
+};
 export default VideoListEntry;

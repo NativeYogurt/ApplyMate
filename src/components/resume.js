@@ -26,5 +26,7 @@ class Resume extends React.Component {
     );
   }
 }
-
+Resume.propTypes = {
+  userId: PropTypes.string.isRequired,
+};
 export default Resume;

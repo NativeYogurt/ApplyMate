@@ -1,13 +1,14 @@
 import React from 'react';
 import firebase from 'firebase';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      password : '',
-      email : '',
+      password: '',
+      email: '',
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleEmail = this.handleEmail.bind(this);

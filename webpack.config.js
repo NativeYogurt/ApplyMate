@@ -30,6 +30,6 @@ module.exports = {
     new Dotenv({
       path: './.env', // Path to .env file (this is the default)
       safe: false, // load .env.example (defaults to "false" which does not use dotenv-safe)
-    })
-  ]
+    }),
+  ],
 };
