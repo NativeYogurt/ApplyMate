@@ -5,7 +5,6 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   dialect: 'postgres',
 });
 
-
 sequelize
   .authenticate()
   .then(() => console.log('Connection to DB has been established successfully.'))
