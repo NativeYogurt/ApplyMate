@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import NavBar from './Navbar';
-import Main from './MainBoard';
+import NavBar from './navbar';
+import Main from './mainBoard';
 
 function Home(props) {
   return (

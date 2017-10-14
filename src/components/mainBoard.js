@@ -2,10 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Dashboard from './Dashboard';
+import Dashboard from './dashboard';
 import Resume from './resume';
-import Resources from './Resources';
-import Profile from './profile';
+import Resources from './resources';
+import Profile from './Profile';
 
 function Main(props) {
   return (

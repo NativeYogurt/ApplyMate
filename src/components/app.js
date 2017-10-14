@@ -4,7 +4,7 @@ import { browserHistory, Route, Redirect, Switch } from 'react-router-dom';
 import fire from './Firebase';
 import Signup from './signup';
 import Login from './login';
-import Home from './Home';
+import Home from './home';
 import Auth from './Auth';
 
 class App extends React.Component {
