@@ -40,8 +40,8 @@ exports.handleJobAdd = (req, res) => {
   });
 };
 
-exports.handleGetJobs = (req, res) => {
-  savedJobs.findOne({ where: { userId: req.body.userId } }).then(user => {
-    res.send(user);
-  });
-};
+// exports.handleGetJobs = (req, res) => {
+//   savedJobs.findOne({ where: { userId: req.body.userId } }).then(user => {
+//     res.send(user);
+//   });
+// };

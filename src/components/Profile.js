@@ -50,10 +50,6 @@ class Profile extends React.Component {
       });
   }
 
-  getJobs() {
-
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.updateUser;
