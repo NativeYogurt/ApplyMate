@@ -1,28 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import NavBar from './navbar.js';
-import Main from './mainBoard.js';
+import NavBar from './Navbar';
+import Main from './MainBoard';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  render() {
-    return (
-      <div>
-        <h1>ApplyMate</h1>
-        <div className="navHolder">
-          <NavBar
-            history={this.props.history}
-            signOut={this.props.signOut}
-            TESTBUTTON={this.props.TESTBUTTON}
-          />
-        </div>
-        <Main userId={this.props.user ? this.props.user.uid : null} />
-      </div>);
-  }
+function Home(props) {
+  return (
+    <div>
+      <h1>ApplyMate</h1>
+      <div className="navHolder">
+        <NavBar
+          signOut={props.signOut}
+          TESTBUTTON={props.TESTBUTTON}
+        />
+      </div>
+      <Main userId={props.user ? props.user.uid : null} />
+    </div>);
 }
-
+Home.propTypes = {
+  signOut: PropTypes.func.isRequired,
+  TESTBUTTON: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+};
 export default Home;
