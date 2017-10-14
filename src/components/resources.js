@@ -26,7 +26,7 @@ class Resources extends React.Component {
           job.missingSkills = job.skills.filter(skill => userSkills.indexOf(skill) === -1);
           return job;
         });
-        if (jobs) {
+        if (jobs[0]) {
           missing = jobs[0].missingSkills;
         }
         this.setState({
