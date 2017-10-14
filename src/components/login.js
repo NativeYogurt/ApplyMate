@@ -38,7 +38,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>Hello World
-        <form id="signIn" onSubmit={e => this.handleLogin(e)}>
+        <form id="signIn" onSubmit={this.handleLogin}>
           <input onChange={this.handleEmail} type="text" placeholder="E-Mail Address" /> <br />
           <input onChange={this.handlePassword} type="password" placeholder="Password" /> <br />
           <button type="submit">Sign In</button>
