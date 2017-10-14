@@ -5,34 +5,15 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
+      firstName: this.props.userFirstName,
+      lastName: this.props.userLastName,
+      email: this.props.userEmail,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateUser = this.updateUser.bind(this);
-  }
-
-  componentDidMount() {
-    fetch('/api/findUser', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ userId: this.props.userId }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        this.setState({
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-        });
-      })
-      .catch(error => console.log('error getting data'));
+    this.onChangeFirstName = this.onChangeFirstName.bind(this);
+    this.onChangeLastName = this.onChangeLastName.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
   }
 
   updateUser() {
@@ -64,26 +45,38 @@ class Profile extends React.Component {
     form.email.value = '';
   }
 
+  onChangeFirstName(e) {
+    this.setState({ firstName: e.target.value });
+  }
+
+  onChangeLastName(e) {
+    this.setState({ lastName: e.target.value });
+  }
+
+  onChangeEmail(e) {
+    this.setState({ email: e.target.value });
+  }
   render() {
+    const userName = `${this.props.userFirstName} ${this.props.userLastName}`;
     return (
       <div className="user-profile">
-        <h3>Hello, {this.state.firstName} {this.state.lastName}!</h3>
+        <h3>Hello, {userName}!</h3>
         <br />
         <strong>Update Your Info:</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">
             First Name:
-            <input type="text" name="firstName" value={this.state.firstName} />
+            <input type="text" name="firstName" value={this.state.firstName} onChange={this.onChangeFirstName} />
           </label>
           <br />
           <label htmlFor="firstName">
             Last Name:
-            <input type="text" name="lastName" value={this.state.lastName} />
+            <input type="text" name="lastName" value={this.state.lastName} onChange={this.onChangeLastName} />
           </label>
           <br />
           <label htmlFor="email">
             Email:
-            <input type="text" name="email" value={this.state.email} />
+            <input type="text" name="email" value={this.state.email} onChange={this.onChangeEmail} />
           </label>
           <br />
           <input type="submit" value="Submit" />
