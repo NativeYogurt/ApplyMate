@@ -16,6 +16,18 @@ class Profile extends React.Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
   }
 
+  onChangeFirstName(e) {
+    this.setState({ firstName: e.target.value });
+  }
+
+  onChangeLastName(e) {
+    this.setState({ lastName: e.target.value });
+  }
+
+  onChangeEmail(e) {
+    this.setState({ email: e.target.value });
+  }
+
   updateUser() {
     axios.put('api/updateUser/', {
       userId: this.props.userId,
@@ -45,17 +57,6 @@ class Profile extends React.Component {
     form.email.value = '';
   }
 
-  onChangeFirstName(e) {
-    this.setState({ firstName: e.target.value });
-  }
-
-  onChangeLastName(e) {
-    this.setState({ lastName: e.target.value });
-  }
-
-  onChangeEmail(e) {
-    this.setState({ email: e.target.value });
-  }
   render() {
     const userName = `${this.props.userFirstName} ${this.props.userLastName}`;
     return (
