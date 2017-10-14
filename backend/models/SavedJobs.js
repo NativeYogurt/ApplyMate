@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../db/db');
-const User = require('./User.js');
+const User = require('./User');
 
 const SavedJobs = sequelize.define('saved_jobs', {
   jobId: {
@@ -34,5 +34,5 @@ const SavedJobs = sequelize.define('saved_jobs', {
   },
 });
 
-SavedJobs.sync();
+// SavedJobs.sync();
 module.exports = SavedJobs;
