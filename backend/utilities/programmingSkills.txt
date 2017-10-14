@@ -65,3 +65,4 @@ PHPDocumentor
 CSSEdit
 PHPList
 PHPBB
+GraphQL

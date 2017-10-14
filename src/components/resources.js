@@ -33,6 +33,9 @@ class Resources extends React.Component {
           userSkills,
           missingSkills: missing,
         });
+        console.log('jobs skills', this.state.jobs);
+        console.log('user skills', this.state.userSkills);
+        console.log('missing skills', this.state.missingSkills);
       });
   }
 
