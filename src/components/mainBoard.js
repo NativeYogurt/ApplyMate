@@ -27,5 +27,3 @@ class Main extends React.Component {
 }
 
 export default Main;
-
-// <Route path="/home/profile" render={() => (<Profile userId={this.props.userId} />)} />
