@@ -8,5 +8,17 @@ exports.signUp = (req, res) => {
     lastName: req.body.data.lastName,
     email: req.body.data.email,
   })
-  console.log(User);
+  .then(user => console.log('heyitssignup', user))
+};
+exports.scanforUser = (req, res) => {
+  console.log('userhand', req.body.data.email);
+  User.findAll({
+    where: {
+      email: req.body.data.email,
+    },
+  })
+    .then((user) => {
+      res.send(user);
+      console.log('kenny', user);
+    });
 };
