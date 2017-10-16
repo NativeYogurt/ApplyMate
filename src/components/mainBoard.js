@@ -26,12 +26,12 @@ class Main extends React.Component {
     this.getJobComparison = this.getJobComparison.bind(this);
   }
 
-
   componentDidMount() {
     this.getUserInfo();
     this.getJobs();
     this.getJobComparison();
   }
+
   getUserInfo() {
     fetch('/api/findUser', {
       method: 'POST',
@@ -69,15 +69,7 @@ class Main extends React.Component {
       .catch(err => console.error(err));
   }
 
-  deleteJob(jobId) {
-    const jobs = this.state.savedJobs.filter(job => job.jobId !== jobId);
-    this.setState({
-      savedJobs: jobs,
-    });
-    axios.put('/api/job/delete', { jobId });
-    this.getJobComparison();
-  }
-  //can possibly refactor to only use getJobComparison
+  // can possibly refactor to only use getJobComparison
   getJobComparison() {
     axios.get('/api/comparison', {
       params: {
@@ -102,20 +94,60 @@ class Main extends React.Component {
       });
   }
 
+  deleteJob(jobId) {
+    const jobs = this.state.savedJobs.filter(job => job.jobId !== jobId);
+    this.setState({
+      savedJobs: jobs,
+    });
+    axios.put('/api/job/delete', { jobId });
+    this.getJobComparison();
+  }
+
   render() {
     return (
       <div>
         <Switch>
           <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} />)} />
-          <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} missingSkills={this.state.missingSkills} />)} />
-          <Route path="/home/profile" render={() => (<Profile userEmail={this.state.email} userFirstName={this.state.firstName} userLastName={this.state.lastName} userId={this.props.userId} getUserInfo={this.getUserInfo} userResume={this.state.resume} />)} />
-          <Route render={() => (<Dashboard userId={this.props.userId} getJobs={this.getJobs} savedJobs={this.state.savedJobs} deleteJob={this.deleteJob} getJobComparison={this.getJobComparison} />)} />
+          <Route
+            path="/home/resources"
+            render={() => (
+              <Resources
+                userId={this.props.userId}
+                missingSkills={this.state.missingSkills}
+              />
+            )}
+          />
+          <Route
+            path="/home/profile"
+            render={() => (
+              <Profile
+                userEmail={this.state.email}
+                userFirstName={this.state.firstName}
+                userLastName={this.state.lastName}
+                userId={this.props.userId}
+                getUserInfo={this.getUserInfo}
+                userResume={this.state.resume}
+              />
+            )}
+          />
+          <Route render={() => (
+            <Dashboard
+              userId={this.props.userId}
+              getJobs={this.getJobs}
+              savedJobs={this.state.savedJobs}
+              deleteJob={this.deleteJob}
+              getJobComparison={this.getJobComparison}
+            />
+           )}
+          />
         </Switch>
       </div>
     );
   }
 }
+
 Main.propTypes = {
   userId: PropTypes.string.isRequired,
 };
+
 export default Main;

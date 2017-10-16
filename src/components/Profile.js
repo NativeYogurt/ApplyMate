@@ -27,18 +27,23 @@ class Profile extends React.Component {
   onChangeFirstName(e) {
     this.setState({ firstName: e.target.value });
   }
+
   onChangeLastName(e) {
     this.setState({ lastName: e.target.value });
   }
+
   onChangeEmail(e) {
     this.setState({ email: e.target.value });
   }
+
   onChangePassword1(e) {
     this.setState({ password1: e.target.value });
   }
+
   onChangePassword2(e) {
     this.setState({ password2: e.target.value });
   }
+
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.updateUser;
@@ -52,6 +57,7 @@ class Profile extends React.Component {
     form.lastName.value = '';
     form.email.value = '';
   }
+
   updateUser() {
     firebase.auth().currentUser.updateEmail(this.state.email)
       .then(win => console.log('Firebase updated', win))
@@ -70,19 +76,23 @@ class Profile extends React.Component {
         console.log(error);
       });
   }
+
   handlePasswordSubmit(e) {
     e.preventDefault();
     if (this.state.password1 === this.state.password2) {
       this.updatePassword();
     } else alert('Passwords do not match');
   }
+
   updatePassword() {
     firebase.auth().currentUser.updatePassword(this.state.password1)
       .then(win => console.log('Password Updated', win))
       .catch(err => alert(err));
   }
+
   render() {
     const userName = `${this.props.userFirstName} ${this.props.userLastName}`;
+    const resume = `${this.props.userResume}`;
     return (
       <div className="user-profile">
         <h3>Hello, {userName}!</h3>
