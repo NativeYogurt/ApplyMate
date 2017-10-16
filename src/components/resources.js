@@ -10,7 +10,9 @@ class Resources extends React.Component {
       jobs: [],
       userSkills: [],
       missingSkills: [],
+      savedResources: [],
     };
+    this.addResource = this.addResource.bind(this);
   }
   componentWillMount() {
     axios.get('/api/comparison', {
@@ -39,7 +41,19 @@ class Resources extends React.Component {
         // console.log('missing skills', this.state.missingSkills);
       });
   }
-
+  addResource(resource) {
+    fetch('/api/resource', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(resource)
+    }).then(res => res.json())
+      .then((data) => {
+        console.log('post resource', data);
+      });
+  }
   render() {
     const hasMissingSkills = (
       <div className="alert">
@@ -59,6 +73,8 @@ class Resources extends React.Component {
             (<SkillEntry
               key={skill}
               skill={skill}
+              addResource={this.addResource}
+              userId={this.props.userId}
             />))}
         </div>
       </div>
