@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import SkillEntry from './skillentry';
+import SavedResources from './SavedResources';
 
 class Resources extends React.Component {
   constructor(props) {
@@ -46,6 +47,20 @@ class Resources extends React.Component {
   componentDidMount() {
     this.getResources();
   }
+  getResources() {
+    axios.get('/api/resource', {
+      params: {
+        userId: this.props.userId,
+      },
+    })
+      .then(resources => {
+        // console.log('saved resource', resources.data);
+        this.setState({
+          savedResources: resources.data,
+        });
+      })
+      .catch(err => console.error(err));
+  }
   addResource(resource) {
     fetch('/api/resource', {
       method: 'POST',
@@ -57,21 +72,10 @@ class Resources extends React.Component {
     }).then(res => res.json())
       .then((data) => {
         console.log('post resource', data);
+        const newResource = data;
+        const savedResources = this.state.savedResources.concat(newResource);
+        this.setState({ savedResources });
       });
-  }
-  getResources() {
-    axios.get('/api/resource', {
-      params: {
-        userId: this.props.userId,
-      },
-    })
-      .then(resources => {
-        console.log('saved resource', resources.data);
-        this.setState({
-          savedResources: resources.data,
-        });
-      })
-      .catch(err => console.error(err));
   }
   checkResource(resourceTitle, savedResources) {
     if (savedResources) {
@@ -109,6 +113,10 @@ class Resources extends React.Component {
               checkResource={this.checkResource}
             />))}
         </div>
+        <h2>Your Saved Resources</h2>
+        {this.state.savedResources.length > 0 ? this.state.savedResources.map(resource => {
+          return (<SavedResources key={this.state.savedResources.resourceId} resource={resource} />);
+        }) : null}
       </div>
     );
   }

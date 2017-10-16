@@ -21,9 +21,10 @@ class VideoListEntry extends React.Component {
     const newResource = {
       relatedSkill: this.props.skill,
       tutorialType: 'video',
-      tutorialTitle: this.props.video.id.videoId,
+      tutorialLink: this.props.video.id.videoId,
+      tutorialTitle: this.props.video.snippet.title,
       videoThumbnail: this.props.video.snippet.thumbnails.default.url,
-      videoDescription: this.props.video.id.videoId,
+      videoDescription: this.props.video.snippet.description,
       userId: this.props.userId,
     };
     this.props.addResource(newResource);

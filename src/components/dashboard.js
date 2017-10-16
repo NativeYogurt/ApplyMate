@@ -85,27 +85,4 @@ class Dashboard extends React.Component {
       </div>);
   }
 }
-// <form name="jobAdd" onSubmit={this.handleSubmit}>
-//   <label htmlFor="company">
-//     Company:
-//     <input type="text" name="company" />
-//   </label>
-//   <br />
-//   <label htmlFor="jobtitle">
-//     Job Title:
-//     <input type="text" name="jobtitle" />
-//   </label>
-//   <br />
-//   <label htmlFor="description">
-//     Description:
-//     <textarea name="description" />
-//   </label>
-//   <br />
-//   <label htmlFor="url">
-//     URL:
-//     <input type="text" name="url" />
-//   </label>
-//   <br />
-//   <input type="submit" value="Add" />
-// </form>
 export default Dashboard;

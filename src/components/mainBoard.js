@@ -62,20 +62,6 @@ class Main extends React.Component {
       })
       .catch(err => console.error(err));
   }
-  // getResources() {
-  //   axios.get('/api/resource', {
-  //     params: {
-  //       userId: this.props.userId,
-  //     },
-  //   })
-  //     .then(resources => {
-  //       console.log('saved resource', resources.data);
-  //       this.setState({
-  //         resources: resources.data,
-  //       });
-  //     })
-  //     .catch(err => console.error(err));
-  // }
   deleteJob(jobId) {
     const jobs = this.state.savedJobs.filter(job => job.jobId !== jobId);
     this.setState({
