@@ -15,8 +15,14 @@ class Main extends React.Component {
       lastName: '',
       email: '',
     };
+    this.getUserInfo = this.getUserInfo.bind(this);
   }
+
+
   componentDidMount() {
+    this.getUserInfo();
+  }
+  getUserInfo() {
     fetch('/api/findUser', {
       method: 'POST',
       headers: {
@@ -37,13 +43,14 @@ class Main extends React.Component {
       })
       .catch(error => console.log('error getting data'));
   }
+
   render() {
     return (
       <div>
         <Switch>
           <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} />)} />
           <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} />)} />
-          <Route path="/home/profile" render={() => (<Profile userEmail={this.state.email} userFirstName={this.state.firstName} userLastName={this.state.lastName} userId={this.props.userId} />)} />
+          <Route path="/home/profile" render={() => (<Profile userEmail={this.state.email} userFirstName={this.state.firstName} userLastName={this.state.lastName} userId={this.props.userId} getUserInfo={this.getUserInfo} />)} />
           <Route render={() => (<Dashboard userId={this.props.userId} />)} />
         </Switch>
       </div>
