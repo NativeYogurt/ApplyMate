@@ -36,12 +36,14 @@ const SavedResources = (props) => {
   return (
     <div>
       { props.resource.tutorialType === 'link' ? tutorial : video }
+      <button onClick={() => props.deleteResource(props.resource.resourceId)}>Remove Resource</button>
     </div>
   );
 };
 
 SavedResources.propTypes = {
   resource: PropTypes.object.isRequired,
+  deleteResource: PropTypes.func.isRequired,
 };
 
 export default SavedResources;

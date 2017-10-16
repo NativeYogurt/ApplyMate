@@ -26,6 +26,10 @@ const Resources = sequelize.define('resources', {
   videoDescription: {
     type: Sequelize.STRING,
   },
+  deleted: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
   userId: {
     type: Sequelize.STRING,
     references: {

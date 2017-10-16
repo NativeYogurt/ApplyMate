@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import SkillEntry from './skillentry';
 import SavedResources from './SavedResources';
@@ -16,6 +17,7 @@ class Resources extends React.Component {
     this.addResource = this.addResource.bind(this);
     this.getResources = this.getResources.bind(this);
     this.checkResource = this.checkResource.bind(this);
+    this.deleteResource = this.deleteResource.bind(this);
   }
   componentDidMount() {
     this.getResources();
@@ -41,7 +43,7 @@ class Resources extends React.Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(resource)
+      body: JSON.stringify(resource),
     }).then(res => res.json())
       .then((data) => {
         console.log('post resource', data);
@@ -60,6 +62,13 @@ class Resources extends React.Component {
       }
     }
     return false;
+  }
+  deleteResource(resourceId) {
+    const resources = this.state.savedResources.filter(resource => resource.resourceId !== resourceId);
+    this.setState({
+      savedResources: resources,
+    });
+    axios.put('/api/resource/delete', { resourceId });
   }
   render() {
     const hasMissingSkills = (
@@ -88,11 +97,14 @@ class Resources extends React.Component {
         </div>
         <h2>Your Saved Resources</h2>
         {this.state.savedResources.length > 0 ? this.state.savedResources.map(resource => {
-          return (<SavedResources key={this.state.savedResources.resourceId} resource={resource} />);
+          return (<SavedResources key={this.state.savedResources.resourceId} resource={resource} deleteResource={this.deleteResource} />);
         }) : null}
       </div>
     );
   }
 }
-
+Resources.propTypes = {
+  userId: PropTypes.string.isRequired,
+  missingSkills: PropTypes.array.isRequired,
+};
 export default Resources;
