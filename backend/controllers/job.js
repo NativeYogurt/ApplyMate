@@ -12,7 +12,6 @@ const Xray = require('x-ray');
 const x = Xray();
 
 exports.handleJobAdd = (req, res) => {
-  console.log('req', req.body);
   let text;
   x(req.body.url, (['ol'], ['ul'], ['li']))((err, data) => {
     text = data.join(' ');
@@ -30,7 +29,6 @@ exports.handleJobAdd = (req, res) => {
           .build(newJob)
           .save()
           .then((job) => {
-            console.log('saved job', job);
             res.send(job);
           })
           .catch((error) => {

@@ -16,17 +16,21 @@ class Main extends React.Component {
       lastName: '',
       email: '',
       savedJobs: [],
-      resume: ''
+      resume: '',
+      userSkills: [],
+      missingSkills: [],
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.getJobs = this.getJobs.bind(this);
     this.deleteJob = this.deleteJob.bind(this);
+    this.getJobComparison = this.getJobComparison.bind(this);
   }
 
 
   componentDidMount() {
     this.getUserInfo();
     this.getJobs();
+    this.getJobComparison();
   }
   getUserInfo() {
     fetch('/api/findUser', {
@@ -45,7 +49,7 @@ class Main extends React.Component {
           firstName: data.firstName,
           lastName: data.lastName,
           email: data.email,
-          resume: data.resumeURL, 
+          resume: data.resumeURL,
         });
       })
       .catch(error => console.log('error getting data'));
@@ -71,6 +75,31 @@ class Main extends React.Component {
       savedJobs: jobs,
     });
     axios.put('/api/job/delete', { jobId });
+    this.getJobComparison();
+  }
+  //can possibly refactor to only use getJobComparison
+  getJobComparison() {
+    axios.get('/api/comparison', {
+      params: {
+        userId: this.props.userId,
+      },
+    })
+      .then((result) => {
+        let missing = [];
+        const { data } = result;
+        const { userSkills, jobs } = data;
+        jobs.map((job) => {
+          job.missingSkills = job.skills.filter(skill => userSkills.indexOf(skill) === -1);
+          return job;
+        });
+        if (jobs[0]) {
+          missing = jobs[0].missingSkills;
+        }
+        this.setState({
+          userSkills,
+          missingSkills: missing,
+        });
+      });
   }
 
   render() {
@@ -78,9 +107,9 @@ class Main extends React.Component {
       <div>
         <Switch>
           <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} />)} />
-          <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} />)} />
+          <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} missingSkills={this.state.missingSkills} />)} />
           <Route path="/home/profile" render={() => (<Profile userEmail={this.state.email} userFirstName={this.state.firstName} userLastName={this.state.lastName} userId={this.props.userId} getUserInfo={this.getUserInfo} userResume={this.state.resume} />)} />
-          <Route render={() => (<Dashboard userId={this.props.userId} getJobs={this.getJobs} savedJobs={this.state.savedJobs} deleteJob={this.deleteJob} />)} />
+          <Route render={() => (<Dashboard userId={this.props.userId} getJobs={this.getJobs} savedJobs={this.state.savedJobs} deleteJob={this.deleteJob} getJobComparison={this.getJobComparison} />)} />
         </Switch>
       </div>
     );

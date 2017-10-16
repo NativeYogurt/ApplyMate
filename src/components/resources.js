@@ -7,40 +7,10 @@ class Resources extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      jobs: [],
-      userSkills: [],
-      missingSkills: [],
-      savedResources: [],
     };
     this.addResource = this.addResource.bind(this);
   }
-  componentWillMount() {
-    axios.get('/api/comparison', {
-      params: {
-        userId: this.props.userId,
-      },
-    })
-      .then((result) => {
-        let missing = [];
-        const { data } = result;
-        const { userSkills, jobs } = data;
-        jobs.map((job) => {
-          job.missingSkills = job.skills.filter(skill => userSkills.indexOf(skill) === -1);
-          return job;
-        });
-        if (jobs[0]) {
-          missing = jobs[0].missingSkills;
-        }
-        this.setState({
-          jobs,
-          userSkills,
-          missingSkills: missing,
-        });
-        // console.log('jobs skills', this.state.jobs);
-        // console.log('user skills', this.state.userSkills);
-        // console.log('missing skills', this.state.missingSkills);
-      });
-  }
+
   addResource(resource) {
     fetch('/api/resource', {
       method: 'POST',
@@ -67,9 +37,9 @@ class Resources extends React.Component {
     );
     return (
       <div>
-        {this.state.missingSkills.length ? hasMissingSkills : noMissingSkills}
+        {this.props.missingSkills.length ? hasMissingSkills : noMissingSkills}
         <div className="skill-list">
-          {this.state.missingSkills.map(skill =>
+          {this.props.missingSkills.map(skill =>
             (<SkillEntry
               key={skill}
               skill={skill}
