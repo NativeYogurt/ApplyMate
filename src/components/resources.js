@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import SkillEntry from './skillentry';
 import SavedResources from './SavedResources';
@@ -42,7 +43,7 @@ class Resources extends React.Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(resource)
+      body: JSON.stringify(resource),
     }).then(res => res.json())
       .then((data) => {
         console.log('post resource', data);
@@ -102,5 +103,8 @@ class Resources extends React.Component {
     );
   }
 }
-
+Resources.propTypes = {
+  userId: PropTypes.string.isRequired,
+  missingSkills: PropTypes.array.isRequired,
+};
 export default Resources;
