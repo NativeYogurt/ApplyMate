@@ -25,6 +25,9 @@ const User = sequelize.define('user', {
   skills: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
   },
+  githubUsername: {
+    type: Sequelize.STRING,
+  },
 });
 
 // User.sync();
