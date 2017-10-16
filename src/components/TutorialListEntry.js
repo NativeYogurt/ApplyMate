@@ -1,19 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function TutorialListEntry(props) {
-  return (
-    <div className="Tutorial-list-entry">
-      <div>
-        <div className="Tutorial-list-entry-title">
-          {props.tutorial.title}
+class TutorialListEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      added: false,
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    const newResource = {
+      relatedSkill: this.props.skill,
+      tutorialType: 'link',
+      tutorialTitle: this.props.tutorial.title,
+      tutorialLink: this.props.tutorial.link,
+      userId: this.props.userId,
+    };
+    this.props.addResource(newResource);
+    this.setState({
+      added: true,
+    });
+  }
+  render() {
+    return (
+      <div className="Tutorial-list-entry">
+        <div>
+          <div className="Tutorial-list-entry-title">
+            {this.props.tutorial.title}
+          </div>
+          <div className="Tutorial-list-entry-detail">
+            <a href={this.props.tutorial.link} target="_blank">{this.props.tutorial.link}</a>
+            <button onClick={this.handleSubmit} disabled={this.state.added}>Add</button>
+          </div>
         </div>
-        <div className="Tutorial-list-entry-detail"><a href={props.tutorial.link} target="_blank">{props.tutorial.link}</a></div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 TutorialListEntry.propTypes = {
+  skill: PropTypes.string.isRequired,
   tutorial: PropTypes.object.isRequired,
+  userId: PropTypes.string.isRequired,
+  addResource: PropTypes.func.isRequired,
 };
 export default TutorialListEntry;

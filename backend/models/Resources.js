@@ -2,31 +2,29 @@ const Sequelize = require('sequelize');
 const sequelize = require('../db/db');
 const User = require('./User');
 
-const SavedJobs = sequelize.define('saved_jobs', {
-  jobId: {
+const Resources = sequelize.define('resources', {
+  resourceId: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  company: {
+  relatedSkill: {
     type: Sequelize.STRING,
   },
-  jobTitle: {
+  tutorialType: {
     type: Sequelize.STRING,
   },
-  description: {
+  tutorialTitle: {
     type: Sequelize.STRING,
   },
-  url: {
+  tutorialLink: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
-  skills: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
+  videoThumbnail: {
+    type: Sequelize.STRING,
   },
-  deleted: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
+  videoDescription: {
+    type: Sequelize.STRING,
   },
   userId: {
     type: Sequelize.STRING,
@@ -38,5 +36,5 @@ const SavedJobs = sequelize.define('saved_jobs', {
   },
 });
 
-SavedJobs.sync();
-module.exports = SavedJobs;
+Resources.sync();
+module.exports = Resources;
