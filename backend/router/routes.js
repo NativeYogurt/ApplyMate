@@ -17,6 +17,6 @@ router.get('/comparison', comparison.getComparison);
 router.post('/findUser', user.handleUserFind);
 router.put('/updateUser', user.handleUpdateUser);
 router.post('/resource', resource.handleResourceAdd);
-router.get('/resource', resource.handleCheckResource);
+router.get('/resource', resource.handleGetResources);
 
 module.exports = router;

@@ -20,7 +20,6 @@ exports.handleResourceAdd = (req, res) => {
     .build(newResource)
     .save()
     .then((resource) => {
-      console.log('saved resource', resource);
       res.send(resource);
     })
     .catch((error) => {
@@ -28,10 +27,13 @@ exports.handleResourceAdd = (req, res) => {
     });
 };
 
-exports.handleCheckResource = (req, res) => {
-  Resources.findOne({ where: { userId: req.body.userId, tutorialTitle: req.body.tutorialTitle } })
-    .then(resource => {
-      console.log('resource found', resource);
-      res.send(resource);
+exports.handleGetResources = (req, res) => {
+  Resources.findAll({
+    where: {
+      userId: req.query.userId,
+    },
+  })
+    .then(resources => {
+      res.send(resources);
     });
 };

@@ -13,6 +13,7 @@ class Resources extends React.Component {
       savedResources: [],
     };
     this.addResource = this.addResource.bind(this);
+    this.checkResource = this.checkResource.bind(this);
   }
   componentWillMount() {
     axios.get('/api/comparison', {
@@ -54,6 +55,17 @@ class Resources extends React.Component {
         console.log('post resource', data);
       });
   }
+  checkResource(resourceTitle, savedResources) {
+    if (savedResources) {
+      for (let i = 0; i < savedResources.length; i++) {
+        if (savedResources[i].tutorialTitle === resourceTitle) {
+          return true;
+          break;
+        }
+      }
+    }
+    return false;
+  }
   render() {
     const hasMissingSkills = (
       <div className="alert">
@@ -75,6 +87,8 @@ class Resources extends React.Component {
               skill={skill}
               addResource={this.addResource}
               userId={this.props.userId}
+              savedResources={this.props.resources}
+              checkResource={this.checkResource}
             />))}
         </div>
       </div>

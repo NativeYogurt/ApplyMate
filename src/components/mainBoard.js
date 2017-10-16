@@ -16,16 +16,19 @@ class Main extends React.Component {
       lastName: '',
       email: '',
       savedJobs: [],
+      resources: null,
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.getJobs = this.getJobs.bind(this);
     this.deleteJob = this.deleteJob.bind(this);
+    this.getResources = this.getResources.bind(this);
   }
 
 
   componentDidMount() {
     this.getUserInfo();
     this.getJobs();
+    this.getResources();
   }
   getUserInfo() {
     fetch('/api/findUser', {
@@ -62,7 +65,20 @@ class Main extends React.Component {
       })
       .catch(err => console.error(err));
   }
-
+  getResources() {
+    axios.get('/api/resource', {
+      params: {
+        userId: this.props.userId,
+      },
+    })
+      .then(resources => {
+        console.log('saved resource', resources.data);
+        this.setState({
+          resources: resources.data,
+        });
+      })
+      .catch(err => console.error(err));
+  }
   deleteJob(jobId) {
     const jobs = this.state.savedJobs.filter(job => job.jobId !== jobId);
     this.setState({
@@ -70,14 +86,12 @@ class Main extends React.Component {
     });
     axios.put('/api/job/delete', { jobId });
   }
-
-
   render() {
     return (
       <div>
         <Switch>
           <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} />)} />
-          <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} />)} />
+          <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} resources={this.state.resources} />)} />
           <Route path="/home/profile" render={() => (<Profile userEmail={this.state.email} userFirstName={this.state.firstName} userLastName={this.state.lastName} userId={this.props.userId} getUserInfo={this.getUserInfo} />)} />
           <Route render={() => (<Dashboard userId={this.props.userId} getJobs={this.getJobs} savedJobs={this.state.savedJobs} deleteJob={this.deleteJob} />)} />
         </Switch>
