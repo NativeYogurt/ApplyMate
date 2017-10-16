@@ -14,6 +14,7 @@ class Main extends React.Component {
       firstName: '',
       lastName: '',
       email: '',
+      resume: ''
     };
   }
   componentDidMount() {
@@ -33,6 +34,7 @@ class Main extends React.Component {
           firstName: data.firstName,
           lastName: data.lastName,
           email: data.email,
+          resume: data.resumeURL
         });
       })
       .catch(error => console.log('error getting data'));
@@ -43,7 +45,7 @@ class Main extends React.Component {
         <Switch>
           <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} />)} />
           <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} />)} />
-          <Route path="/home/profile" render={() => (<Profile userEmail={this.state.email} userFirstName={this.state.firstName} userLastName={this.state.lastName} userId={this.props.userId} />)} />
+          <Route path="/home/profile" render={() => (<Profile userEmail={this.state.email} userFirstName={this.state.firstName} userLastName={this.state.lastName} userId={this.props.userId} resume={this.props.resumeURL} />)} />
           <Route render={() => (<Dashboard userId={this.props.userId} />)} />
         </Switch>
       </div>
