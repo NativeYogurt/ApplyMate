@@ -19,6 +19,7 @@ class Main extends React.Component {
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.getJobs = this.getJobs.bind(this);
+    this.deleteJob = this.deleteJob.bind(this);
   }
 
 
@@ -57,10 +58,19 @@ class Main extends React.Component {
       .then(savedJobs => {
         this.setState({
           savedJobs: savedJobs.data,
-        })
+        });
       })
       .catch(err => console.error(err));
   }
+
+  deleteJob(jobId) {
+    const jobs = this.state.savedJobs.filter(job => job.jobId !== jobId);
+    this.setState({
+      savedJobs: jobs,
+    });
+    axios.put('/api/job/delete', { jobId });
+  }
+
 
   render() {
     return (
@@ -69,7 +79,7 @@ class Main extends React.Component {
           <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} />)} />
           <Route path="/home/resources" render={() => (<Resources userId={this.props.userId} />)} />
           <Route path="/home/profile" render={() => (<Profile userEmail={this.state.email} userFirstName={this.state.firstName} userLastName={this.state.lastName} userId={this.props.userId} getUserInfo={this.getUserInfo} />)} />
-          <Route render={() => (<Dashboard userId={this.props.userId} getJobs={this.getJobs} savedJobs={this.state.savedJobs}/>)} />
+          <Route render={() => (<Dashboard userId={this.props.userId} getJobs={this.getJobs} savedJobs={this.state.savedJobs} deleteJob={this.deleteJob} />)} />
         </Switch>
       </div>
     );

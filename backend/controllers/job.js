@@ -41,7 +41,26 @@ exports.handleJobAdd = (req, res) => {
 };
 
 exports.handleGetJobs = (req, res) => {
-  SavedJobs.findAll({ where: { userId: req.query.userId } }).then(jobs => {
-    res.send(jobs);
-  });
+  SavedJobs.findAll({
+    where: {
+      userId: req.query.userId,
+      deleted: false,
+    },
+  })
+    .then(jobs => {
+      res.send(jobs);
+    });
+};
+
+
+exports.handleJobDelete = (req, res) => {
+  SavedJobs.update({
+    deleted: true,
+  }, {
+    where: {
+      jobId: req.body.jobId,
+    },
+  })
+    .then(success => res.send('success'))
+    .catch(error => console.error(error));
 };

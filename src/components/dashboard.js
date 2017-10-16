@@ -8,7 +8,6 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       successVisible: false,
-      savedJobs: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addJob = this.addJob.bind(this);
@@ -28,6 +27,7 @@ class Dashboard extends React.Component {
         this.props.getJobs();
       });
   }
+
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobAdd;
@@ -81,7 +81,7 @@ class Dashboard extends React.Component {
         </form>
         <h2>Your Saved Jobs</h2>
         {this.props.savedJobs.length > 0 ? this.props.savedJobs.map((job, i) => {
-          return (<SavedJobs key={job.jobId} jobPosting={job} />);
+          return (<SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />);
         }) : null}
       </div>);
   }
