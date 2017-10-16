@@ -118,7 +118,7 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
-        <PDF file={resume} />
+        <PDF file={this.props.userResume} />
       </div>
     );
   }
