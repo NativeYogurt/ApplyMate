@@ -1,11 +1,7 @@
 import React from 'react';
 import fire from './Firebase.js';
 import firebase from 'firebase';
-import axios from 'axios';
-
-let pendingCred;
-let pendingEmail;
-
+import axios from 'axios'
 exports.signUp = (user, pass, first, last, cb) => {
   fire.auth().createUserWithEmailAndPassword(user, pass)
     .then((newUser) => {
@@ -19,11 +15,11 @@ exports.signUp = (user, pass, first, last, cb) => {
         },
       })
         .then((res) => {
-          console.log(res);
+          console.log(res)
         })
         .catch((err) => {
           console.error(err);
-        });
+        })
     })
     .catch((error) => {
       cb(error.message);
@@ -47,43 +43,17 @@ exports.signOut = (cb) => {
       cb(error);
     });
 };
-exports.gitAuth = (cb) => {
+exports.gitAuth = () => {
   const provider = new firebase.auth.GithubAuthProvider();
   fire.auth().signInWithPopup(provider)
-    .then((user) => {
-      axios.post('/api/scanForUser', {
-        data: { email: user.user.email },
-      })
-        .then((result) => {
-          if (result.data[0] === undefined) {
-            axios.post('/api/signUp', {
-              data: {
-                id: user.user.uid,
-                email: user.user.email,
-              },
-            })
-              .catch(err => alert(err))
-          }
-        })
-        .catch(err => alert(err));
+    .then((result) => {
+      console.log('token', result.credential.accessToken)
+      console.log('user', result.user)
     })
     .catch((error) => {
-      pendingCred = error.credential;
-      pendingEmail = error.email;
-      cb(error);
+      console.log('Git Auth Error:', error.code)
+      console.log(error.message)
+      console.log(error.email)
+      console.log(error.credential)
     });
-};
-exports.gitAuthMerge = (pass, cb) => {
-  fire.auth().fetchProvidersForEmail(pendingEmail)
-    .then((providers) => {
-      if (providers[0] === 'password') {
-        fire.auth().signInWithEmailAndPassword(pendingEmail, pass)
-          .then(user => user.linkWithCredential(pendingCred))
-          .catch(err => alert(err))
-          .then(() => {
-            cb();
-          })
-          .catch(err => alert(err));
-      }
-    });
-};
+}
