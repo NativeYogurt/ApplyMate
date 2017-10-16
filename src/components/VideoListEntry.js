@@ -10,7 +10,7 @@ class VideoListEntry extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
-    if (this.props.checkResource(this.props.video.id.videoId, this.props.savedResources)) {
+    if (this.props.checkResource(this.props.video.snippet.title, this.props.savedResources)) {
       this.setState({
         added: true,
       });

@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
 import SavedJobs from './SavedJobs';
 
 class Dashboard extends React.Component {
@@ -86,4 +88,11 @@ class Dashboard extends React.Component {
       </div>);
   }
 }
+Dashboard.propTypes = {
+  getJobs: PropTypes.func.isRequired,
+  getJobComparison: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
+  savedJobs: PropTypes.array.isRequired,
+  deleteJob: PropTypes.func.isRequired,
+};
 export default Dashboard;

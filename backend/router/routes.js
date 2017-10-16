@@ -18,5 +18,6 @@ router.post('/findUser', user.handleUserFind);
 router.put('/updateUser', user.handleUpdateUser);
 router.post('/resource', resource.handleResourceAdd);
 router.get('/resource', resource.handleGetResources);
+router.put('/resource/delete', resource.handleResourceDelete);
 
 module.exports = router;
