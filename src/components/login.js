@@ -23,6 +23,7 @@ class Login extends React.Component {
     this.handleResetPassEmail = this.handleResetPassEmail.bind(this);
     this.toggleResetPassword = this.toggleResetPassword.bind(this);
     this.resetPassword = this.resetPassword.bind(this);
+    this.closeResPassConModal = this.closeResPassConModal.bind(this);
   }
 
   handleEmail(e) {
@@ -45,14 +46,14 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.GitAuth()
   }
-  handleTest(e) {
-    e.preventDefault();
-    this.props.TESTBUTTON();
-  }
-  handleSignOut(e) {
-    e.preventDefault();
-    this.props.signOut();
-  }
+  // handleTest(e) {
+  //   e.preventDefault();
+  //   this.props.TESTBUTTON();
+  // }
+  // handleSignOut(e) {
+  //   e.preventDefault();
+  //   this.props.signOut();
+  // }
   handleResetPassword(e) {
     e.preventDefault();
     this.setState({
@@ -65,10 +66,16 @@ class Login extends React.Component {
       resetPassEmail: e.target.value,
     });
   }
-  toggleResetPassword(e) {
+  closeResetPassModal(e) {
     e.preventDefault();
     this.setState({
-      resetPasswordModal: !this.state.resetPassword,
+      resetPasswordModal: false,
+    });
+  }
+  closeResPassConModal(e) {
+    e.preventDefault();
+    this.setState({
+      resetEmailSetModal: false,
     });
   }
   resetPassword(e) {
@@ -83,8 +90,8 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <div>Hello World
-        <Modal isOpen={this.state.resetPasswordModal} onRequestClose={this.toggleResetPassword}>
+      <div>
+        <Modal isOpen={this.state.resetPasswordModal} onRequestClose={this.closeResetPassModal}>
           <h1>Reset Password</h1>
           <p>Forgot your password? Don't worry, happens to the best of us. Just enter your email address below and we'll send you an email with a reset password link.</p>
           <form onSubmit={this.resetPassword} >
@@ -93,10 +100,12 @@ class Login extends React.Component {
           </form>
           <br />
           <br />
-          <button onClick={this.toggleResetPassword}>Cancel</button>
+          <button onClick={this.closeResetPassModal}>Cancel</button>
         </Modal>
-        <Modal isOpen={this.state.resetEmailSetModal} onRequestClose={() => this.setState({ resetEmailSetModal: false })}>
+        <Modal isOpen={this.state.resetEmailSetModal} onRequestClose={this.closeResPassConModal}>
           <h1>Email has been sent, please check your inbox</h1>
+          <br />
+          <button onClick={this.closeResPassConModal}>Close</button>
         </Modal>
         <form id="signIn" onSubmit={this.handleLogin}>
           <input onChange={this.handleEmail} type="text" placeholder="E-Mail Address" /> <br />
@@ -111,12 +120,14 @@ class Login extends React.Component {
         <button id="GitAuthButton" onClick={this.handleGitAuth}>Login using Github</button>
         <br />
         <button onClick={this.handleResetPassword}>Reset Password</button>
-        <button onClick={this.props.signOut}>LogOut</button>
         <br /><br /><br /><br />
-        <button onClick={this.handleTest}>TESTBUTTON</button>
+
       </div>
     );
   }
 }
+
+// <button onClick={this.props.signOut}>LogOut</button>
+// <button onClick={this.handleTest}>TESTBUTTON</button>
 
 export default Login;

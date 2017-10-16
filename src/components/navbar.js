@@ -20,12 +20,13 @@ class Navbar extends React.Component {
           <li><Link to="/home/resources">Resources</Link></li>
           <li><Link to="/home/profile">Profile</Link></li>
           <li onClick={this.props.signOut}><Link to="/">Sign Out</Link></li>
-          <button onClick={e => this.handleTest(e)}>TESTBUTTON</button>
+
         </ul>
       </div>
     );
   }
 }
+
 Navbar.propTypes = {
   TESTBUTTON: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
