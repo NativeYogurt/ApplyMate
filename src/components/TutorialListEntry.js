@@ -9,6 +9,13 @@ class TutorialListEntry extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentDidMount() {
+    if (this.props.checkResource(this.props.tutorial.title, this.props.savedResources)) {
+      this.setState({
+        added: true,
+      });
+    }
+  }
   handleSubmit(e) {
     e.preventDefault();
     const newResource = {
@@ -44,5 +51,7 @@ TutorialListEntry.propTypes = {
   tutorial: PropTypes.object.isRequired,
   userId: PropTypes.string.isRequired,
   addResource: PropTypes.func.isRequired,
+  checkResource: PropTypes.func.isRequired,
+  savedResources: PropTypes.array.isRequired,
 };
 export default TutorialListEntry;

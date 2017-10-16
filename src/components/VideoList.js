@@ -12,7 +12,6 @@ class VideoList extends React.Component {
       currentVideo: null,
     };
     this.getYouTubeVideos = this.getYouTubeVideos.bind(this);
-    this.handleVideoListEntryTitleClick = this.handleVideoListEntryTitleClick.bind(this);
   }
   componentDidMount() {
     this.getYouTubeVideos(this.props.skill);
@@ -39,11 +38,6 @@ class VideoList extends React.Component {
           console.error(err));
       });
   }
-  handleVideoListEntryTitleClick(video) {
-    this.setState({
-      currentVideo: video,
-    });
-  }
   render() {
     return (
       <div className="video-list">
@@ -52,7 +46,11 @@ class VideoList extends React.Component {
           (<VideoListEntry
             key={video.etag}
             video={video}
-            handleVideoListEntryTitleClick={this.handleVideoListEntryTitleClick}
+            addResource={this.props.addResource}
+            skill={this.props.skill}
+            userId={this.props.userId}
+            checkResource={this.props.checkResource}
+            savedResources={this.props.savedResources}
           />))}
       </div>
     );
@@ -60,5 +58,9 @@ class VideoList extends React.Component {
 }
 VideoList.propTypes = {
   skill: PropTypes.string.isRequired,
+  addResource: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
+  checkResource: PropTypes.func.isRequired,
+  savedResources: PropTypes.array.isRequired,
 };
 export default VideoList;
