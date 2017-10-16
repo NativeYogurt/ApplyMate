@@ -1,34 +1,22 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../db/db');
+const User = require('../models/User');
 
-const User = sequelize.define('user', {
-  userId: {
-    type: Sequelize.STRING,
-    primaryKey: true,
-    allowNull: false,
-  },
-  firstName: {
-    type: Sequelize.STRING,
-  },
-  lastName: {
-    type: Sequelize.STRING,
-  },
-  email: {
-    type: Sequelize.STRING,
-  },
-  resume: {
-    type: Sequelize.TEXT,
-  },
-  resumeURL: {
-    type: Sequelize.STRING,
-  },
-  skills: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
-  },
-  githubUsername: {
-    type: Sequelize.STRING,
-  },
-});
+exports.handleUserFind = (req, res) => {
+  User.findOne({ where: { userId: req.body.userId } }).then(user => {
+    res.send(user);
+  });
+};
 
-// User.sync();
-module.exports = User;
+exports.handleUpdateUser = (req, res) => {
+  User.findOne({ where: { userId: req.body.userId } })
+    .then(user => {
+      const newData = {
+        firstName: req.body.firstName || user.firstName,
+        lastName: req.body.lastName || user.lastName,
+        email: req.body.email || user.email,
+      };
+      User.update(newData, { where: { userId: req.body.userId } })
+        .then(result => res.send(result))
+        .catch(err => console.log('error updating user', err));
+    })
+    .catch(err => console.log('error updating user', err));
+};
