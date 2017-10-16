@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import firebase from 'firebase';
+import PDF from 'react-pdf-js';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -116,6 +117,8 @@ class Profile extends React.Component {
           <br />
           <input type="submit" value="Change Password" />
         </form>
+        <hr />
+        <PDF file={resume} />
       </div>
     );
   }

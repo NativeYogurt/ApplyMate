@@ -36,6 +36,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-pdf-js": "^2.0.5",
     "react-modal": "^3.0.3",
     "react-router-dom": "^4.2.2",
     "reactstrap": "^4.8.0",
