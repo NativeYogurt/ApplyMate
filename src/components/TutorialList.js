@@ -43,6 +43,8 @@ class TutorialList extends React.Component {
             addResource={this.props.addResource}
             skill={this.props.skill}
             userId={this.props.userId}
+            checkResource={this.props.checkResource}
+            savedResources={this.props.savedResources}
           />)) : null }
       </div>
     );
@@ -52,5 +54,7 @@ TutorialList.propTypes = {
   skill: PropTypes.string.isRequired,
   addResource: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
+  checkResource: PropTypes.func.isRequired,
+  savedResources: PropTypes.array.isRequired,
 };
 export default TutorialList;
