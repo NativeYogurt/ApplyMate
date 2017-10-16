@@ -8,7 +8,6 @@ class Profile extends React.Component {
       firstName: this.props.userFirstName,
       lastName: this.props.userLastName,
       email: this.props.userEmail,
-      resume: this.props.resumeURL,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -63,7 +62,6 @@ class Profile extends React.Component {
     return (
       <div className="user-profile">
         <h3>Hello, {userName}!</h3>
-        {this.props.resumeURL}
         <br />
         <strong>Update Your Info:</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>
