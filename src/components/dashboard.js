@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from 'axios';
+import SavedJobs from './SavedJobs';
+
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -9,6 +12,7 @@ class Dashboard extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addJob = this.addJob.bind(this);
   }
+
   addJob(job) {
     fetch('/api/job', {
       method: 'POST',
@@ -16,12 +20,14 @@ class Dashboard extends React.Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(job)
+      body: JSON.stringify(job),
     }).then(res => res.json())
       .then((data) => {
         console.log('post result', data);
+        this.props.getJobs();
       });
   }
+
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobAdd;
@@ -49,6 +55,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         <h2>Add a new job</h2>
+        {this.state.successVisible ? success : null}
         <form name="jobAdd" onSubmit={this.handleSubmit}>
           <label htmlFor="company">
             Company:
@@ -72,7 +79,10 @@ class Dashboard extends React.Component {
           <br />
           <input type="submit" value="Add" />
         </form>
-        {this.state.successVisible ? success : null}
+        <h2>Your Saved Jobs</h2>
+        {this.props.savedJobs.length > 0 ? this.props.savedJobs.map((job, i) => {
+          return (<SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />);
+        }) : null}
       </div>);
   }
 }

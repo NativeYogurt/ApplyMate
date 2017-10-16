@@ -63,6 +63,7 @@ class Profile extends React.Component {
     })
       .then((data) => {
         console.log('User has been updated!');
+        this.props.getUserInfo();
       })
       .catch((error) => {
         console.log(error);
