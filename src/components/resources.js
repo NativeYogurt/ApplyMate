@@ -13,6 +13,7 @@ class Resources extends React.Component {
       savedResources: [],
     };
     this.addResource = this.addResource.bind(this);
+    this.getResources = this.getResources.bind(this);
     this.checkResource = this.checkResource.bind(this);
   }
   componentWillMount() {
@@ -42,6 +43,9 @@ class Resources extends React.Component {
         // console.log('missing skills', this.state.missingSkills);
       });
   }
+  componentDidMount() {
+    this.getResources();
+  }
   addResource(resource) {
     fetch('/api/resource', {
       method: 'POST',
@@ -54,6 +58,20 @@ class Resources extends React.Component {
       .then((data) => {
         console.log('post resource', data);
       });
+  }
+  getResources() {
+    axios.get('/api/resource', {
+      params: {
+        userId: this.props.userId,
+      },
+    })
+      .then(resources => {
+        console.log('saved resource', resources.data);
+        this.setState({
+          savedResources: resources.data,
+        });
+      })
+      .catch(err => console.error(err));
   }
   checkResource(resourceTitle, savedResources) {
     if (savedResources) {
@@ -87,7 +105,7 @@ class Resources extends React.Component {
               skill={skill}
               addResource={this.addResource}
               userId={this.props.userId}
-              savedResources={this.props.resources}
+              savedResources={this.state.savedResources}
               checkResource={this.checkResource}
             />))}
         </div>
