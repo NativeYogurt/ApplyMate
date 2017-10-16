@@ -55,6 +55,6 @@ TutorialList.propTypes = {
   addResource: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   checkResource: PropTypes.func.isRequired,
-  resources: PropTypes.array.isRequired,
+  savedResources: PropTypes.array.isRequired,
 };
 export default TutorialList;
