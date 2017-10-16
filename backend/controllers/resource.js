@@ -31,9 +31,22 @@ exports.handleGetResources = (req, res) => {
   Resources.findAll({
     where: {
       userId: req.query.userId,
+      deleted: false,
     },
   })
     .then(resources => {
       res.send(resources);
     });
+};
+
+exports.handleResourceDelete = (req, res) => {
+  Resources.update({
+    deleted: true,
+  }, {
+    where: {
+      resourceId: req.body.resourceId,
+    },
+  })
+    .then(success => res.send('success'))
+    .catch(error => console.error(error));
 };

@@ -16,6 +16,7 @@ class Resources extends React.Component {
     this.addResource = this.addResource.bind(this);
     this.getResources = this.getResources.bind(this);
     this.checkResource = this.checkResource.bind(this);
+    this.deleteResource = this.deleteResource.bind(this);
   }
   componentDidMount() {
     this.getResources();
@@ -61,6 +62,13 @@ class Resources extends React.Component {
     }
     return false;
   }
+  deleteResource(resourceId) {
+    const resources = this.state.savedResources.filter(resource => resource.resourceId !== resourceId);
+    this.setState({
+      savedResources: resources,
+    });
+    axios.put('/api/resource/delete', { resourceId });
+  }
   render() {
     const hasMissingSkills = (
       <div className="alert">
@@ -88,7 +96,7 @@ class Resources extends React.Component {
         </div>
         <h2>Your Saved Resources</h2>
         {this.state.savedResources.length > 0 ? this.state.savedResources.map(resource => {
-          return (<SavedResources key={this.state.savedResources.resourceId} resource={resource} />);
+          return (<SavedResources key={this.state.savedResources.resourceId} resource={resource} deleteResource={this.deleteResource} />);
         }) : null}
       </div>
     );
