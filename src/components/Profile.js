@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PDF from 'react-pdf-js';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class Profile extends React.Component {
       firstName: this.props.userFirstName,
       lastName: this.props.userLastName,
       email: this.props.userEmail,
+      resume: this.props.userResume,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -36,7 +38,7 @@ class Profile extends React.Component {
       email: this.state.email,
     })
       .then((data) => {
-        console.log('User has been updated!');
+        alert('Your profile has been updated!');
       })
       .catch((error) => {
         console.log(error);
@@ -59,6 +61,7 @@ class Profile extends React.Component {
 
   render() {
     const userName = `${this.props.userFirstName} ${this.props.userLastName}`;
+    const resume = `${this.props.userResume}`;
     return (
       <div className="user-profile">
         <h3>Hello, {userName}!</h3>
@@ -82,6 +85,8 @@ class Profile extends React.Component {
           <br />
           <input type="submit" value="Submit" />
         </form>
+        <hr />
+        <PDF file={resume} />
       </div>
     );
   }
