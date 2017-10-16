@@ -18,7 +18,7 @@ const SavedJobs = sequelize.define('saved_jobs', {
     type: Sequelize.STRING,
   },
   url: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
   },
   skills: {

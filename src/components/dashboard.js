@@ -24,6 +24,7 @@ class Dashboard extends React.Component {
       .then((data) => {
         console.log('post result', data);
         this.props.getJobs();
+        this.props.getJobComparison();
       });
   }
 
