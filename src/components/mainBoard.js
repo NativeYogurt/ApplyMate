@@ -75,6 +75,7 @@ class Main extends React.Component {
       savedJobs: jobs,
     });
     axios.put('/api/job/delete', { jobId });
+    this.getJobComparison();
   }
   //can possibly refactor to only use getJobComparison
   getJobComparison() {
