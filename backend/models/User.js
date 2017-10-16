@@ -24,11 +24,12 @@ const User = sequelize.define('user', {
   },
   skills: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
+    defaultValue: [],
   },
   githubUsername: {
     type: Sequelize.STRING,
   },
 });
 
-// User.sync();
+//User.sync();
 module.exports = User;
