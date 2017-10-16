@@ -17,11 +17,11 @@ class Login extends React.Component {
     this.handlePassword = this.handlePassword.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleGitAuth = this.handleGitAuth.bind(this);
-    this.handleTest = this.handleTest.bind(this);
-    this.handleSignOut = this.handleSignOut.bind(this);
+    // this.handleTest = this.handleTest.bind(this);
+    // this.handleSignOut = this.handleSignOut.bind(this);
     this.handleResetPassword = this.handleResetPassword.bind(this);
     this.handleResetPassEmail = this.handleResetPassEmail.bind(this);
-    this.toggleResetPassword = this.toggleResetPassword.bind(this);
+    // this.toggleResetPassword = this.toggleResetPassword.bind(this);
     this.resetPassword = this.resetPassword.bind(this);
     this.closeResPassConModal = this.closeResPassConModal.bind(this);
   }
