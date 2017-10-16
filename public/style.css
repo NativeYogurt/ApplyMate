@@ -1,5 +1,5 @@
 
-ul {
+.navBar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@ ul {
     background-color: DodgerBlue;
 }
 
-li {
+.navBar li {
     float: left;
     display: block;
     color: white;
@@ -17,7 +17,7 @@ li {
 }
 
 /* Change the link color to #111 (black) on hover */
-li:hover {
+.navBar li:hover {
     background-color: blue;
 }
 

@@ -24,6 +24,10 @@ const SavedJobs = sequelize.define('saved_jobs', {
   skills: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
   },
+  deleted: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
   userId: {
     type: Sequelize.STRING,
     references: {
@@ -34,5 +38,5 @@ const SavedJobs = sequelize.define('saved_jobs', {
   },
 });
 
-// SavedJobs.sync();
+SavedJobs.sync();
 module.exports = SavedJobs;
