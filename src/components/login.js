@@ -21,7 +21,7 @@ class Login extends React.Component {
     // this.handleSignOut = this.handleSignOut.bind(this);
     this.handleResetPassword = this.handleResetPassword.bind(this);
     this.handleResetPassEmail = this.handleResetPassEmail.bind(this);
-    // this.toggleResetPassword = this.toggleResetPassword.bind(this);
+    this.closeResetPassModal = this.closeResetPassModal.bind(this);
     this.resetPassword = this.resetPassword.bind(this);
     this.closeResPassConModal = this.closeResPassConModal.bind(this);
   }
@@ -98,9 +98,8 @@ class Login extends React.Component {
             <input onChange={this.handleResetPassEmail} type="text" placeholder="pika@chu.com" />
             <button type="submit">Send Reset Link</button>
           </form>
+          <button onClick={this.closeResetPassModal}> Close </button>
           <br />
-          <br />
-          <button onClick={this.closeResetPassModal}>Cancel</button>
         </Modal>
         <Modal isOpen={this.state.resetEmailSetModal} onRequestClose={this.closeResPassConModal}>
           <h1>Email has been sent, please check your inbox</h1>
