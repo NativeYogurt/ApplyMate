@@ -7,6 +7,7 @@ exports.signUp = (req, res) => {
     firstName: req.body.data.firstName,
     lastName: req.body.data.lastName,
     email: req.body.data.email,
+    githubUsername: req.body.data.githubUsername,
   })
     .then(user => console.log('Created New User', user));
 };
