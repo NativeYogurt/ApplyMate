@@ -109,7 +109,7 @@ class Main extends React.Component {
     return (
       <div>
         <Switch>
-          <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} getJobComparison={this.getJobComparison} />)} />
+          <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} getJobComparison={this.getJobComparison} getUserInfo={this.getUserInfo} />)} />
           <Route
             path="/home/resources"
             render={() => (
