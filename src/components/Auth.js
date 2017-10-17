@@ -1,7 +1,7 @@
 import React from 'react';
-import fire from './Firebase.js';
-import firebase from 'firebase';
 import axios from 'axios';
+import firebase from 'firebase';
+import fire from './Firebase.js';
 
 let pendingCred;
 let pendingEmail;

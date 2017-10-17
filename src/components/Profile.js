@@ -70,7 +70,7 @@ class Profile extends React.Component {
       email: this.state.email,
     })
       .then((data) => {
-        console.log('User has been updated!');
+        alert('User has been updated!');
         this.props.getUserInfo();
       })
       .catch((error) => {
@@ -98,7 +98,7 @@ class Profile extends React.Component {
       <div className="user-profile">
         <h3>Hello, {userName}!</h3>
         <br />
-        <strong>Update Your Info:</strong><br />
+        <strong>Update Your Info</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">
             First Name:
