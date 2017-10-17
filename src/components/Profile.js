@@ -11,6 +11,7 @@ class Profile extends React.Component {
       firstName: this.props.userFirstName,
       lastName: this.props.userLastName,
       email: this.props.userEmail,
+      githubUsername: this.props.githubUsername,
       password1: '',
       password2: '',
     };
@@ -23,6 +24,7 @@ class Profile extends React.Component {
     this.onChangePassword2 = this.onChangePassword2.bind(this);
     this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
+    this.onChangeGithubUsername = this.onChangeGithubUsername.bind(this);
   }
 
   onChangeFirstName(e) {
@@ -35,6 +37,10 @@ class Profile extends React.Component {
 
   onChangeEmail(e) {
     this.setState({ email: e.target.value });
+  }
+
+  onChangeGithubUsername(e) {
+    this.setState({ githubUsername: e.target.value });
   }
 
   onChangePassword1(e) {
@@ -68,6 +74,7 @@ class Profile extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
+      githubUsername: this.state.githubUsername,
     })
       .then((data) => {
         alert('User has been updated!');
@@ -110,11 +117,14 @@ class Profile extends React.Component {
             <input type="text" name="lastName" placeholder={this.state.lastName} onChange={this.onChangeLastName} />
           </label>
           <br />
+          
           <label htmlFor="email">
             Email:
             <input type="text" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
           </label>
           <br />
+          Github Username: <input type="text" placeholder={this.state.githubUsername} onChange={this.onChangeGithubUsername} />
+          <br/>
           <input type="submit" value="Submit" />
         </form>
         <br />

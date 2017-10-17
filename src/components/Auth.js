@@ -51,6 +51,7 @@ exports.gitAuth = (cb) => {
   const provider = new firebase.auth.GithubAuthProvider();
   fire.auth().signInWithPopup(provider)
     .then((user) => {
+      console.log(user.additionalUserInfo.username)
       axios.post('/api/scanForUser', {
         data: { email: user.user.email },
       })
@@ -60,6 +61,7 @@ exports.gitAuth = (cb) => {
               data: {
                 id: user.user.uid,
                 email: user.user.email,
+                githubUsername: user.additionalUserInfo.username,
               },
             })
               .catch(err => alert(err))
