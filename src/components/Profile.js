@@ -129,7 +129,7 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
-        {resume ? <PDF file={resume} /> : <div></div>}
+        {resume ? <PDF file={resume} /> : <div>Add your resume to compare your skills!</div>}
       </div>
     );
   }
