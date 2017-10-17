@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import firebase from 'firebase';
 import PDF from 'react-pdf-js';
+import PropTypes from 'prop-types';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -133,5 +134,14 @@ class Profile extends React.Component {
     );
   }
 }
+
+Profile.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userFirstName: PropTypes.string.isRequired,
+  userLastName: PropTypes.string.isRequired,
+  userEmail: PropTypes.string.isRequired,
+  getUserInfo: PropTypes.func.isRequired,
+  userResume: PropTypes.string.isRequired,
+};
 
 export default Profile;
