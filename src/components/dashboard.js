@@ -85,7 +85,6 @@ class Dashboard extends React.Component {
         {this.props.savedJobs.length > 0 ? this.props.savedJobs.map((job, i) => {
           return (
             <div>
-              <h2>Your Saved Jobs</h2>
               <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />
             </div>
           );
