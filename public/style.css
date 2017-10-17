@@ -18,7 +18,7 @@
 
 /* Change the link color to #111 (black) on hover */
 .navBar li:hover {
-    background-color: blue;
+    background-color: #e5e500;
 }
 
 #main-navigation {

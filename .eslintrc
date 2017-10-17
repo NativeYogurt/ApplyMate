@@ -23,7 +23,7 @@
     }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-console": ["error", { allow: ["warn", "error", "log"] }],
-    no-alert: "off",
+    "no-alert": "off",
     "no-unused-vars": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "arrow-parens": "off",
