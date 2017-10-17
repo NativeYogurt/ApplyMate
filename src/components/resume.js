@@ -16,7 +16,7 @@ class Resume extends React.Component {
       axios.post('/api/resume', {
         result,
         userId: this.props.userId,
-      });
+      }, (data) => this.props.getJobComparison());
     };
     reader.readAsDataURL(event.target.files[0]);
   }

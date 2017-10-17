@@ -117,7 +117,7 @@ class Profile extends React.Component {
             <input type="text" name="lastName" placeholder={this.state.lastName} onChange={this.onChangeLastName} />
           </label>
           <br />
-          
+
           <label htmlFor="email">
             Email:
             <input type="text" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
