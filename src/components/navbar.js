@@ -18,9 +18,9 @@ class Navbar extends React.Component {
           <li><Link to="/home/dashboard">Dashboard</Link></li>
           <li><Link to="/home/resume">Resume</Link></li>
           <li><Link to="/home/resources">Resources</Link></li>
+          <li><Link to="/home/searchjobs">Search Jobs</Link></li>
           <li><Link to="/home/profile">Profile</Link></li>
           <li onClick={this.props.signOut}><Link to="/">Sign Out</Link></li>
-
         </ul>
       </div>
     );

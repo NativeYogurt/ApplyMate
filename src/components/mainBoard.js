@@ -7,6 +7,7 @@ import Dashboard from './dashboard';
 import Resume from './resume';
 import Resources from './resources';
 import Profile from './Profile';
+import SearchJobs from './SearchJobs';
 
 class Main extends React.Component {
   constructor(props) {
@@ -116,6 +117,14 @@ class Main extends React.Component {
               <Resources
                 userId={this.props.userId}
                 missingSkills={this.state.missingSkills}
+              />
+            )}
+          />
+          <Route
+            path="/home/searchjobs"
+            render={() => (
+              <SearchJobs
+                userId={this.props.userId}
               />
             )}
           />
