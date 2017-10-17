@@ -81,9 +81,13 @@ class Dashboard extends React.Component {
           <br />
           <input type="submit" value="Add" />
         </form>
-        <h2>Your Saved Jobs</h2>
         {this.props.savedJobs.length > 0 ? this.props.savedJobs.map((job, i) => {
-          return (<SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />);
+          return (
+            <div>
+              <h2>Your Saved Jobs</h2>
+              <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />
+            </div>
+          );
         }) : null}
       </div>);
   }
