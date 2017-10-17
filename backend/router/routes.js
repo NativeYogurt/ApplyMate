@@ -1,4 +1,3 @@
-// const express = require('express');
 const router = require('express').Router();
 const resume = require('../controllers/resume.js');
 const userHandler = require('../controllers/userHandler');

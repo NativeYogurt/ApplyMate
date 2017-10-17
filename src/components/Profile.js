@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import firebase from 'firebase';
 import PDF from 'react-pdf-js';
+import PropTypes from 'prop-types';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -69,7 +70,7 @@ class Profile extends React.Component {
       email: this.state.email,
     })
       .then((data) => {
-        console.log('User has been updated!');
+        alert('User has been updated!');
         this.props.getUserInfo();
       })
       .catch((error) => {
@@ -97,7 +98,7 @@ class Profile extends React.Component {
       <div className="user-profile">
         <h3>Hello, {userName}!</h3>
         <br />
-        <strong>Update Your Info:</strong><br />
+        <strong>Update Your Info</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">
             First Name:
@@ -133,5 +134,14 @@ class Profile extends React.Component {
     );
   }
 }
+
+Profile.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userFirstName: PropTypes.string.isRequired,
+  userLastName: PropTypes.string.isRequired,
+  userEmail: PropTypes.string.isRequired,
+  getUserInfo: PropTypes.func.isRequired,
+  userResume: PropTypes.string.isRequired,
+};
 
 export default Profile;
