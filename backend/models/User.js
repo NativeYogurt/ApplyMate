@@ -29,7 +29,10 @@ const User = sequelize.define('user', {
   githubUsername: {
     type: Sequelize.STRING,
   },
+  githubSkills: {
+    type: Sequelize.JSON,
+  },
 });
 
-//User.sync();
+User.sync();
 module.exports = User;
