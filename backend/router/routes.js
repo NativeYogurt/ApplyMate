@@ -13,7 +13,7 @@ router.post('/job', job.handleJobAdd);
 router.put('/job/delete', job.handleJobDelete);
 router.get('/jobs', job.handleGetJobs);
 router.get('/comparison', comparison.getComparison);
-router.post('/findUser', user.handleUserFind);
+router.get('/findUser', user.handleUserFind);
 router.put('/updateUser', user.handleUpdateUser);
 router.post('/resource', resource.handleResourceAdd);
 router.get('/resource', resource.handleGetResources);

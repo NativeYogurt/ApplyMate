@@ -1,7 +1,7 @@
 const User = require('../models/User');
 
 exports.handleUserFind = (req, res) => {
-  User.findOne({ where: { userId: req.body.userId } }).then(user => {
+  User.findOne({ where: { userId: req.query.userId } }).then(user => {
     res.send(user);
   });
 };
