@@ -9,9 +9,12 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       successVisible: false,
+      sortBy: 'status',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addJob = this.addJob.bind(this);
+    this.onChangeSortBy = this.onChangeSortBy.bind(this);
+    this.createJobs = this.createJobs.bind(this);
   }
 
   addJob(job) {
@@ -49,33 +52,56 @@ class Dashboard extends React.Component {
     form.url.value = '';
     this.setState({ successVisible: true });
   }
+  onChangeSortBy(e) {
+    this.setState({ sortBy: e.target.value });
+  }
+  createJobs(job) {
+    return (
+      <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />
+    );
+  }
   render() {
     const success = (
       <div className="alert">
         The job has been added.
       </div>
     );
+    const sortedByStatus = [].concat(this.props.savedJobs).sort((a, b) => a.status < b.status).map(this.createJobs);
+    const sortedByDate = [].concat(this.props.savedJobs).sort((a,b) => {
+      return a.dateApplied - b.dateApplied
+    }).reverse().map(this.createJobs);
+    let listJobs = null;
+    if (this.state.sortBy === 'status') {
+      listJobs = sortedByStatus;
+    } else {
+      listJobs = sortedByDate;
+    }
     const jobList = (
-      <table>
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Date Applied</th>
-            <th>Job URL</th>
-            <th>Required Skills</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.savedJobs.map((job, i) => {
-            return (
-              <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />
-            );
-          })}
-        </tbody>
-      </table>
+      <div>
+        <div>
+          <span className="input-label">Sort By</span>
+          <select value={this.state.sortBy} onChange={this.onChangeSortBy}>
+            <option value="status">Status</option>
+            <option value="dateApplied">DateApplied</option>
+          </select>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Title</th>
+              <th>Status</th>
+              <th>Date Applied</th>
+              <th>Job URL</th>
+              <th>Required Skills</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {listJobs}
+          </tbody>
+        </table>
+      </div>
     );
     return (
       <div>

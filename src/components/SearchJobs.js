@@ -69,13 +69,13 @@ class SearchJobs extends React.Component {
           <form className="job-search-form" name="jobSearch" onSubmit={this.handleSubmit}>
             <span className="form-group">
               <label htmlFor="searchTerm">
-                Tech Skill Required:&emsp;
+                <span className="input-label">Tech Skill Required:</span>
                 <input type="text" name="searchTechSkill" placeholder="JavaScript" />
               </label>
             </span>
             <span className="form-group">
               <label htmlFor="searchJobLocation">
-                Job Location:&emsp;
+                <span className="input-label">Job Location:</span>
                 <input type="text" name="searchJobLocation" placeholder="SanFrancisco" />
               </label>
             </span>

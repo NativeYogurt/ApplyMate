@@ -101,3 +101,7 @@ td {
 .job-search-inputs {
   text-align: center;
 }
+
+.input-label{
+  padding-right: 8px;
+}
