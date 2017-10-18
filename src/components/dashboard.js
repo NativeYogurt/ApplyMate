@@ -65,6 +65,7 @@ class Dashboard extends React.Component {
             <th>Date Applied</th>
             <th>Job URL</th>
             <th>Required Skills</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -80,20 +81,32 @@ class Dashboard extends React.Component {
       <div>
         <h2>New Job Application</h2>
         {this.state.successVisible ? success : null}
-        <form name="jobAdd" onSubmit={this.handleSubmit}>
-          <input type="text" name="company" placeholder="company" />
-          <input type="text" name="jobtitle" placeholder="job title" />
-          <select defaultValue="wishlist" name="status">
-            <option value="wishlist">Wishlist</option>
-            <option value="applied">Applied</option>
-            <option value="phone">Phone</option>
-            <option value="onSite">OnSite</option>
-            <option value="rejected">Rejected</option>
-            <option value="offer">Offer</option>
-          </select>
-          <input type="date" name="dateApplied" placeholder="date applied" />
-          <input type="text" name="url" placeholder="job url" />
-          <input type="submit" value="Add" />
+        <form className="job-add-form" name="jobAdd" onSubmit={this.handleSubmit}>
+          <span className="form-group">
+            <input type="text" name="company" placeholder="company" />
+          </span>
+          <span className="form-group">
+            <input type="text" name="jobtitle" placeholder="job title" />
+          </span>
+          <span className="form-group">
+            <select defaultValue="wishlist" name="status">
+              <option value="wishlist">Wishlist</option>
+              <option value="applied">Applied</option>
+              <option value="phone">Phone</option>
+              <option value="onSite">OnSite</option>
+              <option value="rejected">Rejected</option>
+              <option value="offer">Offer</option>
+            </select>
+          </span>
+          <span className="form-group">
+            <input type="date" name="dateApplied" placeholder="date applied" />
+          </span>
+          <span className="form-group">
+            <input type="text" name="url" placeholder="job url" />
+          </span>
+          <span className="form-group">
+            <input className="button" type="submit" value="Add" />
+          </span>
         </form>
         {this.props.savedJobs.length > 0 ? jobList : null}
       </div>);

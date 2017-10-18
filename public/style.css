@@ -1,43 +1,25 @@
 
-.navBar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: DodgerBlue;
-}
-
-.navBar li {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-.navBar li:hover {
-    background-color: #e5e500;
-}
-
 #main-navigation {
     height: 54px;
     overflow: hidden;
-    border-bottom: 1px solid black;
-}
-
-#main-navigation ul {
-    height: 54px;
-    overflow: hidden;
+    background-color: lightblue;
 }
 
 #main-navigation li {
-    font-size: 1.0em;
+    font-size: 1em;
     text-transform: uppercase;
     list-style: none;
     float: left;
     width: 10%;
+    display: block;
+    text-align: center;
+    padding: 18px 16px;
+    color: white;
+}
+
+/* Change the link color to #111 (black) on hover */
+#main-navigation .navBar:hover {
+    background-color: blue;
 }
 
 /* The alert message box */
@@ -49,7 +31,7 @@
 }
 
 table, th, td {
-    border: 1px solid black;
+    border-bottom: 1px solid #ddd;
     border-collapse: collapse;
 }
 
@@ -66,4 +48,55 @@ td {
     max-width: 250px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.button {
+  padding: 10px 15px;
+}
+
+.job-edit-form {
+  padding: 20px;
+}
+
+.job-edit-form .form-group {
+  padding-bottom: 15px;
+}
+
+.job-edit-form label {
+  padding-right: 15px;
+}
+
+.job-edit-form input[type="text"], .job-edit-form textarea {
+  padding: 8px;
+  max-width: 100%;
+}
+
+.job-edit-form input[type="submit"] {
+  padding: 10px 15px;
+}
+
+.job-edit-form .back-link {
+  padding-left: 15px;
+}
+
+.job-add-form .form-group {
+  padding-right: 15px;
+}
+
+.job-add-form input[type="text"], .job-add-form input[type="date"], .job-edit-form select {
+  padding: 8px;
+  max-width: 100%;
+}
+
+.job-search-form .form-group {
+  padding-right: 15px;
+}
+
+.job-search-form input[type="text"], .job-add-form input[type="date"], .job-edit-form select {
+  padding: 8px;
+  max-width: 100%;
+}
+
+.job-search-inputs {
+  text-align: center;
 }

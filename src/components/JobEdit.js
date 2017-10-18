@@ -101,46 +101,56 @@ class JobEdit extends React.Component {
 
     return (
       <div>
-        <form onSubmit={this.submit}>
-          <label htmlFor="company">
-            Company:
-            <input type="text" name="company" value={this.state.company} onChange={this.onChangeCompany} />
-          </label>
-          <br />
-          <label htmlFor="jobtitle">
-            Job Title:
-            <input type="text" name="jobtitle" value={this.state.jobTitle} onChange={this.onChangeJobTitle} />
-          </label>
-          <br />
-          <label htmlFor="status">
-            Status:
-            <select name="status" value={this.state.status} onChange={this.onChangeStatus}>
-              <option value="wishlist">Wishlist</option>
-              <option value="applied">Applied</option>
-              <option value="phone">Phone</option>
-              <option value="onSite">OnSite</option>
-              <option value="rejected">Rejected</option>
-              <option value="offer">Offer</option>
-            </select>
-          </label>
-          <br />
-          <label htmlFor="dateApplied">
-            Date Applied:
-            <input type="date" name="dateApplied" value={this.state.dateApplied} onChange={this.onChangeDateApplied} />
-          </label>
-          <br />
-          <label htmlFor="url">
-            URL:
-            <input type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
-          </label>
-          <br />
-          <label htmlFor="skills">
-            Required Skills:
-            <textarea name="skills" value={this.state.skills} disabled />
-          </label>
-          <br />
-          <input type="submit" value="Save" />
-          <Link className="btn btn-link" to="/home/dashboard">Back</Link>
+        <form className="job-edit-form" onSubmit={this.submit}>
+          <div className="form-group">
+            <label htmlFor="company">
+              Company:&emsp;
+              <input type="text" name="company" value={this.state.company} onChange={this.onChangeCompany} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="jobtitle">
+              Job Title:&emsp;
+              <input type="text" name="jobtitle" value={this.state.jobTitle} onChange={this.onChangeJobTitle} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="status">
+              Status:&emsp;
+              <select name="status" value={this.state.status} onChange={this.onChangeStatus}>
+                <option value="wishlist">Wishlist</option>
+                <option value="applied">Applied</option>
+                <option value="phone">Phone</option>
+                <option value="onSite">OnSite</option>
+                <option value="rejected">Rejected</option>
+                <option value="offer">Offer</option>
+              </select>
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="dateApplied">
+              Date Applied:&emsp;
+              <input type="date" name="dateApplied" value={this.state.dateApplied} onChange={this.onChangeDateApplied} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="url">
+              URL:&emsp;
+              <input type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="skills">
+              Required Skills:&emsp;
+              <textarea name="skills" value={this.state.skills} disabled />
+            </label>
+          </div>
+          <div className="form-group">
+            <input className="button" type="submit" value="Save" />
+            <span className="back-link">
+              <Link className="btn btn-link" to="/home/dashboard">Back</Link>
+            </span>
+          </div>
         </form>
         {this.state.successVisible ? success : null}
       </div>

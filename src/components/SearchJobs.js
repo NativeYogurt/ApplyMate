@@ -62,26 +62,34 @@ class SearchJobs extends React.Component {
   }
   render() {
     return (
-      <div className="Job-search-results">
-        <h2>Jobs. All day.</h2>
-        <h3>Go get them!</h3>
-        <form name="jobSearch" onSubmit={this.handleSubmit}>
-          <label htmlFor="searchTerm">
-            Tech Skill Required:
-            <input type="text" name="searchTechSkill" placeholder="JavaScript" />
-          </label>
-          <br />
-          <label htmlFor="searchJobLocation">
-            Job Location:
-            <input type="text" name="searchJobLocation" placeholder="SanFrancisco" />
-          </label>
-          <br />
-          <input type="submit" value="Search" />
-        </form>
-        <h2>Job Search Results</h2>
-        {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
-          return (<JobSearchResult key={job.id} job={job} addJob={this.addJob} />);
-        }) : null}
+      <div>
+        <div className="job-search-inputs">
+          <h2>Jobs. All day.</h2>
+          <h3>Go get them!</h3>
+          <form className="job-search-form" name="jobSearch" onSubmit={this.handleSubmit}>
+            <span className="form-group">
+              <label htmlFor="searchTerm">
+                Tech Skill Required:&emsp;
+                <input type="text" name="searchTechSkill" placeholder="JavaScript" />
+              </label>
+            </span>
+            <span className="form-group">
+              <label htmlFor="searchJobLocation">
+                Job Location:&emsp;
+                <input type="text" name="searchJobLocation" placeholder="SanFrancisco" />
+              </label>
+            </span>
+            <span className="form-group">
+              <input className="button" type="submit" value="Search" />
+            </span>
+          </form>
+        </div>
+        <div className="job-search-results">
+          {this.state.jobSearchResults.length > 0 ? <h2>Job Search Results</h2> : null}
+          {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
+            return (<JobSearchResult key={job.id} job={job} addJob={this.addJob} />);
+          }) : null}
+        </div>
       </div>
     );
   }
