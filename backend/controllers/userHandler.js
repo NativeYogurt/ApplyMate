@@ -1,7 +1,7 @@
 const User = require('../models/User.js');
+const gitHubRepoCrawler = require('../utilities/gitHubRepoCrawler')
 
 exports.signUp = (req, res) => {
-  res.send('hey');
   User.create({
     userId: req.body.data.id,
     firstName: req.body.data.firstName,
@@ -9,7 +9,12 @@ exports.signUp = (req, res) => {
     email: req.body.data.email,
     githubUsername: req.body.data.githubUsername,
   })
-    .then(user => console.log('Created New User', user));
+    .then(user => {
+      if(user.githubUsername) {
+        gitHubRepoCrawler.getGithubInfoUser(user.githubUsername);
+      }
+      res.send(user);
+    });
 };
 
 exports.scanforUser = (req, res) => {
