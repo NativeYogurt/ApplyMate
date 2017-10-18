@@ -39,7 +39,6 @@ class App extends React.Component {
     });
   }
   setUser(user, bool) {
-    console.log(user, bool);
     this.setState({
       isLoggedIn: bool,
       user,

@@ -99,7 +99,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const username =  `${this.props.userFirstName} ${this.props.userLastName}`;
+    const username = `${this.props.userFirstName} ${this.props.userLastName}`;
     const resume = `${this.props.userResume}`;
     return (
       <div className="user-profile">
@@ -124,7 +124,7 @@ class Profile extends React.Component {
           </label>
           <br />
           Github Username: <input type="text" placeholder={this.state.githubUsername} onChange={this.onChangeGithubUsername} />
-          <br/>
+          <br />
           <input type="submit" value="Submit" />
         </form>
         <br />
@@ -150,8 +150,8 @@ Profile.propTypes = {
   userFirstName: PropTypes.string.isRequired,
   userLastName: PropTypes.string.isRequired,
   userEmail: PropTypes.string.isRequired,
-  getUserInfo: PropTypes.func.isRequired,
   userResume: PropTypes.string.isRequired,
+  getUserInfo: PropTypes.func.isRequired,
 };
 
 export default Profile;

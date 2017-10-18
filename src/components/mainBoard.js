@@ -47,7 +47,7 @@ class Main extends React.Component {
           lastName: data.lastName,
           email: data.email,
           githubUsername: data.githubUsername,
-          resume: data.resumeURL,
+          resume: data.resumeURL || '',
         });
       })
       .catch(error => console.log('error getting data'));
