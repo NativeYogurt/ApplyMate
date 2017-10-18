@@ -14,8 +14,11 @@ const SavedJobs = sequelize.define('saved_jobs', {
   jobTitle: {
     type: Sequelize.STRING,
   },
-  description: {
+  status: {
     type: Sequelize.STRING,
+  },
+  dateApplied: {
+    type: Sequelize.DATEONLY,
   },
   url: {
     type: Sequelize.TEXT,
@@ -38,5 +41,5 @@ const SavedJobs = sequelize.define('saved_jobs', {
   },
 });
 
-// SavedJobs.sync();
+SavedJobs.sync();
 module.exports = SavedJobs;

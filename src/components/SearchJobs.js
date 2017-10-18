@@ -42,7 +42,7 @@ class SearchJobs extends React.Component {
     const newJob = {
       company: job.company,
       jobTitle: job.title,
-      description: job.company_url,
+      status: 'wishlist',
       url: job.how_to_apply.split('"')[1],
       skills: [],
       userId: this.props.userId,

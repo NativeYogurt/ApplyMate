@@ -36,7 +36,8 @@ class Dashboard extends React.Component {
     this.addJob({
       company: form.company.value,
       jobTitle: form.jobtitle.value,
-      description: form.description.value,
+      status: form.status.value,
+      dateApplied: form.dateApplied.value,
       url: form.url.value,
       skills: [],
       userId: this.props.userId,
@@ -44,7 +45,7 @@ class Dashboard extends React.Component {
     // clear the form for the next input
     form.company.value = '';
     form.jobtitle.value = '';
-    form.description.value = '';
+    form.status.value = 'wishlist';
     form.url.value = '';
     this.setState({ successVisible: true });
   }
@@ -54,44 +55,71 @@ class Dashboard extends React.Component {
         The job has been added.
       </div>
     );
+    const jobList = (
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Date Applied</th>
+            <th>Job URL</th>
+            <th>Required Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.props.savedJobs.map((job, i) => {
+            return (
+              <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />
+            );
+          })}
+        </tbody>
+      </table>
+    );
     return (
       <div>
-        <h2>Add a new job</h2>
+        <h2>New Job Application</h2>
         {this.state.successVisible ? success : null}
         <form name="jobAdd" onSubmit={this.handleSubmit}>
-          <label htmlFor="company">
-            Company:
-            <input type="text" name="company" />
-          </label>
-          <br />
-          <label htmlFor="jobtitle">
-            Job Title:
-            <input type="text" name="jobtitle" />
-          </label>
-          <br />
-          <label htmlFor="description">
-            Description:
-            <textarea name="description" />
-          </label>
-          <br />
-          <label htmlFor="url">
-            URL:
-            <input type="text" name="url" />
-          </label>
-          <br />
+          <input type="text" name="company" placeholder="company" />
+          <input type="text" name="jobtitle" placeholder="job title" />
+          <select defaultValue="wishlist" name="status">
+            <option value="wishlist">Wishlist</option>
+            <option value="applied">Applied</option>
+            <option value="phone">Phone</option>
+            <option value="onSite">OnSite</option>
+            <option value="rejected">Rejected</option>
+            <option value="offer">Offer</option>
+          </select>
+          <input type="date" name="dateApplied" placeholder="date applied" />
+          <input type="text" name="url" placeholder="job url" />
           <input type="submit" value="Add" />
         </form>
-        {this.props.savedJobs.length > 0 ? <h2>Your Saved Jobs</h2> : null}
-        {this.props.savedJobs.length > 0 ? this.props.savedJobs.map((job, i) => {
-          return (
-            <div>
-              <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />
-            </div>
-          );
-        }) : null}
+        {this.props.savedJobs.length > 0 ? jobList : null}
       </div>);
   }
 }
+// <label htmlFor="company">
+//   Company:
+//   <input type="text" name="company" placeholder="company"/>
+// </label>
+// <br />
+// <label htmlFor="jobtitle">
+//   Job Title:
+//   <input type="text" name="jobtitle" />
+// </label>
+// <br />
+// <label htmlFor="description">
+//   Description:
+//   <textarea name="description" />
+// </label>
+// <br />
+// <label htmlFor="url">
+//   URL:
+//   <input type="text" name="url" />
+// </label>
+// <br />
+// <input type="submit" value="Add" />
 Dashboard.propTypes = {
   getJobs: PropTypes.func.isRequired,
   getJobComparison: PropTypes.func.isRequired,

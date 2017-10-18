@@ -20,7 +20,8 @@ exports.handleJobAdd = (req, res) => {
         const newJob = {
           company: req.body.company,
           jobTitle: req.body.jobTitle,
-          description: req.body.description,
+          status: req.body.status,
+          dateApplied: req.body.dateApplied,
           url: req.body.url,
           skills,
           userId: req.body.userId,

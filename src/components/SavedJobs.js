@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 
 const SavedJobs = (props) => {
   return (
-    <div>
-      <h6>Company: {props.jobPosting.company}</h6>
-      <button onClick={() => props.deleteJob(props.jobPosting.jobId)}>Delete Job Post</button>
-      <ul>
-        <li>JobTitle: {props.jobPosting.jobTitle}</li>
-        <li>Description: {props.jobPosting.description}</li>
-        <li>Skills: {props.jobPosting.skills.join(', ')}</li>
-        <li><a href={props.jobPosting.url} target="_blank">Job Posting</a></li>
-      </ul>
-    </div>
+    <tr>
+      <td>{props.jobPosting.company}</td>
+      <td>{props.jobPosting.jobTitle}</td>
+      <td>{props.jobPosting.status}</td>
+      <td>{props.jobPosting.dateApplied}</td>
+      <td><a href={props.jobPosting.url} target="_blank">ClickMe</a></td>
+      <td className="truncate">{props.jobPosting.skills.join(', ')}</td>
+      <td><button onClick={() => props.deleteJob(props.jobPosting.jobId)}>Delete</button></td>
+    </tr>
   );
 };
 
