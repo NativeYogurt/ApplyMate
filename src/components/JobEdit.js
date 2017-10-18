@@ -104,19 +104,19 @@ class JobEdit extends React.Component {
         <form className="job-edit-form" onSubmit={this.submit}>
           <div className="form-group">
             <label htmlFor="company">
-              Company:&emsp;
+              <span className="input-label">Company:</span>
               <input type="text" name="company" value={this.state.company} onChange={this.onChangeCompany} />
             </label>
           </div>
           <div className="form-group">
             <label htmlFor="jobtitle">
-              Job Title:&emsp;
+              <span className="input-label">Job Title:</span>
               <input type="text" name="jobtitle" value={this.state.jobTitle} onChange={this.onChangeJobTitle} />
             </label>
           </div>
           <div className="form-group">
             <label htmlFor="status">
-              Status:&emsp;
+              <span className="input-label">Status:</span>
               <select name="status" value={this.state.status} onChange={this.onChangeStatus}>
                 <option value="wishlist">Wishlist</option>
                 <option value="applied">Applied</option>
@@ -129,19 +129,19 @@ class JobEdit extends React.Component {
           </div>
           <div className="form-group">
             <label htmlFor="dateApplied">
-              Date Applied:&emsp;
+              <span className="input-label">Date Applied:</span>
               <input type="date" name="dateApplied" value={this.state.dateApplied} onChange={this.onChangeDateApplied} />
             </label>
           </div>
           <div className="form-group">
             <label htmlFor="url">
-              URL:&emsp;
+              <span className="input-label">URL:</span>
               <input type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
             </label>
           </div>
           <div className="form-group">
             <label htmlFor="skills">
-              Required Skills:&emsp;
+              <span className="input-label">Required Skills:</span>
               <textarea name="skills" value={this.state.skills} disabled />
             </label>
           </div>
