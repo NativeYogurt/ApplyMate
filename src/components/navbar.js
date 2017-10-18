@@ -9,7 +9,15 @@ class Navbar extends React.Component {
     e.preventDefault();
     this.props.TESTBUTTON();
   }
-
+  handleSignOut(e) {
+    e.preventDefault();
+    Auth.signOut((err, user) => {
+      if (err) alert(err);
+      else {
+        this.props.setUser(user, false);
+      }
+    });
+  }
   render() {
     return (
       <div className="navBar">
@@ -18,9 +26,9 @@ class Navbar extends React.Component {
           <li><Link to="/home/dashboard">Dashboard</Link></li>
           <li><Link to="/home/resume">Resume</Link></li>
           <li><Link to="/home/resources">Resources</Link></li>
+          <li><Link to="/home/searchjobs">Search Jobs</Link></li>
           <li><Link to="/home/profile">Profile</Link></li>
-          <li onClick={this.props.signOut}><Link to="/">Sign Out</Link></li>
-
+          <li onClick={e => this.handleSignOut(e)}><Link to="/">Sign Out</Link></li>
         </ul>
       </div>
     );
@@ -29,6 +37,6 @@ class Navbar extends React.Component {
 
 Navbar.propTypes = {
   TESTBUTTON: PropTypes.func.isRequired,
-  signOut: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
 };
 export default Navbar;

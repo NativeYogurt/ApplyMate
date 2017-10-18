@@ -16,7 +16,9 @@ exports.handleUpdateUser = (req, res) => {
         githubUsername: req.body.githubUsername || user.githubUsername,
       };
       User.update(newData, { where: { userId: req.body.userId } })
-        .then(result => res.send(result))
+        .then(result => {
+          res.send(result)
+        })
         .catch(err => console.log('error updating user', err));
     })
     .catch(err => console.log('error updating user', err));

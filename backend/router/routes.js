@@ -10,6 +10,7 @@ const resource = require('../controllers/resource.js');
 router.post('/resume', resume.uploadHandler);
 router.post('/signUp', userHandler.signUp);
 router.post('/scanForUser', userHandler.scanforUser);
+router.get('/githubUidLookup', userHandler.githubUidLookup);
 router.post('/job', job.handleJobAdd);
 router.put('/job/delete', job.handleJobDelete);
 router.get('/jobs', job.handleGetJobs);

@@ -1,32 +1,32 @@
 import React from 'react';
-import fire from './Firebase.js';
-import firebase from 'firebase';
 import axios from 'axios';
+import firebase from 'firebase';
+import fire from './Firebase.js';
 
 let pendingCred;
 let pendingEmail;
 
+
 exports.signUp = (user, pass, first, last, cb) => {
   fire.auth().createUserWithEmailAndPassword(user, pass)
-    .then((newUser) => {
-      cb(undefined, newUser);
+    .then((firebaseUser) => {
       axios.post('/api/signUp', {
         data: {
-          id: newUser.uid,
+          id: firebaseUser.uid,
           firstName: first,
           lastName: last,
-          email: newUser.email,
+          email: firebaseUser.email,
         },
       })
-        .then((res) => {
-          console.log(res);
+        .then((DBUser) => {
+          cb(undefined, firebaseUser)
         })
         .catch((err) => {
-          console.error(err);
+          cb(err);
         });
     })
     .catch((error) => {
-      cb(error.message);
+      cb(error);
     });
 };
 exports.signIn = (user, pass, cb) => {
@@ -40,7 +40,8 @@ exports.signIn = (user, pass, cb) => {
 };
 exports.signOut = (cb) => {
   fire.auth().signOut()
-    .then(() => {
+    .then((firebaseUser) => {
+      // passing in null to set current user to null
       cb(undefined, null);
     })
     .catch((error) => {
@@ -50,22 +51,25 @@ exports.signOut = (cb) => {
 exports.gitAuth = (cb) => {
   const provider = new firebase.auth.GithubAuthProvider();
   fire.auth().signInWithPopup(provider)
-    .then((user) => {
-      console.log(user.additionalUserInfo.username)
+    .then((githubUser) => {
       axios.post('/api/scanForUser', {
-        data: { email: user.user.email },
+        data: { email: githubUser.user.email },
       })
         .then((result) => {
-          if (result.data[0] === undefined) {
+          if (result.data.email === undefined) {
+            console.log('first time github Login, making database user entry')
             axios.post('/api/signUp', {
+              // githubUser.user is the firebase user entry
               data: {
-                id: user.user.uid,
-                email: user.user.email,
-                githubUsername: user.additionalUserInfo.username,
+                id: githubUser.user.uid,
+                email: githubUser.user.email,
+                githubUsername: githubUser.additionalUserInfo.username,
               },
             })
+              .then(cb(undefined, githubUser))
               .catch(err => alert(err))
           }
+          
         })
         .catch(err => alert(err));
     })
@@ -80,12 +84,24 @@ exports.gitAuthMerge = (pass, cb) => {
     .then((providers) => {
       if (providers[0] === 'password') {
         fire.auth().signInWithEmailAndPassword(pendingEmail, pass)
-          .then(user => user.linkWithCredential(pendingCred))
-          .catch(err => alert(err))
-          .then(() => {
-            cb();
+          .then((user) => {
+            user.linkWithCredential(pendingCred)
+              .then((firebaseUserwithProviderData) => {
+                axios.get('/api/githubUidLookup', {
+                  data: { uid: firebaseUserwithProviderData.providerData[0].uid }
+                })
+                  .then((result) => {
+                    axios.put('/api/updateUser', {
+                      userId: user.uid,
+                      githubUsername: result.data,
+                    })
+                      .then(() => cb())
+                      .catch(err => alert(err))
+                  })
+              })
+              .catch(err => alert(err))
           })
-          .catch(err => alert(err));
+          .catch(err => alert(err))
       }
     });
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import firebase from 'firebase';
 import PDF from 'react-pdf-js';
+import PropTypes from 'prop-types';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -66,7 +67,6 @@ class Profile extends React.Component {
 
   updateUser() {
     firebase.auth().currentUser.updateEmail(this.state.email)
-      .then(win => console.log('Firebase updated', win))
       .catch(err => alert(err));
     axios.put('api/updateUser/', {
       userId: this.props.userId,
@@ -76,11 +76,11 @@ class Profile extends React.Component {
       githubUsername: this.state.githubUsername,
     })
       .then((data) => {
-        console.log('User has been updated!');
+        alert('User has been updated!');
         this.props.getUserInfo();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }
 
@@ -93,7 +93,6 @@ class Profile extends React.Component {
 
   updatePassword() {
     firebase.auth().currentUser.updatePassword(this.state.password1)
-      .then(win => console.log('Password Updated', win))
       .catch(err => alert(err));
   }
 
@@ -104,7 +103,7 @@ class Profile extends React.Component {
       <div className="user-profile">
         <h3>Hello, {userName}!</h3>
         <br />
-        <strong>Update Your Info:</strong><br />
+        <strong>Update Your Info</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>
           <label htmlFor="firstName">
             First Name:
@@ -116,7 +115,7 @@ class Profile extends React.Component {
             <input type="text" name="lastName" placeholder={this.state.lastName} onChange={this.onChangeLastName} />
           </label>
           <br />
-          
+
           <label htmlFor="email">
             Email:
             <input type="text" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
@@ -138,10 +137,19 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
-        <PDF file={resume} />
+        {resume ? <PDF file={resume} /> : <div>Add your resume to compare your skills!</div>}
       </div>
     );
   }
 }
+
+Profile.propTypes = {
+  userId: PropTypes.string.isRequired,
+  userFirstName: PropTypes.string.isRequired,
+  userLastName: PropTypes.string.isRequired,
+  userEmail: PropTypes.string.isRequired,
+  getUserInfo: PropTypes.func.isRequired,
+  userResume: PropTypes.string.isRequired,
+};
 
 export default Profile;
