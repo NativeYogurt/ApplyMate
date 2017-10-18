@@ -38,6 +38,6 @@ const server = app.listen(3000, () => {
 
 
 new CronJob('0 15 * * *', function() {
-  console.log('You will see this message every second');
+  console.log('You will see this message every day at 3pm et');
   Github.cronGitHubUpdate();
 }, null, true, 'America/New_York');
