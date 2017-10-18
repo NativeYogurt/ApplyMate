@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { HashRouter, browserHistory, Route, Redirect, Switch } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -8,6 +9,7 @@ import Resume from './resume';
 import Resources from './resources';
 import Profile from './Profile';
 import SearchJobs from './SearchJobs';
+import JobEdit from './JobEdit';
 
 class Main extends React.Component {
   constructor(props) {
@@ -120,6 +122,7 @@ class Main extends React.Component {
             render={() => (
               <SearchJobs
                 userId={this.props.userId}
+                getJobs={this.getJobs}
               />
             )}
           />
@@ -136,6 +139,10 @@ class Main extends React.Component {
                 userResume={this.state.resume}
               />
             )}
+          />
+          <Route
+            path="/home/dashboard/:id"
+            component={JobEdit}
           />
           <Route render={() => (
             <Dashboard
