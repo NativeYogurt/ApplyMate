@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
+import Auth from './Auth.js'
 
 class Signup extends React.Component {
   constructor(props) {
@@ -23,51 +24,51 @@ class Signup extends React.Component {
   handleSignUp(e) {
     e.preventDefault();
     if (this.state.signUpPassword === this.state.signUpPassword2) {
-      this.props.signUp(this.state.signUpUsername, this.state.signUpPassword, this.state.firstName, this.state.lastName);
+      Auth.signUp(this.state.signUpUsername, this.state.signUpPassword, this.state.firstName, this.state.lastName, (err, user) => {
+        if (err) alert(err);
+        else {
+          this.props.setUser(user, true);
+        }
+      });
     } else {
       alert('Your passwords do not match.');
     }
   }
-  handleTest(e) {
-    e.preventDefault();
-    this.props.TESTBUTTON();
-  }
-
   handleFirstName(e) {
     e.preventDefault();
     this.setState({
       firstName: e.target.value,
     });
   }
-
   handleLastName(e) {
     e.preventDefault();
     this.setState({
       lastName: e.target.value,
     });
   }
-
   handleSignUpUsername(e) {
     e.preventDefault();
     this.setState({
       signUpUsername: e.target.value,
     });
   }
-
   handlePassword(e) {
     e.preventDefault();
     this.setState({
       signUpPassword: e.target.value,
     });
   }
-
   handlePassword2(e) {
     e.preventDefault();
     this.setState({
       signUpPassword2: e.target.value,
     });
   }
-
+  // handleTest(e) {
+  //   e.preventDefault();
+  //   this.props.TESTBUTTON();
+  // }
+  
   render() {
     return (
       <div id="temp">
@@ -82,7 +83,6 @@ class Signup extends React.Component {
         <Link to="/login">
           <button>Log In
           </button>
-          <button onClick={e => this.handleTest(e)}>TESTBUTTON</button>
         </Link>
       </div>
     );

@@ -9,15 +9,15 @@ function Home(props) {
     <div>
       <div className="navHolder">
         <NavBar
-          signOut={props.signOut}
           TESTBUTTON={props.TESTBUTTON}
+          setUser={props.setUser}
         />
       </div>
       <Main userId={props.user ? props.user.uid : null} />
     </div>);
 }
 Home.propTypes = {
-  signOut: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
   TESTBUTTON: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
 };
