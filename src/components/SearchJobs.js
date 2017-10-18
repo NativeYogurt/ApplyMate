@@ -57,6 +57,7 @@ class SearchJobs extends React.Component {
     }).then(res => res.json())
       .then((data) => {
         console.log('post result', data);
+        this.props.getJobs();
       });
   }
   render() {
@@ -79,7 +80,7 @@ class SearchJobs extends React.Component {
         </form>
         <h2>Job Search Results</h2>
         {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
-          return (<JobSearchResult key={job.id} job={job} addJob={this.addJob}/>);
+          return (<JobSearchResult key={job.id} job={job} addJob={this.addJob} />);
         }) : null}
       </div>
     );

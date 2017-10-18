@@ -120,6 +120,7 @@ class Main extends React.Component {
             render={() => (
               <SearchJobs
                 userId={this.props.userId}
+                getJobs={this.getJobs}
               />
             )}
           />
