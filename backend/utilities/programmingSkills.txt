@@ -55,7 +55,6 @@ Averest
 Avicsoft
 AWK
 Axum
-B
 Babbage
 bash
 BASIC
@@ -78,7 +77,6 @@ Bourne shell
 BPEL
 BREW
 Business Basic
-C
 C Shell
 C--
 C/AL
@@ -151,7 +149,6 @@ Curry
 Cybil
 Cyclone
 Cython
-D
 Dart
 DASL
 DataFlex
@@ -169,7 +166,6 @@ Draco
 DRAKON
 Dylan
 DYNAMO
-E
 EarSketch
 Ease
 Easy PL/I
@@ -197,7 +193,6 @@ Euphoria
 EusLisp Robot Programming Language
 EXEC 2
 Executable UML
-F
 F-Script
 F#
 Factor
@@ -223,7 +218,6 @@ FP
 FPr
 Franz Lisp
 Frege
-G
 G-code
 Game Maker Language
 GameMonkey Script
@@ -279,14 +273,12 @@ Idris
 IMP
 Inform
 INTERLISP
-Io
 Ioke
 IPL
 IPTSCRAE
 ISLISP
 ISPF
 ISWIM
-J
 J#
 J\+\+
 JADE
@@ -311,7 +303,6 @@ JSON
 JSON-LD
 Julia
 Jython
-K
 Kaleidoscope
 Karel
 Karel\+\+
@@ -326,7 +317,6 @@ KRL
 KRYPTON
 ksh
 KUKA
-L
 L# .NET
 LabVIEW
 Ladder
@@ -536,14 +526,12 @@ Qalb
 QPL
 QtScript
 QuakeC
-R
 R\+\+
 Racket
 RAPID
 Rapira
 Ratfiv
 Ratfor
-rc
 REBOL
 Red
 Redcode
@@ -559,7 +547,6 @@ Ruby
 Ruby on Rails
 RuneScript
 Rust
-S
 S-Lang
 S-PLUS
 S/SL
@@ -631,12 +618,10 @@ Swift (parallel scripting language)
 SYMPL
 SyncCharts
 SystemVerilog
-T
 T-SQL
 TACL
 TACPOL
 TADS
-TAL
 Tcl
 Tea
 TECO
@@ -758,3 +743,4 @@ revel
 luminus
 lift
 strapi
+Rails
