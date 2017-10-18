@@ -35,18 +35,13 @@ class Main extends React.Component {
   }
 
   getUserInfo() {
-    fetch('/api/findUser', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    axios.get('/api/findUser', {
+      params: {
+        userId: this.props.userId,
       },
-      body: JSON.stringify({ userId: this.props.userId }),
     })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
+      .then((result) => {
+        const { data } = result;
         this.setState({
           firstName: data.firstName,
           lastName: data.lastName,

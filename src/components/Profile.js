@@ -99,11 +99,11 @@ class Profile extends React.Component {
   }
 
   render() {
-    const userName = `${this.props.userFirstName} ${this.props.userLastName}`;
+    const username =  `${this.props.userFirstName} ${this.props.userLastName}`;
     const resume = `${this.props.userResume}`;
     return (
       <div className="user-profile">
-        <h3>Hello, {userName}!</h3>
+        <h3>Hello, {this.state.githubUsername || username}!</h3>
         <br />
         <strong>Update Your Info</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>

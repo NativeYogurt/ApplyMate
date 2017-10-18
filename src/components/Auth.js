@@ -9,7 +9,6 @@ let pendingEmail;
 exports.signUp = (user, pass, first, last, cb) => {
   fire.auth().createUserWithEmailAndPassword(user, pass)
     .then((newUser) => {
-      cb(undefined, newUser);
       axios.post('/api/signUp', {
         data: {
           id: newUser.uid,
@@ -19,7 +18,7 @@ exports.signUp = (user, pass, first, last, cb) => {
         },
       })
         .then((res) => {
-          console.log(res);
+          cb(undefined, newUser);
         })
         .catch((err) => {
           console.error(err);
