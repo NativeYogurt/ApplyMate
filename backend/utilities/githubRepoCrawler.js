@@ -1,6 +1,9 @@
 const axios = require('axios');
+const Sequelize = require('sequelize');
 const db = require('../db/db');
 const Users = require('../models/User.js');
+
+const Op = Sequelize.Op;
 
 const sendLanguageDataToDB = (user, languageData) => {
   Users.update(
@@ -38,6 +41,21 @@ const scrapeLanguageData = (repos, username) => {
         }
       });
   });
+};
+
+exports.cronGitHubUpdate = (req, res) => {
+  Users.findAll({
+    attributes: ['githubUsername'],
+    where: {
+      githubUsername: {
+        [Op.ne]: '',
+      },
+    },
+  })
+    .then((data) => {
+      const usernames = data.map(object => object.githubUsername);
+      usernames.forEach((user) => this.getGithubInfoUser(user));
+    });
 };
 
 exports.getGithubInfoUser = (username) => {

@@ -4,17 +4,19 @@ const webpack = require('webpack');
 const bodyParser = require('body-parser');
 const webpackConfig = require('./webpack.config.js');
 const path = require('path');
+const CronJob = require('cron').CronJob;
 const env = require('dotenv').config();
 const db = require('./backend/db/db');
 const User = require('./backend/models/User');
 const SavedJobs = require('./backend/models/SavedJobs');
+const Github = require('./backend/utilities/githubRepoCrawler');
 
 const router = require('./backend/router/routes.js');
 
 const app = express();
 
 const compiler = webpack(webpackConfig);
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/api', router);
 
@@ -33,3 +35,9 @@ const server = app.listen(3000, () => {
   const port = server.address().port;
   console.log('Example app listening at http://%s:%s', host, port);
 });
+
+
+new CronJob('0 15 * * *', function() {
+  console.log('You will see this message every second');
+  Github.cronGitHubUpdate();
+}, null, true, 'America/New_York');
