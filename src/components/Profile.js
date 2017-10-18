@@ -75,7 +75,6 @@ class Profile extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      githubUsername: this.state.githubUsername,
     })
       .then((data) => {
         alert('User has been updated!');
@@ -123,7 +122,7 @@ class Profile extends React.Component {
             <input type="text" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
           </label>
           <br />
-          Github Username: <input type="text" placeholder={this.state.githubUsername} onChange={this.onChangeGithubUsername} />
+          Github Username: {this.state.githubUsername}
           <br />
           <input type="submit" value="Submit" />
         </form>

@@ -2,8 +2,8 @@
 A-0 System
 A# .NET
 A# (Axiom)
-A+
-A++
+A\+
+A\+\+
 ABAP
 ABC
 ABC ALGOL
@@ -55,7 +55,6 @@ Averest
 Avicsoft
 AWK
 Axum
-B
 Babbage
 bash
 BASIC
@@ -78,12 +77,11 @@ Bourne shell
 BPEL
 BREW
 Business Basic
-C
 C Shell
 C--
 C/AL
 C#
-C++
+C\+\+
 Caché ObjectScript
 Caml
 Cayenne
@@ -151,7 +149,6 @@ Curry
 Cybil
 Cyclone
 Cython
-D
 Dart
 DASL
 DataFlex
@@ -169,7 +166,6 @@ Draco
 DRAKON
 Dylan
 DYNAMO
-E
 EarSketch
 Ease
 Easy PL/I
@@ -197,7 +193,6 @@ Euphoria
 EusLisp Robot Programming Language
 EXEC 2
 Executable UML
-F
 F-Script
 F#
 Factor
@@ -223,7 +218,6 @@ FP
 FPr
 Franz Lisp
 Frege
-G
 G-code
 Game Maker Language
 GameMonkey Script
@@ -279,16 +273,14 @@ Idris
 IMP
 Inform
 INTERLISP
-Io
 Ioke
 IPL
 IPTSCRAE
 ISLISP
 ISPF
 ISWIM
-J
 J#
-J++
+J\+\+
 JADE
 Jako
 JAL
@@ -311,10 +303,9 @@ JSON
 JSON-LD
 Julia
 Jython
-K
 Kaleidoscope
 Karel
-Karel++
+Karel\+\+
 KEE
 KIF
 Kixtart
@@ -326,7 +317,6 @@ KRL
 KRYPTON
 ksh
 KUKA
-L
 L# .NET
 LabVIEW
 Ladder
@@ -536,14 +526,12 @@ Qalb
 QPL
 QtScript
 QuakeC
-R
-R++
+R\+\+
 Racket
 RAPID
 Rapira
 Ratfiv
 Ratfor
-rc
 REBOL
 Red
 Redcode
@@ -559,7 +547,6 @@ Ruby
 Ruby on Rails
 RuneScript
 Rust
-S
 S-Lang
 S-PLUS
 S/SL
@@ -631,12 +618,10 @@ Swift (parallel scripting language)
 SYMPL
 SyncCharts
 SystemVerilog
-T
 T-SQL
 TACL
 TACPOL
 TADS
-TAL
 Tcl
 Tea
 TECO
@@ -655,7 +640,7 @@ Trac
 Transcript
 TTCN
 TTM
-Turbo C++
+Turbo C\+\+
 Turing
 Turtle
 TUTOR
@@ -690,7 +675,7 @@ Windows PowerShell
 Wolfram Language
 Wyvern
 X#
-X++
+X\+\+
 X10
 XBL
 XC
@@ -758,3 +743,4 @@ revel
 luminus
 lift
 strapi
+Rails

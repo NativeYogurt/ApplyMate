@@ -8,12 +8,8 @@ exports.handleUserFind = (req, res) => {
 };
 
 exports.handleUpdateUser = (req, res) => {
-  let oldGithub;
-  let newGithub;
   User.findOne({ where: { userId: req.body.userId } })
     .then(user => {
-      oldGithub = user.githubUsername;
-      newGithub = req.body.githubUsername;
       const newData = {
         firstName: req.body.firstName || user.firstName,
         lastName: req.body.lastName || user.lastName,
@@ -22,9 +18,6 @@ exports.handleUpdateUser = (req, res) => {
       };
       User.update(newData, { where: { userId: req.body.userId } })
         .then(result => {
-          if (newGithub !== oldGithub) {
-            gitHubRepoCrawler.getGithubInfoUser(newGithub);
-          }
           res.send(newData);
         })
         .catch(err => console.log('error updating user', err));

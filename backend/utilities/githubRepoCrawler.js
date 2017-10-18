@@ -25,7 +25,7 @@ const scrapeLanguageData = (repos, username) => {
   const languages = {};
   let totalRuns = 0;
   repos.forEach(repo => {
-    axios.get(`${repo.languages_url}?client_id=850ff631aed1decba3ab&client_secret=b087ae7908e561afa19dbe1e061c7e6997aa4fc7`)
+    axios.get(`${repo.languages_url}?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`)
       .then(data => {
         const languageData = data.data;
         Object.entries(languageData).forEach(kv => {
@@ -59,7 +59,7 @@ exports.cronGitHubUpdate = (req, res) => {
 };
 
 exports.getGithubInfoUser = (username) => {
-  axios.get(`https://api.github.com/users/${username}/repos?client_id=850ff631aed1decba3ab&client_secret=b087ae7908e561afa19dbe1e061c7e6997aa4fc7`)
+  axios.get(`https://api.github.com/users/${username}/repos?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`)
     .then(repos => scrapeLanguageData(repos.data, username))
     .catch(err => console.error(err));
 };
