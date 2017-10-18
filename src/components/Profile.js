@@ -3,6 +3,8 @@ import axios from 'axios';
 import firebase from 'firebase';
 import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
+import DataChart from './DataChart';
+
 
 class Profile extends React.Component {
   constructor(props) {
@@ -140,6 +142,9 @@ class Profile extends React.Component {
         </form>
         <hr />
         {resume ? <PDF file={resume} /> : <div>Add your resume to compare your skills!</div>}
+        <hr />
+        <h3>DATAVISUAL EXAMPLES:</h3>
+        <DataChart />
       </div>
     );
   }
