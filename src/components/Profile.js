@@ -69,7 +69,6 @@ class Profile extends React.Component {
 
   updateUser() {
     firebase.auth().currentUser.updateEmail(this.state.email)
-      .then(win => console.log('Firebase updated', win))
       .catch(err => alert(err));
     axios.put('api/updateUser/', {
       userId: this.props.userId,
@@ -83,7 +82,7 @@ class Profile extends React.Component {
         this.props.getUserInfo();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }
 
@@ -96,7 +95,6 @@ class Profile extends React.Component {
 
   updatePassword() {
     firebase.auth().currentUser.updatePassword(this.state.password1)
-      .then(win => console.log('Password Updated', win))
       .catch(err => alert(err));
   }
 
