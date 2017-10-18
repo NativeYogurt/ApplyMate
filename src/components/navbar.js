@@ -13,8 +13,8 @@ class Navbar extends React.Component {
   render() {
     return (
       <div className="navBar">
-        <h2>ApplyMate</h2>
         <ul id="main-navigation">
+          <li>ApplyMate</li>
           <li><Link to="/home/dashboard">Dashboard</Link></li>
           <li><Link to="/home/resume">Resume</Link></li>
           <li><Link to="/home/resources">Resources</Link></li>

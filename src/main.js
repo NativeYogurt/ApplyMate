@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, browserHistory, Route, Redirect, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 document.addEventListener('DOMContentLoaded', () => {

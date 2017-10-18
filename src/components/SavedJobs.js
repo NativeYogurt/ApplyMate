@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const SavedJobs = (props) => {
   return (
     <tr>
       <td>{props.jobPosting.company}</td>
-      <td>{props.jobPosting.jobTitle}</td>
+      <td><Link to={`/home/dashboard/${props.jobPosting.jobId}`}>{props.jobPosting.jobTitle}</Link></td>
       <td>{props.jobPosting.status}</td>
       <td>{props.jobPosting.dateApplied}</td>
       <td><a href={props.jobPosting.url} target="_blank">ClickMe</a></td>

@@ -51,6 +51,32 @@ exports.handleGetJobs = (req, res) => {
     });
 };
 
+exports.handleGetJob = (req, res) => {
+  SavedJobs.findOne({
+    where: {
+      jobId: req.params.id,
+    },
+  })
+    .then(job => {
+      res.send(job);
+    });
+};
+
+exports.handleEditJob = (req, res) => {
+  SavedJobs.update({
+    company: req.body.company,
+    jobTitle: req.body.jobTitle,
+    status: req.body.status,
+    dateApplied: req.body.dateApplied,
+    url: req.body.url,
+  }, {
+    where: {
+      jobId: req.params.id,
+    },
+  })
+    .then(data => res.send(data))
+    .catch(error => console.error(error));
+};
 
 exports.handleJobDelete = (req, res) => {
   SavedJobs.update({

@@ -11,6 +11,8 @@ router.post('/signUp', userHandler.signUp);
 router.post('/scanForUser', userHandler.scanforUser);
 router.post('/job', job.handleJobAdd);
 router.put('/job/delete', job.handleJobDelete);
+router.get('/jobs/:id', job.handleGetJob);
+router.put('/jobs/:id', job.handleEditJob);
 router.get('/jobs', job.handleGetJobs);
 router.get('/comparison', comparison.getComparison);
 router.get('/findUser', user.handleUserFind);
