@@ -2,8 +2,8 @@
 A-0 System
 A# .NET
 A# (Axiom)
-A+
-A++
+A\+
+A\+\+
 ABAP
 ABC
 ABC ALGOL
@@ -83,7 +83,7 @@ C Shell
 C--
 C/AL
 C#
-C++
+C\+\+
 Caché ObjectScript
 Caml
 Cayenne
@@ -288,7 +288,7 @@ ISPF
 ISWIM
 J
 J#
-J++
+J\+\+
 JADE
 Jako
 JAL
@@ -314,7 +314,7 @@ Jython
 K
 Kaleidoscope
 Karel
-Karel++
+Karel\+\+
 KEE
 KIF
 Kixtart
@@ -537,7 +537,7 @@ QPL
 QtScript
 QuakeC
 R
-R++
+R\+\+
 Racket
 RAPID
 Rapira
@@ -655,7 +655,7 @@ Trac
 Transcript
 TTCN
 TTM
-Turbo C++
+Turbo C\+\+
 Turing
 Turtle
 TUTOR
@@ -690,7 +690,7 @@ Windows PowerShell
 Wolfram Language
 Wyvern
 X#
-X++
+X\+\+
 X10
 XBL
 XC
