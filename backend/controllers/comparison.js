@@ -15,9 +15,10 @@ exports.getComparison = async (req, res) => {
     jobs = await SavedJobs.findAll({
       where: {
         userId,
+        deleted: false,
       },
-      order: [['createdAt', 'DESC']],
-      limit: 1,
+      // order: [['createdAt', 'DESC']],
+      // limit: 1,
     });
     userSkills = userSkills[0].skills;
     res.send({ userSkills, jobs });
