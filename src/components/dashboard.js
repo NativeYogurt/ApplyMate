@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
   }
   createJobs(job) {
     return (
-      <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} getJobComparison={this.props.getJobComparison} />
+      <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} getJobs={this.props.getJobs} getJobComparison={this.props.getJobComparison} />
     );
   }
   render() {
