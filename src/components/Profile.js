@@ -4,7 +4,6 @@ import firebase from 'firebase';
 import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
 import DataChart from './DataChart';
-import ProfileResume from './ProfileResume';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -99,7 +98,6 @@ class Profile extends React.Component {
 
   render() {
     const username = `${this.props.userFirstName} ${this.props.userLastName}`;
-    const resume = `${this.props.userResume}`;
     return (
       <div className="user-profile">
         <h3>Hello, {this.state.githubUsername || username}!</h3>
@@ -116,7 +114,6 @@ class Profile extends React.Component {
             <input type="text" name="lastName" placeholder={this.state.lastName} onChange={this.onChangeLastName} />
           </label>
           <br />
-
           <label htmlFor="email">
             Email:
             <input type="text" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
@@ -138,8 +135,6 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
-        <ProfileResume userResume={this.props.userResume} />
-        <hr />
         <h3>DATAVISUAL EXAMPLES:</h3>
         <DataChart />
       </div>
@@ -152,7 +147,6 @@ Profile.propTypes = {
   userFirstName: PropTypes.string.isRequired,
   userLastName: PropTypes.string.isRequired,
   userEmail: PropTypes.string.isRequired,
-  userResume: PropTypes.string.isRequired,
   getUserInfo: PropTypes.func.isRequired,
 };
 
