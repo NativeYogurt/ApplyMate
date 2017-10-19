@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
 import DataChart from './DataChart';
-
+import ProfileResume from './ProfileResume';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -138,7 +138,7 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
-        {resume ? <PDF file={resume} /> : <div>Add your resume to compare your skills!</div>}
+        <ProfileResume userResume={this.props.userResume} />
         <hr />
         <h3>DATAVISUAL EXAMPLES:</h3>
         <DataChart />
