@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Dashboard from './dashboard';
-import Resume from './resume';
+import Resume from './Resume';
 import Resources from './resources';
 import Profile from './Profile';
 import SearchJobs from './SearchJobs';
@@ -130,7 +130,17 @@ class Main extends React.Component {
     return (
       <div>
         <Switch>
-          <Route path="/home/resume" render={() => (<Resume userId={this.props.userId} getJobComparison={this.getJobComparison} getUserInfo={this.getUserInfo} />)} />
+          <Route
+            path="/home/resume"
+            render={() => (
+              <Resume
+                userId={this.props.userId}
+                getJobComparison={this.getJobComparison}
+                getUserInfo={this.getUserInfo}
+                userResume={this.state.resume}
+              />
+            )}
+          />
           <Route
             path="/home/resources"
             render={() => (
@@ -160,7 +170,6 @@ class Main extends React.Component {
                 userId={this.props.userId}
                 githubUsername={this.state.githubUsername}
                 getUserInfo={this.getUserInfo}
-                userResume={this.state.resume}
               />
             )}
           />
