@@ -13,7 +13,7 @@ const extractSkills = (text) => {
         .filter(word => word !== '')
         .map(word => word.toLowerCase());
       programmingSkillsArray = programmingSkillsArray
-        .filter(skill => normalize.indexOf(skill) > -1);
+        .filter(skill => normalize.indexOf(` ${skill} `) > -1);
       resolve(programmingSkillsArray);
     });
   });
