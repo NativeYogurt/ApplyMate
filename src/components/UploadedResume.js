@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PDF from 'react-pdf-js';
 
 
-const ProfileResume = (props) => {
+const UploadedResume = (props) => {
   const resume = `${props.userResume}`;
   return (
     <div>
@@ -13,8 +13,8 @@ const ProfileResume = (props) => {
   );
 };
 
-ProfileResume.propTypes = {
+UploadedResume.propTypes = {
   userResume: PropTypes.string.isRequired,
 };
 
-export default ProfileResume;
+export default UploadedResume;

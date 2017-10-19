@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import ProfileResume from './ProfileResume';
+import UploadedResume from './UploadedResume';
 
 class Resume extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class Resume extends React.Component {
         <br /><br />
         <hr />
         <h2>My Resume:</h2>
-        <ProfileResume userResume={this.props.userResume} />
+        <UploadedResume userResume={this.props.userResume} />
       </div>
     );
   }
@@ -41,6 +41,8 @@ class Resume extends React.Component {
 Resume.propTypes = {
   userId: PropTypes.string.isRequired,
   userResume: PropTypes.string.isRequired,
+  getJobComparison: PropTypes.func.isRequired,
+  getUserInfo: PropTypes.func.isRequired,
 };
 
 export default Resume;
