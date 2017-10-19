@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
             <option value="dateApplied">DateApplied</option>
           </select>
         </div>
-        <table>
+        <table className="dashboard">
           <thead>
             <tr>
               <th>Company</th>
