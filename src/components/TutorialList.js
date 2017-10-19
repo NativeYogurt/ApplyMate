@@ -35,7 +35,6 @@ class TutorialList extends React.Component {
   render() {
     return (
       <div className="Tutorial-list">
-        <h3>Tutorial Sites</h3>
         {this.state.tutorials ? this.state.tutorials.map(tutorial =>
           (<TutorialListEntry
             key={tutorial.title}
