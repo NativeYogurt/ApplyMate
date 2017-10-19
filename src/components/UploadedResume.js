@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import PDF from 'react-pdf-js';
 
 
-const UploadedResume = (props) => {
-  const resume = `${props.userResume}`;
+const UploadedResume = ({ userResume }) => {
   return (
     <div>
-      {resume ? <PDF file={resume} /> : <div>Add your resume to compare your skills!</div>}
+      {userResume ? <PDF file={userResume} /> : <div>Add your resume to compare your skills!</div>}
     </div>
   );
 };
