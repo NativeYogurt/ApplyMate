@@ -24,6 +24,7 @@ class JobEdit extends React.Component {
     this.submit = this.submit.bind(this);
     this.showSuccess = this.showSuccess.bind(this);
     this.dismissSuccess = this.dismissSuccess.bind(this);
+    // this.loadCompanyInfo = this.loadCompanyInfo.bind(this);
   }
 
   componentDidMount() {
@@ -59,9 +60,31 @@ class JobEdit extends React.Component {
     console.log('this props', this.props);
     fetch('/api/jobs/' + this.props.match.params.id)
       .then((res)=>res.json())
-      .then(data=>this.setState(data));
+      .then(data=> {
+        this.setState(data);
+      });
+      // .then(() => this.loadCompanyInfo(this.state.company));
   }
 
+  // loadCompanyInfo(company) {
+  //   // const link = `https://api.fullcontact.com/v2/company/search.json?companyName=${company}`;
+  //   const link = `https://api.fullcontact.com/v2/company/lookup.json?domain=apple.com`;
+  //
+  //   console.log('key', process.env.FULLCONTACT_APIKEY );
+  //   console.log('link', link);
+  //   $.ajax({
+  //     type: 'GET',
+  //     dataType: 'json',
+  //     header: { 'X-FullContact-APIKey': process.env.FULLCONTACT_APIKEY },
+  //     url: link,
+  //     success: data => {
+  //       console.log('company', data);
+  //     },
+  //     error: error => {
+  //       console.error('failed to search job', error);
+  //     }
+  //   })
+  // }
   showSuccess() {
     this.setState({ successVisible: true });
   }
