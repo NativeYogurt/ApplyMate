@@ -3,10 +3,6 @@ import axios from 'axios';
 import firebase from 'firebase';
 import fire from './Firebase.js';
 
-let pendingCred;
-let pendingEmail;
-
-
 exports.signUp = (user, pass, first, last, cb) => {
   fire.auth().createUserWithEmailAndPassword(user, pass)
     .then((firebaseUser) => {
@@ -74,20 +70,20 @@ exports.gitAuth = (cb) => {
         .catch(err => alert(err));
     })
     .catch((error) => {
-      pendingCred = error.credential;
-      pendingEmail = error.email;
-      cb(error);
+      const errCred = error.credential;
+      const errEmail = error.email;
+      cb(error, undefined, errCred, errEmail);
     });
 };
-exports.gitAuthMerge = (pass, cb) => {
-  fire.auth().fetchProvidersForEmail(pendingEmail)
+exports.gitAuthMerge = (pass, errCred, errEmail, cb) => {
+  fire.auth().fetchProvidersForEmail(errEmail)
     .then((providers) => {
       if (providers[0] === 'password') {
-        fire.auth().signInWithEmailAndPassword(pendingEmail, pass)
+        fire.auth().signInWithEmailAndPassword(errEmail, pass)
           .then((user) => {
-            user.linkWithCredential(pendingCred)
+            user.linkWithCredential(errCred)
               .then((firebaseUserwithProviderData) => {
-                axios.get('/api/githubUidLookup', {
+                axios.post('/api/githubUidLookup', {
                   data: { uid: firebaseUserwithProviderData.providerData[0].uid }
                 })
                   .then((result) => {

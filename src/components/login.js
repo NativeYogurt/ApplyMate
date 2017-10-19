@@ -13,6 +13,7 @@ class Login extends React.Component {
       gitMergeModal: false,
       mergeEmail: '',
       mergePassword: '',
+      mergeCred: '',
       resetPasswordModal: false,
       resetPassEmail: '',
       resetEmailSetModal: false,
@@ -57,13 +58,14 @@ class Login extends React.Component {
   // github login
   gitAuth(e) {
     e.preventDefault();
-    Auth.gitAuth((error, githubAuth) => {
+    Auth.gitAuth((error, githubAuth, errCred, errEmail) => {
       if (error) {
         // git merge
         if (error.code === 'auth/account-exists-with-different-credential') {
           this.setState({
             gitMergeModal: true,
-            mergeEmail: error.email,
+            mergeEmail: errEmail,
+            mergeCred: errCred,
           });
         } else {
           alert(error);
@@ -86,11 +88,10 @@ class Login extends React.Component {
   }
   GitMerge(e) {
     e.preventDefault();
-    Auth.gitAuthMerge(this.state.mergePassword, ((err, merged) => {
-      if (err) alert(err)
-      else this.closeMergeModal(); 
-    })
-    );
+    Auth.gitAuthMerge(this.state.mergePassword, this.state.mergeCred, this.state.mergeEmail, ((err, merged) => {
+      if (err) alert(err);
+      else this.closeMergeModal();
+    }));
   }
 
   // forgot password
@@ -176,12 +177,10 @@ class Login extends React.Component {
         <br />
         <button onClick={this.openResetPassModal}>Reset Password</button>
         <br /><br /><br /><br />
-        <button onClick={this.handleTest.bind(this)}>TESTBUTTON</button>
       </div>
     );
   }
 }
-
-
-
 export default Login;
+
+// <button onClick={this.handleTest.bind(this)}>TESTBUTTON</button>

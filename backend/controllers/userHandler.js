@@ -1,4 +1,5 @@
 const User = require('../models/User.js');
+const gitHubRepoCrawler = require('../utilities/gitHubRepoCrawler')
 const axios = require('axios');
 
 exports.signUp = (req, res) => {
@@ -9,8 +10,13 @@ exports.signUp = (req, res) => {
     email: req.body.data.email,
     githubUsername: req.body.data.githubUsername,
   })
-    .then(DBUser => res.send(DBUser))
-    .catch(user => console.error('New User Error', user));
+    .then(DBUser => {
+      if (DBUser.githubUsername) {
+        gitHubRepoCrawler.getGithubInfoUser(DBUser.githubUsername);
+      }
+      res.send(DBUser);
+    })
+    .catch(err => console.error('New User Error', err));
 };
 
 exports.scanforUser = (req, res) => {
@@ -21,13 +27,12 @@ exports.scanforUser = (req, res) => {
 };
 
 exports.githubUidLookup = (req, res) => {
-  console.log('githubuidlookupgotcalledbro')
-  axios.get('https://api.github.com/user/30061836')
+  axios.get(`https://api.github.com/user/${req.body.data.uid}?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`)
     .then((data) => {
+      console.log(data.data.login)
       res.send(data.data.login)
     })
     .catch(err => {
-      if (err === 'Error: Request failed with status code 403') alert(`Github API is congested right now, and we can't pull your user info. Please be patient.`)
-      else alert(err)
+      console.error(err)
     })
 }
