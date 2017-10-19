@@ -14,7 +14,7 @@ const sendLanguageDataToDB = (user, languageData) => {
       where: {
         githubUsername: user,
       },
-    },
+    }
   )
     .then(() => console.log('complete'))
     .catch((err) => console.error(err));
