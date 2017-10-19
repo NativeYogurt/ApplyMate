@@ -30,20 +30,20 @@
     margin-bottom: 15px;
 }
 
-table, th, td {
+table .dashboard, .dashboard th, .dashboard td {
     border-bottom: 1px solid #ddd;
     border-collapse: collapse;
 }
 
-th, td {
+.dashboard th, .dashboard td {
     padding: 15px;
 }
 
-th {
+.dashboard th {
     text-align: left;
 }
 
-td {
+.dashboard td {
     white-space: nowrap;
     max-width: 250px;
     overflow: hidden;
@@ -105,9 +105,22 @@ td {
   padding-right: 8px;
 }
 
-.video-list {
-  width: 25%;
-  /*float: left;*/
-  /*padding: 15px;*/
-  border: 1px solid red;
+.resource-list table, .resource-list th, .resource-list td {
+    border-bottom: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+.resource-list th, .resource-list td {
+    padding: 15px;
+}
+
+.resource-list th {
+    text-align: left;
+}
+
+.resource-list td {
+    white-space: nowrap;
+    /*max-width: 100%;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

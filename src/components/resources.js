@@ -84,16 +84,27 @@ class Resources extends React.Component {
     return (
       <div>
         {this.props.missingSkills.length ? hasMissingSkills : noMissingSkills}
-        <div className="skill-list">
-          {this.props.missingSkills.map(skill =>
-            (<SkillEntry
-              key={skill}
-              skill={skill}
-              addResource={this.addResource}
-              userId={this.props.userId}
-              savedResources={this.state.savedResources}
-              checkResource={this.checkResource}
-            />))}
+        <div className="resource-list">
+          <table>
+            <thead>
+              <tr>
+                <th className="skill">Skill</th>
+                <th className="video">Video Tutorials</th>
+                <th className="web">Online Resources</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.missingSkills.map(skill =>
+                (<SkillEntry
+                  key={skill}
+                  skill={skill}
+                  addResource={this.addResource}
+                  userId={this.props.userId}
+                  savedResources={this.state.savedResources}
+                  checkResource={this.checkResource}
+                />))}
+            </tbody>
+          </table>
         </div>
         <h2>Your Saved Resources</h2>
         {this.state.savedResources.length > 0 ? this.state.savedResources.map(resource => {

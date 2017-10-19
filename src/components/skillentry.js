@@ -6,11 +6,11 @@ import TutorialList from './TutorialList';
 
 function SkillEntry(props) {
   return (
-    <div className="skill-list-entry">
-      <h2>{props.skill}</h2>
-      <VideoList skill={`${props.skill}tutorial`} addResource={props.addResource} userId={props.userId} checkResource={props.checkResource} savedResources={props.savedResources} />
-      <TutorialList skill={`${props.skill}+tutorial`} addResource={props.addResource} userId={props.userId} checkResource={props.checkResource} savedResources={props.savedResources} />
-    </div>
+    <tr className="skill-list-entry">
+      <td className="skill"><h2>{props.skill}</h2></td>
+      <td className="video"><VideoList skill={`${props.skill}tutorial`} addResource={props.addResource} userId={props.userId} checkResource={props.checkResource} savedResources={props.savedResources} /></td>
+      <td className="web"><TutorialList skill={`${props.skill}+tutorial`} addResource={props.addResource} userId={props.userId} checkResource={props.checkResource} savedResources={props.savedResources} /></td>
+    </tr>
   );
 }
 SkillEntry.propTypes = {
