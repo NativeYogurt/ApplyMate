@@ -12,7 +12,7 @@ class SearchJobs extends React.Component {
     };
     this.searchJobs = this.searchJobs.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.addJob = this.addJob.bind(this);
+    this.handleJobAdd = this.handleJobAdd.bind(this);
   }
   searchJobs(desc, loc) {
     const link = "https://jobs.github.com/positions.json?description=" + desc + "&location=" + loc;
@@ -36,29 +36,16 @@ class SearchJobs extends React.Component {
     this.searchJobs(form.searchTechSkill.value,
       form.searchJobLocation.value
     );
-
   }
-  addJob(job) {
-    const newJob = {
+  handleJobAdd(job) {
+    this.props.addJob({
       company: job.company,
       jobTitle: job.title,
       status: 'wishlist',
       url: job.how_to_apply.split('"')[1],
       skills: [],
       userId: this.props.userId,
-    };
-    fetch('/api/job', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newJob),
-    }).then(res => res.json())
-      .then((data) => {
-        console.log('post result', data);
-        this.props.getJobs();
-      });
+    });
   }
   render() {
     return (
@@ -87,7 +74,7 @@ class SearchJobs extends React.Component {
         <div className="job-search-results">
           {this.state.jobSearchResults.length > 0 ? <h2>Job Search Results</h2> : null}
           {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
-            return (<JobSearchResult key={job.id} job={job} addJob={this.addJob} />);
+            return (<JobSearchResult key={job.id} job={job} handleJobAdd={this.handleJobAdd} />);
           }) : null}
         </div>
       </div>

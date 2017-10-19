@@ -148,7 +148,7 @@ class JobEdit extends React.Component {
           <div className="form-group">
             <input className="button" type="submit" value="Save" />
             <span className="back-link">
-              <Link className="btn btn-link" to="/home/dashboard">Back</Link>
+              <Link className="button" to="/home/dashboard">Back</Link>
             </span>
           </div>
         </form>

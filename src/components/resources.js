@@ -97,7 +97,11 @@ class Resources extends React.Component {
         </div>
         <h2>Your Saved Resources</h2>
         {this.state.savedResources.length > 0 ? this.state.savedResources.map(resource => {
-          return (<SavedResources key={resource.resourceId} resource={resource} deleteResource={this.deleteResource} />);
+          return (<SavedResources
+            key={resource.resourceId}
+            resource={resource}
+            deleteResource={this.deleteResource}
+          />);
         }) : null}
       </div>
     );
