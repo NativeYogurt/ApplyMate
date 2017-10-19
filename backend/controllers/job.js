@@ -26,11 +26,27 @@ exports.handleJobAdd = (req, res) => {
           skills,
           userId: req.body.userId,
         };
-        SavedJobs
-          .build(newJob)
-          .save()
-          .then((job) => {
-            res.send(job);
+        SavedJobs.findOne({
+          where: {
+            userId: req.body.userId,
+            url: req.body.url,
+            deleted: false,
+          },
+        })
+          .then(job => {
+            if (job !== null) {
+              res.send(job);
+            } else {
+              SavedJobs
+                .build(newJob)
+                .save()
+                .then((job) => {
+                  res.send(job);
+                })
+                .catch((err) => {
+                  throw err;
+                });
+            }
           })
           .catch((error) => {
             throw error;

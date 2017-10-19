@@ -87,16 +87,18 @@ class Main extends React.Component {
         });
         const currentJob = jobs.filter(job => { return jobId === job.jobId; });
         if (currentJob.length > 0) {
-          missing = currentJob[0].missingSkills;
+          missing = currentJob[0].missingSkills.slice(0, 3);
+        } else if (jobs.length > 0) {
+          missing = jobs[jobs.length - 1].missingSkills.slice(0, 3);
         } else {
-          missing = jobs[jobs.length - 1].missingSkills;
+          missing = [];
         }
         // if (jobs[0]) {
         //   missing = jobs[0].missingSkills;
         // }
         this.setState({
           userSkills,
-          missingSkills: missing.slice(0, 3) || null,
+          missingSkills: missing,
         });
       });
   }
