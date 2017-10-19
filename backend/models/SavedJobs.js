@@ -39,7 +39,16 @@ const SavedJobs = sequelize.define('saved_jobs', {
       deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
     },
   },
-});
+},
+{
+  indexes: [
+    {
+      unique: true,
+      fields: ['userId', 'url'],
+    },
+  ],
+},
+);
 
 SavedJobs.sync();
 module.exports = SavedJobs;

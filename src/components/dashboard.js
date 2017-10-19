@@ -12,35 +12,23 @@ class Dashboard extends React.Component {
       sortBy: 'status',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.addJob = this.addJob.bind(this);
     this.onChangeSortBy = this.onChangeSortBy.bind(this);
     this.createJobs = this.createJobs.bind(this);
   }
 
-  addJob(job) {
-    fetch('/api/job', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(job),
-    }).then(res => res.json())
-      .then((data) => {
-        console.log('post result', data);
-        this.props.getJobs();
-        this.props.getJobComparison();
-      });
+  onChangeSortBy(e) {
+    this.setState({ sortBy: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobAdd;
-    this.addJob({
+    console.log('date', form.dateApplied.value);
+    this.props.addJob({
       company: form.company.value,
       jobTitle: form.jobtitle.value,
       status: form.status.value,
-      dateApplied: form.dateApplied.value,
+      dateApplied: form.dateApplied.value || null,
       url: form.url.value,
       skills: [],
       userId: this.props.userId,
@@ -51,9 +39,6 @@ class Dashboard extends React.Component {
     form.status.value = 'wishlist';
     form.url.value = '';
     this.setState({ successVisible: true });
-  }
-  onChangeSortBy(e) {
-    this.setState({ sortBy: e.target.value });
   }
   createJobs(job) {
     return (
@@ -66,9 +51,10 @@ class Dashboard extends React.Component {
         The job has been added.
       </div>
     );
-    const sortedByStatus = [].concat(this.props.savedJobs).sort((a, b) => a.status < b.status).map(this.createJobs);
-    const sortedByDate = [].concat(this.props.savedJobs).sort((a,b) => {
-      return a.dateApplied - b.dateApplied
+    const sortedByStatus = [].concat(this.props.savedJobs).sort((a, b) =>
+      a.status < b.status).map(this.createJobs);
+    const sortedByDate = [].concat(this.props.savedJobs).sort((a, b) => {
+      return a.dateApplied - b.dateApplied;
     }).reverse().map(this.createJobs);
     let listJobs = null;
     if (this.state.sortBy === 'status') {
@@ -92,7 +78,7 @@ class Dashboard extends React.Component {
               <th>Title</th>
               <th>Status</th>
               <th>Date Applied</th>
-              <th>Job URL</th>
+              <th>Job Post</th>
               <th>Required Skills</th>
               <th />
             </tr>
@@ -138,27 +124,6 @@ class Dashboard extends React.Component {
       </div>);
   }
 }
-// <label htmlFor="company">
-//   Company:
-//   <input type="text" name="company" placeholder="company"/>
-// </label>
-// <br />
-// <label htmlFor="jobtitle">
-//   Job Title:
-//   <input type="text" name="jobtitle" />
-// </label>
-// <br />
-// <label htmlFor="description">
-//   Description:
-//   <textarea name="description" />
-// </label>
-// <br />
-// <label htmlFor="url">
-//   URL:
-//   <input type="text" name="url" />
-// </label>
-// <br />
-// <input type="submit" value="Add" />
 Dashboard.propTypes = {
   getJobs: PropTypes.func.isRequired,
   getJobComparison: PropTypes.func.isRequired,

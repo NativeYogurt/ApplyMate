@@ -28,6 +28,7 @@ class Main extends React.Component {
     this.getJobs = this.getJobs.bind(this);
     this.deleteJob = this.deleteJob.bind(this);
     this.getJobComparison = this.getJobComparison.bind(this);
+    this.addJob = this.addJob.bind(this);
   }
 
   componentDidMount() {
@@ -94,6 +95,21 @@ class Main extends React.Component {
       });
   }
 
+  addJob(job) {
+    fetch('/api/job', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(job),
+    }).then(res => res.json())
+      .then((data) => {
+        this.getJobs();
+        this.getJobComparison();
+      });
+  }
+
   deleteJob(jobId) {
     const jobs = this.state.savedJobs.filter(job => job.jobId !== jobId);
     this.setState({
@@ -123,6 +139,7 @@ class Main extends React.Component {
               <SearchJobs
                 userId={this.props.userId}
                 getJobs={this.getJobs}
+                addJob={this.addJob}
               />
             )}
           />
@@ -151,6 +168,7 @@ class Main extends React.Component {
               savedJobs={this.state.savedJobs}
               deleteJob={this.deleteJob}
               getJobComparison={this.getJobComparison}
+              addJob={this.addJob}
             />
            )}
           />
