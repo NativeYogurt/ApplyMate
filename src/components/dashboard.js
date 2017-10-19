@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
   }
   createJobs(job) {
     return (
-      <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} />
+      <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} getJobComparison={this.props.getJobComparison} />
     );
   }
   render() {
@@ -80,6 +80,7 @@ class Dashboard extends React.Component {
               <th>Date Applied</th>
               <th>Job Post</th>
               <th>Required Skills</th>
+              <th />
               <th />
             </tr>
           </thead>

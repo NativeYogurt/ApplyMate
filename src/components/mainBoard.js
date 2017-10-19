@@ -71,7 +71,7 @@ class Main extends React.Component {
   }
 
   // can possibly refactor to only use getJobComparison
-  getJobComparison() {
+  getJobComparison(jobId) {
     axios.get('/api/comparison', {
       params: {
         userId: this.props.userId,
@@ -85,12 +85,18 @@ class Main extends React.Component {
           job.missingSkills = job.skills.filter(skill => userSkills.indexOf(skill) === -1);
           return job;
         });
-        if (jobs[0]) {
-          missing = jobs[0].missingSkills;
+        const currentJob = jobs.filter(job => { return jobId === job.jobId; });
+        if (currentJob.length > 0) {
+          missing = currentJob[0].missingSkills;
+        } else {
+          missing = jobs[jobs.length - 1].missingSkills;
         }
+        // if (jobs[0]) {
+        //   missing = jobs[0].missingSkills;
+        // }
         this.setState({
           userSkills,
-          missingSkills: missing,
+          missingSkills: missing.slice(0, 3) || null,
         });
       });
   }
@@ -105,8 +111,9 @@ class Main extends React.Component {
       body: JSON.stringify(job),
     }).then(res => res.json())
       .then((data) => {
+        console.log('job add', data);
         this.getJobs();
-        this.getJobComparison();
+        this.getJobComparison(data.jobId);
       });
   }
 
