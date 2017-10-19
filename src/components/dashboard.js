@@ -15,7 +15,9 @@ class Dashboard extends React.Component {
     this.onChangeSortBy = this.onChangeSortBy.bind(this);
     this.createJobs = this.createJobs.bind(this);
   }
-
+  componentDidMount() {
+    this.props.getJobs();
+  }
   onChangeSortBy(e) {
     this.setState({ sortBy: e.target.value });
   }
