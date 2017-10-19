@@ -12,18 +12,6 @@ const Xray = require('x-ray');
 const x = Xray();
 
 exports.handleJobAdd = (req, res) => {
-  // SavedJobs.findOne({
-  //   where: {
-  //     userId: req.body.userId,
-  //     company: req.body.company,
-  //     jobTitle: req.body.jobTitle,
-  //   },
-  // })
-  //   .then(job => {
-  //     console.log('finding job', job);
-  //     res.send(job);
-  //   });
-
   let text;
   x(req.body.url, (['ol'], ['ul'], ['li']))((err, data) => {
     text = data.join(' ');

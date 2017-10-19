@@ -44,7 +44,7 @@ const SavedJobs = sequelize.define('saved_jobs', {
   indexes: [
     {
       unique: true,
-      fields: ['userId', 'url'],
+      fields: ['userId', 'url', 'deleted'],
     },
   ],
 },
