@@ -12,6 +12,7 @@ class BBB extends React.Component {
       companyCity: '',
       ratingURL: '',
       rating:'',
+      industry: '',
     };
     this.BBBApiCall = this.BBBApiCall.bind(this);
   }
@@ -28,7 +29,8 @@ class BBB extends React.Component {
           companyCity: data.data.City,
           companyState: data.data.StateProvince,
           ratingURL: data.data.RatingIcons[0].Url,
-          rating: data.data.RatingIcons[0].Url.slice(34).split('.')[0]
+          rating: data.data.RatingIcons[0].Url.slice(34).split('.')[0],
+          industry: data.data.PrimaryCategory,
         })
       })
   }
@@ -38,7 +40,7 @@ class BBB extends React.Component {
       <div>
         <img src={this.state.ratingURL} alt={this.state.rating}/>
         <br />
-        {this.state.rating}
+        {this.state.industry}
         <br />
         {this.state.companyName} @ {this.state.companyCity}, {this.state.companyState}
       </div>

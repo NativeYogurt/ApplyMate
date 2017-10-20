@@ -25,6 +25,7 @@ router.post('/resource', resource.handleResourceAdd);
 router.get('/resource', resource.handleGetResources);
 router.put('/resource/delete', resource.handleResourceDelete);
 router.post('/BBB', jobInfo.BBB);
+router.post('/Glassdoor', jobInfo.Glassdoor);
 
 
 // router.get('/test', github.cronGitHubUpdate);

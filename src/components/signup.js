@@ -2,7 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import Auth from './Auth.js'
-import BBB from './BBB.js'
+import Glassdoor from './Glassdoor.js'
 
 class Signup extends React.Component {
   constructor(props) {
@@ -85,8 +85,8 @@ class Signup extends React.Component {
           <button>Log In
           </button>
         </Link>
-        <br/>
-        <BBB companyName='Github' />
+        <br />
+        <Glassdoor companyName='Github' />
       </div>
     );
   }
