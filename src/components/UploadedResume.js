@@ -16,6 +16,12 @@ class UploadedResume extends React.Component {
     this.renderPagination = this.renderPagination.bind(this);
   }
 
+  componentWillMount() {
+    if (this.props.userResume) {
+      this.props.toggleResume(false);
+    }
+  }
+
   onDocumentComplete(pages) {
     this.setState({ page: 1, pages });
   }
@@ -40,12 +46,12 @@ class UploadedResume extends React.Component {
       previousButton = <li className="previous disabled">
       <i className="fa fa-arrow-left" /> Previous Page</li>;
     }
-    let nextButton = <li className="next" onClick={this.handleNext}>Next Page
-      <i className="fa fa-arrow-right" /></li>;
+    let nextButton = <li className="next" onClick={this.handleNext}>
+      <i className="fa fa-arrow-right" />Next Page</li>;
 
     if (page === pages) {
-      nextButton = <li className="next disabled">Next Page
-      <i className="fa fa-arrow-right" /></li>;
+      nextButton = <li className="next disabled">
+      <i className="fa fa-arrow-right" />Next Page</li>;
     }
     return (
       <nav>
@@ -63,19 +69,25 @@ class UploadedResume extends React.Component {
     if (this.state.pages > 1) {
       pagination = this.renderPagination(this.state.page, this.state.pages);
     }
+    let resumeElement = '';
+    if (!resume && !this.props.resumeLoadToggle) {
+      resumeElement = (<h5>Please upload resume</h5>);
+    } else if (!resume && this.props.resumeLoadToggle) {
+      resumeElement = (<ThreeBounce
+        size={15}
+        color="blue"
+      />);
+    } else {
+      resumeElement = (<PDF
+        file={resume}
+        onDocumentComplete={this.onDocumentComplete}
+        onPageComplete={this.onPageComplete}
+        page={this.state.page}
+      />);
+    }
     return (
       <div>
-        {!resume ?
-          <ThreeBounce
-            size={15}
-            color="blue"
-          /> :
-          <PDF
-            file={resume}
-            onDocumentComplete={this.onDocumentComplete}
-            onPageComplete={this.onPageComplete}
-            page={this.state.page}
-          /> }
+        {resumeElement}
         {pagination}
       </div>
     );
@@ -84,6 +96,8 @@ class UploadedResume extends React.Component {
 
 UploadedResume.propTypes = {
   userResume: PropTypes.string.isRequired,
+  toggleResume: PropTypes.func.isRequired,
+  resumeLoadToggle: PropTypes.bool.isRequired,
 };
 
 export default UploadedResume;

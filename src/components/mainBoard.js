@@ -23,7 +23,6 @@ class Main extends React.Component {
       resume: '',
       userSkills: [],
       missingSkills: [],
-      isLoaded: true,
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.getJobs = this.getJobs.bind(this);
@@ -55,7 +54,7 @@ class Main extends React.Component {
           resume: data.resumeURL || '',
         });
       })
-      .catch(error => console.log('error getting data'));
+      .catch(err => console.log('error getting user data', err));
   }
 
   getJobs() {
@@ -131,10 +130,7 @@ class Main extends React.Component {
   }
 
   clearResume() {
-    this.setState({
-      resume: '',
-      isLoaded: false,
-    });
+    this.setState({ resume: '' });
   }
 
   render() {
