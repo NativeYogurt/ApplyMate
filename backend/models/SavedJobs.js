@@ -27,6 +27,9 @@ const SavedJobs = sequelize.define('saved_jobs', {
   skills: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
   },
+  companyUrl: {
+    type: Sequelize.TEXT,
+  },
   deleted: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
