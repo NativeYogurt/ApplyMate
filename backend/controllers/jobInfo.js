@@ -40,7 +40,7 @@ exports.Glassdoor = (req, res) => {
   });
 
   // I don't know why axios won't work here, it gives weird data back.
-  
+
   // axios.get('http://api.glassdoor.com/api/api.htm', {
   //   params: {
   //     v: 1,
@@ -61,3 +61,9 @@ exports.Glassdoor = (req, res) => {
   //     res.send(err);
   //   });
 };
+
+// unfinished
+// exports.findStockSymb = (req, res) => {
+//   axios.get(`http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=${req.body.searchTerm}&lang=en`)
+//   .then(res => res.send(res.))
+// }
