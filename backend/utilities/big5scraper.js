@@ -1,8 +1,7 @@
 const Nightmare = require('nightmare');
 
-const nightmare = Nightmare({ show: true });
-
 const big5Scraper = async (url) => {
+  const nightmare = Nightmare({ show: true });
   try {
     let selector = 'li';
     if (url.match('apple')) {
