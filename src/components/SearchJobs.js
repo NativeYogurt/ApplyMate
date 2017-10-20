@@ -38,12 +38,14 @@ class SearchJobs extends React.Component {
     );
   }
   handleJobAdd(job) {
+    console.log('job', job);
     this.props.addJob({
       company: job.company,
       jobTitle: job.title,
       status: 'wishlist',
       url: job.how_to_apply.split('"')[1],
       skills: [],
+      companyUrl: job.company_url,
       userId: this.props.userId,
     });
   }
