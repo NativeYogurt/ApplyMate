@@ -6,54 +6,67 @@ const sequelize = require('../db/db.js');
 const Users = require('../models/User.js');
 const SavedJobs = require('../models/SavedJobs.js');
 const extract = require('../utilities/extractSkills.js');
+const big5Scraper = require('../utilities/big5Scraper.js');
 
 const Xray = require('x-ray');
 
 const x = Xray();
 
-exports.handleJobAdd = (req, res) => {
-  let text;
-  x(req.body.url, (['ol'], ['ul'], ['li']))((err, data) => {
-    text = data.join(' ');
-    extract.extractSkills(text)
-      .then((skills) => {
-        const newJob = {
-          company: req.body.company,
-          jobTitle: req.body.jobTitle,
-          status: req.body.status,
-          dateApplied: req.body.dateApplied,
-          url: req.body.url,
-          companyUrl: req.body.companyUrl,
-          skills,
+
+const addJobSkillsToDB = (data, req, res) => {
+  const text = data.join(' ');
+  extract.extractSkills(text)
+    .then((skills) => {
+      const newJob = {
+        company: req.body.company,
+        jobTitle: req.body.jobTitle,
+        status: req.body.status,
+        dateApplied: req.body.dateApplied,
+        url: req.body.url,
+        companyUrl: req.body.companyUrl,
+        skills,
+        userId: req.body.userId,
+      };
+      SavedJobs.findOne({
+        where: {
           userId: req.body.userId,
-        };
-        SavedJobs.findOne({
-          where: {
-            userId: req.body.userId,
-            url: req.body.url,
-            deleted: false,
-          },
+          url: req.body.url,
+          deleted: false,
+        },
+      })
+        .then(job => {
+          if (job !== null) {
+            res.send(job);
+          } else {
+            SavedJobs
+              .build(newJob)
+              .save()
+              .then((job) => {
+                res.send(job);
+              })
+              .catch((err) => {
+                throw err;
+              });
+          }
         })
-          .then(job => {
-            if (job !== null) {
-              res.send(job);
-            } else {
-              SavedJobs
-                .build(newJob)
-                .save()
-                .then((job) => {
-                  res.send(job);
-                })
-                .catch((err) => {
-                  throw err;
-                });
-            }
-          })
-          .catch((error) => {
-            throw error;
-          });
-      });
-  });
+        .catch((error) => {
+          throw error;
+        });
+    });
+};
+
+
+exports.handleJobAdd = (req, res) => {
+  const big5 = ['amazon', 'google', 'microsoft', 'apple', 'facebook'];
+  const big5Check = big5.some(company => req.body.url.includes(company));
+  if (big5Check) {
+    big5Scraper.big5Scraper(req.body.url)
+      .then((data) => addJobSkillsToDB(data, req, res));
+  } else {
+    x(req.body.url, (['ol'], ['ul'], ['li']))((err, data) => {
+      addJobSkillsToDB(data, req, res);
+    });
+  }
 };
 
 exports.handleGetJobs = (req, res) => {

@@ -1,25 +1,28 @@
 const Nightmare = require('nightmare');
-const nightmare = Nightmare({show: true});
 
-//works for google
-//apple needs .wrapper_job_description in the return statement
+const nightmare = Nightmare({ show: true });
 
-
-const goToInitialPage = async () => {
+const big5Scraper = async (url) => {
   try {
-    const iframeURL = await nightmare
-      .goto('https://jobs.apple.com/us/search?#function&t=0&sb=req_open_dt&so=1&j=SFWEG&lo=0*USA&pN=0&openJobId=113138626')
-      //.goto('https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-345-spear-st-san-francisco-ca-usa-2683110138&f=true&')
+    let selector = 'li';
+    if (url.match('apple')) {
+      selector = '.wrapper_job_description li';
+    }
+    if (url.match('amazon') || url.match('microsoft')) {
+      selector = 'p';
+    }
+    const scraperData = await nightmare
+      .goto(url)
       .wait(10000)
-      .evaluate(() => {
-        return [...document.querySelectorAll('li')]
+      .evaluate((querySelector) => {
+        return [...document.querySelectorAll(querySelector)]
           .map(el => el.innerText);
-      })
+      }, selector)
       .end();
-    console.log(iframeURL);
-    } catch (e) {
-      console.error(e);
+    return scraperData;
+  } catch (e) {
+    console.error(e);
   }
 };
 
-goToInitialPage();
+exports.big5Scraper = big5Scraper;

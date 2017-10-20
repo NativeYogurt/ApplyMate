@@ -10,6 +10,6 @@ test('only programmingSkills are pulled out of string', () => {
     })
     .then(() => {
       result.sort();
-      expect(result).toBe(['javascript','objective-c','python','scala']);
+      expect(result).toEqual(['javascript','objective-c','python','scala']);
     })
 });
