@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Dashboard from './dashboard';
-import Resume from './Resume';
+import Resume from './resume';
 import Resources from './resources';
 import Profile from './Profile';
 import SearchJobs from './SearchJobs';
@@ -23,12 +23,14 @@ class Main extends React.Component {
       resume: '',
       userSkills: [],
       missingSkills: [],
+      isLoaded: true,
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.getJobs = this.getJobs.bind(this);
     this.deleteJob = this.deleteJob.bind(this);
     this.getJobComparison = this.getJobComparison.bind(this);
     this.addJob = this.addJob.bind(this);
+    this.clearResume = this.clearResume.bind(this);
   }
 
   componentDidMount() {
@@ -128,6 +130,13 @@ class Main extends React.Component {
     this.getJobComparison();
   }
 
+  clearResume() {
+    this.setState({
+      resume: '',
+      isLoaded: false,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -140,6 +149,7 @@ class Main extends React.Component {
                 getJobComparison={this.getJobComparison}
                 getUserInfo={this.getUserInfo}
                 userResume={this.state.resume}
+                clearResume={this.clearResume}
               />
             )}
           />

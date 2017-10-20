@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { ThreeBounce } from 'better-react-spinkit';
 import UploadedResume from './UploadedResume';
 
 class Resume extends React.Component {
@@ -10,6 +11,7 @@ class Resume extends React.Component {
     this.readPDF = this.readPDF.bind(this);
   }
   readPDF(event) {
+    this.props.clearResume();
     const reader = new FileReader();
     reader.onload = () => {
       const { result } = reader;
@@ -43,6 +45,7 @@ Resume.propTypes = {
   userResume: PropTypes.string.isRequired,
   getJobComparison: PropTypes.func.isRequired,
   getUserInfo: PropTypes.func.isRequired,
+  clearResume: PropTypes.func.isRequired,
 };
 
 export default Resume;

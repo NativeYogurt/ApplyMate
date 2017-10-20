@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import PDF from 'react-pdf-js';
 import FontAwesome from 'react-fontawesome';
+import { ThreeBounce } from 'better-react-spinkit';
 
 class UploadedResume extends React.Component {
   constructor(props) {
@@ -64,12 +65,17 @@ class UploadedResume extends React.Component {
     }
     return (
       <div>
-        {resume ? <PDF
-          file={resume}
-          onDocumentComplete={this.onDocumentComplete}
-          onPageComplete={this.onPageComplete}
-          page={this.state.page}
-        /> : <div>Add your resume to compare your skills!</div>}
+        {!resume ?
+          <ThreeBounce
+            size={15}
+            color="blue"
+          /> :
+          <PDF
+            file={resume}
+            onDocumentComplete={this.onDocumentComplete}
+            onPageComplete={this.onPageComplete}
+            page={this.state.page}
+          /> }
         {pagination}
       </div>
     );
