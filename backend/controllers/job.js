@@ -34,9 +34,9 @@ exports.handleJobAdd = (req, res) => {
             deleted: false,
           },
         })
-          .then(job => {
-            if (job !== null) {
-              res.send(job);
+          .then(existingJob => {
+            if (existingJob !== null) {
+              res.send(existingJob);
             } else {
               SavedJobs
                 .build(newJob)
@@ -44,8 +44,8 @@ exports.handleJobAdd = (req, res) => {
                 .then((job) => {
                   res.send(job);
                 })
-                .catch((err) => {
-                  throw err;
+                .catch((newError) => {
+                  throw newError;
                 });
             }
           })

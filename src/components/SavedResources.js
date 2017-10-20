@@ -22,21 +22,26 @@ const SavedResources = (props) => {
         <img className="media-object" src={props.resource.videoThumbnail} alt="" />
       </div>
       <div className="media-body">
-        <div
+        <a
+          href="#"
           className="video-list-entry-title"
-          onClick={()=> {
-            window.open(`https://www.youtube.com/embed/${props.resource.tutorialLink}`, "_blank")}}
+          onClick={() => {
+            window.open(`https://www.youtube.com/embed/${props.resource.tutorialLink}`, '_blank');
+          }}
         >
           {props.resource.tutorialTitle}
-        </div>
+        </a>
         <div className="video-list-entry-detail">{props.resource.videoDescription}</div>
       </div>
     </div>
-  )
+  );
   return (
     <div>
       { props.resource.tutorialType === 'link' ? tutorial : video }
-      <button onClick={() => props.deleteResource(props.resource.resourceId)}>Remove Resource</button>
+      <button
+        onClick={() => props.deleteResource(props.resource.resourceId)}
+      >Remove Resource
+      </button>
     </div>
   );
 };

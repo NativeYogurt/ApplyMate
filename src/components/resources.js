@@ -32,6 +32,7 @@ class Resources extends React.Component {
         // console.log('saved resource', resources.data);
         this.setState({
           savedResources: resources.data,
+          missingSkills: this.props.missingSkills,
         });
       })
       .catch(err => console.error(err));
@@ -46,7 +47,6 @@ class Resources extends React.Component {
       body: JSON.stringify(resource),
     }).then(res => res.json())
       .then((data) => {
-        console.log('post resource', data);
         const newResource = data;
         const savedResources = this.state.savedResources.concat(newResource);
         this.setState({ savedResources });
@@ -54,7 +54,7 @@ class Resources extends React.Component {
   }
   checkResource(resourceTitle, savedResources) {
     if (savedResources) {
-      for (let i = 0; i < savedResources.length; i++) {
+      for (let i = 0; i < savedResources.length; i += 1) {
         if (savedResources[i].tutorialTitle === resourceTitle) {
           return true;
           break;
@@ -64,7 +64,8 @@ class Resources extends React.Component {
     return false;
   }
   deleteResource(resourceId) {
-    const resources = this.state.savedResources.filter(resource => resource.resourceId !== resourceId);
+    const resources = this.state.savedResources.filter(resource =>
+      resource.resourceId !== resourceId);
     this.setState({
       savedResources: resources,
     });
@@ -81,11 +82,12 @@ class Resources extends React.Component {
         You have all the skills required by the job.
       </div>
     );
+    // console.log('missing skills', this.props.missingSkills);
     return (
       <div>
         {this.props.missingSkills.length ? hasMissingSkills : noMissingSkills}
-        {this.props.missingSkills.length ?
-          (<div className="resource-list">
+        {this.props.missingSkills.length ? (
+          <div className="resource-list">
             <table>
               <thead>
                 <tr>
