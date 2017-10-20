@@ -32,13 +32,19 @@ class UploadedResume extends React.Component {
   }
 
   renderPagination(page, pages) {
-    let previousButton = <li className="previous" onClick={this.handlePrevious}><i className="fa fa-arrow-left" /> Previous Page</li>;
+    let previousButton = <li className="previous" onClick={this.handlePrevious}>
+      <i className="fa fa-arrow-left" /> Previous Page</li>;
+
     if (page === 1) {
-      previousButton = <li className="previous disabled"><i className="fa fa-arrow-left" /> Previous Page</li>;
+      previousButton = <li className="previous disabled">
+      <i className="fa fa-arrow-left" /> Previous Page</li>;
     }
-    let nextButton = <li className="next" onClick={this.handleNext}>Next Page <i className="fa fa-arrow-right" /></li>;
+    let nextButton = <li className="next" onClick={this.handleNext}>Next Page
+      <i className="fa fa-arrow-right" /></li>;
+
     if (page === pages) {
-      nextButton = <li className="next disabled">Next Page <i className="fa fa-arrow-right" /></li>;
+      nextButton = <li className="next disabled">Next Page
+      <i className="fa fa-arrow-right" /></li>;
     }
     return (
       <nav>
@@ -53,7 +59,7 @@ class UploadedResume extends React.Component {
   render() {
     const resume = `${this.props.userResume}`;
     let pagination = null;
-    if (this.state.pages) {
+    if (this.state.pages > 1) {
       pagination = this.renderPagination(this.state.page, this.state.pages);
     }
     return (
@@ -69,15 +75,6 @@ class UploadedResume extends React.Component {
     );
   }
 }
-
-// const UploadedResume = ({ userResume }) => {
-//   return (
-//     <div>
-//       {userResume ? <PDF
-//         file={userResume} /> : <div>Add your resume to compare your skills!</div>}
-//     </div>
-//   );
-// };
 
 UploadedResume.propTypes = {
   userResume: PropTypes.string.isRequired,
