@@ -23,6 +23,7 @@ exports.handleJobAdd = (req, res) => {
           status: req.body.status,
           dateApplied: req.body.dateApplied,
           url: req.body.url,
+          companyUrl: req.body.companyUrl,
           skills,
           userId: req.body.userId,
         };
@@ -85,6 +86,7 @@ exports.handleEditJob = (req, res) => {
     status: req.body.status,
     dateApplied: req.body.dateApplied,
     url: req.body.url,
+    companyUrl: req.body.companyUrl,
   }, {
     where: {
       jobId: req.params.id,
