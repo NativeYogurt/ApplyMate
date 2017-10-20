@@ -23,14 +23,31 @@ exports.handleJobAdd = (req, res) => {
           status: req.body.status,
           dateApplied: req.body.dateApplied,
           url: req.body.url,
+          companyUrl: req.body.companyUrl,
           skills,
           userId: req.body.userId,
         };
-        SavedJobs
-          .build(newJob)
-          .save()
-          .then((job) => {
-            res.send(job);
+        SavedJobs.findOne({
+          where: {
+            userId: req.body.userId,
+            url: req.body.url,
+            deleted: false,
+          },
+        })
+          .then(job => {
+            if (job !== null) {
+              res.send(job);
+            } else {
+              SavedJobs
+                .build(newJob)
+                .save()
+                .then((job) => {
+                  res.send(job);
+                })
+                .catch((err) => {
+                  throw err;
+                });
+            }
           })
           .catch((error) => {
             throw error;
@@ -69,6 +86,7 @@ exports.handleEditJob = (req, res) => {
     status: req.body.status,
     dateApplied: req.body.dateApplied,
     url: req.body.url,
+    companyUrl: req.body.companyUrl,
   }, {
     where: {
       jobId: req.params.id,

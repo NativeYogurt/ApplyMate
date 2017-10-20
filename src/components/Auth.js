@@ -65,7 +65,7 @@ exports.gitAuth = (cb) => {
               .then(cb(undefined, githubUser))
               .catch(err => alert(err))
           }
-          
+
         })
         .catch(err => alert(err));
     })

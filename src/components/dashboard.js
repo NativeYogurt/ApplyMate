@@ -15,7 +15,9 @@ class Dashboard extends React.Component {
     this.onChangeSortBy = this.onChangeSortBy.bind(this);
     this.createJobs = this.createJobs.bind(this);
   }
-
+  componentDidMount() {
+    this.props.getJobs();
+  }
   onChangeSortBy(e) {
     this.setState({ sortBy: e.target.value });
   }
@@ -30,6 +32,7 @@ class Dashboard extends React.Component {
       status: form.status.value,
       dateApplied: form.dateApplied.value || null,
       url: form.url.value,
+      companyUrl: form.companyUrl.value,
       skills: [],
       userId: this.props.userId,
     });
@@ -38,11 +41,12 @@ class Dashboard extends React.Component {
     form.jobtitle.value = '';
     form.status.value = 'wishlist';
     form.url.value = '';
+    form.companyUrl.value = '';
     this.setState({ successVisible: true });
   }
   createJobs(job) {
     return (
-      <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} getJobComparison={this.props.getJobComparison} />
+      <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} getJobs={this.props.getJobs} getJobComparison={this.props.getJobComparison} />
     );
   }
   render() {
@@ -116,6 +120,9 @@ class Dashboard extends React.Component {
           </span>
           <span className="form-group">
             <input type="text" name="url" placeholder="job url" />
+          </span>
+          <span className="form-group">
+            <input type="text" name="companyUrl" placeholder="company url" />
           </span>
           <span className="form-group">
             <input className="button" type="submit" value="Add" />

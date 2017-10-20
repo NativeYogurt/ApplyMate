@@ -2,7 +2,6 @@ import React from 'react';
 import firebase from 'firebase';
 import { browserHistory, Route, Redirect, Switch } from 'react-router-dom';
 import Modal from 'react-modal';
-import fire from './Firebase.js';
 import Signup from './signup.js';
 import Login from './login.js';
 import Home from './home.js';

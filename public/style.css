@@ -130,5 +130,14 @@ table .dashboard, .dashboard th, .dashboard td {
 }
 
 button {
-  display: inline-block;
+    display: inline-block;
+}
+
+.company-logo {
+    height: 50px;
+    width: 100px;
+}
+
+.address {
+  padding-right: 8px;
 }
