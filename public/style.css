@@ -136,6 +136,16 @@ table .dashboard, .dashboard th, .dashboard td {
     list-style: none;
 }
 
+<<<<<<< HEAD
+=======
+.address {
+  padding-right: 8px;
+
+.pager {
+    list-style: none;
+}
+
+>>>>>>> pagination added for multi-page resumes. need to refine logic to only display buttons if more than 1 page
 button {
   display: inline-block;
 }

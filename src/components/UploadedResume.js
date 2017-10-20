@@ -67,7 +67,9 @@ class UploadedResume extends React.Component {
   render() {
     const resume = `${this.props.userResume}`;
     let pagination = null;
+
     if (this.state.pages > 1) {
+
     if (this.state.pages) {
       pagination = this.renderPagination(this.state.page, this.state.pages);
     }
