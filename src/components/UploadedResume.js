@@ -45,6 +45,14 @@ class UploadedResume extends React.Component {
     if (page === pages) {
       nextButton = <li className="next disabled">Next Page
       <i className="fa fa-arrow-right" /></li>;
+
+    let previousButton = <li className="previous" onClick={this.handlePrevious}><i className="fa fa-arrow-left" /> Previous Page</li>;
+    if (page === 1) {
+      previousButton = <li className="previous disabled"><i className="fa fa-arrow-left" /> Previous Page</li>;
+    }
+    let nextButton = <li className="next" onClick={this.handleNext}>Next Page <i className="fa fa-arrow-right" /></li>;
+    if (page === pages) {
+      nextButton = <li className="next disabled">Next Page <i className="fa fa-arrow-right" /></li>;
     }
     return (
       <nav>
@@ -60,6 +68,7 @@ class UploadedResume extends React.Component {
     const resume = `${this.props.userResume}`;
     let pagination = null;
     if (this.state.pages > 1) {
+    if (this.state.pages) {
       pagination = this.renderPagination(this.state.page, this.state.pages);
     }
     return (
