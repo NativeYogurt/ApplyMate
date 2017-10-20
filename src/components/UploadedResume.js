@@ -89,18 +89,6 @@ class UploadedResume extends React.Component {
     );
   }
 }
-<<<<<<< HEAD
-=======
-
-// const UploadedResume = ({ userResume }) => {
-//   return (
-//     <div>
-//       {userResume ? <PDF
-//         file={userResume} /> : <div>Add your resume to compare your skills!</div>}
-//     </div>
-//   );
-// };
->>>>>>> fixed merge conflict
 
 UploadedResume.propTypes = {
   userResume: PropTypes.string.isRequired,
