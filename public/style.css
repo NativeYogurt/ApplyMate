@@ -125,14 +125,6 @@ table .dashboard, .dashboard th, .dashboard td {
     text-overflow: ellipsis;
 }
 
-.company-logo {
-    height: 50px;
-    width: 100px;
-}
-
-.address {
-  padding-right: 8px;
-
 .pager {
     list-style: none;
 }
