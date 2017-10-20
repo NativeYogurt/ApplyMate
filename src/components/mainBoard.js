@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Dashboard from './dashboard';
-import Resume from './Resume';
+import Resume from './resume';
 import Resources from './resources';
 import Profile from './Profile';
 import SearchJobs from './SearchJobs';
@@ -34,7 +34,7 @@ class Main extends React.Component {
   componentDidMount() {
     this.getUserInfo();
     this.getJobs();
-    this.getJobComparison();
+    // this.getJobComparison();
   }
 
   getUserInfo() {

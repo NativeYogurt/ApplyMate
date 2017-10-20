@@ -25,7 +25,6 @@ class Dashboard extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobAdd;
-    console.log('date', form.dateApplied.value);
     this.props.addJob({
       company: form.company.value,
       jobTitle: form.jobtitle.value,
@@ -46,7 +45,13 @@ class Dashboard extends React.Component {
   }
   createJobs(job) {
     return (
-      <SavedJobs key={job.jobId} jobPosting={job} deleteJob={this.props.deleteJob} getJobs={this.props.getJobs} getJobComparison={this.props.getJobComparison} />
+      <SavedJobs
+        key={job.jobId}
+        jobPosting={job}
+        deleteJob={this.props.deleteJob}
+        getJobs={this.props.getJobs}
+        getJobComparison={this.props.getJobComparison}
+      />
     );
   }
   render() {
@@ -138,5 +143,6 @@ Dashboard.propTypes = {
   userId: PropTypes.string.isRequired,
   savedJobs: PropTypes.array.isRequired,
   deleteJob: PropTypes.func.isRequired,
+  addJob: PropTypes.func.isRequired,
 };
 export default Dashboard;
