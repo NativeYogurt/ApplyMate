@@ -62,10 +62,13 @@ exports.gitAuth = (cb) => {
                 githubUsername: githubUser.additionalUserInfo.username,
               },
             })
-              .then(cb(undefined, githubUser))
+              .then((data) => {
+                cb(undefined, githubUser)
+              })
               .catch(err => alert(err))
+          } else {
+            cb(undefined, githubUser);
           }
-
         })
         .catch(err => alert(err));
     })
