@@ -54,7 +54,6 @@ class UploadedResume extends React.Component {
     if (page === pages) {
       nextButton = <li className="next disabled">
       <i className="fa fa-arrow-right" />Next Page</li>;
-
     }
     return (
       <nav>
