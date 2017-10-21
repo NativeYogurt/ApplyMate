@@ -4,12 +4,13 @@ import { HashRouter, browserHistory, Route, Redirect, Switch } from 'react-route
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import Dashboard from './dashboard';
+import Dashboard from './dashboard/dashboard';
 import Resume from './resume';
-import Resources from './resources';
+import Resources from './resources/resources';
 import Profile from './Profile';
-import SearchJobs from './SearchJobs';
-import JobEdit from './JobEdit';
+import SearchJobs from './job-search/SearchJobs';
+import JobEdit from './dashboard/JobEdit';
+import JobHome from './dashboard/JobHome';
 
 class Main extends React.Component {
   constructor(props) {
@@ -183,7 +184,7 @@ class Main extends React.Component {
           />
           <Route
             path="/home/dashboard/:id"
-            component={JobEdit}
+            component={JobHome}
           />
           <Route render={() => (
             <Dashboard
