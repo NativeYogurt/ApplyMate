@@ -139,7 +139,3 @@ table .dashboard, .dashboard th, .dashboard td {
 button {
   display: inline-block;
 }
-
-.address {
-  padding-right: 8px;
-}
