@@ -29,6 +29,7 @@ class Main extends React.Component {
     this.deleteJob = this.deleteJob.bind(this);
     this.getJobComparison = this.getJobComparison.bind(this);
     this.addJob = this.addJob.bind(this);
+    this.clearResume = this.clearResume.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +54,7 @@ class Main extends React.Component {
           resume: data.resumeURL || '',
         });
       })
-      .catch(error => console.log('error getting data'));
+      .catch(err => console.log('error getting user data', err));
   }
 
   getJobs() {
@@ -128,6 +129,10 @@ class Main extends React.Component {
     this.getJobComparison();
   }
 
+  clearResume() {
+    this.setState({ resume: '' });
+  }
+
   render() {
     return (
       <div>
@@ -140,6 +145,7 @@ class Main extends React.Component {
                 getJobComparison={this.getJobComparison}
                 getUserInfo={this.getUserInfo}
                 userResume={this.state.resume}
+                clearResume={this.clearResume}
               />
             )}
           />
