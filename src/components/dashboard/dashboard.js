@@ -84,10 +84,10 @@ class Dashboard extends React.Component {
           <thead>
             <tr>
               <th>Company</th>
-              <th>Title</th>
+              <th>Job Title</th>
               <th>Status</th>
               <th>Date Applied</th>
-              <th>Job Post</th>
+              <th>Job Posting URL</th>
               <th>Required Skills</th>
               <th />
               <th />
