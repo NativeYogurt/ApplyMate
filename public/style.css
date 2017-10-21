@@ -22,6 +22,23 @@
     background-color: blue;
 }
 
+#job-navbar {
+    height: 54px;
+    overflow: hidden;
+    /*background-color: lightblue;*/
+}
+
+#job-navbar li {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    list-style: none;
+    float: left;
+    width: 10%;
+    display: block;
+    text-align: center;
+    padding: 18px 16px;
+    color: white;
+}
 /* The alert message box */
 .alert {
     padding: 20px;
@@ -68,7 +85,7 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .job-edit-form input[type="text"], .job-edit-form textarea {
   padding: 8px;
-  width: 30%;
+  width: 20%;
 }
 
 .job-edit-form input[type="submit"] {

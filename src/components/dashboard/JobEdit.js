@@ -4,23 +4,19 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import CompanyInfo from './CompanyInfo';
-
 class JobEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: '',
-      jobTitle: '',
-      status: '',
-      dateApplied: '',
-      url: '',
-      skills: [],
-      companyUrl: '',
+      company: this.props.company,
+      jobTitle: this.props.jobTitle,
+      status: this.props.status,
+      dateApplied: this.props.dateApplied,
+      url: this.props.url,
+      skills: this.props.skills,
+      companyUrl: this.props.companyUrl,
       successVisible: false,
-      companyInfo: null,
     };
-    this.loadData = this.loadData.bind(this);
     this.onChangeCompany = this.onChangeCompany.bind(this);
     this.onChangeJobTitle = this.onChangeJobTitle.bind(this);
     this.onChangeStatus = this.onChangeStatus.bind(this);
@@ -29,18 +25,7 @@ class JobEdit extends React.Component {
     this.submit = this.submit.bind(this);
     this.showSuccess = this.showSuccess.bind(this);
     this.dismissSuccess = this.dismissSuccess.bind(this);
-    this.loadCompanyInfo = this.loadCompanyInfo.bind(this);
     this.onChangeCompanyUrl = this.onChangeCompanyUrl.bind(this);
-  }
-
-  componentDidMount() {
-    this.loadData();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params.id !== prevProps.match.params.id) {
-      this.loadData();
-    }
   }
 
   onChangeCompany(e) {
@@ -65,45 +50,7 @@ class JobEdit extends React.Component {
   onChangeCompanyUrl(e) {
     this.setState({ companyUrl: e.target.value });
   }
-  loadData() {
-    fetch(`/api/jobs/${this.props.match.params.id}`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          company: data.company,
-          jobTitle: data.jobTitle,
-          status: data.status,
-          dateApplied: data.dateApplied || '',
-          url: data.url,
-          skills: data.skills,
-          companyUrl: data.companyUrl,
-        });
-      })
-      .then(() => {
-        if (this.state.companyUrl !== null) {
-          this.loadCompanyInfo(this.state.companyUrl);
-        }
-      });
-  }
 
-  loadCompanyInfo(company) {
-    const link = `https://api.fullcontact.com/v2/company/lookup.json?domain=${company}&apiKey=${process.env.FULLCONTACT_APIKEY}`;
-
-    $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      header: { 'X-FullContact-APIKey': process.env.FULLCONTACT_APIKEY },
-      url: link,
-      success: data => {
-        this.setState({
-          companyInfo: data,
-        });
-      },
-      error: error => {
-        console.error('failed to search job', error);
-      },
-    });
-  }
   showSuccess() {
     this.setState({ successVisible: true });
   }
@@ -123,7 +70,7 @@ class JobEdit extends React.Component {
       companyUrl: this.state.companyUrl,
     };
 
-    fetch(`/api/jobs/${this.props.match.params.id}`, {
+    fetch(`/api/jobs/${this.props.paramsId}`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
@@ -144,7 +91,14 @@ class JobEdit extends React.Component {
 
     return (
       <div>
+        <h3>{this.state.company} | {this.state.jobTitle}</h3>
         <form className="job-edit-form" onSubmit={this.submit}>
+          <div className="form-group">
+            <label htmlFor="url">
+              <span className="input-label">Job URL:</span>
+              <input className="job-post-url" type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
+            </label>
+          </div>
           <div className="form-group">
             <label htmlFor="company">
               <span className="input-label">Company:</span>
@@ -177,12 +131,6 @@ class JobEdit extends React.Component {
             </label>
           </div>
           <div className="form-group">
-            <label htmlFor="url">
-              <span className="input-label">Job URL:</span>
-              <input type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
-            </label>
-          </div>
-          <div className="form-group">
             <label htmlFor="companyUrl">
               <span className="input-label">Company URL:</span>
               <input type="text" name="companyUrl" value={this.state.companyUrl} onChange={this.onChangeCompanyUrl} />
@@ -202,14 +150,9 @@ class JobEdit extends React.Component {
           </div>
         </form>
         {this.state.successVisible ? success : null}
-        {this.state.companyInfo ?
-          <CompanyInfo companyInfo={this.state.companyInfo} /> : null
-        }
       </div>
     );
   }
 }
-JobEdit.propTypes = {
-  match: PropTypes.object.isRequired,
-};
+
 module.exports = JobEdit;
