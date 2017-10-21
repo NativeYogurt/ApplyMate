@@ -91,12 +91,12 @@ class JobEdit extends React.Component {
 
     return (
       <div>
-        <h3>{this.state.company} | {this.state.jobTitle}</h3>
         <form className="job-edit-form" onSubmit={this.submit}>
           <div className="form-group">
             <label htmlFor="url">
               <span className="input-label">Job URL:</span>
               <input className="job-post-url" type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
+              <a href={this.state.url} target="_blank">GO</a>
             </label>
           </div>
           <div className="form-group">
