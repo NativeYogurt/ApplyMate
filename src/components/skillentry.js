@@ -1,17 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 
 import VideoList from './VideoList';
 import TutorialList from './TutorialList';
 
-function SkillEntry(props) {
-  return (
-    <tr className="skill-list-entry">
-      <td className="skill"><h2>{props.skill}</h2></td>
-      <td className="video"><VideoList skill={`${props.skill}programmingtutorial`} addResource={props.addResource} userId={props.userId} checkResource={props.checkResource} savedResources={props.savedResources} /></td>
-      <td className="web"><TutorialList skill={`${props.skill}programmingtutorial`} addResource={props.addResource} userId={props.userId} checkResource={props.checkResource} savedResources={props.savedResources} /></td>
-    </tr>
-  );
+class SkillEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      videos: [],
+      tutorials: [],
+    };
+    this.getYouTubeVideos = this.getYouTubeVideos.bind(this);
+    this.getTutorials = this.getTutorials.bind(this);
+  }
+  componentWillMount() {
+    // console.log('this skill', this.props.skill);
+    if (this.props.skill) {
+      this.getYouTubeVideos(`${this.props.skill}+programming+tutorial`);
+      this.getTutorials(`${this.props.skill}+programming+tutorial`);
+    }
+  }
+  getYouTubeVideos(query) {
+    $.get('https://www.googleapis.com/youtube/v3/search', {
+      part: 'snippet',
+      key: process.env.REACT_APP_YOUTUBE_KEY,
+      q: query,
+      maxResults: 3,
+      type: 'video',
+      videoEmbeddable: 'true',
+      order: 'viewCount',
+    })
+      .done(({ items }) => {
+        this.setState({
+          videos: items,
+        });
+      })
+      .fail(({ responseJSON }) => {
+        responseJSON.error.errors.forEach(err =>
+          console.error(err));
+      });
+  }
+  getTutorials(query) {
+    $.get('https://www.googleapis.com/customsearch/v1?parameters', {
+      cx: process.env.REACT_APP_GOOGLE_CX,
+      key: process.env.REACT_APP_GOOGLE_KEY,
+      q: query,
+      num: 3,
+    })
+      .done(({ items }) => {
+        this.setState({
+          tutorials: items,
+        });
+      })
+      .fail(({ responseJSON }) => {
+        responseJSON.error.errors.forEach(err =>
+          console.error(err));
+      });
+  }
+  render() {
+    return (
+      <tr className="skill-list-entry">
+        <td className="skill"><h2>{this.props.skill}</h2></td>
+        <td className="video"><VideoList videos={this.state.videos} skill={this.props.skill} addResource={this.props.addResource} userId={this.props.userId} checkResource={this.props.checkResource} savedResources={this.props.savedResources} /></td>
+        <td className="web"><TutorialList tutorial={this.state.tutorials} skill={this.props.skill} addResource={this.props.addResource} userId={this.props.userId} checkResource={this.props.checkResource} savedResources={this.props.savedResources} /></td>
+      </tr>
+    );
+  }
 }
 SkillEntry.propTypes = {
   skill: PropTypes.string.isRequired,
