@@ -78,3 +78,6 @@ html5
 css3
 html
 css
+mongodb
+nosql
+sqlite
