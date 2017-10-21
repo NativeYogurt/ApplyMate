@@ -18,14 +18,16 @@ class App extends React.Component {
     this.TESTBUTTON = this.TESTBUTTON.bind(this);
   }
   componentWillMount() {
-    firebase.auth().onAuthStateChanged((user) => {
+    let unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        console.log('logging in',user);
         this.setState({
           user,
           isLoggedIn: true,
         });
       }
     });
+    setTimeout(() => unsubscribe(), 5000);
   }
   setUser(user, bool) {
     console.log('setUser', user, bool);
