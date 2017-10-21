@@ -132,6 +132,14 @@ table .dashboard, .dashboard th, .dashboard td {
     text-overflow: ellipsis;
 }
 
+.pager {
+    list-style: none;
+}
+
+button {
+    display: inline-block;
+}
+
 .company-logo {
     height: 50px;
     width: 100px;
