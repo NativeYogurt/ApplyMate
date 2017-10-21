@@ -22,7 +22,7 @@ class UploadedResume extends React.Component {
       this.props.toggleResume(false);
     }
   }
-  
+
   onDocumentComplete(pages) {
     this.setState({ page: 1, pages });
   }
@@ -54,7 +54,6 @@ class UploadedResume extends React.Component {
     if (page === pages) {
       nextButton = <li className="next disabled">
       <i className="fa fa-arrow-right" />Next Page</li>;
-
     }
     return (
       <nav>
