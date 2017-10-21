@@ -1,15 +1,14 @@
 import React from 'react';
-import { HashRouter, browserHistory, Route, Redirect, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import $ from 'jquery';
 
-import JobEdit from './JobEdit';
-import CompanyInfo from './CompanyInfo';
+import JobNavBar from './JobNavBar';
+import JobBoard from './JobBoard';
 
-class JobBoard extends React.Component {
+class JobHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      jobId: 0,
       company: '',
       jobTitle: '',
       status: '',
@@ -34,10 +33,11 @@ class JobBoard extends React.Component {
   // }
 
   loadData() {
-    fetch(`/api/jobs/${this.props.paramsId}`)
+    fetch(`/api/jobs/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
+          jobId: data.jobId,
           company: data.company,
           jobTitle: data.jobTitle,
           status: data.status,
@@ -74,38 +74,25 @@ class JobBoard extends React.Component {
   }
   render() {
     return (
-      this.state.company ?
-        (
-          <div>
-            <Switch>
-              <Route
-                path="/home/dashboard/:id/company"
-                render={() => (
-                  <CompanyInfo
-                    companyInfo={this.state.companyInfo}
-                  />
-                )}
-              />
-              <Route
-                path="/home/dashboard/:id"
-                render={() => (
-                  <JobEdit
-                    company={this.state.company}
-                    jobTitle={this.state.jobTitle}
-                    status={this.state.status}
-                    dateApplied={this.state.dateApplied}
-                    url={this.state.url}
-                    skills={this.state.skills}
-                    companyUrl={this.state.companyUrl}
-                    paramsId={this.props.paramsId}
-                    loadData={this.loadData}
-                  />
-                )}
-              />
-            </Switch>
-          </div>) : null
+      <div>
+        <h3>{this.state.company} | {this.state.jobTitle}</h3>
+        <div className="job-detail-navbar">
+          <JobNavBar />
+        </div>
+        <JobBoard
+          paramsId={this.props.match.params.id}
+          company={this.state.company}
+          jobTitle={this.state.jobTitle}
+          status={this.state.status}
+          dateApplied={this.state.dateApplied}
+          url={this.state.url}
+          skills={this.state.skills}
+          companyUrl={this.state.companyUrl}
+          companyInfo={this.state.companyInfo}
+          jobId={this.state.jobId}
+        />
+      </div>
     );
   }
 }
-
-export default JobBoard;
+export default JobHome;

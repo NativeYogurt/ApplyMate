@@ -9,8 +9,7 @@ import Resume from './resume';
 import Resources from './resources/resources';
 import Profile from './Profile';
 import SearchJobs from './job-search/SearchJobs';
-import JobEdit from './dashboard/JobEdit';
-import JobHome from './dashboard/JobHome';
+import JobHome from './dashboard/job-details/JobHome';
 
 class Main extends React.Component {
   constructor(props) {

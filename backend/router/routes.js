@@ -6,6 +6,7 @@ const jobInfo = require('../controllers/jobInfo.js');
 const user = require('../controllers/user');
 const comparison = require('../controllers/comparison.js');
 const resource = require('../controllers/resource.js');
+const contact = require('../controllers/contact.js');
 // const github = require('../utilities/githubRepoCrawler.js');
 
 
@@ -30,7 +31,7 @@ router.post('/getStockSymb', jobInfo.getStockSymb);
 router.post('/EDGAR', jobInfo.EDGAR);
 router.post('/fullContact', jobInfo.fullContact);
 router.post('/Twitter', jobInfo.Twitter);
-
+router.post('/contacts', contact.handleContactAdd);
 
 // router.get('/test', github.cronGitHubUpdate);
 
