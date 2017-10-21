@@ -27,6 +27,7 @@
     "no-unused-vars": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "arrow-parens": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "react/prop-types": 0
   },
 }

@@ -5,6 +5,7 @@ import PDF from 'react-pdf-js';
 import FontAwesome from 'react-fontawesome';
 import { ThreeBounce } from 'better-react-spinkit';
 
+
 class UploadedResume extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,7 @@ class UploadedResume extends React.Component {
       this.props.toggleResume(false);
     }
   }
-
+  
   onDocumentComplete(pages) {
     this.setState({ page: 1, pages });
   }
@@ -46,12 +47,14 @@ class UploadedResume extends React.Component {
       previousButton = <li className="previous disabled">
       <i className="fa fa-arrow-left" /> Previous Page</li>;
     }
+
     let nextButton = <li className="next" onClick={this.handleNext}>
       <i className="fa fa-arrow-right" />Next Page</li>;
 
     if (page === pages) {
       nextButton = <li className="next disabled">
       <i className="fa fa-arrow-right" />Next Page</li>;
+
     }
     return (
       <nav>
@@ -69,6 +72,7 @@ class UploadedResume extends React.Component {
     if (this.state.pages > 1) {
       pagination = this.renderPagination(this.state.page, this.state.pages);
     }
+
     let resumeElement = '';
     if (!resume && !this.props.resumeLoadToggle) {
       resumeElement = (<h5>Please upload resume</h5>);
@@ -88,6 +92,7 @@ class UploadedResume extends React.Component {
     return (
       <div>
         {resumeElement}
+
         {pagination}
       </div>
     );

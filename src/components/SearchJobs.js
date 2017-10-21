@@ -15,7 +15,7 @@ class SearchJobs extends React.Component {
     this.handleJobAdd = this.handleJobAdd.bind(this);
   }
   searchJobs(desc, loc) {
-    const link = "https://jobs.github.com/positions.json?description=" + desc + "&location=" + loc;
+    const link = `https://jobs.github.com/positions.json?description=${desc}&location=${loc}`;
     $.ajax({
       type: 'GET',
       dataType: 'jsonp',
@@ -27,14 +27,15 @@ class SearchJobs extends React.Component {
       },
       error: error => {
         console.error('failed to search job', error);
-      }
-    })
+      },
+    });
   }
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobSearch;
-    this.searchJobs(form.searchTechSkill.value,
-      form.searchJobLocation.value
+    this.searchJobs(
+      form.searchTechSkill.value,
+      form.searchJobLocation.value,
     );
   }
   handleJobAdd(job) {

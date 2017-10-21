@@ -1,39 +1,44 @@
 const Nightmare = require('nightmare');
-const nightmare = Nightmare({show: true});
 
-const goToInitialPage = async () => {
+let nightmare;
+
+const goToInitialPage = async (url) => {
   try {
     const iframeURL = await nightmare
-      .goto('http://grnh.se/5ocetf1')
-      //.goto('https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-345-spear-st-san-francisco-ca-usa-2683110138&f=true&')
-      .wait('iframe')
+      .goto(url)
+      .wait(5000)
       .evaluate(() => {
         return [...document.querySelectorAll('iframe')]
           .map(el => el.src);
-      })
+      });
     return iframeURL[0];
-    } catch (e) {
-      console.error(e);
+  } catch (e) {
+    console.error(e);
   }
 };
 
-const scrapeIframe = async () => {
+const scrapeIframe = async (url) => {
   try {
-    const url = await goToInitialPage();
-    console.log(url)
+    nightmare = Nightmare({ show: true });
+    const secondUrl = await goToInitialPage(url);
+    if (!secondUrl) {
+      nightmare.end();
+      return [];
+    }
     const data = await nightmare
-      .goto(url)
+      .goto(secondUrl)
       .wait()
       .evaluate(() => {
         return [...document.querySelectorAll('li')]
-        .map(el => el.innerText);;
+          .map(el => el.innerText);
       })
       .end();
-    console.log('madeit',data);
-    return data
-    } catch (e) {
-      console.error(e);
+    return data;
+  } catch (e) {
+    console.error(e);
   }
 };
 
-scrapeIframe();
+
+//scrapeIframe('http://grnh.se/5ocetf1');
+exports.scrapeIframe = scrapeIframe;

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import CompanyInfo from './CompanyInfo';
 
@@ -37,7 +38,7 @@ class JobEdit extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.match.params.id != prevProps.match.params.id) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
       this.loadData();
     }
   }
@@ -65,11 +66,18 @@ class JobEdit extends React.Component {
     this.setState({ companyUrl: e.target.value });
   }
   loadData() {
-    console.log('this props', this.props);
-    fetch('/api/jobs/' + this.props.match.params.id)
-      .then((res)=>res.json())
-      .then(data=> {
-        this.setState(data);
+    fetch(`/api/jobs/${this.props.match.params.id}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          company: data.company,
+          jobTitle: data.jobTitle,
+          status: data.status,
+          dateApplied: data.dateApplied || '',
+          url: data.url,
+          skills: data.skills,
+          companyUrl: data.companyUrl,
+        });
       })
       .then(() => {
         if (this.state.companyUrl !== null) {
@@ -80,25 +88,21 @@ class JobEdit extends React.Component {
 
   loadCompanyInfo(company) {
     const link = `https://api.fullcontact.com/v2/company/lookup.json?domain=${company}&apiKey=${process.env.FULLCONTACT_APIKEY}`;
-    // const link = `https://api.fullcontact.com/v2/company/lookup.json?domain=apple.com&apiKey=${process.env.FULLCONTACT_APIKEY}`;
 
-    console.log('key', process.env.FULLCONTACT_APIKEY );
-    console.log('link', link);
     $.ajax({
       type: 'GET',
       dataType: 'json',
       header: { 'X-FullContact-APIKey': process.env.FULLCONTACT_APIKEY },
       url: link,
       success: data => {
-        console.log('company', data);
         this.setState({
           companyInfo: data,
         });
       },
       error: error => {
         console.error('failed to search job', error);
-      }
-    })
+      },
+    });
   }
   showSuccess() {
     this.setState({ successVisible: true });
@@ -119,15 +123,15 @@ class JobEdit extends React.Component {
       companyUrl: this.state.companyUrl,
     };
 
-    fetch('/api/jobs/' + this.props.match.params.id, {
-			method: 'PUT',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(job)
-		}).then(res => res.json())
-			.then(data =>
+    fetch(`/api/jobs/${this.props.match.params.id}`, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(job),
+    }).then(res => res.json())
+      .then(data =>
         this.showSuccess());
   }
 
@@ -205,5 +209,7 @@ class JobEdit extends React.Component {
     );
   }
 }
-
+JobEdit.propTypes = {
+  match: PropTypes.object.isRequired,
+};
 module.exports = JobEdit;

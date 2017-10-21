@@ -39,13 +39,15 @@ class VideoListEntry extends React.Component {
           <img className="media-object" src={this.props.video.snippet.thumbnails.default.url} alt="" />
         </div>
         <div className="media-body">
-          <div
+          <a
+            href="#"
             className="video-list-entry-title"
-            onClick={()=> {
-              window.open(`https://www.youtube.com/embed/${this.props.video.id.videoId}`, "_blank")}}
+            onClick={() => {
+              window.open(`https://www.youtube.com/embed/${this.props.video.id.videoId}`, '_blank');
+            }}
           >
             {this.props.video.snippet.title}
-          </div>
+          </a>
           <div className="video-list-entry-detail">{this.props.video.snippet.description}</div>
         </div>
         <button onClick={this.handleSubmit} disabled={this.state.added}>Add</button>

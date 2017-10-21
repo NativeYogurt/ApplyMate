@@ -118,9 +118,16 @@ table .dashboard, .dashboard th, .dashboard td {
     text-align: left;
 }
 
-.resource-list td {
-    white-space: nowrap;
-    /*max-width: 100%;*/
+.resource-list td .web, .resource-list td .video {
+    /*white-space: nowrap;*/
+    width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resource-list td .skill {
+    /*white-space: nowrap;*/
+    width: 10%;
     overflow: hidden;
     text-overflow: ellipsis;
 }

@@ -52,7 +52,6 @@ exports.uploadHandler = async (req, res) => {
   let textURL;
   let text;
   let skills;
-  //const textURL = '//host123d1qw.cloudconvert.com/download/~qeog7zKafisKFqZDqJtI0VoWsUc';
   try {
     pdfURL = await uploadPDFtoCloudinary(result);
     pdfURL = pdfURL.url;

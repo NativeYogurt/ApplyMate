@@ -35,7 +35,7 @@ class Main extends React.Component {
   componentDidMount() {
     this.getUserInfo();
     this.getJobs();
-    this.getJobComparison();
+    // this.getJobComparison();
   }
 
   getUserInfo() {
