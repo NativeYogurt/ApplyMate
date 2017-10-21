@@ -1,6 +1,6 @@
 const axios = require('axios');
 // expecting req.body.searchTerm
-var request = require("request");
+const request = require('request');
 
 exports.BBB = (req, res) => {
   axios({
@@ -19,10 +19,10 @@ exports.BBB = (req, res) => {
 
 
 exports.Glassdoor = (req, res) => {
-  
-  const options = { method: 'GET',
+  const options = {
+    method: 'GET',
     url: 'http://api.glassdoor.com/api/api.htm',
-    qs: { 
+    qs: {
       v: '1',
       format: 'json',
       't.p': process.env.GLASSDOOR_ID,
@@ -35,7 +35,7 @@ exports.Glassdoor = (req, res) => {
   };
   request(options, (error, resp, body) => {
     if (error) throw new Error(error);
-    //I can't break the body down for some reason.
+    // I can't break the body down for some reason.
     res.send(body);
   });
 
@@ -62,8 +62,41 @@ exports.Glassdoor = (req, res) => {
   //   });
 };
 
-// unfinished
-// exports.findStockSymb = (req, res) => {
-//   axios.get(`http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=${req.body.searchTerm}&lang=en`)
-//   .then(res => res.send(res.))
-// }
+exports.getStockSymb = (req, res) => {
+  axios.get(`http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=${req.body.searchTerm}&lang=en`)
+    .then(result => res.send(result.data.ResultSet.Result));
+};
+
+exports.EDGAR = (req, res) => {
+  axios({
+    method: 'GET',
+    url: `http://edgaronline.api.mashery.com/v2/corefinancials/qtr`,
+    params: { 
+      primarysymbols: req.body.searchTerm,
+      appkey: process.env.EDGAR_KEY, 
+    },
+  })
+    .then(data => {
+      let arr = [];
+      let array = [];
+      for (let i = 0; i < data.data.result.totalrows; i++) {
+        arr.push(data.data.result.rows[i].values.filter((item, ind) => {
+          if (item.field === 'totalrevenue' || item.field === 'researchdevelopmentexpense' || item.field === 'periodenddate' || item.field === 'incomebeforetaxes') {
+            return item.value;
+          }
+        }));
+      }
+      for (let i = 0; i < arr.length; i++) {
+        let temp = [];
+        for (let j = 0; j < arr[i].length; j++) {
+          temp.push(`${arr[i][j].field}: ${arr[i][j].value}`);
+        }
+        array.push(temp);
+      }
+      res.send(array);
+    })
+    .catch(err => {
+      console.error(err);
+      res.send(err);
+    });
+};
