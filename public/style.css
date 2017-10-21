@@ -156,3 +156,24 @@ table .dashboard, .dashboard th, .dashboard td {
 button {
   display: inline-block;
 }
+
+.contact-form {
+  padding: 20px;
+}
+
+.contact-form .form-group {
+  padding-bottom: 15px;
+}
+
+.contact-form label {
+  padding-right: 15px;
+}
+
+.contact-form input[type="text"], .contact-form textarea {
+  padding: 8px;
+  width: 20%;
+}
+
+.contact-form input[type="submit"] {
+  padding: 10px 15px;
+}

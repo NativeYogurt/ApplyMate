@@ -9,6 +9,7 @@ const env = require('dotenv').config();
 const db = require('./backend/db/db');
 const User = require('./backend/models/User');
 const SavedJobs = require('./backend/models/SavedJobs');
+const Contacts = require('./backend/models/Contacts');
 const Github = require('./backend/utilities/githubRepoCrawler');
 
 const router = require('./backend/router/routes.js');
