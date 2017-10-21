@@ -144,10 +144,15 @@ class Profile extends React.Component {
 
 Profile.propTypes = {
   userId: PropTypes.string.isRequired,
-  userFirstName: PropTypes.string.isRequired,
-  userLastName: PropTypes.string.isRequired,
+  userFirstName: PropTypes.string,
+  userLastName: PropTypes.string,
   userEmail: PropTypes.string.isRequired,
   getUserInfo: PropTypes.func.isRequired,
+};
+
+Profile.defaultProps = {
+  userFirstName: 'Enter First Name',
+  userLastName: 'Enter Last Name',
 };
 
 export default Profile;
