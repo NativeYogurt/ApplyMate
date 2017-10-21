@@ -72,6 +72,7 @@ class Glassdoor extends React.Component {
         bossRatingNum: {this.state.bossRatingNum}<br />
         industry: {this.state.industry}
         <br />
+        <a href="https://www.glassdoor.com/index.htm">powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
         <pre><code>{JSON.stringify(this.state.obj, null, 4)}</code></pre>
       </div>
     );
