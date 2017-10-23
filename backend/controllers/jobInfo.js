@@ -17,8 +17,24 @@ exports.BBB = (req, res) => {
       res.send(err);
     });
 };
-
-
+exports.getCompanyUrl = (req, res) => {
+  axios({
+    method: 'GET',
+    url: `https://api.bbb.org/api/orgs/search?primaryOrganizationName=${req.body.searchTerm}`,
+    headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
+  })
+    .then(data => {
+      
+      console.log('1',data.data.SearchResults[0])
+      console.log('2',data.data.SearchResults[0].BusinessURLs)
+      console.log('3',data.data.SearchResults[0].BusinessURLs[0])
+      res.send(data.data.SearchResults[0].BusinessURLs[0]);
+    })
+    .catch(err => {
+      console.error(err);
+      res.send(err);
+    });
+};
 exports.Glassdoor = (req, res) => {
   const options = {
     method: 'GET',
@@ -123,7 +139,6 @@ exports.fullContact = (req, res) => {
     })
     .catch(err => alert(err));
 }
-
 exports.Twitter = (req, res) => {
   const client = new Twitter({
     consumer_key: process.env.TWITTER_KEY,

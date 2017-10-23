@@ -20,7 +20,6 @@ class App extends React.Component {
   componentWillMount() {
     let unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('logging in',user);
         this.setState({
           user,
           isLoggedIn: true,
@@ -30,7 +29,6 @@ class App extends React.Component {
     setTimeout(() => unsubscribe(), 5000);
   }
   setUser(user, bool) {
-    console.log('setUser', user, bool);
     this.setState({
       user,
       isLoggedIn: bool,

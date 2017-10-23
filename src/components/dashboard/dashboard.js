@@ -127,9 +127,6 @@ class Dashboard extends React.Component {
             <input type="text" name="url" placeholder="job url" />
           </span>
           <span className="form-group">
-            <input type="text" name="companyUrl" placeholder="company url" />
-          </span>
-          <span className="form-group">
             <input className="button" type="submit" value="Add" />
           </span>
         </form>

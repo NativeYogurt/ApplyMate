@@ -32,6 +32,7 @@ router.post('/EDGAR', jobInfo.EDGAR);
 router.post('/fullContact', jobInfo.fullContact);
 router.post('/Twitter', jobInfo.Twitter);
 router.post('/contacts', contact.handleContactAdd);
+router.post('/getCompanyUrl', jobInfo.getCompanyUrl);
 
 // router.get('/test', github.cronGitHubUpdate);
 
