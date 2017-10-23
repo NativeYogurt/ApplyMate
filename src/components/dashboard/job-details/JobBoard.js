@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 
 import JobEdit from './JobEdit';
 import CompanyInfo from './CompanyInfo';
-import Contacts from './contacts';
-import ContactAdd from './contact-add';
-import ContactEdit from './contact-edit';
+import Contacts from './contacts/contacts';
+import ContactAdd from './contacts/contact-add';
+import ContactEdit from './contacts/contact-edit';
 
 const JobBoard = (props) => {
   return (
-    props.company ?
+    (props.url || props.company) ?
       (
         <div>
           <Switch>
