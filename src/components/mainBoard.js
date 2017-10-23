@@ -7,7 +7,7 @@ import axios from 'axios';
 import Dashboard from './dashboard/dashboard';
 import Resources from './resources/resources';
 import Profile from './profile';
-import Analytics from './analytics';
+import Analytics from './analytics/analytics';
 import SearchJobs from './job-search/SearchJobs';
 import JobEdit from './dashboard/JobEdit';
 import JobHome from './dashboard/JobHome';
