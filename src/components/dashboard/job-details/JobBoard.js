@@ -6,6 +6,7 @@ import JobEdit from './JobEdit';
 import CompanyInfo from './CompanyInfo';
 import Contacts from './contacts';
 import ContactAdd from './contact-add';
+import ContactEdit from './contact-edit';
 
 const JobBoard = (props) => {
   return (
@@ -14,7 +15,7 @@ const JobBoard = (props) => {
         <div>
           <Switch>
             <Route
-              path="/home/dashboard/:id/company"
+              path="/home/dashboard/job/company"
               render={() => (
                 <CompanyInfo
                   companyInfo={props.companyInfo}
@@ -22,7 +23,7 @@ const JobBoard = (props) => {
               )}
             />
             <Route
-              path="/home/dashboard/:id/contacts/new"
+              path="/home/dashboard/job/contacts/new"
               render={() => (
                 <ContactAdd
                   jobId={props.jobId}
@@ -30,7 +31,11 @@ const JobBoard = (props) => {
               )}
             />
             <Route
-              path="/home/dashboard/:id/contacts"
+              path="/home/dashboard/job/contacts/:id"
+              component={ContactEdit}
+            />
+            <Route
+              path="/home/dashboard/job/contacts"
               render={() => (
                 <Contacts
                   jobId={props.jobId}

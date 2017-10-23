@@ -29,3 +29,58 @@ exports.handleContactAdd = (req, res) => {
       throw error;
     });
 };
+
+exports.handleGetContacts = (req, res) => {
+  Contacts.findAll({
+    where: {
+      jobId: req.query.jobId,
+      deleted: false,
+    },
+  })
+    .then(contacts => {
+      res.send(contacts);
+    });
+};
+
+exports.handleGetContact = (req, res) => {
+  Contacts.findOne({
+    where: {
+      contactId: req.params.id,
+    },
+  })
+    .then(contact => {
+      res.send(contact);
+    });
+};
+
+exports.handleEditContact = (req, res) => {
+  Contacts.update({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    jobTitle: req.body.jobTitle,
+    email: req.body.email,
+    linkedInProfile: req.body.linkedInProfile,
+    workPhone: req.body.workPhone,
+    personalPhone: req.body.personalPhone,
+    howWeMet: req.body.howWeMet,
+    notes: req.body.notes,
+  }, {
+    where: {
+      contactId: req.params.id,
+    },
+  })
+    .then(data => res.send(data))
+    .catch(error => console.error(error));
+};
+
+exports.handleContactDelete = (req, res) => {
+  Contacts.update({
+    deleted: true,
+  }, {
+    where: {
+      contactId: req.body.contactId,
+    },
+  })
+    .then(success => res.send('success'))
+    .catch(error => console.error(error));
+};
