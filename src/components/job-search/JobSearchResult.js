@@ -7,6 +7,7 @@ const JobSearchResult = (props) => {
       <div>Job Title: {props.job.title}</div>
       <div>Company: {props.job.company}</div>
       <div>Location: {props.job.location}</div>
+      <div>Company URL: <a href={props.job.company_url} target="_blank">{props.job.company_url}</a></div>
       <div>Created at: {props.job.created_at}</div>
       <div><a href={props.job.url} target="_blank">Job Post</a></div>
       <div><button onClick={() => props.handleJobAdd(props.job)}>Add to Dashboard</button></div>
