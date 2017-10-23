@@ -177,3 +177,7 @@ button {
 .contact-form input[type="submit"] {
   padding: 10px 15px;
 }
+
+.quick-actions {
+  padding-right: 8px;
+}

@@ -90,6 +90,11 @@ class JobEdit extends React.Component {
 
     return (
       <div>
+        <div>
+          <div>Quick Actions</div>
+          <span className="quick-actions"><Link to="/home/dashboard/job/activity/new">Log Interview</Link></span>
+          <span className="quick-actions"><Link to="/home/dashboard/job/contacts/new">Add Contact</Link></span>
+        </div>
         <form className="job-edit-form" onSubmit={this.submit}>
           <div className="form-group">
             <label htmlFor="url">
