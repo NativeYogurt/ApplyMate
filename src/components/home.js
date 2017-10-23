@@ -19,6 +19,5 @@ function Home(props) {
 Home.propTypes = {
   setUser: PropTypes.func.isRequired,
   TESTBUTTON: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
 };
 export default Home;

@@ -24,9 +24,9 @@ class Navbar extends React.Component {
         <ul id="main-navigation">
           <li>ApplyMate</li>
           <li className="navBar"><Link to="/home/dashboard">Dashboard</Link></li>
-          <li className="navBar"><Link to="/home/resume">Resume</Link></li>
-          <li className="navBar"><Link to="/home/resources">Resources</Link></li>
           <li className="navBar"><Link to="/home/searchjobs">Search Jobs</Link></li>
+          <li className="navBar"><Link to="/home/resources">Resources</Link></li>
+          <li className="navBar"><Link to="/home/analytics">Analytics</Link></li>
           <li className="navBar"><Link to="/home/profile">Profile</Link></li>
           <li className="navBar" onClick={e => this.handleSignOut(e)}><Link to="/">Sign Out</Link></li>
         </ul>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import firebase from 'firebase';
 import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
-import DataChart from './DataChart';
+import Resume from './resume';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -135,8 +135,13 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
-        <h3>DATAVISUAL EXAMPLES:</h3>
-        <DataChart />
+        <Resume
+          userId={this.props.userId}
+          getJobComparison={this.props.getJobComparison}
+          getUserInfo={this.props.getUserInfo}
+          userResume={this.props.userResume}
+          clearResume={this.props.clearResume}
+        />
       </div>
     );
   }

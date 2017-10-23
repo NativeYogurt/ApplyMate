@@ -91,7 +91,6 @@ class UploadedResume extends React.Component {
     return (
       <div>
         {resumeElement}
-
         {pagination}
       </div>
     );
@@ -99,7 +98,7 @@ class UploadedResume extends React.Component {
 }
 
 UploadedResume.propTypes = {
-  userResume: PropTypes.string.isRequired,
+  // userResume: PropTypes.string.isRequired,
   toggleResume: PropTypes.func.isRequired,
   resumeLoadToggle: PropTypes.bool.isRequired,
 };

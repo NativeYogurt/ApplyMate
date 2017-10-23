@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import UploadedResume from './uploadedresume';
+import UploadedResume from './uploaded-resume';
 
 class Resume extends React.Component {
   constructor(props) {
@@ -41,7 +41,6 @@ class Resume extends React.Component {
         <h2>Upload Resume:</h2>
         <input type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
         <br /><br />
-        <hr />
         <h2>My Resume:</h2>
         <UploadedResume
           userResume={this.props.userResume}
