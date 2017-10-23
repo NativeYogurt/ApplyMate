@@ -137,3 +137,15 @@ exports.handleJobDelete = (req, res) => {
     .then(success => res.send('success'))
     .catch(error => console.error(error));
 };
+
+exports.handleJobFavorite = (req, res) => {
+  SavedJobs.update({
+    favorite: req.body.favoriteStatus,
+  }, {
+    where: {
+      jobId: req.body.jobId,
+    },
+  })
+    .then(success => res.send('success'))
+    .catch(error => console.error(error));
+};

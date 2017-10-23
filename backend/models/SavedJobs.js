@@ -35,6 +35,10 @@ const SavedJobs = sequelize.define(
       type: Sequelize.BOOLEAN,
       defaultValue: false,
     },
+    favorite: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+    },
     userId: {
       type: Sequelize.STRING,
       references: {

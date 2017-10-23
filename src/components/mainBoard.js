@@ -31,6 +31,7 @@ class Main extends React.Component {
     this.getJobComparison = this.getJobComparison.bind(this);
     this.addJob = this.addJob.bind(this);
     this.clearResume = this.clearResume.bind(this);
+    this.favoriteJob = this.favoriteJob.bind(this);
   }
 
   componentDidMount() {
@@ -131,6 +132,24 @@ class Main extends React.Component {
     this.getJobComparison();
   }
 
+  favoriteJob(jobId) {
+    let favoriteStatus = '';
+    const jobs = this.state.savedJobs.map(job => {
+      if (job.jobId === jobId) {
+        job.favorite = !job.favorite;
+        favoriteStatus = job.favorite
+      }
+      return job;
+    });
+    this.setState({
+      savedJobs: jobs,
+    });
+    axios.put('/api/job/favorite', {
+      jobId,
+      favoriteStatus,
+    });
+  }
+
   clearResume() {
     this.setState({ resume: '' });
   }
@@ -176,6 +195,7 @@ class Main extends React.Component {
                 userEmail={this.state.email}
                 userResume={this.state.resume}
                 githubUsername={this.state.githubUsername}
+                githubSkills={this.state.githubSkills}
                 getJobComparison={this.getJobComparison}
                 getUserInfo={this.getUserInfo}
                 githubSkills={this.state.githubSkills}
@@ -193,6 +213,7 @@ class Main extends React.Component {
               getJobs={this.getJobs}
               savedJobs={this.state.savedJobs}
               deleteJob={this.deleteJob}
+              favoriteJob={this.favoriteJob}
               getJobComparison={this.getJobComparison}
               addJob={this.addJob}
             />
