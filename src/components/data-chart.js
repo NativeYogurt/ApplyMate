@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Bar, Line, Pie, Doughnut, Radar, Polar, Scatter } from 'react-chartjs-2';
+import { Bar, Line, Pie, Doughnut, Radar, Polar } from 'react-chartjs-2';
 
 const data = {
   labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
@@ -28,187 +28,43 @@ const data = {
   ],
 };
 
-class DataChart extends Component {
-  render() {
-    return (
-      <div>
-        <Bar
-          data={data}
-          options={{
-            title: {
-              display: true,
-              text: 'Largest Cities In Massachusetts',
-              fontSize: 25,
+const DataChart = () => {
+  return (
+    <div>
+      <Pie
+        data={data}
+        width={10}
+        height={3}
+        options={{
+          maintainAspectRatio: true,
+          title: {
+            display: true,
+            text: 'Largest Cities In Massachusetts',
+            fontSize: 25,
+          },
+          legend: {
+            display: false,
+            position: 'top',
+            labels: {
+              fontColor: '#000',
             },
-            legend: {
-              display: false,
-              position: 'top',
-              labels: {
-                fontColor: '#000',
-              },
+          },
+          layout: {
+            padding: {
+              left: 50,
+              right: 0,
+              bottom: 0,
+              top: 0,
             },
-            layout: {
-              padding: {
-                left: 50,
-                right: 0,
-                bottom: 0,
-                top: 0,
-              },
-            },
-            tooltips: {
-              enabled: true,
-            },
-          }
+          },
+          tooltips: {
+            enabled: true,
+          },
         }
-        />
-        <Line
-          data={data}
-          options={{
-            title: {
-              display: true,
-              text: 'Largest Cities In Massachusetts',
-              fontSize: 25,
-            },
-            legend: {
-              display: false,
-              position: 'top',
-              labels: {
-                fontColor: '#000',
-              },
-            },
-            layout: {
-              padding: {
-                left: 50,
-                right: 0,
-                bottom: 0,
-                top: 0,
-              },
-            },
-            tooltips: {
-              enabled: true,
-            },
-          }
-        }
-        />
-        <Pie
-          data={data}
-          options={{
-            title: {
-              display: true,
-              text: 'Largest Cities In Massachusetts',
-              fontSize: 25,
-            },
-            legend: {
-              display: false,
-              position: 'top',
-              labels: {
-                fontColor: '#000',
-              },
-            },
-            layout: {
-              padding: {
-                left: 50,
-                right: 0,
-                bottom: 0,
-                top: 0,
-              },
-            },
-            tooltips: {
-              enabled: true,
-            },
-          }
-        }
-        />
-        <Doughnut
-          data={data}
-          options={{
-            title: {
-              display: true,
-              text: 'Largest Cities In Massachusetts',
-              fontSize: 25,
-            },
-            legend: {
-              display: false,
-              position: 'top',
-              labels: {
-                fontColor: '#000',
-              },
-            },
-            layout: {
-              padding: {
-                left: 50,
-                right: 0,
-                bottom: 0,
-                top: 0,
-              },
-            },
-            tooltips: {
-              enabled: true,
-            },
-          }
-        }
-        />
-        <Radar
-          data={data}
-          options={{
-            title: {
-              display: true,
-              text: 'Largest Cities In Massachusetts',
-              fontSize: 25,
-            },
-            legend: {
-              display: false,
-              position: 'top',
-              labels: {
-                fontColor: '#000',
-              },
-            },
-            layout: {
-              padding: {
-                left: 50,
-                right: 0,
-                bottom: 0,
-                top: 0,
-              },
-            },
-            tooltips: {
-              enabled: true,
-            },
-          }
-        }
-        />
-        <Polar
-          data={data}
-          options={{
-            title: {
-              display: true,
-              text: 'Largest Cities In Massachusetts',
-              fontSize: 25,
-            },
-            legend: {
-              display: false,
-              position: 'top',
-              labels: {
-                fontColor: '#000',
-              },
-            },
-            layout: {
-              padding: {
-                left: 50,
-                right: 0,
-                bottom: 0,
-                top: 0,
-              },
-            },
-            tooltips: {
-              enabled: true,
-            },
-          }
-        }
-        />
-      </div>
-    );
-  }
-}
+      }
+      />
+    </div>
+  );
+};
 
 export default DataChart;
