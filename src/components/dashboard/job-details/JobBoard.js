@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 
 import JobEdit from './JobEdit';
 import CompanyInfo from './CompanyInfo';
-import Contacts from './contacts';
-import ContactAdd from './contact-add';
-import ContactEdit from './contact-edit';
+import Contacts from './contacts/contacts';
+import ContactAdd from './contacts/contact-add';
+import ContactEdit from './contacts/contact-edit';
+import Activity from './activity/activities';
+import ActivityAdd from './activity/activity-add';
+import ActivityEdit from './activity/activity-edit';
 
 const JobBoard = (props) => {
   return (
-    props.company ?
+    (props.url || props.company) ?
       (
         <div>
           <Switch>
@@ -38,6 +41,26 @@ const JobBoard = (props) => {
               path="/home/dashboard/job/contacts"
               render={() => (
                 <Contacts
+                  jobId={props.jobId}
+                />
+              )}
+            />
+            <Route
+              path="/home/dashboard/job/activity/new"
+              render={() => (
+                <ActivityAdd
+                  jobId={props.jobId}
+                />
+              )}
+            />
+            <Route
+              path="/home/dashboard/job/activity/:id"
+              component={ActivityEdit}
+            />
+            <Route
+              path="/home/dashboard/job/activity"
+              render={() => (
+                <Activity
                   jobId={props.jobId}
                 />
               )}

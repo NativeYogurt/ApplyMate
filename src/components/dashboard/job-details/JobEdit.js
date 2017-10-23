@@ -69,7 +69,6 @@ class JobEdit extends React.Component {
       url: this.state.url,
       companyUrl: this.state.companyUrl,
     };
-
     fetch(`/api/jobs/${this.props.paramsId}`, {
       method: 'PUT',
       headers: {
