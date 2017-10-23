@@ -31,7 +31,8 @@ const JobBoard = (props) => {
               path="/home/dashboard/job/company"
               render={() => (
                 <CompanyInfo
-                  companyInfo={props.companyInfo}
+                  company={props.company}
+                  companyUrl={props.companyUrl}
                 />
               )}
             />

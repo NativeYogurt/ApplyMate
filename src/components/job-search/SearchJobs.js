@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import PropTypes from 'prop-types';
-
+import axios from 'axios';
 import JobSearchResult from './JobSearchResult';
 
 class SearchJobs extends React.Component {
@@ -13,6 +13,9 @@ class SearchJobs extends React.Component {
     this.searchJobs = this.searchJobs.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleJobAdd = this.handleJobAdd.bind(this);
+    this.fixURL = this.fixURL.bind(this);
+    this.isURL = this.isURL.bind(this);
+    this.findCompanyURL = this.findCompanyURL.bind(this);
   }
   searchJobs(desc, loc) {
     const link = `https://jobs.github.com/positions.json?description=${desc}&location=${loc}`;
@@ -40,15 +43,74 @@ class SearchJobs extends React.Component {
   }
   handleJobAdd(job) {
     console.log('job', job);
-    this.props.addJob({
-      company: job.company,
-      jobTitle: job.title,
-      status: 'wishlist',
-      url: job.url,
-      skills: [],
-      companyUrl: job.company_url,
-      userId: this.props.userId,
-    });
+    let companyUrl = this.fixURL(job.company_url)
+    console.log(1, companyUrl)
+    console.log(2, this.isURL(companyUrl))
+    if (!(this.isURL(companyUrl))) {
+      this.findCompanyURL(job.company, (fixedCompanyURL) => {
+        console.log(3, fixedCompanyURL);
+        this.props.addJob({
+          company: job.company,
+          jobTitle: job.title,
+          status: 'wishlist',
+          url: job.url,
+          skills: [],
+          companyUrl: fixedCompanyURL,
+          userId: this.props.userId,
+        });
+      });
+    } else {
+      this.props.addJob({
+        company: job.company,
+        jobTitle: job.title,
+        status: 'wishlist',
+        url: job.url,
+        skills: [],
+        companyUrl,
+        userId: this.props.userId,
+      });
+    }
+  }
+  fixURL(url) {
+    console.log(this.state.undefined)
+    if (url.lastIndexOf('//') !== -1) {
+      const int = url.lastIndexOf('//');
+      url = url.slice(int + 2);
+    }
+    if (url.lastIndexOf('www.') !== -1) {
+      const int = url.lastIndexOf('www.');
+      url = url.slice(int + 4);
+    }
+
+    if (url.lastIndexOf('/') !== -1) {
+      const int = url.lastIndexOf('/');
+      url = url.slice(0, int);
+    }
+    return url;
+  }
+  isURL(url) {
+    console.log(this.state.undefined)
+    const strRegex = '^((https|http|ftp|rtsp|mms)?://)'
+        + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftp的user@
+        + '(([0-9]{1,3}\.){3}[0-9]{1,3}' // IP形式的URL- 199.194.52.184
+        + '|' // 允许IP和DOMAIN（域名）
+        + "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
+        + '([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.' // 二级域名
+        + '[a-z]{2,6})' // first level domain- .com or .museum
+        + '(:[0-9]{1,4})?' // 端口- :80
+        + '((/?)|' // a slash isn't required if there is no file name
+        + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+    const re = new RegExp(strRegex);
+    return re.test(url);
+  }
+  findCompanyURL(companyName, cb) {
+    axios.post('/api/getCompanyUrl', { searchTerm: companyName })
+      .then(results => {
+        let URL = results.data;
+        URL = this.fixURL(URL);
+        console.log(4, URL);
+        cb(URL);
+      });
   }
   render() {
     return (

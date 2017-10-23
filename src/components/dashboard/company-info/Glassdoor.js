@@ -17,7 +17,6 @@ class Glassdoor extends React.Component {
       careerOpportunitiesRating: 0,
       workLifeBalanceRating: 0,
       recommendToFriendRating: 0,
-      industry: '',
       bossApprove: 0,
       bossDisapp: 0,
       bossRatingNum: 0,
@@ -45,7 +44,6 @@ class Glassdoor extends React.Component {
           careerOpportunitiesRating: data.careerOpportunitiesRating,
           workLifeBalanceRating: data.workLifeBalanceRating,
           recommendToFriendRating: data.recommendToFriendRating,
-          industry: data.sectorName,
           bossApprove: data.ceo.pctApprove,
           bossDisapp: data.ceo.pctDisapprove,
           bossRatingNum: data.ceo.numberOfRatings,
@@ -66,14 +64,11 @@ class Glassdoor extends React.Component {
         careerOpportunitiesRating: {this.state.careerOpportunitiesRating}<br />
         workLifeBalanceRating: {this.state.workLifeBalanceRating}<br />
         recommendToFriendRating: {this.state.recommendToFriendRating}<br />
-        industry: {this.state.industry}<br />
         bossApprove: {this.state.bossApprove}<br />
         bossDisapp: {this.state.bossDisapp}<br />
         bossRatingNum: {this.state.bossRatingNum}<br />
-        industry: {this.state.industry}
         <br />
         <a href="https://www.glassdoor.com/index.htm">powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
-        <pre><code>{JSON.stringify(this.state.obj, null, 4)}</code></pre>
       </div>
     );
   }
