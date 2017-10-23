@@ -31,6 +31,7 @@ const User = sequelize.define('user', {
   },
   githubSkills: {
     type: Sequelize.JSON,
+    defaultValue: {},
   },
 });
 

@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
 import DataChart from './DataChart';
+import GithubSkills from './githubSkills';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -135,6 +136,7 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
+        {Object.keys(this.props.githubSkills).length ? <GithubSkills githubSkills={this.props.githubSkills}/> : null}
         <h3>DATAVISUAL EXAMPLES:</h3>
         <DataChart />
       </div>
