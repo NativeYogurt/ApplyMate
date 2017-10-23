@@ -7,6 +7,9 @@ import CompanyInfo from './CompanyInfo';
 import Contacts from './contacts/contacts';
 import ContactAdd from './contacts/contact-add';
 import ContactEdit from './contacts/contact-edit';
+import Activity from './activity/activities';
+import ActivityAdd from './activity/activity-add';
+import ActivityEdit from './activity/activity-edit';
 
 const JobBoard = (props) => {
   return (
@@ -38,6 +41,26 @@ const JobBoard = (props) => {
               path="/home/dashboard/job/contacts"
               render={() => (
                 <Contacts
+                  jobId={props.jobId}
+                />
+              )}
+            />
+            <Route
+              path="/home/dashboard/job/activity/new"
+              render={() => (
+                <ActivityAdd
+                  jobId={props.jobId}
+                />
+              )}
+            />
+            <Route
+              path="/home/dashboard/job/activity/:id"
+              component={ActivityEdit}
+            />
+            <Route
+              path="/home/dashboard/job/activity"
+              render={() => (
+                <Activity
                   jobId={props.jobId}
                 />
               )}
