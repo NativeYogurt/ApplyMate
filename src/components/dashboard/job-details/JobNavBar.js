@@ -9,7 +9,7 @@ const JobNavbar = (props) => {
         <li><Link to="/home/dashboard/job/show">Details</Link></li>
         <li><Link to="/home/dashboard/job/company">Company</Link></li>
         <li><Link to="/home/dashboard/job/contacts">Contacts</Link></li>
-        <li><Link to="/home/dashboard/job/documents">Documents</Link></li>
+        <li><Link to="/home/dashboard/job/resources">Resources</Link></li>
         <li><Link to="/home/dashboard/job/activity">Activity</Link></li>
       </ul>
     </div>
