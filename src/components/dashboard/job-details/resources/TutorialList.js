@@ -9,7 +9,7 @@ const TutorialList = (props) => {
     <div className="Tutorial-list">
       {props.tutorials ? props.tutorials.map(tutorial =>
         (<TutorialListEntry
-          key={tutorial.title}
+          key={tutorial.link}
           tutorial={tutorial}
           addResource={props.addResource}
           skill={props.skill}

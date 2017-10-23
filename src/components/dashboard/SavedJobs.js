@@ -12,14 +12,9 @@ const SavedJobs = (props) => {
       <td><a href={props.jobPosting.url} target="_blank">ClickMe</a></td>
       <td className="truncate">{props.jobPosting.skills.join(', ')}</td>
       <td><button onClick={() => props.deleteJob(props.jobPosting.jobId)}>Delete</button></td>
-      <td><a href="#/home/resources" onClick={() => props.getJobComparison(props.jobPosting.jobId)}>
-            Check Qualification
-          </a>
-      </td>
     </tr>
   );
 };
-
 SavedJobs.propTypes = {
   jobPosting: PropTypes.object.isRequired,
   deleteJob: PropTypes.func.isRequired,

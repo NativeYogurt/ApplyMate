@@ -10,6 +10,7 @@ import ContactEdit from './contacts/contact-edit';
 import Activity from './activity/activities';
 import ActivityAdd from './activity/activity-add';
 import ActivityEdit from './activity/activity-edit';
+import Resources from './resources/resources';
 
 const JobBoard = (props) => {
   return (
@@ -17,6 +18,15 @@ const JobBoard = (props) => {
       (
         <div>
           <Switch>
+            <Route
+              path="/home/dashboard/job/resources"
+              render={() => (
+                <Resources
+                  jobId={props.jobId}
+                  userId={props.userId}
+                />
+              )}
+            />
             <Route
               path="/home/dashboard/job/company"
               render={() => (

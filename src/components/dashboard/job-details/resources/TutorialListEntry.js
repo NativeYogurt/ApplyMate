@@ -10,7 +10,7 @@ class TutorialListEntry extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
-    if (this.props.checkResource(this.props.tutorial.title, this.props.savedResources)) {
+    if (this.props.checkResource(this.props.tutorial.link, this.props.savedResources)) {
       this.setState({
         added: true,
       });

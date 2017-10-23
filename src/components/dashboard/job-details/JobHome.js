@@ -17,6 +17,7 @@ class JobHome extends React.Component {
       skills: [],
       companyUrl: '',
       companyInfo: null,
+      userId: '',
     };
     this.loadData = this.loadData.bind(this);
     this.loadCompanyInfo = this.loadCompanyInfo.bind(this);
@@ -45,6 +46,7 @@ class JobHome extends React.Component {
           url: data.url,
           skills: data.skills,
           companyUrl: data.companyUrl,
+          userId: data.userId,
         });
       })
       .then(() => {
@@ -90,6 +92,7 @@ class JobHome extends React.Component {
           companyUrl={this.state.companyUrl}
           companyInfo={this.state.companyInfo}
           jobId={this.state.jobId}
+          userId={this.state.userId}
         />
       </div>
     );
