@@ -3,8 +3,8 @@ import axios from 'axios';
 import firebase from 'firebase';
 import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
-import DataChart from './DataChart';
 import GithubSkills from './githubSkills';
+import Resume from './resume';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -137,8 +137,13 @@ class Profile extends React.Component {
         </form>
         <hr />
         {Object.keys(this.props.githubSkills).length ? <GithubSkills githubSkills={this.props.githubSkills}/> : null}
-        <h3>DATAVISUAL EXAMPLES:</h3>
-        <DataChart />
+        <Resume
+          userId={this.props.userId}
+          getJobComparison={this.props.getJobComparison}
+          getUserInfo={this.props.getUserInfo}
+          userResume={this.props.userResume}
+          clearResume={this.props.clearResume}
+        />
       </div>
     );
   }

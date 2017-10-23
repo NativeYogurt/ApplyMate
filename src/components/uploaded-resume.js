@@ -74,7 +74,7 @@ class UploadedResume extends React.Component {
 
     let resumeElement = '';
     if (!resume && !this.props.resumeLoadToggle) {
-      resumeElement = (<h5>Please upload resume</h5>);
+      resumeElement = (<p>Upload your resume to compare job skills!</p>);
     } else if (!resume && this.props.resumeLoadToggle) {
       resumeElement = (<ThreeBounce
         size={15}
@@ -91,7 +91,6 @@ class UploadedResume extends React.Component {
     return (
       <div>
         {resumeElement}
-
         {pagination}
       </div>
     );

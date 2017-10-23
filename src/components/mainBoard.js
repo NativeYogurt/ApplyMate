@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Dashboard from './dashboard/dashboard';
-import Resume from './resume';
 import Resources from './resources/resources';
-import Profile from './Profile';
+import Profile from './profile';
+import Analytics from './analytics/analytics';
 import SearchJobs from './job-search/SearchJobs';
 import JobHome from './dashboard/job-details/JobHome';
 
@@ -140,14 +140,10 @@ class Main extends React.Component {
       <div>
         <Switch>
           <Route
-            path="/home/resume"
+            path="/home/analytics"
             render={() => (
-              <Resume
-                userId={this.props.userId}
-                getJobComparison={this.getJobComparison}
-                getUserInfo={this.getUserInfo}
-                userResume={this.state.resume}
-                clearResume={this.clearResume}
+              <Analytics
+                savedJobs={this.state.savedJobs}
               />
             )}
           />
@@ -174,13 +170,15 @@ class Main extends React.Component {
             path="/home/profile"
             render={() => (
               <Profile
-                userEmail={this.state.email}
+                userId={this.props.userId}
                 userFirstName={this.state.firstName}
                 userLastName={this.state.lastName}
-                userId={this.props.userId}
+                userEmail={this.state.email}
+                userResume={this.state.resume}
                 githubUsername={this.state.githubUsername}
+                getJobComparison={this.getJobComparison}
                 getUserInfo={this.getUserInfo}
-                githubSkills={this.state.githubSkills}
+                clearResume={this.clearResume}
               />
             )}
           />
