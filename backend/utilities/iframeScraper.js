@@ -19,10 +19,12 @@ const goToInitialPage = async (url) => {
 
 const scrapeIframe = async (url) => {
   try {
-    nightmare = Nightmare({ show: true });
+    nightmare = Nightmare();
     const secondUrl = await goToInitialPage(url);
     if (!secondUrl) {
-      nightmare.end();
+      console.log('no url')
+      await nightmare
+        .end();
       return [];
     }
     const data = await nightmare
