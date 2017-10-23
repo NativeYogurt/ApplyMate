@@ -8,21 +8,6 @@ import Home from './home.js';
 import Auth from './Auth.js';
 
 class App extends React.Component {
-  static GitAuth(e) {
-    e.preventDefault();
-    const provider = new firebase.auth.GithubAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-      .then((result) => {
-        console.log('token', result.credential.accessToken);
-        console.log('user', result.user);
-      })
-      .catch((error) => {
-        console.log('Git Auth Error:', error.code);
-        console.log(error.message);
-        console.log(error.email);
-        console.log(error.credential);
-      });
-  }
   constructor(props) {
     super(props);
     this.state = {
