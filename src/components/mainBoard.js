@@ -195,6 +195,7 @@ class Main extends React.Component {
                 userEmail={this.state.email}
                 userResume={this.state.resume}
                 githubUsername={this.state.githubUsername}
+                githubSkills={this.state.githubSkills}
                 getJobComparison={this.getJobComparison}
                 getUserInfo={this.getUserInfo}
                 clearResume={this.clearResume}
