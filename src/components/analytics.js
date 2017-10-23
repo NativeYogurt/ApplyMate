@@ -12,13 +12,11 @@ const Analytics = ({ savedJobs }) => {
   // };
 
   const data = {
-    labels: savedJobs.map((job) => job.status),
+    labels: ['Wishlist', 'Applied', 'Phone', 'OnSite', 'Rejected', 'Offer'],
     datasets: [{
       label: 'Job Status',
-      data: [
-        617594,
-        381045,
-      ],
+      // data: savedJobs.map((job) => job.status),
+      data: [25, 10, 4, 6, 2, 0],
       // backgroundColor:'green',
       backgroundColor: [
         'rgba(255, 99, 132, 0.6)',
@@ -37,6 +35,11 @@ const Analytics = ({ savedJobs }) => {
     <div>
       <Pie
         data={data}
+        width={10}
+        height={3}
+        options={{
+          maintainAspectRatio: true,
+        }}
       />
     </div>
   );
