@@ -99,6 +99,7 @@ class Profile extends React.Component {
 
   render() {
     const username = `${this.props.userFirstName} ${this.props.userLastName}`;
+    const githubSkills = `${this.props.githubSkills}`;
     return (
       <div className="user-profile">
         <h3>Hello, {this.state.githubUsername || username}!</h3>
@@ -136,7 +137,10 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
-        {Object.keys(this.props.githubSkills).length ? <GithubSkills githubSkills={this.props.githubSkills}/> : null}
+        {Object.keys(githubSkills).length ?
+          <GithubSkills
+            githubSkills={this.props.githubSkills}
+          /> : null }
         <Resume
           userId={this.props.userId}
           getJobComparison={this.props.getJobComparison}
