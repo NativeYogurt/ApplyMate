@@ -16,7 +16,6 @@ class SkillEntry extends React.Component {
     this.getTutorials = this.getTutorials.bind(this);
   }
   componentWillMount() {
-    // console.log('this skill', this.props.skill);
     if (this.props.skill) {
       this.getYouTubeVideos(`${this.props.skill}+programming+tutorial`);
       this.getTutorials(`${this.props.skill}+programming+tutorial`);
@@ -64,7 +63,7 @@ class SkillEntry extends React.Component {
       <tr className="skill-list-entry">
         <td className="skill"><h2>{this.props.skill}</h2></td>
         <td className="video"><VideoList videos={this.state.videos} skill={this.props.skill} addResource={this.props.addResource} userId={this.props.userId} checkResource={this.props.checkResource} savedResources={this.props.savedResources} /></td>
-        <td className="web"><TutorialList tutorial={this.state.tutorials} skill={this.props.skill} addResource={this.props.addResource} userId={this.props.userId} checkResource={this.props.checkResource} savedResources={this.props.savedResources} /></td>
+        <td className="web"><TutorialList tutorials={this.state.tutorials} skill={this.props.skill} addResource={this.props.addResource} userId={this.props.userId} checkResource={this.props.checkResource} savedResources={this.props.savedResources} /></td>
       </tr>
     );
   }
