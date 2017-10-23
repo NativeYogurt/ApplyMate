@@ -19,6 +19,7 @@ class Main extends React.Component {
       lastName: '',
       email: '',
       githubUsername: '',
+      githubSkills: {},
       savedJobs: [],
       resume: '',
       userSkills: [],
@@ -51,6 +52,7 @@ class Main extends React.Component {
           lastName: data.lastName,
           email: data.email,
           githubUsername: data.githubUsername,
+          githubSkills: data.githubSkills,
           resume: data.resumeURL || '',
         });
       })
@@ -178,6 +180,7 @@ class Main extends React.Component {
                 userId={this.props.userId}
                 githubUsername={this.state.githubUsername}
                 getUserInfo={this.getUserInfo}
+                githubSkills={this.state.githubSkills}
               />
             )}
           />

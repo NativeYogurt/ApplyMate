@@ -22,7 +22,7 @@ class UploadedResume extends React.Component {
       this.props.toggleResume(false);
     }
   }
-  
+
   onDocumentComplete(pages) {
     this.setState({ page: 1, pages });
   }
