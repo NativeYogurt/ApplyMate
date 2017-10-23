@@ -1,12 +1,11 @@
 const axios = require('axios');
 // expecting req.body.searchTerm
 const request = require('request');
-const Twitter = require('twitter')
+const Twitter = require('twitter');
 
 exports.BBB = (req, res) => {
-  axios({
-    method: 'GET',
-    url: `https://api.bbb.org/api/orgs/search?primaryOrganizationName=${req.body.searchTerm}`,
+  axios.get('https://api.bbb.org/api/orgs/search', {
+    params: { primaryOrganizationName: req.body.searchTerm },
     headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
   })
     .then(data => {
@@ -18,16 +17,11 @@ exports.BBB = (req, res) => {
     });
 };
 exports.getCompanyUrl = (req, res) => {
-  axios({
-    method: 'GET',
-    url: `https://api.bbb.org/api/orgs/search?primaryOrganizationName=${req.body.searchTerm}`,
+  axios.get('https://api.bbb.org/api/orgs/search', {
+    params: { primaryOrganizationName: req.body.searchTerm },
     headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
   })
     .then(data => {
-      
-      console.log('1',data.data.SearchResults[0])
-      console.log('2',data.data.SearchResults[0].BusinessURLs)
-      console.log('3',data.data.SearchResults[0].BusinessURLs[0])
       res.send(data.data.SearchResults[0].BusinessURLs[0]);
     })
     .catch(err => {
@@ -36,7 +30,18 @@ exports.getCompanyUrl = (req, res) => {
     });
 };
 exports.Glassdoor = (req, res) => {
-  axios.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${process.env.GLASSDOOR_ID}&t.k=${process.env.GLASSDOOR_KEY}&userip=144.121.106.166&useragent=Mozilla/%2F4&action=employers&q=${req.body.searchTerm}`)
+  axios.get('http://api.glassdoor.com/api/api.htm', {
+    params: {
+      v: 1,
+      format: 'json',
+      't.p': process.env.GLASSDOOR_ID,
+      't.k': process.env.GLASSDOOR_KEY,
+      userip: '144.121.106.166',
+      useragent: 'Mozilla/%2F4',
+      action: 'employers',
+      q: req.body.searchTerm,
+    },
+  })
     .then(data => {
       res.send(data.data);
     })
@@ -52,17 +57,15 @@ exports.getStockSymb = (req, res) => {
 };
 
 exports.EDGAR = (req, res) => {
-  axios({
-    method: 'GET',
-    url: `http://edgaronline.api.mashery.com/v2/corefinancials/qtr`,
-    params: { 
+  axios.get('http://edgaronline.api.mashery.com/v2/corefinancials/qtr', {
+    params: {
       primarysymbols: req.body.searchTerm,
-      appkey: process.env.EDGAR_KEY, 
-    },
+      appkey: process.env.EDGAR_KEY,
+    }
   })
     .then(data => {
-      let arr = [];
-      let array = [];
+      const arr = [];
+      const array = [];
       for (let i = 0; i < data.data.result.totalrows; i++) {
         arr.push(data.data.result.rows[i].values.filter((item, ind) => {
           if (item.field === 'totalrevenue' || item.field === 'researchdevelopmentexpense' || item.field === 'periodenddate' || item.field === 'incomebeforetaxes') {
@@ -71,7 +74,7 @@ exports.EDGAR = (req, res) => {
         }));
       }
       for (let i = 0; i < arr.length; i++) {
-        let temp = [];
+        const temp = [];
         for (let j = 0; j < arr[i].length; j++) {
           temp.push(`${arr[i][j].field}: ${arr[i][j].value}`);
         }
@@ -89,12 +92,12 @@ exports.fullContact = (req, res) => {
     method: 'GET',
     url: 'https://api.fullcontact.com/v2/company/lookup.json',
     params: {
-      domain: req.body.searchTerm, 
+      domain: req.body.searchTerm,
       apiKey: process.env.FULLCONTACT_APIKEY,
-    }
+    },
   })
     .then(data => {
-      let obj = {};
+      const obj = {};
       obj.name = data.data.organization.name;
       obj.employees = data.data.organization.approxEmployees;
       obj.founded = data.data.organization.founded;
@@ -105,7 +108,7 @@ exports.fullContact = (req, res) => {
       res.send(obj);
     })
     .catch(err => alert(err));
-}
+};
 exports.Twitter = (req, res) => {
   const client = new Twitter({
     consumer_key: process.env.TWITTER_KEY,
@@ -117,20 +120,20 @@ exports.Twitter = (req, res) => {
     screen_name: req.body.searchTerm,
     count: 7,
     exclude_replies: true,
-  }
+  };
   client.get('statuses/user_timeline', params, (err, tweets, response) => {
-    let arr = []
-    console.log(tweets)
-    for ( let i = 0; i < 5; i++) {
-      let obj = {}
+    const arr = [];
+    console.log(tweets);
+    for (let i = 0; i < 5; i++) {
+      const obj = {};
       obj.time = tweets[i].created_at;
       obj.text = tweets[i].text;
       obj.url = tweets[i].entities.urls[0].expanded_url;
       obj.retweet = tweets[i].retweet_count;
       obj.favorite = tweets[i].favorite_count;
       arr.push(obj);
-      console.log(obj)
+      console.log(obj);
     }
     res.send(arr);
-  })
-}
+  });
+};
