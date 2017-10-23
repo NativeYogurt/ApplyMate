@@ -36,47 +36,14 @@ exports.getCompanyUrl = (req, res) => {
     });
 };
 exports.Glassdoor = (req, res) => {
-  const options = {
-    method: 'GET',
-    url: 'http://api.glassdoor.com/api/api.htm',
-    qs: {
-      v: '1',
-      format: 'json',
-      't.p': process.env.GLASSDOOR_ID,
-      't.k': process.env.GLASSDOOR_KEY,
-      userip: '144.121.106.166',
-      useragent: 'Mozilla//4',
-      action: 'employers',
-      q: req.body.searchTerm,
-    },
-  };
-  request(options, (error, resp, body) => {
-    if (error) throw new Error(error);
-    // I can't break the body down for some reason.
-    res.send(body);
-  });
-
-  // I don't know why axios won't work here, it gives weird data back.
-
-  // axios.get('http://api.glassdoor.com/api/api.htm', {
-  //   params: {
-  //     v: 1,
-  //     format: 'JSON',
-  //     't.p': process.env.GLASSDOOR_ID,
-  //     't.k': process.env.GLASSDOOR_KEY,
-  //     userip: '144.121.106.166',
-  //     useragent: 'Mozilla//4',
-  //     action: 'employers',
-  //     q: req.body.searchTerm,
-  //   },
-  // })
-  //   .then(data => {
-  //     res.send(data.data);
-  //   })
-  //   .catch(err => {
-  //     console.error(err);
-  //     res.send(err);
-  //   });
+  axios.get(`http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=${process.env.GLASSDOOR_ID}&t.k=${process.env.GLASSDOOR_KEY}&userip=144.121.106.166&useragent=Mozilla/%2F4&action=employers&q=${req.body.searchTerm}`)
+    .then(data => {
+      res.send(data.data);
+    })
+    .catch(err => {
+      console.error(err);
+      res.send(err);
+    });
 };
 
 exports.getStockSymb = (req, res) => {
