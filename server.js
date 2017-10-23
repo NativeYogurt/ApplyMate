@@ -10,6 +10,7 @@ const db = require('./backend/db/db');
 const User = require('./backend/models/User');
 const SavedJobs = require('./backend/models/SavedJobs');
 const Contacts = require('./backend/models/Contacts');
+const Events = require('./backend/models/Events');
 const Github = require('./backend/utilities/githubRepoCrawler');
 
 const router = require('./backend/router/routes.js');

@@ -7,6 +7,7 @@ const user = require('../controllers/user');
 const comparison = require('../controllers/comparison.js');
 const resource = require('../controllers/resource.js');
 const contact = require('../controllers/contact.js');
+const event = require('../controllers/event.js');
 // const github = require('../utilities/githubRepoCrawler.js');
 
 
@@ -36,6 +37,12 @@ router.get('/contacts', contact.handleGetContacts);
 router.get('/contacts/:id', contact.handleGetContact);
 router.put('/contacts/:id', contact.handleEditContact);
 router.put('/contact/delete', contact.handleContactDelete);
+
+router.post('/activities', event.handleEventAdd);
+router.get('/activities', event.handleGetEvents);
+router.get('/activities/:id', event.handleGetEvent);
+router.put('/activities/:id', event.handleEditEvent);
+router.put('/activity/delete', event.handleEventDelete);
 // router.get('/test', github.cronGitHubUpdate);
 
 module.exports = router;
