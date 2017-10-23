@@ -141,7 +141,9 @@ class Main extends React.Component {
           <Route
             path="/home/analytics"
             render={() => (
-              <Analytics />
+              <Analytics
+                savedJobs={this.state.savedJobs}
+              />
             )}
           />
           <Route

@@ -33,35 +33,6 @@ const DataChart = () => {
     <div>
       <Pie
         data={data}
-        width={10}
-        height={3}
-        options={{
-          maintainAspectRatio: true,
-          title: {
-            display: true,
-            text: 'Largest Cities In Massachusetts',
-            fontSize: 25,
-          },
-          legend: {
-            display: false,
-            position: 'top',
-            labels: {
-              fontColor: '#000',
-            },
-          },
-          layout: {
-            padding: {
-              left: 50,
-              right: 0,
-              bottom: 0,
-              top: 0,
-            },
-          },
-          tooltips: {
-            enabled: true,
-          },
-        }
-      }
       />
     </div>
   );
