@@ -114,7 +114,7 @@ exports.handleEditJob = (req, res) => {
     company: req.body.company,
     jobTitle: req.body.jobTitle,
     status: req.body.status,
-    dateApplied: req.body.dateApplied,
+    dateApplied: req.body.dateApplied || null,
     url: req.body.url,
     companyUrl: req.body.companyUrl,
   }, {
