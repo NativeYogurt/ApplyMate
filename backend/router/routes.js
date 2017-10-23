@@ -32,7 +32,10 @@ router.post('/EDGAR', jobInfo.EDGAR);
 router.post('/fullContact', jobInfo.fullContact);
 router.post('/Twitter', jobInfo.Twitter);
 router.post('/contacts', contact.handleContactAdd);
-
+router.get('/contacts', contact.handleGetContacts);
+router.get('/contacts/:id', contact.handleGetContact);
+router.put('/contacts/:id', contact.handleEditContact);
+router.put('/contact/delete', contact.handleContactDelete);
 // router.get('/test', github.cronGitHubUpdate);
 
 module.exports = router;

@@ -6,11 +6,11 @@ const JobNavbar = (props) => {
   return (
     <div>
       <ul id="job-navbar">
-        <li><Link to="/home/dashboard/:id/show">Details</Link></li>
-        <li><Link to="/home/dashboard/:id/company">Company</Link></li>
-        <li><Link to="/home/dashboard/:id/contacts">Contacts</Link></li>
-        <li><Link to="/home/dashboard/:id/documents">Documents</Link></li>
-        <li><Link to="/home/dashboard/:id/activity">Activity</Link></li>
+        <li><Link to="/home/dashboard/job/show">Details</Link></li>
+        <li><Link to="/home/dashboard/job/company">Company</Link></li>
+        <li><Link to="/home/dashboard/job/contacts">Contacts</Link></li>
+        <li><Link to="/home/dashboard/job/documents">Documents</Link></li>
+        <li><Link to="/home/dashboard/job/activity">Activity</Link></li>
       </ul>
     </div>
   );
