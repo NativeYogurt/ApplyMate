@@ -12,7 +12,7 @@ const big5Scraper = async (url) => {
     }
     const scraperData = await nightmare
       .goto(url)
-      .wait(10000)
+      .wait(5000)
       .evaluate((querySelector) => {
         return [...document.querySelectorAll(querySelector)]
           .map(el => el.innerText);

@@ -16,6 +16,7 @@ class Profile extends React.Component {
       githubUsername: this.props.githubUsername,
       password1: '',
       password2: '',
+      emailReminder: this.props.emailReminder,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -60,6 +61,7 @@ class Profile extends React.Component {
       firstName: form.firstName.value || this.state.firstName,
       lastName: form.lastName.value || this.state.lastName,
       email: form.email.value || this.state.email,
+      emailReminder: this.state.emailReminder,
     }, () => this.updateUser());
     // clear the form for the next input
     form.firstName.value = '';
@@ -75,6 +77,7 @@ class Profile extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
+      emailReminder: this.state.emailReminder,
     })
       .then((data) => {
         alert('User has been updated!');
