@@ -14,6 +14,7 @@ class JobHome extends React.Component {
       jobTitle: '',
       status: '',
       dateApplied: '',
+      location: '',
       url: '',
       skills: [],
       companyUrl: '',
@@ -43,6 +44,7 @@ class JobHome extends React.Component {
           jobTitle: data.jobTitle,
           status: data.status,
           dateApplied: data.dateApplied || '',
+          location: data.location,
           url: data.url,
           skills: data.skills,
           companyUrl: data.companyUrl,
@@ -64,6 +66,7 @@ class JobHome extends React.Component {
           jobTitle={this.state.jobTitle}
           status={this.state.status}
           dateApplied={this.state.dateApplied}
+          location={this.state.location}
           url={this.state.url}
           companyUrl={this.state.companyUrl}
           skills={this.state.skills}

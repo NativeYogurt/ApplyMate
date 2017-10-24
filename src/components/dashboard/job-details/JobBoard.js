@@ -84,6 +84,7 @@ const JobBoard = (props) => {
                   jobTitle={props.jobTitle}
                   status={props.status}
                   dateApplied={props.dateApplied}
+                  location={props.location}
                   url={props.url}
                   skills={props.skills}
                   companyUrl={props.companyUrl}
