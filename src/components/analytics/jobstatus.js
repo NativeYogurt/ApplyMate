@@ -4,18 +4,27 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import FlatButton from 'material-ui/FlatButton';
 
 const JobStatus = ({ savedJobs }) => {
+  const statusObj = savedJobs.reduce((a, b) => {
+    let status = b.status;
+    a[status] ? a[status] += 1 : a[status] = 1;
+    return a;
+  }, {});
+  const labels = Object.keys(statusObj);
+  const statusData = [];
+  labels.forEach(status => statusData.push(statusObj[status]));
+
   const data = {
-    labels: ['Wishlist', 'Applied', 'Phone', 'OnSite', 'Rejected', 'Offer'], // get these dynamically
+    labels, // ['Wishlist', 'Applied', 'Phone', 'OnSite', 'Rejected', 'Offer'],
     datasets: [{
-      data: [25, 10, 4, 6, 2, 0], // data: savedJobs.map((job) => job.status),
+      data: statusData, // data: [25, 10, 4, 6, 2, 0],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.6)', // pink
-        'rgba(54, 162, 235, 0.6)', // blue
-        'rgba(255, 206, 86, 0.6)', // green
-        'rgba(75, 192, 192, 0.6)', // yellow
-        'rgba(153, 102, 255, 0.6)', // orange
-        'rgba(255, 159, 64, 0.6)', // purple
-        'rgba(255, 99, 132, 0.6)', // grey
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+        'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 99, 132, 0.6)',
       ],
     },
     ],
