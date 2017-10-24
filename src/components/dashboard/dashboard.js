@@ -75,12 +75,16 @@ class Dashboard extends React.Component {
       }
       return -1;
     }).reverse().map(this.createJobs);
+    const sortedByLocation = [].concat(this.props.savedJobs).sort((a, b) =>
+      a.location > b.location).map(this.createJobs);
 
     let listJobs = null;
     if (this.state.sortBy === 'status') {
       listJobs = sortedByStatus;
     } else if (this.state.sortBy === 'favorite') {
       listJobs = sortedByFavorite;
+    } else if (this.state.sortBy === 'location') {
+      listJobs = sortedByLocation;
     } else {
       listJobs = sortedByDate;
     }
@@ -92,6 +96,7 @@ class Dashboard extends React.Component {
             <option value="status">Status</option>
             <option value="dateApplied">DateApplied</option>
             <option value="favorite">Favorites</option>
+            <option value="location">Location</option>
           </select>
         </div>
         <table className="dashboard">

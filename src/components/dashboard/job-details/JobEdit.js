@@ -12,6 +12,7 @@ class JobEdit extends React.Component {
       jobTitle: this.props.jobTitle,
       status: this.props.status,
       dateApplied: this.props.dateApplied,
+      location: this.props.location || '',
       url: this.props.url,
       skills: this.props.skills,
       companyUrl: this.props.companyUrl,
@@ -26,6 +27,7 @@ class JobEdit extends React.Component {
     this.showSuccess = this.showSuccess.bind(this);
     this.dismissSuccess = this.dismissSuccess.bind(this);
     this.onChangeCompanyUrl = this.onChangeCompanyUrl.bind(this);
+    this.onChangeLocation = this.onChangeLocation.bind(this);
   }
 
   onChangeCompany(e) {
@@ -51,6 +53,10 @@ class JobEdit extends React.Component {
     this.setState({ companyUrl: e.target.value });
   }
 
+  onChangeLocation(e) {
+    this.setState({ location: e.target.value });
+  }
+
   showSuccess() {
     this.setState({ successVisible: true });
   }
@@ -66,6 +72,7 @@ class JobEdit extends React.Component {
       jobTitle: this.state.jobTitle,
       status: this.state.status,
       dateApplied: this.state.dateApplied,
+      location: this.state.location,
       url: this.state.url,
       companyUrl: this.state.companyUrl,
     };
@@ -132,6 +139,12 @@ class JobEdit extends React.Component {
             <label htmlFor="dateApplied">
               <span className="input-label">Date Applied:</span>
               <input type="date" name="dateApplied" value={this.state.dateApplied} onChange={this.onChangeDateApplied} />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="location">
+              <span className="input-label">Location:</span>
+              <input type="text" name="location" value={this.state.location} onChange={this.onChangeLocation} />
             </label>
           </div>
           <div className="form-group">
