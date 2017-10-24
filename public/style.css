@@ -40,16 +40,26 @@
     color: white;
 }
 /* The alert message box */
-.alert {
+.alert, .error {
     padding: 20px;
-    background-color: #f44336; /* Red */
     color: white;
     margin-bottom: 15px;
+}
+
+.alert {
+    background-color: green; /* Red */
+}
+
+.error {
+  background-color: #f44336;
 }
 
 table .dashboard, .dashboard th, .dashboard td {
     border-bottom: 1px solid #ddd;
     border-collapse: collapse;
+    border-spacing: 0;
+    border-left: 0 none;
+    border-right: 0 none;
 }
 
 .dashboard th, .dashboard td {
@@ -180,4 +190,8 @@ button {
 
 .quick-actions {
   padding-right: 8px;
+}
+
+.saved-job-posting:hover {
+  background-color: #D3D3D3;
 }

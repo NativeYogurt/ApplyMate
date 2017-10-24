@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
+import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
 
 class Dashboard extends React.Component {
@@ -10,6 +11,7 @@ class Dashboard extends React.Component {
     this.state = {
       successVisible: false,
       sortBy: 'status',
+      errorMessage: null,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeSortBy = this.onChangeSortBy.bind(this);
@@ -22,9 +24,28 @@ class Dashboard extends React.Component {
     this.setState({ sortBy: e.target.value });
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobAdd;
+    if (!form.company.value) {
+      this.setState({
+        errorMessage: 'Please Add a Company Name',
+      });
+      return;
+    }
+    if (!form.jobtitle.value) {
+      this.setState({
+        errorMessage: 'Please Add a Job Title',
+      });
+      return;
+    }
+    if (!form.url.value) {
+      this.setState({
+        errorMessage: 'Please Add a Job URL',
+      });
+      return;
+    }
     this.props.addJob({
       company: form.company.value,
       jobTitle: form.jobtitle.value,
@@ -44,7 +65,10 @@ class Dashboard extends React.Component {
     form.location.value = '';
     form.url.value = '';
     form.companyUrl.value = '';
-    this.setState({ successVisible: true });
+    this.setState({
+      successVisible: true,
+      errorMessage: null,
+    });
   }
   createJobs(job) {
     return (
@@ -124,6 +148,7 @@ class Dashboard extends React.Component {
       <div>
         <h2>New Job Application</h2>
         {this.state.successVisible ? success : null}
+        <Error error={this.state.errorMessage} />
         <form className="job-add-form" name="jobAdd" onSubmit={this.handleSubmit}>
           <span className="form-group">
             <input type="text" name="company" placeholder="company" />
