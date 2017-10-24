@@ -2,7 +2,6 @@ import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import Auth from './Auth.js'
-import EDGAR from './edgar.js'
 
 class Signup extends React.Component {
   constructor(props) {
@@ -86,7 +85,6 @@ class Signup extends React.Component {
           </button>
         </Link>
         <br />
-        <EDGAR companyName='facebook' />
       </div>
     );
   }

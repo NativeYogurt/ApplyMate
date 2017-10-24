@@ -100,7 +100,7 @@ class JobEdit extends React.Component {
             <label htmlFor="url">
               <span className="input-label">Job URL:</span>
               <input className="job-post-url" type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
-              <a href={this.state.url} target="_blank">GO</a>
+              {' '}<a href={this.state.url} target="_blank">GO</a>
             </label>
           </div>
           <div className="form-group">

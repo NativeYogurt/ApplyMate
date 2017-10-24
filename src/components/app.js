@@ -2,10 +2,10 @@ import React from 'react';
 import firebase from 'firebase';
 import { browserHistory, Route, Redirect, Switch } from 'react-router-dom';
 import Modal from 'react-modal';
-import Signup from './signup';
-import Login from './login';
-import Home from './home';
-import Auth from './Auth';
+import Signup from './signup.js';
+import Login from './login.js';
+import Home from './home.js';
+import Auth from './Auth.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +28,7 @@ class App extends React.Component {
     });
     setTimeout(() => unsubscribe(), 5000);
   }
+
   setUser(user, bool) {
     this.setState({
       user,
@@ -56,7 +57,6 @@ class App extends React.Component {
       />
     );
   }
-
   render() {
     return (
       <div>
