@@ -57,32 +57,59 @@ const addJobSkillsToDB = (skills, req, res) => {
     });
 };
 
+//TODO OLD VERSON WILL DELETE AFTER NEW VERSION HAS BEEN TESTED OVER THE NEXT FEW DAYS
 
-exports.handleJobAdd = (req, res) => {
-  const big5 = ['amazon', 'google', 'microsoft', 'apple', 'facebook'];
-  const big5Check = big5.some(company => req.body.url.includes(company));
-  if (big5Check) {
-    big5Scraper.big5Scraper(req.body.url)
-      .then((data) => extractSkills(data))
-      .then((skills) => addJobSkillsToDB(skills, req, res))
-      .catch(e => console.error(e));
-  } else {
-    iFrameScraper.scrapeIframe(req.body.url)
-      .then((data) => {
-        return extractSkills(data);
-      })
-      .then((skills) => {
-        if (skills.length > 0) {
-          addJobSkillsToDB(skills, req, res);
-          return;
-        }
-        x(req.body.url, (['ol'], ['ul'], ['li']))((err, data) => {
-          extractSkills(data)
-            .then((xskills) => addJobSkillsToDB(xskills, req, res))
-            .catch(e => console.error(e));
-        });
-      })
-      .catch(e => console.error(e));
+// exports.handleJobAdd = (req, res) => {
+//   const big5 = ['amazon', 'google', 'microsoft', 'apple', 'facebook'];
+//   const big5Check = big5.some(company => req.body.url.includes(company));
+//   if (big5Check) {
+//     big5Scraper.big5Scraper(req.body.url)
+//       .then((data) => extractSkills(data))
+//       .then((skills) => addJobSkillsToDB(skills, req, res))
+//       .catch(e => console.error(e));
+//   } else {
+//     iFrameScraper.scrapeIframe(req.body.url)
+//       .then((data) => {
+//         return extractSkills(data);
+//       })
+//       .then((skills) => {
+//         if (skills.length > 0) {
+//           addJobSkillsToDB(skills, req, res);
+//           return;
+//         }
+//         x(req.body.url, (['ol'], ['ul'], ['li']))((err, data) => {
+//           extractSkills(data)
+//             .then((xskills) => addJobSkillsToDB(xskills, req, res))
+//             .catch(e => console.error(e));
+//         });
+//       })
+//       .catch(e => console.error(e));
+//   }
+// };
+
+exports.handleJobAdd = async (req, res) => {
+  try {
+    let scrapeData = '';
+    let skills = '';
+    scrapeData = await big5Scraper.big5Scraper(req.body.url);
+    skills = await extractSkills(scrapeData);
+    if (skills) {
+      await addJobSkillsToDB(skills, req, res);
+      return;
+    }
+    scrapeData = await iFrameScraper.scrapeIframe(req.body.url);
+    skills = await extractSkills(scrapeData);
+    if (skills) {
+      await addJobSkillsToDB(skills, req, res);
+      return;
+    }
+    x(req.body.url, (['ol'], ['ul'], ['li']))((err, data) => {
+      extractSkills(data)
+        .then(xskills => addJobSkillsToDB(xskills, req, res))
+        .catch(e => console.error(e));
+    });
+  } catch (e) {
+    console.error(e);
   }
 };
 

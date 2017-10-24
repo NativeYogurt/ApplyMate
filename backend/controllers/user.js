@@ -19,6 +19,7 @@ exports.handleUpdateUser = (req, res) => {
         lastName: req.body.lastName || user.lastName,
         email: req.body.email || user.email,
         githubUsername: req.body.githubUsername || user.githubUsername,
+        emailReminder: req.body.emailReminder || user.emailReminder,
       };
       User.update(newData, { where: { userId: req.body.userId } })
         .then(result => {

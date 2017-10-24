@@ -24,6 +24,7 @@ class Main extends React.Component {
       resume: '',
       userSkills: [],
       missingSkills: [],
+      emailReminder: '',
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.getJobs = this.getJobs.bind(this);
@@ -55,6 +56,7 @@ class Main extends React.Component {
           githubUsername: data.githubUsername,
           githubSkills: data.githubSkills,
           resume: data.resumeURL || '',
+          emailReminder: data.emailReminder,
         });
       })
       .catch(err => console.log('error getting user data', err));
@@ -199,6 +201,7 @@ class Main extends React.Component {
                 getJobComparison={this.getJobComparison}
                 getUserInfo={this.getUserInfo}
                 clearResume={this.clearResume}
+                emailReminder={this.state.emailReminder}
               />
             )}
           />
