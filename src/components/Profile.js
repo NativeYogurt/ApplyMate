@@ -56,7 +56,7 @@ class Profile extends React.Component {
   }
 
   onChangeEmailReminder(e) {
-    this.setState({ emailReminder: e.target.value });
+    this.setState({ emailReminder: e.target.value }, () => console.log(this.state.emailReminder));
   }
 
   handleSubmit(e) {
@@ -107,6 +107,19 @@ class Profile extends React.Component {
 
   render() {
     const username = `${this.props.userFirstName} ${this.props.userLastName}`;
+    const githubSkills = `${this.props.githubSkills}`;
+    const emailReminderRadioButtons = (this.state.emailReminder === true) ?
+      (<label htmlFor="emailReminder">
+        Interview Email Reminder:
+        <input type="radio" name="emailReminder" value="true" defaultChecked="checked" onClick={this.onChangeEmailReminder} /> On
+        <input type="radio" name="emailReminder" value="false" onClick={this.onChangeEmailReminder} /> Off
+       </label>) :
+      (<label htmlFor="emailReminder">
+        Interview Email Reminder:
+        <input type="radio" name="emailReminder" value="true" onClick={this.onChangeEmailReminder} /> On
+        <input type="radio" name="emailReminder" value="false" defaultChecked="checked" onClick={this.onChangeEmailReminder} /> Off
+       </label>);
+
     return (
       <div className="user-profile">
         <h3>Hello, {this.state.githubUsername || username}!</h3>
@@ -128,11 +141,7 @@ class Profile extends React.Component {
             <input type="text" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
           </label>
           <br />
-          <label htmlFor="emailReminder">
-          Interview Email Reminder:
-            <input type="radio" name="emailReminder" value="true" onChange={this.onChangeEmailReminder} /> On
-            <input type="radio" name="emailReminder" value="false" onChange={this.onChangeEmailReminder} /> Off
-          </label>
+          {emailReminderRadioButtons}
           <br />
           Github Username: {this.state.githubUsername}
           <br />
