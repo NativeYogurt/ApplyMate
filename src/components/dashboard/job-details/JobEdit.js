@@ -16,6 +16,7 @@ class JobEdit extends React.Component {
       url: this.props.url,
       skills: this.props.skills,
       companyUrl: this.props.companyUrl,
+      notes: this.props.notes || '',
       successVisible: false,
     };
     this.onChangeCompany = this.onChangeCompany.bind(this);
@@ -28,6 +29,7 @@ class JobEdit extends React.Component {
     this.dismissSuccess = this.dismissSuccess.bind(this);
     this.onChangeCompanyUrl = this.onChangeCompanyUrl.bind(this);
     this.onChangeLocation = this.onChangeLocation.bind(this);
+    this.onChangeNotes = this.onChangeNotes.bind(this);
   }
 
   onChangeCompany(e) {
@@ -57,6 +59,10 @@ class JobEdit extends React.Component {
     this.setState({ location: e.target.value });
   }
 
+  onChangeNotes(e) {
+    this.setState({ notes: e.target.value });
+  }
+
   showSuccess() {
     this.setState({ successVisible: true });
   }
@@ -75,6 +81,7 @@ class JobEdit extends React.Component {
       location: this.state.location,
       url: this.state.url,
       companyUrl: this.state.companyUrl,
+      notes: this.state.notes,
     };
     fetch(`/api/jobs/${this.props.paramsId}`, {
       method: 'PUT',
@@ -157,6 +164,12 @@ class JobEdit extends React.Component {
             <label htmlFor="skills">
               <span className="input-label">Required Skills:</span>
               <textarea name="skills" value={this.state.skills} disabled />
+            </label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="notes">
+              <span className="input-label">Notes:</span>
+              <textarea name="notes" value={this.state.notes} onChange={this.onChangeNotes} />
             </label>
           </div>
           <div className="form-group">

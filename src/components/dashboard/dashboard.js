@@ -23,8 +23,6 @@ class Dashboard extends React.Component {
   onChangeSortBy(e) {
     this.setState({ sortBy: e.target.value });
   }
-
-
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobAdd;
