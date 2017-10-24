@@ -17,6 +17,7 @@ const SavedJobs = (props) => {
       <td><Link to={`/home/dashboard/${props.jobPosting.jobId}`}>{props.jobPosting.jobTitle}</Link></td>
       <td>{props.jobPosting.status}</td>
       <td>{props.jobPosting.dateApplied}</td>
+      <td>{props.jobPosting.location}</td>
       <td><a href={props.jobPosting.url} target="_blank">ClickMe</a></td>
       <td className="truncate">{props.jobPosting.skills.join(', ')}</td>
       <td><img src={favoriteUrl} alt="Star"  onClick={() => props.favoriteJob(props.jobPosting.jobId)}/> </td>

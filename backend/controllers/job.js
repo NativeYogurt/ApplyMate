@@ -25,6 +25,7 @@ const addJobSkillsToDB = (skills, req, res) => {
     jobTitle: req.body.jobTitle,
     status: req.body.status,
     dateApplied: req.body.dateApplied,
+    location: req.body.location,
     url: req.body.url,
     companyUrl: req.body.companyUrl,
     skills,
@@ -142,6 +143,7 @@ exports.handleEditJob = (req, res) => {
     jobTitle: req.body.jobTitle,
     status: req.body.status,
     dateApplied: req.body.dateApplied || null,
+    location: req.body.location,
     url: req.body.url,
     companyUrl: req.body.companyUrl,
   }, {
