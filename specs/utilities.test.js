@@ -1,5 +1,4 @@
 const extract = require('../backend/utilities/extractSkills');
-const github = require('../backend/utilities/githubRepoCrawler');
 
 const text = 'javascript alex Python GOPHER scAla Objective-C javascript';
 
@@ -11,6 +10,6 @@ test('only programmingSkills are pulled out of string', () => {
     })
     .then(() => {
       result.sort();
-      expect(result).toEqual(['javascript','objective-c','python','scala']);
+      expect(result).toEqual(['javascript', 'objective-c', 'python', 'scala']);
     })
 });

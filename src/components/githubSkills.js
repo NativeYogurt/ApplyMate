@@ -8,7 +8,7 @@ const GithubSkills = (props) => {
   const data = {
     labels,
     datasets: [{
-      label: 'Test',
+      label: 'Github Data',
       data: skillData,
       // backgroundColor:'green',
       backgroundColor: [
