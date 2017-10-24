@@ -43,19 +43,16 @@ class SearchJobs extends React.Component {
   }
   handleJobAdd(job) {
     console.log('job', job);
-    let companyUrl = this.fixURL(job.company_url)
-    console.log(1, companyUrl)
-    console.log(2, this.isURL(companyUrl))
+    const companyUrl = this.fixURL(job.company_url)
     if (!(this.isURL(companyUrl))) {
-      this.findCompanyURL(job.company, (fixedCompanyURL) => {
-        console.log(3, fixedCompanyURL);
+      this.findCompanyURL(job.company, (foundCompanyURL) => {
         this.props.addJob({
           company: job.company,
           jobTitle: job.title,
           status: 'wishlist',
           url: job.url,
           skills: [],
-          companyUrl: fixedCompanyURL,
+          companyUrl: foundCompanyURL,
           userId: this.props.userId,
         });
       });
@@ -72,7 +69,6 @@ class SearchJobs extends React.Component {
     }
   }
   fixURL(url) {
-    console.log(this.state.undefined)
     if (url.lastIndexOf('//') !== -1) {
       const int = url.lastIndexOf('//');
       url = url.slice(int + 2);
@@ -89,16 +85,15 @@ class SearchJobs extends React.Component {
     return url;
   }
   isURL(url) {
-    console.log(this.state.undefined)
     const strRegex = '^((https|http|ftp|rtsp|mms)?://)'
-        + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftp的user@
-        + '(([0-9]{1,3}\.){3}[0-9]{1,3}' // IP形式的URL- 199.194.52.184
-        + '|' // 允许IP和DOMAIN（域名）
-        + "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
-        + '([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.' // 二级域名
-        + '[a-z]{2,6})' // first level domain- .com or .museum
-        + '(:[0-9]{1,4})?' // 端口- :80
-        + '((/?)|' // a slash isn't required if there is no file name
+        + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" 
+        + '(([0-9]{1,3}\.){3}[0-9]{1,3}' 
+        + '|' 
+        + "([0-9a-z_!~*'()-]+\.)*" 
+        + '([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\.'
+        + '[a-z]{2,6})' 
+        + '(:[0-9]{1,4})?' 
+        + '((/?)|' 
         + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
     const re = new RegExp(strRegex);
     return re.test(url);
@@ -108,7 +103,6 @@ class SearchJobs extends React.Component {
       .then(results => {
         let URL = results.data;
         URL = this.fixURL(URL);
-        console.log(4, URL);
         cb(URL);
       });
   }

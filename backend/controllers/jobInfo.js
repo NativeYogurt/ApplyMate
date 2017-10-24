@@ -123,7 +123,6 @@ exports.Twitter = (req, res) => {
   };
   client.get('statuses/user_timeline', params, (err, tweets, response) => {
     const arr = [];
-    console.log(tweets);
     for (let i = 0; i < 5; i++) {
       const obj = {};
       obj.time = tweets[i].created_at;
@@ -132,7 +131,6 @@ exports.Twitter = (req, res) => {
       obj.retweet = tweets[i].retweet_count;
       obj.favorite = tweets[i].favorite_count;
       arr.push(obj);
-      console.log(obj);
     }
     res.send(arr);
   });

@@ -32,7 +32,6 @@ class Glassdoor extends React.Component {
   GlassdoorApiCall() {
     axios.post('/api/Glassdoor', { searchTerm: this.state.searchTerm })
       .then(res => {
-        console.log(res)
         const data = res.data.response.employers[0]
         this.setState({
           companyName: data.name,
