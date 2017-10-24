@@ -4,10 +4,25 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import FlatButton from 'material-ui/FlatButton';
 
 const Applications = ({ savedJobs }) => {
+  const statusObj = savedJobs.reduce((a, b) => {
+    let status = b.status;
+    a[status] ? a[status] += 1 : a[status] = 1;
+    return a;
+  }, {});
+  const labels = Object.keys(statusObj);
+  const numberOfSavedJobs = savedJobs.length;
+  const applicationData = [numberOfSavedJobs];
+
+  labels.forEach((status) => {
+    let appliedCount = null;
+    status === 'applied' ? appliedCount++ : null
+    applicationData.push(appliedCount);
+  });
+
   const data = {
     labels: ['Saved Jobs', 'Applied'], // get these dynamically
     datasets: [{
-      data: [25, 10], // data: savedJobs.map((job) => job.status),
+      data: applicationData, // data: savedJobs.map((job) => job.status),
       backgroundColor: [
         'rgba(255, 206, 86, 0.6)', // green
         'rgba(75, 192, 192, 0.6)', // yellow
