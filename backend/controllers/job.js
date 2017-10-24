@@ -29,6 +29,7 @@ const addJobSkillsToDB = (skills, req, res) => {
     url: req.body.url,
     companyUrl: req.body.companyUrl,
     skills,
+    notes: req.body.notes,
     userId: req.body.userId,
   };
   SavedJobs.findOne({
@@ -146,6 +147,7 @@ exports.handleEditJob = (req, res) => {
     location: req.body.location,
     url: req.body.url,
     companyUrl: req.body.companyUrl,
+    notes: req.body.notes,
   }, {
     where: {
       jobId: req.params.id,
