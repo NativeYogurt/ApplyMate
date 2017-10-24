@@ -21,7 +21,7 @@ const SavedJobs = (props) => {
       <td onClick={() => redirect()} >{props.jobPosting.location}</td>
       <td><a href={props.jobPosting.url} target="_blank">ClickMe</a></td>
       <td onClick={() => redirect()} className="truncate">{props.jobPosting.skills.join(', ')}</td>
-      <td><img src={favoriteUrl} alt="Star" onClick={() => props.favoriteJob(props.jobPosting.jobId)} /> </td>
+      <td><img id="favorite" src={favoriteUrl} alt="Star" onClick={() => props.favoriteJob(props.jobPosting.jobId)} /> </td>
       <td><button onClick={() => props.deleteJob(props.jobPosting.jobId)}>Delete</button></td>
     </tr>
   );
