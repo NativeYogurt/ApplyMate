@@ -40,6 +40,5 @@ const Resources = sequelize.define('resources', {
   },
 });
 
-
 // Resources.sync();
 module.exports = Resources;

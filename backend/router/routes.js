@@ -10,7 +10,6 @@ const contact = require('../controllers/contact.js');
 const event = require('../controllers/event.js');
 // const github = require('../utilities/githubRepoCrawler.js');
 
-
 router.post('/resume', resume.uploadHandler);
 router.post('/signUp', userHandler.signUp);
 router.post('/scanForUser', userHandler.scanforUser);

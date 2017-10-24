@@ -94,6 +94,6 @@ const JobBoard = (props) => {
           </Switch>
         </div>) : null
   );
-}
+};
 
 export default JobBoard;

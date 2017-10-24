@@ -48,7 +48,7 @@ class JobHome extends React.Component {
           companyUrl: data.companyUrl,
           userId: data.userId,
         });
-      })
+      });
   }
 
   render() {

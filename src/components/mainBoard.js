@@ -198,7 +198,6 @@ class Main extends React.Component {
                 githubSkills={this.state.githubSkills}
                 getJobComparison={this.getJobComparison}
                 getUserInfo={this.getUserInfo}
-                githubSkills={this.state.githubSkills}
                 clearResume={this.clearResume}
               />
             )}

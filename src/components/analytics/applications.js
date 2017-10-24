@@ -20,12 +20,12 @@ const Applications = ({ savedJobs }) => {
   });
 
   const data = {
-    labels: ['Saved Jobs', 'Applied'], // get these dynamically
+    labels: ['Saved Jobs', 'Applied'],
     datasets: [{
-      data: applicationData, // data: savedJobs.map((job) => job.status),
+      data: applicationData,
       backgroundColor: [
-        'rgba(255, 206, 86, 0.6)', // green
-        'rgba(75, 192, 192, 0.6)', // yellow
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
       ],
     },
     ],
