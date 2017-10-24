@@ -21,7 +21,7 @@ class CompanyInfo extends React.Component {
         <br />
         <Glassdoor companyName={this.state.companyName} />
         <br />
-        <EDGAR companyName={this.state.companyName} />
+        {/* <EDGAR companyName={this.state.companyName} /> */}
       </div>
     );
   }

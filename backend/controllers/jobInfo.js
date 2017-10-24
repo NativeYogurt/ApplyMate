@@ -9,7 +9,15 @@ exports.BBB = (req, res) => {
     headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
   })
     .then(data => {
-      res.send(data.data.SearchResults[0]);
+      if (data.data.SearchResults.find(el => {
+        return el.OrganizationName === req.body.searchTerm;
+      }) !== undefined) {
+        res.send(data.data.SearchResults.find(el => {
+          return el.OrganizationName === req.body.searchTerm;
+        }));
+      } else {
+        res.send(data.data.SearchResults[0]);
+      }
     })
     .catch(err => {
       console.error(err);
@@ -22,7 +30,15 @@ exports.getCompanyUrl = (req, res) => {
     headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
   })
     .then(data => {
-      res.send(data.data.SearchResults[0].BusinessURLs[0]);
+      if (data.data.SearchResults.find(el => {
+        return el.OrganizationName === req.body.searchTerm;
+      }) !== undefined) {
+        res.send(data.data.SearchResults.find(el => {
+          return el.OrganizationName === req.body.searchTerm.BusinessURLs[0];
+        }));
+      } else {
+        res.send(data.data.SearchResults[0]);
+      }
     })
     .catch(err => {
       console.error(err);
@@ -61,7 +77,7 @@ exports.EDGAR = (req, res) => {
     params: {
       primarysymbols: req.body.searchTerm,
       appkey: process.env.EDGAR_KEY,
-    }
+    },
   })
     .then(data => {
       const arr = [];
