@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const SavedJobs = (props) => {
-  let favoriteState = props.jobPosting.favorite;
+  const redirect = function () { window.location = `/#/home/dashboard/${props.jobPosting.jobId}`; };
+  const favoriteState = props.jobPosting.favorite;
   let favoriteUrl = '';
   if (favoriteState) {
     favoriteUrl = 'http://res.cloudinary.com/dxcydtwom/image/upload/v1508791828/gold_star_bagtk7.png';
@@ -12,15 +13,14 @@ const SavedJobs = (props) => {
   }
 
   return (
-    <tr>
-      <td>{props.jobPosting.company}</td>
-      <td><Link to={`/home/dashboard/${props.jobPosting.jobId}`}>{props.jobPosting.jobTitle}</Link></td>
-      <td>{props.jobPosting.status}</td>
-      <td>{props.jobPosting.dateApplied}</td>
-      <td>{props.jobPosting.location}</td>
+    <tr className="saved-job-posting">
+      <td onClick={() => redirect()} >{props.jobPosting.company}</td>
+      <td onClick={() => redirect()} >{props.jobPosting.jobTitle}</td>
+      <td onClick={() => redirect()} >{props.jobPosting.status}</td>
+      <td onClick={() => redirect()} >{props.jobPosting.dateApplied}</td>
       <td><a href={props.jobPosting.url} target="_blank">ClickMe</a></td>
-      <td className="truncate">{props.jobPosting.skills.join(', ')}</td>
-      <td><img src={favoriteUrl} alt="Star"  onClick={() => props.favoriteJob(props.jobPosting.jobId)}/> </td>
+      <td onClick={() => redirect()} className="truncate">{props.jobPosting.skills.join(', ')}</td>
+      <td><img src={favoriteUrl} alt="Star" onClick={() => props.favoriteJob(props.jobPosting.jobId)} /> </td>
       <td><button onClick={() => props.deleteJob(props.jobPosting.jobId)}>Delete</button></td>
     </tr>
   );

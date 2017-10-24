@@ -22,12 +22,13 @@ class Dashboard extends React.Component {
     this.setState({ sortBy: e.target.value });
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobAdd;
     this.props.addJob({
       company: form.company.value,
-      jobTitle: form.jobtitle.value,
+      jobTitle: form.jobtitle.value || 'None Given',
       status: form.status.value,
       dateApplied: form.dateApplied.value || null,
       location: form.location.value,
