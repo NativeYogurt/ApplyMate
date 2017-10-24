@@ -72,9 +72,9 @@ exports.EDGAR = (req, res) => {
   axios({
     method: 'GET',
     url: `http://edgaronline.api.mashery.com/v2/corefinancials/qtr`,
-    params: { 
+    params: {
       primarysymbols: req.body.searchTerm,
-      appkey: process.env.EDGAR_KEY, 
+      appkey: process.env.EDGAR_KEY,
     },
   })
     .then(data => {
@@ -106,7 +106,7 @@ exports.fullContact = (req, res) => {
     method: 'GET',
     url: 'https://api.fullcontact.com/v2/company/lookup.json',
     params: {
-      domain: req.body.searchTerm, 
+      domain: req.body.searchTerm,
       apiKey: process.env.FULLCONTACT_APIKEY,
     }
   })

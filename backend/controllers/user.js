@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const gitHubRepoCrawler = require('../utilities/gitHubRepoCrawler');
+const gitHubRepoCrawler = require('../utilities/githubRepoCrawler');
 
 exports.handleUserFind = (req, res) => {
   User.findOne({ where: { userId: req.query.userId } }).then(user => {
@@ -8,8 +8,8 @@ exports.handleUserFind = (req, res) => {
 };
 
 exports.handleUpdateUser = (req, res) => {
- let oldGithub;
- let newGithub;
+  let oldGithub;
+  let newGithub;
   User.findOne({ where: { userId: req.body.userId } })
     .then(user => {
       oldGithub = user.githubUsername;

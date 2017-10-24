@@ -18,8 +18,8 @@ const Analytics = ({ savedJobs }) => {
 
   return (
     <div>
-      <JobStatus />
-      <Applications />
+      <JobStatus savedJobs={savedJobs} />
+      <Applications savedJobs={savedJobs} />
     </div>
   );
 };
