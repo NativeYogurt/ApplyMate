@@ -30,6 +30,7 @@ class Dashboard extends React.Component {
       jobTitle: form.jobtitle.value,
       status: form.status.value,
       dateApplied: form.dateApplied.value || null,
+      location: form.location.value,
       url: form.url.value,
       companyUrl: form.companyUrl.value,
       skills: [],
@@ -39,6 +40,8 @@ class Dashboard extends React.Component {
     form.company.value = '';
     form.jobtitle.value = '';
     form.status.value = 'wishlist';
+    form.dateApplied.value = '';
+    form.location.value = '';
     form.url.value = '';
     form.companyUrl.value = '';
     this.setState({ successVisible: true });
@@ -98,6 +101,7 @@ class Dashboard extends React.Component {
               <th>Job Title</th>
               <th>Status</th>
               <th>Date Applied</th>
+              <th>Location</th>
               <th>Job Posting URL</th>
               <th>Required Skills</th>
               <th>Favorite</th>
@@ -134,6 +138,9 @@ class Dashboard extends React.Component {
           </span>
           <span className="form-group">
             <input type="date" name="dateApplied" placeholder="date applied" />
+          </span>
+          <span className="form-group">
+            <input type="text" name="location" placeholder="job location" />
           </span>
           <span className="form-group">
             <input type="text" name="url" placeholder="job url" />
