@@ -38,6 +38,7 @@ router.get('/contacts', contact.handleGetContacts);
 router.get('/contacts/:id', contact.handleGetContact);
 router.put('/contacts/:id', contact.handleEditContact);
 router.put('/contact/delete', contact.handleContactDelete);
+router.post('/getCompanyUrl', jobInfo.getCompanyUrl);
 
 router.post('/activities', event.handleEventAdd);
 router.get('/activities', event.handleGetEvents);

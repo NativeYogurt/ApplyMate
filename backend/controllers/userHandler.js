@@ -29,7 +29,6 @@ exports.scanforUser = (req, res) => {
 exports.githubUidLookup = (req, res) => {
   axios.get(`https://api.github.com/user/${req.body.data.uid}?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}`)
     .then((data) => {
-      console.log(data.data.login)
       res.send(data.data.login)
     })
     .catch(err => {

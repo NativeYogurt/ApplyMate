@@ -3,6 +3,7 @@ import axios from 'axios';
 import firebase from 'firebase';
 import fire from './Firebase.js';
 
+// sign up using email and password
 exports.signUp = (user, pass, first, last, cb) => {
   fire.auth().createUserWithEmailAndPassword(user, pass)
     .then((firebaseUser) => {
@@ -25,6 +26,7 @@ exports.signUp = (user, pass, first, last, cb) => {
       cb(error);
     });
 };
+// signing in with email and password
 exports.signIn = (user, pass, cb) => {
   fire.auth().signInWithEmailAndPassword(user, pass)
     .then((win) => {
@@ -34,6 +36,7 @@ exports.signIn = (user, pass, cb) => {
       cb(error.message);
     });
 };
+// general sign out
 exports.signOut = (cb) => {
   fire.auth().signOut()
     .then((firebaseUser) => {
@@ -44,6 +47,7 @@ exports.signOut = (cb) => {
       cb(error);
     });
 };
+// signing in with Github
 exports.gitAuth = (cb) => {
   const provider = new firebase.auth.GithubAuthProvider();
   fire.auth().signInWithPopup(provider)
@@ -52,8 +56,9 @@ exports.gitAuth = (cb) => {
         data: { email: githubUser.user.email },
       })
         .then((result) => {
+          // checking database if user exists
           if (result.data.email === undefined) {
-            console.log('first time github Login, making database user entry')
+            // if not, put them in the database
             axios.post('/api/signUp', {
               // githubUser.user is the firebase user entry
               data: {
@@ -66,18 +71,22 @@ exports.gitAuth = (cb) => {
                 cb(undefined, githubUser)
               })
               .catch(err => alert(err))
+          // if yes, sign them in
           } else {
             cb(undefined, githubUser);
           }
         })
         .catch(err => alert(err));
     })
+    // if signing in with Github when signed up with email, 
+    // error gets thrown to front end
     .catch((error) => {
       const errCred = error.credential;
       const errEmail = error.email;
       cb(error, undefined, errCred, errEmail);
     });
 };
+// after dealing with the error above, we merge the accounts here
 exports.gitAuthMerge = (pass, errCred, errEmail, cb) => {
   fire.auth().fetchProvidersForEmail(errEmail)
     .then((providers) => {
@@ -90,6 +99,7 @@ exports.gitAuthMerge = (pass, errCred, errEmail, cb) => {
                   data: { uid: firebaseUserwithProviderData.providerData[0].uid }
                 })
                   .then((result) => {
+                    // updates database entry to include github username
                     axios.put('/api/updateUser', {
                       userId: user.uid,
                       githubUsername: result.data,

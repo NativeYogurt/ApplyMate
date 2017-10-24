@@ -1,10 +1,11 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
 
 import JobNavBar from './JobNavBar';
 import JobBoard from './JobBoard';
 
 class JobHome extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +21,6 @@ class JobHome extends React.Component {
       userId: '',
     };
     this.loadData = this.loadData.bind(this);
-    this.loadCompanyInfo = this.loadCompanyInfo.bind(this);
   }
 
   componentDidMount() {
@@ -49,31 +49,8 @@ class JobHome extends React.Component {
           userId: data.userId,
         });
       })
-      .then(() => {
-        if (this.state.companyUrl !== null) {
-          this.loadCompanyInfo(this.state.companyUrl);
-        }
-      });
   }
 
-  loadCompanyInfo(company) {
-    const link = `https://api.fullcontact.com/v2/company/lookup.json?domain=${company}&apiKey=${process.env.FULLCONTACT_APIKEY}`;
-
-    $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      header: { 'X-FullContact-APIKey': process.env.FULLCONTACT_APIKEY },
-      url: link,
-      success: data => {
-        this.setState({
-          companyInfo: data,
-        });
-      },
-      error: error => {
-        console.error('failed to search job', error);
-      },
-    });
-  }
   render() {
     return (
       <div>
@@ -88,9 +65,8 @@ class JobHome extends React.Component {
           status={this.state.status}
           dateApplied={this.state.dateApplied}
           url={this.state.url}
-          skills={this.state.skills}
           companyUrl={this.state.companyUrl}
-          companyInfo={this.state.companyInfo}
+          skills={this.state.skills}
           jobId={this.state.jobId}
           userId={this.state.userId}
         />

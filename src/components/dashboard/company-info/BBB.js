@@ -10,6 +10,7 @@ class BBB extends React.Component {
       searchTerm: this.props.companyName,
       companyName: '',
       companyCity: '',
+      companyURL: '',
       ratingURL: '',
       rating:'',
       industry: '',
