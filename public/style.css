@@ -40,11 +40,18 @@
     color: white;
 }
 /* The alert message box */
-.alert {
+.alert, .error {
     padding: 20px;
-    background-color: #f44336; /* Red */
     color: white;
     margin-bottom: 15px;
+}
+
+.alert {
+    background-color: green; /* Red */
+}
+
+.error {
+  background-color: #f44336;
 }
 
 table .dashboard, .dashboard th, .dashboard td {
