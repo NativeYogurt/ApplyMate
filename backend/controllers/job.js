@@ -6,7 +6,7 @@ const sequelize = require('../db/db.js');
 const Users = require('../models/User.js');
 const SavedJobs = require('../models/SavedJobs.js');
 const extract = require('../utilities/extractSkills.js');
-const big5Scraper = require('../utilities/big5Scraper.js');
+const big5Scraper = require('../utilities/big5scraper.js');
 const iFrameScraper = require('../utilities/iframeScraper.js');
 
 const Xray = require('x-ray');

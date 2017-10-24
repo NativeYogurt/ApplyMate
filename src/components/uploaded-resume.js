@@ -5,7 +5,6 @@ import PDF from 'react-pdf-js';
 import FontAwesome from 'react-fontawesome';
 import { ThreeBounce } from 'better-react-spinkit';
 
-
 class UploadedResume extends React.Component {
   constructor(props) {
     super(props);

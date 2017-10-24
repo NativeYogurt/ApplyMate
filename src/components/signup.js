@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
-import Auth from './Auth.js'
+import Auth from './Auth';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -68,7 +68,7 @@ class Signup extends React.Component {
   //   e.preventDefault();
   //   this.props.TESTBUTTON();
   // }
-  
+
   render() {
     return (
       <div id="temp">

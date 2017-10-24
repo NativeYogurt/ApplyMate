@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
-import SavedJobs from '../src/components/dashboard/SavedJobs';
 import Adapter from 'enzyme-adapter-react-16';
+import SavedJobs from '../src/components/dashboard/SavedJobs';
 
 configure({ adapter: new Adapter() });
 

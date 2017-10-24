@@ -7,15 +7,6 @@ import JobStatus from './jobstatus';
 import Applications from './applications';
 
 const Analytics = ({ savedJobs }) => {
-  const savedJobStatus = savedJobs.map((job) => job.status);
-
-  // console.log(savedJobStatus);
-
-  // const applicationstatus = null;
-  // if (savedJobStatus) {
-  //
-  // }
-
   return (
     <div>
       <JobStatus savedJobs={savedJobs} />

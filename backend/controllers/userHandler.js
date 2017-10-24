@@ -1,5 +1,5 @@
 const User = require('../models/User.js');
-const gitHubRepoCrawler = require('../utilities/gitHubRepoCrawler')
+const gitHubRepoCrawler = require('../utilities/githubRepoCrawler')
 const axios = require('axios');
 
 exports.signUp = (req, res) => {
