@@ -21,6 +21,9 @@ const SavedJobs = sequelize.define(
     dateApplied: {
       type: Sequelize.DATEONLY,
     },
+    location: {
+      type: Sequelize.STRING,
+    },
     url: {
       type: Sequelize.TEXT,
       allowNull: false,
@@ -29,6 +32,9 @@ const SavedJobs = sequelize.define(
       type: Sequelize.ARRAY(Sequelize.TEXT),
     },
     companyUrl: {
+      type: Sequelize.TEXT,
+    },
+    notes: {
       type: Sequelize.TEXT,
     },
     deleted: {
