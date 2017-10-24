@@ -88,6 +88,7 @@ const JobBoard = (props) => {
                   url={props.url}
                   skills={props.skills}
                   companyUrl={props.companyUrl}
+                  notes={props.notes}
                   paramsId={props.paramsId}
                 />
               )}
