@@ -10,6 +10,7 @@ class Dashboard extends React.Component {
     this.state = {
       successVisible: false,
       sortBy: 'status',
+      searchBy: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeSortBy = this.onChangeSortBy.bind(this);
@@ -21,7 +22,6 @@ class Dashboard extends React.Component {
   onChangeSortBy(e) {
     this.setState({ sortBy: e.target.value });
   }
-
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobAdd;
