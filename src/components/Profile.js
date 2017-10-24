@@ -28,6 +28,7 @@ class Profile extends React.Component {
     this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
     this.onChangeGithubUsername = this.onChangeGithubUsername.bind(this);
+    this.onChangeEmailReminder = this.onChangeEmailReminder.bind(this);
   }
 
   onChangeFirstName(e) {
@@ -52,6 +53,10 @@ class Profile extends React.Component {
 
   onChangePassword2(e) {
     this.setState({ password2: e.target.value });
+  }
+
+  onChangeEmailReminder(e) {
+    this.setState({ emailReminder: e.target.value });
   }
 
   handleSubmit(e) {
@@ -121,6 +126,12 @@ class Profile extends React.Component {
           <label htmlFor="email">
             Email:
             <input type="text" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
+          </label>
+          <br />
+          <label htmlFor="emailReminder">
+          Interview Email Reminder:
+            <input type="radio" name="emailReminder" value="true" onChange={this.onChangeEmailReminder} /> On
+            <input type="radio" name="emailReminder" value="false" onChange={this.onChangeEmailReminder} /> Off
           </label>
           <br />
           Github Username: {this.state.githubUsername}
