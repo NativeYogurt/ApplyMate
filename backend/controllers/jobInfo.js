@@ -1,7 +1,7 @@
 const axios = require('axios');
 // expecting req.body.searchTerm
 const request = require('request');
-const Twitter = require('twitter');
+const Twit = require('twit');
 
 exports.BBB = (req, res) => {
   axios.get('https://api.bbb.org/api/orgs/search', {
@@ -9,7 +9,15 @@ exports.BBB = (req, res) => {
     headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
   })
     .then(data => {
-      res.send(data.data.SearchResults[0]);
+      if (data.data.SearchResults.find(el => {
+        return el.OrganizationName === req.body.searchTerm;
+      }) !== undefined) {
+        res.send(data.data.SearchResults.find(el => {
+          return el.OrganizationName === req.body.searchTerm;
+        }));
+      } else {
+        res.send(data.data.SearchResults[0]);
+      }
     })
     .catch(err => {
       console.error(err);
@@ -22,7 +30,15 @@ exports.getCompanyUrl = (req, res) => {
     headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
   })
     .then(data => {
-      res.send(data.data.SearchResults[0].BusinessURLs[0]);
+      if (data.data.SearchResults.find(el => {
+        return el.OrganizationName === req.body.searchTerm;
+      }) !== undefined) {
+        res.send(data.data.SearchResults.find(el => {
+          return el.OrganizationName === req.body.searchTerm.BusinessURLs[0];
+        }));
+      } else {
+        res.send(data.data.SearchResults[0]);
+      }
     })
     .catch(err => {
       console.error(err);
@@ -50,37 +66,52 @@ exports.Glassdoor = (req, res) => {
       res.send(err);
     });
 };
-
-exports.getStockSymb = (req, res) => {
-  axios.get(`http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=${req.body.searchTerm}&lang=en`)
-    .then(result => res.send(result.data.ResultSet.Result));
-};
-
 exports.EDGAR = (req, res) => {
-  axios.get('http://edgaronline.api.mashery.com/v2/corefinancials/qtr', {
-    params: {
-      primarysymbols: req.body.searchTerm,
-      appkey: process.env.EDGAR_KEY,
-    }
-  })
-    .then(data => {
-      const arr = [];
-      const array = [];
-      for (let i = 0; i < data.data.result.totalrows; i++) {
-        arr.push(data.data.result.rows[i].values.filter((item, ind) => {
-          if (item.field === 'totalrevenue' || item.field === 'researchdevelopmentexpense' || item.field === 'periodenddate' || item.field === 'incomebeforetaxes') {
-            return item.value;
-          }
-        }));
+  axios.get(`http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=${req.body.searchTerm}&lang=en`)
+    .then(result => {
+      const Symbols = result.data.ResultSet.Result;
+      console.log('length', Symbols.length)
+      if (Symbols.length === 0) return res.send('This Company is not publically traded');
+
+      function edgarCall(i) {
+        console.log('i', i);
+        axios.get('http://edgaronline.api.mashery.com/v2/corefinancials/qtr', {
+          params: {
+            primarysymbols: Symbols[i].symbol,
+            appkey: process.env.EDGAR_KEY,
+          },
+        })
+          .then(data => {
+            if (data.data.result.totalrows !== 0) {
+              const arr = [];
+              const array = [];
+              for (let i = 0; i < data.data.result.totalrows; i++) {
+                arr.push(data.data.result.rows[i].values.filter((item, ind) => {
+                  if (item.field === 'totalrevenue' || item.field === 'researchdevelopmentexpense' || item.field === 'periodenddate' || item.field === 'incomebeforetaxes') {
+                    return item.value;
+                  }
+                }));
+              }
+              for (let i = 0; i < arr.length; i++) {
+                const temp = [];
+                for (let j = 0; j < arr[i].length; j++) {
+                  temp.push(`${arr[i][j].field}: ${arr[i][j].value}`);
+                }
+                array.push(temp);
+              }
+              return res.send(array);
+            } else if (++i <= Symbols.length) {
+              setTimeout(() =>{
+                edgarCall(i);
+              }, 500)
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            return res.send(err);
+          });
       }
-      for (let i = 0; i < arr.length; i++) {
-        const temp = [];
-        for (let j = 0; j < arr[i].length; j++) {
-          temp.push(`${arr[i][j].field}: ${arr[i][j].value}`);
-        }
-        array.push(temp);
-      }
-      res.send(array);
+      edgarCall(0)
     })
     .catch(err => {
       console.error(err);
@@ -110,20 +141,20 @@ exports.fullContact = (req, res) => {
     .catch(err => alert(err));
 };
 exports.Twitter = (req, res) => {
-  const client = new Twitter({
+  const T = new Twit({
     consumer_key: process.env.TWITTER_KEY,
     consumer_secret: process.env.TWITTER_SECRET,
-    access_token_key: process.env.TWITTER_TOKEN,
+    access_token: process.env.TWITTER_TOKEN,
     access_token_secret: process.env.TWITTER_TOKENSECRET,
   });
   const params = {
     screen_name: req.body.searchTerm,
-    count: 7,
+    count: 5,
     exclude_replies: true,
   };
-  client.get('statuses/user_timeline', params, (err, tweets, response) => {
+  T.get('statuses/user_timeline', params, (err, tweets, response) => {
     const arr = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < tweets.length; i++) {
       const obj = {};
       obj.time = tweets[i].created_at;
       obj.text = tweets[i].text;

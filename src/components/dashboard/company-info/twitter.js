@@ -7,7 +7,7 @@ class Twitter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: this.props.twitterHandle,
+      searchTerm: this.props.companyName,
       data: {},
     };
     this.twitterApiCall = this.twitterApiCall.bind(this);
@@ -36,6 +36,6 @@ class Twitter extends React.Component {
 }
 
 Twitter.propTypes = {
-  twitterHandle: PropTypes.string.isRequired,
+  companyName: PropTypes.string.isRequired,
 };
 export default Twitter;
