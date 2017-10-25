@@ -22,6 +22,10 @@
     background-color: blue;
 }
 
+#main-navigation .navBar-active {
+    background-color: red;
+}
+
 #job-navbar {
     height: 54px;
     overflow: hidden;
