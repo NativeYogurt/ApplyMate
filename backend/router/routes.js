@@ -8,6 +8,7 @@ const comparison = require('../controllers/comparison.js');
 const resource = require('../controllers/resource.js');
 const contact = require('../controllers/contact.js');
 const event = require('../controllers/event.js');
+const task = require('../controllers/task.js');
 // const github = require('../utilities/githubRepoCrawler.js');
 
 router.post('/resume', resume.uploadHandler);
@@ -43,6 +44,9 @@ router.get('/activities', event.handleGetEvents);
 router.get('/activities/:id', event.handleGetEvent);
 router.put('/activities/:id', event.handleEditEvent);
 router.put('/activity/delete', event.handleEventDelete);
+router.post('/tasks', task.handleTaskAdd);
+router.get('/tasks', task.handleGetTasks);
+router.put('/task/delete', task.handleTaskDelete);
 // router.get('/test', github.cronGitHubUpdate);
 
 module.exports = router;

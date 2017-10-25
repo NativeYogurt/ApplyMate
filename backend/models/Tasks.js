@@ -3,23 +3,17 @@ const sequelize = require('../db/db');
 const SavedJobs = require('./SavedJobs');
 const User = require('./User');
 
-const Events = sequelize.define('events', {
-  eventId: {
+const Tasks = sequelize.define('tasks', {
+  taskId: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  eventType: {
-    type: Sequelize.STRING,
+  taskDesc: {
+    type: Sequelize.TEXT,
   },
-  eventDate: {
+  taskDueDate: {
     type: Sequelize.DATEONLY,
-  },
-  eventTime: {
-    type: Sequelize.TIME,
-  },
-  eventParticipates: {
-    type: Sequelize.STRING,
   },
   deleted: {
     type: Sequelize.BOOLEAN,
@@ -43,5 +37,5 @@ const Events = sequelize.define('events', {
   },
 });
 
-// Events.sync();
-module.exports = Events;
+// Tasks.sync();
+module.exports = Tasks;
