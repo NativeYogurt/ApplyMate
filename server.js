@@ -8,13 +8,13 @@ const path = require('path');
 const CronJob = require('cron').CronJob;
 const db = require('./backend/db/db');
 // const emailer = require('./backend/utilities/emailer');
+const router = require('./backend/router/routes.js');
+
 const User = require('./backend/models/User');
 const SavedJobs = require('./backend/models/SavedJobs');
 const Contacts = require('./backend/models/Contacts');
 const Events = require('./backend/models/Events');
 const Github = require('./backend/utilities/githubRepoCrawler');
-
-const router = require('./backend/router/routes.js');
 
 const app = express();
 
