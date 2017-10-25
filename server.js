@@ -1,3 +1,4 @@
+const env = require('dotenv').config();
 const express = require('express');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
@@ -5,8 +6,10 @@ const bodyParser = require('body-parser');
 const webpackConfig = require('./webpack.config.js');
 const path = require('path');
 const CronJob = require('cron').CronJob;
-const env = require('dotenv').config();
 const db = require('./backend/db/db');
+const emailer = require('./backend/utilities/emailer');
+const router = require('./backend/router/routes.js');
+
 const User = require('./backend/models/User');
 const SavedJobs = require('./backend/models/SavedJobs');
 const Contacts = require('./backend/models/Contacts');
@@ -14,8 +17,6 @@ const Events = require('./backend/models/Events');
 const Tasks = require('./backend/models/Tasks');
 
 const Github = require('./backend/utilities/githubRepoCrawler');
-
-const router = require('./backend/router/routes.js');
 
 const app = express();
 
@@ -39,7 +40,6 @@ const server = app.listen(3000, () => {
   const port = server.address().port;
   console.log('Example app listening at http://%s:%s', host, port);
 });
-
 
 new CronJob('0 15 * * *', function() {
   console.log('You will see this message every day at 3pm et');
