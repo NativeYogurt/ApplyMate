@@ -10,6 +10,7 @@ import Profile from './profile';
 import Analytics from './analytics/analytics';
 import SearchJobs from './job-search/SearchJobs';
 import JobHome from './dashboard/job-details/JobHome';
+import Tasks from './tasks/tasks';
 
 class Main extends React.Component {
   constructor(props) {
@@ -164,6 +165,15 @@ class Main extends React.Component {
             path="/home/analytics"
             render={() => (
               <Analytics
+                savedJobs={this.state.savedJobs}
+              />
+            )}
+          />
+          <Route
+            path="/home/tasks"
+            render={() => (
+              <Tasks
+                userId={this.props.userId}
                 savedJobs={this.state.savedJobs}
               />
             )}
