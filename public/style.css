@@ -22,6 +22,10 @@
     background-color: blue;
 }
 
+#main-navigation .navBar-active {
+    background-color: red;
+}
+
 #job-navbar {
     height: 54px;
     overflow: hidden;
@@ -194,4 +198,9 @@ button {
 
 .saved-job-posting:hover {
   background-color: #D3D3D3;
+}
+
+.search-input {
+  padding-right: 8px;
+  padding-left: 8px;
 }
