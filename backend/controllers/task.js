@@ -36,6 +36,18 @@ exports.handleGetTasks = (req, res) => {
     });
 };
 
+exports.handleGetTasksByUser = (req, res) => {
+  Tasks.findAll({
+    where: {
+      userId: req.query.userId,
+      deleted: false,
+    },
+  })
+    .then(tasks => {
+      res.send(tasks);
+    });
+};
+
 exports.handleTaskDelete = (req, res) => {
   Tasks.update({
     deleted: true,
