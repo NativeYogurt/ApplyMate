@@ -4,6 +4,7 @@ import axios from 'axios';
 import BBB from '../company-info/BBB.js'
 import Glassdoor from '../company-info/Glassdoor.js'
 import EDGAR from '../company-info/edgar.js'
+import Twitter from '../company-info/twitter.js'
 
 class CompanyInfo extends React.Component {
   constructor(props) {
@@ -17,11 +18,13 @@ class CompanyInfo extends React.Component {
   render() {
     return (
       <div>
-        <BBB companyName={this.state.companyName} />
+        {<BBB companyName={this.state.companyName} />}
         <br />
-        <Glassdoor companyName={this.state.companyName} />
+        {<Glassdoor companyName={this.state.companyName} />}
         <br />
-        {/* <EDGAR companyName={this.state.companyName} /> */}
+        {<EDGAR companyName={this.state.companyName} />}
+        <br />
+        {<Twitter companyName={this.state.companyName} />}
       </div>
     );
   }

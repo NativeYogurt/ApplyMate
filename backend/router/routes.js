@@ -29,7 +29,6 @@ router.get('/resource', resource.handleGetResources);
 router.put('/resource/delete', resource.handleResourceDelete);
 router.post('/BBB', jobInfo.BBB);
 router.post('/Glassdoor', jobInfo.Glassdoor);
-router.post('/getStockSymb', jobInfo.getStockSymb);
 router.post('/EDGAR', jobInfo.EDGAR);
 router.post('/fullContact', jobInfo.fullContact);
 router.post('/Twitter', jobInfo.Twitter);
