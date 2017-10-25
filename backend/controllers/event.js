@@ -57,11 +57,7 @@ exports.handleGetEventByDate = (req, res) => {
     },
   })
     .then(event => {
-      const dateArray = [];
-      const el = event.forEach(function(el) {
-        dateArray.push(el.eventDate)
-        res.send(dateArray);
-      });
+      res.send(event);
     })
     .catch(error => console.error(error));
 };
