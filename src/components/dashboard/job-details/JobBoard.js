@@ -11,6 +11,7 @@ import Activity from './activity/activities';
 import ActivityAdd from './activity/activity-add';
 import ActivityEdit from './activity/activity-edit';
 import Resources from './resources/resources';
+import Tasks from './tasks/tasks';
 
 const JobBoard = (props) => {
   return (
@@ -61,6 +62,7 @@ const JobBoard = (props) => {
               render={() => (
                 <ActivityAdd
                   jobId={props.jobId}
+                  userId={props.userId}
                 />
               )}
             />
@@ -73,6 +75,15 @@ const JobBoard = (props) => {
               render={() => (
                 <Activity
                   jobId={props.jobId}
+                />
+              )}
+            />
+            <Route
+              path="/home/dashboard/job/tasks"
+              render={() => (
+                <Tasks
+                  jobId={props.jobId}
+                  userId={props.userId}
                 />
               )}
             />

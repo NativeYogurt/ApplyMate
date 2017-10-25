@@ -35,6 +35,7 @@ class ActivityAdd extends React.Component {
       eventTime: this.state.eventTime,
       eventParticipates: this.state.eventParticipates,
       jobId: this.props.jobId,
+      userId: this.props.userId,
     };
 
     fetch('/api/activities', {
