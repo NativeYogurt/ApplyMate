@@ -41,6 +41,7 @@ router.post('/getCompanyUrl', jobInfo.getCompanyUrl);
 
 router.post('/activities', event.handleEventAdd);
 router.get('/activities', event.handleGetEvents);
+router.get('/activitiesByDate', event.handleGetEventByDate);
 router.get('/activities/:id', event.handleGetEvent);
 router.put('/activities/:id', event.handleEditEvent);
 router.put('/activity/delete', event.handleEventDelete);
