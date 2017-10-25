@@ -46,6 +46,7 @@ router.put('/activities/:id', event.handleEditEvent);
 router.put('/activity/delete', event.handleEventDelete);
 router.post('/tasks', task.handleTaskAdd);
 router.get('/tasks', task.handleGetTasks);
+router.get('/tasksbyuser', task.handleGetTasksByUser);
 router.put('/task/delete', task.handleTaskDelete);
 // router.get('/test', github.cronGitHubUpdate);
 
