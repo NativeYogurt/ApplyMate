@@ -1,12 +1,13 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
 nodemailer.createTestAccount((err, account) => {
+  console.log(process.env.GMAIL_USER);
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
+      user: process.env.GMAIL_USER, // generated ethereal user
+      pass: process.env.GMAIL_PASS, // generated ethereal password
     },
   });
 
@@ -15,7 +16,7 @@ nodemailer.createTestAccount((err, account) => {
     to: 'jaffrepaul@gmail.com', // list of receivers
     subject: 'You have an interview! 🔥🔥', // Subject line
     text: 'You have an interview tomorrow!', // plain text body
-    html: '<p>You have an interview tomorrow with [...].</p><p>Good luck!</p>💋<p>-ApplyMate</p>', // html body
+    html: '<p>You have an interview tomorrow with xxx.</p><p>Good luck!</p>💋<p>-ApplyMate</p>', // html body
   };
 
   // send mail with defined transport object
