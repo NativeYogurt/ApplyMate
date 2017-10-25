@@ -12,10 +12,12 @@ class Dashboard extends React.Component {
       successVisible: false,
       sortBy: 'status',
       errorMessage: null,
+      search: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeSortBy = this.onChangeSortBy.bind(this);
     this.createJobs = this.createJobs.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
   componentDidMount() {
     this.props.getJobs();
@@ -80,24 +82,33 @@ class Dashboard extends React.Component {
       />
     );
   }
+  updateSearch(e) {
+    e.preventDefault();
+    this.setState({
+      search: e.target.value,
+    });
+  }
   render() {
     const success = (
       <div className="alert">
         The job has been added.
       </div>
     );
-    const sortedByStatus = [].concat(this.props.savedJobs).sort((a, b) =>
+    const filteredJobs = this.props.savedJobs.filter(job => {
+      return job.company.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    });
+    const sortedByStatus = [].concat(filteredJobs).sort((a, b) =>
       a.status < b.status).map(this.createJobs);
-    const sortedByDate = [].concat(this.props.savedJobs).sort((a, b) => {
+    const sortedByDate = [].concat(filteredJobs).sort((a, b) => {
       return a.dateApplied - b.dateApplied;
     }).reverse().map(this.createJobs);
-    const sortedByFavorite = [].concat(this.props.savedJobs).sort((a, b) => {
+    const sortedByFavorite = [].concat(filteredJobs).sort((a, b) => {
       if (a.favorite) {
         return 1;
       }
       return -1;
     }).reverse().map(this.createJobs);
-    const sortedByLocation = [].concat(this.props.savedJobs).sort((a, b) =>
+    const sortedByLocation = [].concat(filteredJobs).sort((a, b) =>
       a.location > b.location).map(this.createJobs);
 
     let listJobs = null;
@@ -120,6 +131,9 @@ class Dashboard extends React.Component {
             <option value="favorite">Favorites</option>
             <option value="location">Location</option>
           </select>
+          <span className="search-input" >
+            <input type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
+          </span>
         </div>
         <table className="dashboard">
           <thead>

@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 import Auth from './Auth';
 
 class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
   handleTest(e) {
     e.preventDefault();
     this.props.TESTBUTTON();
