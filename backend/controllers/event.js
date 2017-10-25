@@ -13,6 +13,7 @@ exports.handleEventAdd = (req, res) => {
     eventTime: req.body.eventTime || null,
     eventParticipates: req.body.eventParticipates,
     jobId: req.body.jobId,
+    userId: req.body.userId,
   };
   Events
     .build(newEvent)

@@ -11,6 +11,7 @@ const JobNavbar = (props) => {
         <li><Link to="/home/dashboard/job/contacts">Contacts</Link></li>
         <li><Link to="/home/dashboard/job/resources">Resources</Link></li>
         <li><Link to="/home/dashboard/job/activity">Activity</Link></li>
+        <li><Link to="/home/dashboard/job/tasks">Tasks</Link></li>
       </ul>
     </div>
   );
