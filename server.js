@@ -7,7 +7,7 @@ const webpackConfig = require('./webpack.config.js');
 const path = require('path');
 const CronJob = require('cron').CronJob;
 const db = require('./backend/db/db');
-// const emailer = require('./backend/utilities/emailer');
+const emailer = require('./backend/utilities/emailer');
 const router = require('./backend/router/routes.js');
 
 const User = require('./backend/models/User');
