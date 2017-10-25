@@ -199,3 +199,8 @@ button {
 .saved-job-posting:hover {
   background-color: #D3D3D3;
 }
+
+.search-input {
+  padding-right: 8px;
+  padding-left: 8px;
+}
