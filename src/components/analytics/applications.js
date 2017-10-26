@@ -9,10 +9,10 @@ const Applications = ({ savedJobs }) => {
     a[status] ? a[status] += 1 : a[status] = 1;
     return a;
   }, {});
+
   const labels = Object.keys(statusObj);
   const numberOfSavedJobs = savedJobs.length;
   const applicationData = [numberOfSavedJobs];
-
   labels.forEach((status) => {
     let appliedCount = null;
     status === 'applied' ? appliedCount++ : null
