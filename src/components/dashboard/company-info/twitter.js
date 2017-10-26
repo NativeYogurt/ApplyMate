@@ -9,6 +9,7 @@ class Twitter extends React.Component {
     this.state = {
       searchTerm: this.props.companyName,
       data: {},
+      pic: '/imgs/TempHeader.jpg'
     };
     this.twitterApiCall = this.twitterApiCall.bind(this);
   }
@@ -22,13 +23,15 @@ class Twitter extends React.Component {
       .then(data => {
         this.setState({
           data: data.data,
+          pic: data.data[0].pic,
         })
       })
   }
 
   render() {
     return (
-      <div>
+      <div id="TwitterComponent">  
+        <img src={this.state.pic} style={{ width: '1500px', height: '500px' }} alt="hello world" />
         <pre><code>{JSON.stringify(this.state.data, null, 4)}</code></pre>
       </div>
     );

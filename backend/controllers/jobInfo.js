@@ -70,11 +70,9 @@ exports.EDGAR = (req, res) => {
   axios.get(`http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=${req.body.searchTerm}&lang=en`)
     .then(result => {
       const Symbols = result.data.ResultSet.Result;
-      console.log('length', Symbols.length)
       if (Symbols.length === 0) return res.send('This Company is not publically traded');
 
       function edgarCall(i) {
-        console.log('i', i);
         axios.get('http://edgaronline.api.mashery.com/v2/corefinancials/qtr', {
           params: {
             primarysymbols: Symbols[i].symbol,
@@ -101,9 +99,9 @@ exports.EDGAR = (req, res) => {
               }
               return res.send(array);
             } else if (++i <= Symbols.length) {
-              setTimeout(() =>{
+              setTimeout(() => {
                 edgarCall(i);
-              }, 500)
+              }, 500);
             }
           })
           .catch(err => {
@@ -111,7 +109,7 @@ exports.EDGAR = (req, res) => {
             return res.send(err);
           });
       }
-      edgarCall(0)
+      edgarCall(0);
     })
     .catch(err => {
       console.error(err);
@@ -154,15 +152,26 @@ exports.Twitter = (req, res) => {
   };
   T.get('statuses/user_timeline', params, (err, tweets, response) => {
     const arr = [];
-    for (let i = 0; i < tweets.length; i++) {
-      const obj = {};
-      obj.time = tweets[i].created_at;
-      obj.text = tweets[i].text;
-      obj.url = tweets[i].entities.urls[0].expanded_url;
-      obj.retweet = tweets[i].retweet_count;
-      obj.favorite = tweets[i].favorite_count;
-      arr.push(obj);
+    if (tweets[0]) {
+      for (let i = 0; i < tweets.length; i++) {
+        const obj = {};
+        obj.time = tweets[i].created_at;
+        obj.retweet = tweets[i].retweet_count;
+        obj.favorite = tweets[i].favorite_count;
+        // there was an attempt...
+        // if (tweets[i].text.slice(0, tweets[i].text.lastIndexOf('http') !== -1)) {
+        //   obj.text = tweets[i].text.slice(0, tweets[i].text.lastIndexOf('http'));
+        //   obj.url = tweets[i].text.slice(tweets[i].text.lastIndexOf('http'));
+        // } else {
+        //   obj.text = tweets[i].text;
+        //   obj.url = `twitter.com/${req.body.searchTerm}`
+        // }
+        obj.text = tweets[i].text;
+        arr.push(obj);
+      }
+      arr[0].url = `www.twitter.com/${tweets[0].user.screen_name}`;
+      arr[0].pic = tweets[0].user.profile_banner_url;
+      res.send(arr);
     }
-    res.send(arr);
   });
 };
