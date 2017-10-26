@@ -12,6 +12,7 @@ const getUserByInterviewDate = async () => {
     const events = await Events.findAll({ where: { eventDate: tomorrow } });
     const userIds = events.map((ele) => ele.userId);
     const users = await Users.findAll({ where: { userId: userIds } });
+    // const emails = users.map(user => user.email);
 
     users.forEach(user => {
       const userObj = {
@@ -19,14 +20,14 @@ const getUserByInterviewDate = async () => {
         githubName: user.githubUsername,
         email: user.email,
       };
-      emailSender(userObj);
+      emailSender(userObj)
     });
   } catch (err) {
     console.error(err);
   }
 };
 
-const emailSender = (userObj) => {
+const emailSender = (userObj, email) => {
   nodemailer.createTestAccount((err, account) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -41,7 +42,7 @@ const emailSender = (userObj) => {
       to: userObj.email,
       subject: 'You have an interview! 🔥🔥',
       text: `Hey ${userObj.firstName || userObj.githubName}, You have an interview! have an interview tomorrow. Good luck! -ApplyMate`,
-      html: `<p>Hey ${userObj.firstName || userObj.githubName},</p><p>You have an interview tomorrow with [...] @[...].</p><p>Good luck!</p><p>-ApplyMate</p>`,
+      html: `<p>Hey ${userObj.firstName || userObj.githubName},</p><p>You have an interview tomorrow.</p><p>Good luck!</p><p>Your friends @ApplyMate 👋</p>`,
     };
 
     // send mail with defined transport object
