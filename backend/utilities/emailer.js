@@ -3,21 +3,33 @@ const axios = require('axios');
 const Sequelize = require('sequelize');
 const db = require('../db/db');
 const Users = require('../models/User.js');
+const Events = require('../models/Events');
 
-// query event table for interviews tomorrow
-// should return array of objs
-// iterate array & grab userId's off each obj
-// use associated userId to pass into search user to get username, email etc
-
-const getUserInfo = () => {
-  axios.get('/activitiesByDate')
-    // .then(axios.get('/findUser'))
-    .then((result) => {
-      const { data } = result;
-      console.log(result);
+const getUserByInterviewDate = () => {
+  const date = new Date();
+  const tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+  Events.findAll({
+    where: {
+      eventDate: tomorrow,
+    },
+  })
+    .then(events => {
+      const userIds = events.map((ele) => ele.userId);
+      // const uniqueUserIds = [...new Set(userIds)]; // filter uniques?
     })
-    .catch(err => console.log('error getting user data', err));
+    .then(userIds => {
+      Users.findAll({ attributes: userIds })
+        .then(users => {
+          const emails = users.map(user => user.email);
+          const firstNames = users.map(user => user.firstName);
+          console.log('------');
+          console.log(emails);
+          console.log('------');
+          console.log(firstNames);
+        });
+    });
 };
+getUserByInterviewDate();
 
 nodemailer.createTestAccount((err, account) => {
   // create reusable transporter object using the default SMTP transport
@@ -31,7 +43,7 @@ nodemailer.createTestAccount((err, account) => {
 
   const mailOptions = {
     from: '"ApplyMate" <applymatebot@gmail.com>',
-    to: 'jaffrepaul@gmail.com',
+    // to: emails,
     subject: 'You have an interview! 🔥🔥',
     text: 'You have an interview tomorrow. Good luck! -ApplyMate',
     html: '<p>You have an interview tomorrow with [...] @[...].</p><p>Good luck!</p><p>-ApplyMate</p>',
