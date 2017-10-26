@@ -22,7 +22,7 @@ const scrapeIframe = async (url) => {
     nightmare = Nightmare();
     const secondUrl = await goToInitialPage(url);
     if (!secondUrl) {
-      console.log('no url')
+      console.log('no url');
       await nightmare
         .end();
       return [];
@@ -40,6 +40,5 @@ const scrapeIframe = async (url) => {
     console.error(e);
   }
 };
-
 
 exports.scrapeIframe = scrapeIframe;
