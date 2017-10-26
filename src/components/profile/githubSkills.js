@@ -23,13 +23,13 @@ const GithubSkills = (props) => {
     },
     ],
   };
+
   return (
     <Pie
       data={data}
       width={10}
-	    height={2}
+      height={3}
       options={{
-        maintainAspectRatio: true,
         title: {
           display: true,
           text: 'Your Most Used Languages On Github (MegaBytes)',
@@ -44,7 +44,7 @@ const GithubSkills = (props) => {
         },
         layout: {
           padding: {
-            left: 0,
+            left: 50,
             right: 0,
             bottom: 0,
             top: 0,
@@ -53,6 +53,7 @@ const GithubSkills = (props) => {
         tooltips: {
           enabled: true,
         },
+        maintainAspectRatio: true,
       }
     }
     />

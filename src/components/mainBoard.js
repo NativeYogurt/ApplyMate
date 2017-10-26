@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import Dashboard from './dashboard/dashboard';
 import Resources from './resources/resources';
-import Profile from './profile';
+import Profile from './profile/profile';
 import Analytics from './analytics/analytics';
 import SearchJobs from './job-search/SearchJobs';
 import JobHome from './dashboard/job-details/JobHome';
@@ -166,6 +166,7 @@ class Main extends React.Component {
             render={() => (
               <Analytics
                 savedJobs={this.state.savedJobs}
+                githubSkills={this.state.githubSkills}
               />
             )}
           />

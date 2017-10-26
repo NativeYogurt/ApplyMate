@@ -3,7 +3,6 @@ import axios from 'axios';
 import firebase from 'firebase';
 import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
-import GithubSkills from './githubSkills';
 import Resume from './resume';
 
 class Profile extends React.Component {
@@ -159,10 +158,6 @@ class Profile extends React.Component {
           <input type="submit" value="Change Password" />
         </form>
         <hr />
-        {Object.keys(this.props.githubSkills).length ?
-          <GithubSkills
-            githubSkills={this.props.githubSkills}
-          /> : null }
         <Resume
           userId={this.props.userId}
           getJobComparison={this.props.getJobComparison}
