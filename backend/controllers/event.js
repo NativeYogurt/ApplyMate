@@ -49,20 +49,6 @@ exports.handleGetEvent = (req, res) => {
     });
 };
 
-exports.handleGetEventByDate = (req, res) => {
-  const date = new Date();
-  const tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
-  Events.findAll({
-    where: {
-      eventDate: tomorrow,
-    },
-  })
-    .then(event => {
-      res.send(event);
-    })
-    .catch(error => console.error(error));
-};
-
 exports.handleEditEvent = (req, res) => {
   Events.update({
     eventType: req.body.eventType,

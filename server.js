@@ -17,6 +17,7 @@ const Events = require('./backend/models/Events');
 const Tasks = require('./backend/models/Tasks');
 
 const Github = require('./backend/utilities/githubRepoCrawler');
+const Emailer = require('./backend/utilities/emailer');
 
 const app = express();
 

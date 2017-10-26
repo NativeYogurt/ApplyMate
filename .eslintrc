@@ -28,6 +28,7 @@
     "jsx-a11y/anchor-is-valid": "off",
     "arrow-parens": "off",
     "arrow-body-style": "off",
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "no-mixed-operators": "off"
   },
 }
