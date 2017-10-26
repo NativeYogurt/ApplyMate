@@ -28,7 +28,7 @@ class EDGAR extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="EDGARComponent">
         {this.state.companyName} {' '} <br /> <br />
         <pre><code>{JSON.stringify(this.state.arr, null, 4)}</code></pre>
       </div>

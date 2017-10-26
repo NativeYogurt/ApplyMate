@@ -28,7 +28,7 @@ class FullContact extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="FullContactComponent">
         <pre><code>{JSON.stringify(this.state.data, null, 4)}</code></pre>
       </div>
     );
