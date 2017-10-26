@@ -3,48 +3,56 @@ const axios = require('axios');
 const Sequelize = require('sequelize');
 const db = require('../db/db');
 const Users = require('../models/User.js');
+const Events = require('../models/Events');
 
-// query event table for interviews tomorrow
-// should return array of objs
-// iterate array & grab userId's off each obj
-// use associated userId to pass into search user to get username, email etc
+exports.getUserByInterviewDate = async () => {
+  try {
+    const date = new Date();
+    const tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+    const events = await Events.findAll({ where: { eventDate: tomorrow } });
+    const userIds = events.map((ele) => ele.userId);
+    const users = await Users.findAll({ where: { userId: userIds } });
 
-const getUserInfo = () => {
-  axios.get('/activitiesByDate')
-    // .then(axios.get('/findUser'))
-    .then((result) => {
-      const { data } = result;
-      console.log(result);
-    })
-    .catch(err => console.log('error getting user data', err));
+    users.forEach(user => {
+      const userObj = {
+        firstName: user.firstName,
+        githubName: user.githubUsername,
+        email: user.email,
+      };
+      emailSender(userObj)
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
-nodemailer.createTestAccount((err, account) => {
-  // create reusable transporter object using the default SMTP transport
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
+const emailSender = (userObj, email) => {
+  nodemailer.createTestAccount((err, account) => {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: '"ApplyMate" <applymatebot@gmail.com>',
+      to: userObj.email,
+      subject: 'You have an interview! 🔥🔥',
+      text: `Hey ${userObj.firstName || userObj.githubName}, You have an interview! have an interview tomorrow. Good luck! -ApplyMate`,
+      html: `<p>Hey ${userObj.firstName || userObj.githubName},</p><p>You have an interview tomorrow.</p><p>Good luck!</p><p>Your friends @ApplyMate 👋</p>`,
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log('Message sent: %s', info.messageId);
+      // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
+      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+      // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    });
   });
-
-  const mailOptions = {
-    from: '"ApplyMate" <applymatebot@gmail.com>',
-    to: 'jaffrepaul@gmail.com',
-    subject: 'You have an interview! 🔥🔥',
-    text: 'You have an interview tomorrow. Good luck! -ApplyMate',
-    html: '<p>You have an interview tomorrow with [...] @[...].</p><p>Good luck!</p><p>-ApplyMate</p>',
-  };
-
-  // send mail with defined transport object
-  // transporter.sendMail(mailOptions, (error, info) => {
-  //   if (error) {
-  //     return console.log(error);
-  //   }
-  //   console.log('Message sent: %s', info.messageId);
-  //   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
-  //   console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-  //   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-  // });
-});
+};
