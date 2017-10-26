@@ -15,24 +15,24 @@ const getUserByInterviewDate = () => {
   })
     .then(events => {
       const userIds = events.map((ele) => ele.userId);
-      // const uniqueUserIds = [...new Set(userIds)]; // filter uniques?
     })
     .then(userIds => {
       Users.findAll({ attributes: userIds })
         .then(users => {
           const emails = users.map(user => user.email);
-          const firstNames = users.map(user => user.firstName);
+          const firstNames = users.map(user => user.firstName).filter(name => name !== null);
+          const gitHubName = users.map(user => user.githubUsername).filter(name => name !== null);
+          const comboNames = [...firstNames, ...gitHubName];
           console.log('------');
           console.log(emails);
           console.log('------');
-          console.log(firstNames);
+          console.log(comboNames);
         });
     });
 };
 getUserByInterviewDate();
 
 nodemailer.createTestAccount((err, account) => {
-  // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
