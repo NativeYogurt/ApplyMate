@@ -164,9 +164,9 @@ class Login extends React.Component {
           <button onClick={this.closeResPassConModal}>Close</button>
         </Modal>
         <form id="signIn" onSubmit={this.signIn}>
-          <input onChange={this.handleEmail} type="text" placeholder="E-Mail Address" /> <br />
-          <input onChange={this.handlePassword} type="password" placeholder="Password" /> <br />
-          <button type="submit">Sign In</button>
+          <input id="email" onChange={this.handleEmail} type="text" placeholder="E-Mail Address" /> <br />
+          <input id="pw" onChange={this.handlePassword} type="password" placeholder="Password" /> <br />
+          <button id="signin-button" type="submit">Sign In</button>
         </form>
         <Link to="/signup">
           <button>Sign Up
