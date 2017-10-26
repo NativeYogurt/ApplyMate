@@ -38,8 +38,8 @@ class BBB extends React.Component {
 
   render() {
     return (
-      <div>
-        <img src={this.state.ratingURL} alt={this.state.rating}/>
+      <div id="BBBComponent">
+        <img src={this.state.ratingURL} style={{ width: '200px', height: '94px' }} alt={this.state.rating}/>
         <br />
         {this.state.industry}
         <br />

@@ -53,7 +53,7 @@ class Glassdoor extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="GlassdoorComponent">
         <br />
         {this.state.companyName} @ {this.state.website}<br />
         ratingNum: {this.state.ratingNum}<br />

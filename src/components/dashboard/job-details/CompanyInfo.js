@@ -11,20 +11,16 @@ class CompanyInfo extends React.Component {
     super(props);
     this.state = {
       companyName: this.props.company,
-      companyUrl: this.props.companyUrl,
     };
   }
 
   render() {
     return (
-      <div>
-        {<BBB companyName={this.state.companyName} />}
-        <br />
-        {<Glassdoor companyName={this.state.companyName} />}
-        <br />
-        {<EDGAR companyName={this.state.companyName} />}
-        <br />
+      <div id="companyInformationTab">
         {<Twitter companyName={this.state.companyName} />}
+        {/* {<BBB companyName={this.state.companyName} />} */}
+        {/* {<Glassdoor companyName={this.state.companyName} />} */}
+        {/* {<EDGAR companyName={this.state.companyName} />} */}
       </div>
     );
   }
@@ -32,6 +28,5 @@ class CompanyInfo extends React.Component {
 
 CompanyInfo.propTypes = {
   company: PropTypes.string.isRequired,
-  companyUrl: PropTypes.string.isRequired,
 };
 export default CompanyInfo;

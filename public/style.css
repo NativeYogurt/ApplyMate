@@ -195,3 +195,32 @@ button {
 .saved-job-posting:hover {
   background-color: #D3D3D3;
 }
+/* start of company info styling */
+#companyInformationTab{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 500px 1fr 1fr 1fr;
+}
+
+#BBBComponent{
+  grid-column:1;
+  grid-row: 2
+}
+
+#EDGARComponent{
+  grid-column:1;
+  grid-row:2;
+}
+#FullContactComponent{
+  grid-column:1;
+  grid-row:2;
+}
+#GlassdoorComponent{
+  grid-column:1;
+  grid-row:2;
+}
+#TwitterComponent{
+  grid-column:1;
+  grid-row:1;
+}
+/* end of company info styling */
