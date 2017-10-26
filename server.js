@@ -42,7 +42,8 @@ const server = app.listen(3000, () => {
   console.log('Example app listening at http://%s:%s', host, port);
 });
 
-new CronJob('0 15 * * *', function() {
-  console.log('You will see this message every day at 3pm et');
+new CronJob('30 16 * * *', function() {
+  console.log('You will see this message every day at 4:30pm et');
   Github.cronGitHubUpdate();
+  Emailer.sendInterviewReminder();
 }, null, true, 'America/New_York');

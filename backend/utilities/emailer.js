@@ -5,14 +5,13 @@ const db = require('../db/db');
 const Users = require('../models/User.js');
 const Events = require('../models/Events');
 
-const getUserByInterviewDate = async () => {
+exports.getUserByInterviewDate = async () => {
   try {
     const date = new Date();
     const tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
     const events = await Events.findAll({ where: { eventDate: tomorrow } });
     const userIds = events.map((ele) => ele.userId);
     const users = await Users.findAll({ where: { userId: userIds } });
-    // const emails = users.map(user => user.email);
 
     users.forEach(user => {
       const userObj = {
@@ -57,4 +56,3 @@ const emailSender = (userObj, email) => {
     });
   });
 };
-getUserByInterviewDate();
