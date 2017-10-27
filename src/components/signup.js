@@ -1,6 +1,8 @@
 import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
+import { Card, Input, Button, Row } from 'react-materialize';
+
 import Auth from './Auth';
 
 class Signup extends React.Component {
@@ -71,20 +73,24 @@ class Signup extends React.Component {
 
   render() {
     return (
+      <div className="container">
+      <Card>
       <div id="temp">
+        <h3>Sign Up</h3>
         <form id="signUp" onSubmit={this.handleSignUp}>
-          <input onChange={this.handleFirstName} type="text" placeholder="First Name" /><br />
-          <input onChange={this.handleLastName} type="text" placeholder="Last Name" /><br />
-          <input onChange={this.handleSignUpUsername} type="text" placeholder="E-Mail Address" /><br />
-          <input onChange={this.handlePassword} type="password" placeholder="Password" /><br />
-          <input onChange={this.handlePassword2} type="password" placeholder="Verify Password" /><br />
-          <button type="submit">Sign Up</button>
+          <Row>
+            <Input s={6} onChange={this.handleFirstName} type="text" label="First Name" />
+            <Input s={6} onChange={this.handleLastName} type="text" label="Last Name" />
+            <Input s={12} onChange={this.handleSignUpUsername} type="email" placeholder="E-Mail Address" /><br />
+            <Input s={6} onChange={this.handlePassword} type="password" placeholder="Password" /><br />
+            <Input s={6} onChange={this.handlePassword2} type="password" placeholder="Verify Password" /><br />
+          </Row>
+          <Button type="submit">Sign Up</Button>
         </form>
-        <Link to="/login">
-          <button>Log In
-          </button>
-        </Link>
+        Already have an account? <Link to="/login">Sign in!</Link>
         <br />
+      </div>
+      </Card>
       </div>
     );
   }

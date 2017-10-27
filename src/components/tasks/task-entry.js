@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Row, Col, Card, Button } from 'react-materialize';
 
 class TaskEntry extends React.Component {
   constructor(props) {
@@ -26,14 +27,14 @@ class TaskEntry extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Card>
         {this.state.company ?
           (<div>{this.state.company}|{this.state.jobTitle}</div>) :
         null}
         <div>{this.props.task.taskDesc}</div>
         <div>Due: {this.props.task.taskDueDate}</div>
-        <button onClick={() => this.props.deleteTask(this.props.task.taskId)}>Delete</button>
-      </div>
+        <Button icon="delete" onClick={() => this.props.deleteTask(this.props.task.taskId)} />
+      </Card>
     );
   }
 }

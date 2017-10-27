@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Row, Col, Button } from 'react-materialize';
 
 import SavedResources from './SavedResources';
 
@@ -40,8 +41,8 @@ class Resources extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h2>Your Saved Resources</h2>
+      <div className="container">
+        <h5>Your Saved Resources</h5>
         {this.state.savedResources.length > 0 ? this.state.savedResources.map(resource => {
           return (<SavedResources
             key={resource.resourceId}
