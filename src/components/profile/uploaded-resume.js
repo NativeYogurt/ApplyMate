@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import PDF from 'react-pdf-js';
-import FontAwesome from 'react-fontawesome';
 import { ThreeBounce } from 'better-react-spinkit';
-import { Button } from 'react-materialize';
+import { Button, Icon } from 'react-materialize';
 
 class UploadedResume extends React.Component {
   constructor(props) {
@@ -40,20 +39,14 @@ class UploadedResume extends React.Component {
   }
 
   renderPagination(page, pages) {
-    let previousButton = <li className="previous" onClick={this.handlePrevious}>
-      <i className="fa fa-arrow-left" /> Previous Page</li>;
-
+    let previousButton = <Button className="previous" onClick={this.handlePrevious}><Icon>keyboard_arrow_left</Icon></Button>;
     if (page === 1) {
-      previousButton = <li className="previous disabled">
-      <i className="fa fa-arrow-left" /> Previous Page</li>;
+      previousButton = <li className="previous disabled"><Icon>keyboard_arrow_left</Icon></li>;
     }
 
-    let nextButton = <li className="next" onClick={this.handleNext}>
-      <i className="fa fa-arrow-right" />Next Page</li>;
-
+    let nextButton = <li className="next" onClick={this.handleNext}><Icon>keyboard_arrow_right</Icon></li>;
     if (page === pages) {
-      nextButton = <li className="next disabled">
-      <i className="fa fa-arrow-right" />Next Page</li>;
+      nextButton = <li className="next disabled"><Icon>keyboard_arrow_right</Icon></li>;
     }
     return (
       <ul className="pager">
