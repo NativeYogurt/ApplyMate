@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Row, Col, Input, Button } from 'react-materialize';
+import { Row, Col, Input, Button, Icon } from 'react-materialize';
 
 class JobEdit extends React.Component {
   constructor(props) {
@@ -112,75 +112,42 @@ class JobEdit extends React.Component {
         </div>
         <form className="job-edit-form" onSubmit={this.submit}>
           <Row>
-            <Input s={6} label="Job URL:" type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
-            {' '}<a href={this.state.url} target="_blank">GO</a>
+            <Input s={12} label="Job URL:" type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
+            <Input s={6} label="Company:" type="text" name="company" value={this.state.company} onChange={this.onChangeCompany} />
+            <Input s={6} label="Job Title:" type="text" name="jobtitle" value={this.state.jobTitle} onChange={this.onChangeJobTitle} />
+            <Input s={6} type="select" name="status" label="Status" value={this.state.status} onChange={this.onChangeStatus}>
+              <option value="wishlist">Wishlist</option>
+              <option value="applied">Applied</option>
+              <option value="phone">Phone</option>
+              <option value="onSite">OnSite</option>
+              <option value="rejected">Rejected</option>
+              <option value="offer">Offer</option>
+            </Input>
+            <Input s={6} label="Date Applied:" type="date" name="dateApplied" value={this.state.dateApplied} onChange={this.onChangeDateApplied} />
+            <Input s={6} label="Location:" type="text" name="location" value={this.state.location} onChange={this.onChangeLocation} />
+            <Input s={6} label="Company URL:" type="text" name="companyUrl" value={this.state.companyUrl} onChange={this.onChangeCompanyUrl} />
+            <Col s={12}>
+              <label htmlFor="skills">
+                Required Skills:
+                <textarea className="materialize-textarea" name="skills" value={this.state.skills} disabled />
+              </label>
+            </Col>
+            <Col s={12}>
+              <label htmlFor="notes">
+                Notes:
+                <textarea className="materialize-textarea" name="notes" value={this.state.notes} onChange={this.onChangeNotes} />
+              </label>
+            </Col>
           </Row>
-          <div className="form-group">
-            <label htmlFor="company">
-              <span className="input-label">Company:</span>
-              <input type="text" name="company" value={this.state.company} onChange={this.onChangeCompany} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="jobtitle">
-              <span className="input-label">Job Title:</span>
-              <input type="text" name="jobtitle" value={this.state.jobTitle} onChange={this.onChangeJobTitle} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="status">
-              <span className="input-label">Status:</span>
-              <select name="status" value={this.state.status} onChange={this.onChangeStatus}>
-                <option value="wishlist">Wishlist</option>
-                <option value="applied">Applied</option>
-                <option value="phone">Phone</option>
-                <option value="onSite">OnSite</option>
-                <option value="rejected">Rejected</option>
-                <option value="offer">Offer</option>
-              </select>
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="dateApplied">
-              <span className="input-label">Date Applied:</span>
-              <input type="date" name="dateApplied" value={this.state.dateApplied} onChange={this.onChangeDateApplied} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="location">
-              <span className="input-label">Location:</span>
-              <input type="text" name="location" value={this.state.location} onChange={this.onChangeLocation} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="companyUrl">
-              <span className="input-label">Company URL:</span>
-              <input type="text" name="companyUrl" value={this.state.companyUrl} onChange={this.onChangeCompanyUrl} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="skills">
-              <span className="input-label">Required Skills:</span>
-              <textarea name="skills" value={this.state.skills} disabled />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="notes">
-              <span className="input-label">Notes:</span>
-              <textarea name="notes" value={this.state.notes} onChange={this.onChangeNotes} />
-            </label>
-          </div>
-          <div className="form-group">
-            <input className="button" type="submit" value="Save" />
-            <span className="back-link">
-              <Link className="button" to="/home/dashboard">Back</Link>
-            </span>
-          </div>
+          <Button type="submit">Save</Button>
+          <Link className="button" to="/home/dashboard">Back</Link>
         </form>
         {this.state.successVisible ? success : null}
       </div>
     );
   }
 }
-
+// <Col s={1}>
+//   <a href={this.state.url} target="_blank"><Icon>directions_run</Icon></a>
+// </Col>
 module.exports = JobEdit;

@@ -85,7 +85,7 @@ table .dashboard, .dashboard th, .dashboard td {
   padding: 10px 15px;
 }
 
-.job-edit-form {
+/*.job-edit-form {
   padding: 20px;
 }
 
@@ -108,7 +108,7 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .job-edit-form .back-link {
   padding-left: 15px;
-}
+}*/
 
 .job-add-form .form-group {
   padding-right: 15px;
@@ -171,7 +171,7 @@ button {
   display: inline-block;
 }
 
-.contact-form {
+/*.contact-form {
   padding: 20px;
 }
 
@@ -190,7 +190,7 @@ button {
 
 .contact-form input[type="submit"] {
   padding: 10px 15px;
-}
+}*/
 
 .quick-actions {
   padding-right: 8px;
