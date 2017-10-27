@@ -133,6 +133,9 @@ class Dashboard extends React.Component {
               <option value="location">Location</option>
             </select>
           </Col>
+          <Col s={3}>
+            <input type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
+          </Col>
         </Row>
         <Table className="dashboard">
           <thead>
@@ -161,10 +164,7 @@ class Dashboard extends React.Component {
           <Col s={3}>
             <h5>Job Applications</h5>
           </Col>
-          <Col s={3}>
-            <input type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
-          </Col>
-          <Col s={5} />
+          <Col s={8} />
           <Col s={1}>
             <Modal
               trigger={<Button
