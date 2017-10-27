@@ -40,7 +40,7 @@ class Resume extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Card>
           <ProfileNav />
           <h5>Upload Resume:</h5>
@@ -55,7 +55,6 @@ class Resume extends React.Component {
               </div>
             </div>
           </form>
-
           <h5>My Resume:</h5>
           <UploadedResume
             userResume={this.props.userResume}

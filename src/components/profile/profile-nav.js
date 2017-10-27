@@ -6,7 +6,7 @@ const ProfileNav = () => {
   return (
     <div>
       <ul className="tabs">
-        <li className="tab"><Link to="/home/profile/">My Info</Link></li>
+        <li className="tab"><Link to="/home/profile">My Info</Link></li>
         <li className="tab"><Link to="/home/profile/resume">Resume</Link></li>
       </ul>
     </div>

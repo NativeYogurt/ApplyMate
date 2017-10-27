@@ -15,7 +15,7 @@ const Applications = ({ savedJobs }) => {
   const applicationData = [numberOfSavedJobs];
   labels.forEach((status) => {
     let appliedCount = null;
-    status === 'applied' ? appliedCount++ : null
+    status === 'applied' ? appliedCount++ : null;
     applicationData.push(appliedCount);
   });
 
@@ -31,39 +31,40 @@ const Applications = ({ savedJobs }) => {
     ],
   };
 
+  const options = {
+    title: {
+      display: true,
+      text: 'Saved Jobs vs. Jobs Applied',
+      fontSize: 25,
+    },
+    legend: {
+      display: true,
+      position: 'top',
+      labels: {
+        fontColor: '#000',
+      },
+    },
+    layout: {
+      padding: {
+        left: 50,
+        right: 0,
+        bottom: 0,
+        top: 0,
+      },
+    },
+    tooltips: {
+      enabled: true,
+    },
+    maintainAspectRatio: true,
+  };
+
   return (
     <div>
       <Doughnut
         data={data}
         width={10}
         height={3}
-        options={{
-          title: {
-            display: true,
-            text: 'Saved Jobs vs. Jobs Applied',
-            fontSize: 25,
-          },
-          legend: {
-            display: true,
-            position: 'top',
-            labels: {
-              fontColor: '#000',
-            },
-          },
-          layout: {
-            padding: {
-              left: 50,
-              right: 0,
-              bottom: 0,
-              top: 0,
-            },
-          },
-          tooltips: {
-            enabled: true,
-          },
-          maintainAspectRatio: true,
-        }
-      }
+        options={options}
       />
     </div>
   );

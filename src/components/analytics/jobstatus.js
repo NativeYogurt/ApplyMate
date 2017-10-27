@@ -14,9 +14,9 @@ const JobStatus = ({ savedJobs }) => {
   labels.forEach(status => statusData.push(statusObj[status]));
 
   const data = {
-    labels, // ['Wishlist', 'Applied', 'Phone', 'OnSite', 'Rejected', 'Offer'],
+    labels,
     datasets: [{
-      data: statusData, // data: [25, 10, 4, 6, 2, 0],
+      data: statusData,
       backgroundColor: [
         'rgba(255, 99, 132, 0.6)',
         'rgba(54, 162, 235, 0.6)',
@@ -30,39 +30,40 @@ const JobStatus = ({ savedJobs }) => {
     ],
   };
 
+  const options = {
+    title: {
+      display: true,
+      text: 'Saved Jobs By Status',
+      fontSize: 25,
+    },
+    legend: {
+      display: true,
+      position: 'top',
+      labels: {
+        fontColor: '#000',
+      },
+    },
+    layout: {
+      padding: {
+        left: 50,
+        right: 0,
+        bottom: 0,
+        top: 0,
+      },
+    },
+    tooltips: {
+      enabled: true,
+    },
+    maintainAspectRatio: true,
+  };
+
   return (
     <div>
       <Pie
         data={data}
         width={10}
         height={3}
-        options={{
-          title: {
-            display: true,
-            text: 'Saved Jobs By Status',
-            fontSize: 25,
-          },
-          legend: {
-            display: true,
-            position: 'top',
-            labels: {
-              fontColor: '#000',
-            },
-          },
-          layout: {
-            padding: {
-              left: 50,
-              right: 0,
-              bottom: 0,
-              top: 0,
-            },
-          },
-          tooltips: {
-            enabled: true,
-          },
-          maintainAspectRatio: true,
-        }
-      }
+        options={options}
       />
     </div>
   );
