@@ -7,6 +7,7 @@ import axios from 'axios';
 import Dashboard from './dashboard/dashboard';
 import Resources from './resources/resources';
 import Profile from './profile/profile';
+import Resume from './profile/resume';
 import Analytics from './analytics/analytics';
 import SearchJobs from './job-search/SearchJobs';
 import JobHome from './dashboard/job-details/JobHome';
@@ -161,6 +162,18 @@ class Main extends React.Component {
     return (
       <div>
         <Switch>
+          <Route
+            path="/home/profile/resume"
+            render={() => (
+              <Resume
+                userId={this.props.userId}
+                getJobComparison={this.state.getJobComparison}
+                getUserInfo={this.state.getUserInfo}
+                userResume={this.state.resume}
+                clearResume={this.state.clearResume}
+              />
+            )}
+          />
           <Route
             path="/home/analytics"
             render={() => (
