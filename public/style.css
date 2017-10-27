@@ -1,5 +1,5 @@
 
-#main-navigation {
+/*#main-navigation {
     height: 54px;
     overflow: hidden;
     background-color: lightblue;
@@ -15,16 +15,16 @@
     text-align: center;
     padding: 18px 16px;
     color: white;
-}
+}*/
 
 /* Change the link color to #111 (black) on hover */
-#main-navigation .navBar:hover {
+/*#main-navigation .navBar:hover {
     background-color: blue;
-}
+}*/
 
-#main-navigation .navBar-active {
+/*#main-navigation .navBar-active {
     background-color: red;
-}
+}*/
 
 #job-navbar {
     height: 54px;
