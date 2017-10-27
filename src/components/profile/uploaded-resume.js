@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import PDF from 'react-pdf-js';
 import FontAwesome from 'react-fontawesome';
 import { ThreeBounce } from 'better-react-spinkit';
+import { Button } from 'react-materialize';
 
 class UploadedResume extends React.Component {
   constructor(props) {
@@ -57,8 +58,8 @@ class UploadedResume extends React.Component {
     return (
       <nav>
         <ul className="pager">
-          <button>{previousButton}</button>
-          <button>{nextButton}</button>
+          <Button>{previousButton}</Button>
+          <Button>{nextButton}</Button>
         </ul>
       </nav>
     );

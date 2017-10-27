@@ -3,6 +3,9 @@ import axios from 'axios';
 import firebase from 'firebase';
 import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
+import { Row, Col, Card, Button, Input } from 'react-materialize';
+
+import GithubSkills from './github-skills';
 import Resume from './resume';
 
 class Profile extends React.Component {
@@ -110,52 +113,41 @@ class Profile extends React.Component {
     const emailReminderRadioButtons = (this.state.emailReminder === true) ?
       (<label htmlFor="emailReminder">
         Interview Email Reminder:
-        <input type="radio" name="emailReminder" value="true" defaultChecked="checked" onClick={this.onChangeEmailReminder} /> On
-        <input type="radio" name="emailReminder" value="false" onClick={this.onChangeEmailReminder} /> Off
+        <Input label="On" type="radio" name="emailReminder" value="true" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
+        <Input label="Off" type="radio" name="emailReminder" value="false" onClick={this.onChangeEmailReminder} />
        </label>) :
       (<label htmlFor="emailReminder">
         Interview Email Reminder:
-        <input type="radio" name="emailReminder" value="true" onClick={this.onChangeEmailReminder} /> On
-        <input type="radio" name="emailReminder" value="false" defaultChecked="checked" onClick={this.onChangeEmailReminder} /> Off
+        <Input label="On" type="radio" name="emailReminder" value="true" onClick={this.onChangeEmailReminder} />
+        <Input label="Off" type="radio" name="emailReminder" value="false" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
        </label>);
 
     return (
-      <div className="user-profile">
-        <h3>Hello, {this.state.githubUsername || username}!</h3>
+      <div className="container">
+        <h5>Hello, {this.state.githubUsername || username}!</h5>
         <br />
         <strong>Update Your Info</strong><br />
         <form name="updateUser" onSubmit={this.handleSubmit}>
-          <label htmlFor="firstName">
-            First Name:
-            <input type="text" name="firstName" placeholder={this.state.firstName} onChange={this.onChangeFirstName} />
-          </label>
-          <br />
-          <label htmlFor="firstName">
-            Last Name:
-            <input type="text" name="lastName" placeholder={this.state.lastName} onChange={this.onChangeLastName} />
-          </label>
-          <br />
-          <label htmlFor="email">
-            Email:
-            <input type="text" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
-          </label>
+          <Row>
+            <Input s={6} label="First Name" type="text" name="firstName" defaultValue={this.state.firstName} value={this.state.firstName} onChange={this.onChangeFirstName} />
+            <Input s={6} label="Last Name" type="text" name="lastName" defaultValue={this.state.lastName} value={this.state.lastName} onChange={this.onChangeLastName} />
+            <Input s={12} label="Email" type="email" name="email" defaultValue={this.state.email} value={this.state.email} onChange={this.onChangeEmail} />
+          </Row>
           <br />
           {emailReminderRadioButtons}
           <br />
           Github Username: {this.state.githubUsername}
           <br />
-          <input type="submit" value="Submit" />
+          <Button type="submit">Submit</Button>
         </form>
         <br />
         <b>Change Password</b>
         <form name="changePassword" onSubmit={this.handlePasswordSubmit}>
-          New Password:
-          <input type="password" placeholder="********" onChange={this.onChangePassword1} />
-          <br />
-          Verify Password:
-          <input type="password" placeholder="********" onChange={this.onChangePassword2} />
-          <br />
-          <input type="submit" value="Change Password" />
+          <Row>
+            <Input s={6} label="New Password:" type="password" onChange={this.onChangePassword1} />
+            <Input s={6} label="Verify Password:" type="password" onChange={this.onChangePassword2} />
+          </Row>
+          <Button type="submit">Change Password</Button>
         </form>
         <hr />
         <Resume

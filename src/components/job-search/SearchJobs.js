@@ -2,6 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Row, Col, Button, Input } from 'react-materialize';
+
 import JobSearchResult from './JobSearchResult';
 
 class SearchJobs extends React.Component {
@@ -112,35 +114,33 @@ class SearchJobs extends React.Component {
     return (
       <div>
         <div className="job-search-inputs">
-          <h2>Jobs. All day.</h2>
-          <h3>Go get them!</h3>
+          <h4>Jobs. All day.</h4>
+          <h5>Go get them!</h5>
           <form className="job-search-form" name="jobSearch" onSubmit={this.handleSubmit}>
-            <span className="form-group">
-              <label htmlFor="searchTerm">
-                <span className="input-label">Tech Skill Required:</span>
-                <input type="text" name="searchTechSkill" placeholder="JavaScript" />
-              </label>
-            </span>
-            <span className="form-group">
-              <label htmlFor="searchJobLocation">
-                <span className="input-label">Job Location:</span>
-                <input type="text" name="searchJobLocation" placeholder="SanFrancisco" />
-              </label>
-            </span>
-            <span className="form-group">
-              <input className="button" type="submit" value="Search" />
-            </span>
+            <Row>
+              <Col s={2} offset="s4">
+                <Input label="Technical Skill Required" type="text" name="searchTechSkill" />
+              </Col>
+              <Col s={2}>
+                <Input label="Location" type="text" name="searchJobLocation" />
+              </Col>
+            </Row>
+            <Button type="submit">Search</Button>
           </form>
         </div>
         <div className="job-search-results">
-          {this.state.jobSearchResults.length > 0 ? <h2>Job Search Results</h2> : null}
           {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
-            return (<JobSearchResult key={job.id} job={job} handleJobAdd={this.handleJobAdd} />);
+            return (
+              <Row>
+                <JobSearchResult key={job.id} job={job} handleJobAdd={this.handleJobAdd} />
+              </Row>
+              );
           }) : null}
         </div>
       </div>
     );
   }
 }
+// {this.state.jobSearchResults.length > 0 ? <h5>Job Search Results</h5> : null}
 
 export default SearchJobs;

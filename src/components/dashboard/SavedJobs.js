@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Icon, Button } from 'react-materialize';
 
 const SavedJobs = (props) => {
   const redirect = function () { window.location = `/#/home/dashboard/${props.jobPosting.jobId}`; };
@@ -19,13 +20,19 @@ const SavedJobs = (props) => {
       <td onClick={() => redirect()} >{props.jobPosting.status}</td>
       <td onClick={() => redirect()} >{props.jobPosting.dateApplied}</td>
       <td onClick={() => redirect()} >{props.jobPosting.location}</td>
-      <td><a href={props.jobPosting.url} target="_blank">ClickMe</a></td>
-      <td onClick={() => redirect()} className="truncate">{props.jobPosting.skills.join(', ')}</td>
-      <td><img id="favorite" src={favoriteUrl} alt="Star" onClick={() => props.favoriteJob(props.jobPosting.jobId)} /> </td>
-      <td><button onClick={() => props.deleteJob(props.jobPosting.jobId)}>Delete</button></td>
+      <td><a href={props.jobPosting.url} target="_blank"><Icon>bookmark</Icon></a></td>
+      <td onClick={() => redirect()} >{props.jobPosting.skills.join(', ')}</td>
+      <td>
+        <Button icon={favoriteState ? 'favorite' : 'favorite_border'} onClick={() => props.favoriteJob(props.jobPosting.jobId)} />
+      </td>
+      <td><Button icon="delete" onClick={() => props.deleteJob(props.jobPosting.jobId)} /></td>
     </tr>
   );
 };
+// <img id="favorite" src={favoriteUrl} alt="Star" onClick={() => props.favoriteJob(props.jobPosting.jobId)} />
+// <a href="#" onClick={() => props.favoriteJob(props.jobPosting.jobId)}>
+//       {favoriteState ? <Icon>favorite</Icon> : <Icon>favorite_border</Icon>}
+//     </a>
 SavedJobs.propTypes = {
   jobPosting: PropTypes.object.isRequired,
   deleteJob: PropTypes.func.isRequired,

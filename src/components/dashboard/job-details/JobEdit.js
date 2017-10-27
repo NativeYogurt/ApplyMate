@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Row, Col, Input, Button } from 'react-materialize';
 
 class JobEdit extends React.Component {
   constructor(props) {
@@ -110,13 +111,10 @@ class JobEdit extends React.Component {
           <span className="quick-actions"><Link to="/home/dashboard/job/contacts/new">Add Contact</Link></span>
         </div>
         <form className="job-edit-form" onSubmit={this.submit}>
-          <div className="form-group">
-            <label htmlFor="url">
-              <span className="input-label">Job URL:</span>
-              <input className="job-post-url" type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
-              {' '}<a href={this.state.url} target="_blank">GO</a>
-            </label>
-          </div>
+          <Row>
+            <Input s={6} label="Job URL:" type="text" name="url" value={this.state.url} onChange={this.onChangeUrl} />
+            {' '}<a href={this.state.url} target="_blank">GO</a>
+          </Row>
           <div className="form-group">
             <label htmlFor="company">
               <span className="input-label">Company:</span>

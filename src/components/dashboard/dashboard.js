@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Icon, Input, Button, Col, Row, Modal, Table } from 'react-materialize';
 
 import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
@@ -123,19 +124,17 @@ class Dashboard extends React.Component {
     }
     const jobList = (
       <div>
-        <div>
-          <span className="input-label">Sort By</span>
-          <select value={this.state.sortBy} onChange={this.onChangeSortBy}>
-            <option value="status">Status</option>
-            <option value="dateApplied">DateApplied</option>
-            <option value="favorite">Favorites</option>
-            <option value="location">Location</option>
-          </select>
-          <span className="search-input" >
-            <input type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
-          </span>
-        </div>
-        <table className="dashboard">
+        <Row>
+          <Col s={2}>
+            <Input small type="select" name="sortBy" label="Sort By" value={this.state.sortBy} onChange={this.onChangeSortBy}>
+              <option value="status">Status</option>
+              <option value="dateApplied">DateApplied</option>
+              <option value="favorite">Favorites</option>
+              <option value="location">Location</option>
+            </Input>
+          </Col>
+        </Row>
+        <Table className="dashboard">
           <thead>
             <tr>
               <th>Company</th>
@@ -153,51 +152,79 @@ class Dashboard extends React.Component {
           <tbody>
             {listJobs}
           </tbody>
-        </table>
+        </Table>
       </div>
     );
     return (
       <div>
-        <h2>New Job Application</h2>
-        {this.state.successVisible ? success : null}
-        <Error error={this.state.errorMessage} />
-        <form className="job-add-form" name="jobAdd" onSubmit={this.handleSubmit}>
-          <span className="form-group">
-            <input type="text" name="company" placeholder="company" />
-          </span>
-          <span className="form-group">
-            <input type="text" name="jobtitle" placeholder="job title" />
-          </span>
-          <span className="form-group">
-            <select defaultValue="wishlist" name="status">
-              <option value="wishlist">Wishlist</option>
-              <option value="applied">Applied</option>
-              <option value="phone">Phone</option>
-              <option value="onSite">OnSite</option>
-              <option value="rejected">Rejected</option>
-              <option value="offer">Offer</option>
-            </select>
-          </span>
-          <span className="form-group">
-            <input type="date" name="dateApplied" placeholder="date applied" />
-          </span>
-          <span className="form-group">
-            <input type="text" name="location" placeholder="job location" />
-          </span>
-          <span className="form-group">
-            <input type="text" name="url" placeholder="job url" />
-          </span>
-          <span className="form-group">
-            <input type="text" name="companyUrl" placeholder="company url" />
-          </span>
-          <span className="form-group">
-            <input className="button" type="submit" value="Add" />
-          </span>
-        </form>
+        <Row>
+          <Col s={3}>
+            <h5>Job Applications</h5>
+          </Col>
+          <Col s={3}>
+            <input type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
+          </Col>
+          <Col s={5} />
+          <Col s={1}>
+            <Modal
+              trigger={<Button
+                floating
+                className="red"
+                waves="light"
+                icon="add"
+              />}
+            >
+              <Error error={this.state.errorMessage} />
+              <form className="card-content" name="jobAdd" onSubmit={this.handleSubmit}>
+                <Input label="Company" type="text" name="company" />
+                <Input label="Job Title" type="text" name="jobtitle" />
+                <Input type="select" name="status" label="Status" defaultValue="wishlist">
+                  <option value="wishlist">Wishlist</option>
+                  <option value="applied">Applied</option>
+                  <option value="phone">Phone</option>
+                  <option value="onSite">OnSite</option>
+                  <option value="rejected">Rejected</option>
+                  <option value="offer">Offer</option>
+                </Input>
+                <Input label="Date Applied" type="date" name="dateApplied" />
+                <Input type="text" name="location" label="Job Location" />
+                <Input type="text" name="url" label="Job URL" />
+                <Input type="text" name="companyUrl" label="Company URL" />
+                <Button type="submit">Add</Button>
+              </form>
+            </Modal>
+          </Col>
+        </Row>
         {this.props.savedJobs.length > 0 ? jobList : null}
       </div>);
   }
 }
+// <a className="btn-floating right waves-effect waves-light red"><Icon small>add</Icon></a>
+// <div className="container">
+//   <div className="card">
+//     {this.state.successVisible ? success : null}
+//     <Error error={this.state.errorMessage} />
+//     <form className="card-content" name="jobAdd" onSubmit={this.handleSubmit}>
+//       <Input label="Company" type="text" name="company" />
+//       <Input label="Job Title" type="text" name="jobtitle" />
+//       <Input type="select" name="status" label="Status" defaultValue="wishlist">
+//         <option value="wishlist">Wishlist</option>
+//         <option value="applied">Applied</option>
+//         <option value="phone">Phone</option>
+//         <option value="onSite">OnSite</option>
+//         <option value="rejected">Rejected</option>
+//         <option value="offer">Offer</option>
+//       </Input>
+//       <Input label="Date Applied" type="date" name="dateApplied" />
+//       <Input type="text" name="location" label="Job Location" />
+//       <Input type="text" name="url" label="Job URL" />
+//       <Input type="text" name="companyUrl" label="Company URL" />
+//       <span className="form-group">
+//         <input className="button" type="submit" value="Add" />
+//       </span>
+//     </form>
+//   </div>
+// </div>
 Dashboard.propTypes = {
   getJobs: PropTypes.func.isRequired,
   getJobComparison: PropTypes.func.isRequired,

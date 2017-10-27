@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+
 import UploadedResume from './uploaded-resume';
 
 class Resume extends React.Component {
@@ -38,10 +39,10 @@ class Resume extends React.Component {
   render() {
     return (
       <div>
-        <h2>Upload Resume:</h2>
+        <h5>Upload Resume:</h5>
         <input type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
         <br /><br />
-        <h2>My Resume:</h2>
+        <h5>My Resume:</h5>
         <UploadedResume
           userResume={this.props.userResume}
           resumeLoadToggle={this.state.resumeLoadToggle}

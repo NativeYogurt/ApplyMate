@@ -220,16 +220,17 @@ class Main extends React.Component {
             path="/home/dashboard/:id"
             component={JobHome}
           />
-          <Route render={() => (
-            <Dashboard
-              userId={this.props.userId}
-              getJobs={this.getJobs}
-              savedJobs={this.state.savedJobs}
-              deleteJob={this.deleteJob}
-              favoriteJob={this.favoriteJob}
-              getJobComparison={this.getJobComparison}
-              addJob={this.addJob}
-            />
+          <Route
+            render={() => (
+              <Dashboard
+                userId={this.props.userId}
+                getJobs={this.getJobs}
+                savedJobs={this.state.savedJobs}
+                deleteJob={this.deleteJob}
+                favoriteJob={this.favoriteJob}
+                getJobComparison={this.getJobComparison}
+                addJob={this.addJob}
+              />
            )}
           />
         </Switch>

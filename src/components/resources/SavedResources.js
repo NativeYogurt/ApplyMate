@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Row, Col, Card, Button } from 'react-materialize';
 
 const SavedResources = (props) => {
   const tutorial = (
@@ -17,7 +18,7 @@ const SavedResources = (props) => {
   );
   const video = (
     <div className="video-list-entry">
-      <h4>Related Skill: {props.resource.relatedSkill}</h4>
+      <h5>Related Skill: {props.resource.relatedSkill}</h5>
       <div>
         <img className="media-object" src={props.resource.videoThumbnail} alt="" />
       </div>
@@ -36,13 +37,13 @@ const SavedResources = (props) => {
     </div>
   );
   return (
-    <div>
+    <Card>
       { props.resource.tutorialType === 'link' ? tutorial : video }
-      <button
+      <Button
+        icon="delete"
         onClick={() => props.deleteResource(props.resource.resourceId)}
-      >Remove Resource
-      </button>
-    </div>
+      />
+    </Card>
   );
 };
 
