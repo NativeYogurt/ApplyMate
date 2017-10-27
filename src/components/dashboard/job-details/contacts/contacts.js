@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Row, Col, Icon, Button, Input } from 'react-materialize';
 
 import ContactEntry from './contact-entry';
 
@@ -40,6 +41,15 @@ class Contacts extends React.Component {
     return (
       <div>
         <div>
+          {this.state.contacts.length === 0 ? (
+            <div>
+              <Icon large>contacts</Icon>
+              <div>Save contact information here for people related to this job
+                 application or company.
+              </div>
+            </div>
+            ) : null
+          }
           <Link to="/home/dashboard/job/contacts/new">Add</Link>
         </div>
         <div>

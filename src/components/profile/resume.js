@@ -40,8 +40,18 @@ class Resume extends React.Component {
     return (
       <div>
         <h5>Upload Resume:</h5>
-        <input type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
-        <br /><br />
+        <form action="#">
+          <div className="file-field input-field">
+            <div className="btn">
+              <span>File</span>
+              <input type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
+            </div>
+            <div className="file-path-wrapper">
+              <input className="file-path validate" type="text" />
+            </div>
+          </div>
+        </form>
+
         <h5>My Resume:</h5>
         <UploadedResume
           userResume={this.props.userResume}
@@ -52,7 +62,6 @@ class Resume extends React.Component {
     );
   }
 }
-
 Resume.propTypes = {
   userId: PropTypes.string.isRequired,
   userResume: PropTypes.string.isRequired,

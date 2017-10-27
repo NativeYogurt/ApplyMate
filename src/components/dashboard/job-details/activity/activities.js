@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Row, Col, Icon, Button, Input, Card } from 'react-materialize';
 
 import ActivityEntry from './activity-entry';
 
@@ -40,6 +41,14 @@ class Activity extends React.Component {
     return (
       <div>
         <div>
+          {this.state.activities.length === 0 ? (
+            <div>
+              <Icon large>event</Icon>
+              <div>Add Interview for this job.
+              </div>
+            </div>
+            ) : null
+          }
           <Link to="/home/dashboard/job/activity/new">Add</Link>
         </div>
         <div>

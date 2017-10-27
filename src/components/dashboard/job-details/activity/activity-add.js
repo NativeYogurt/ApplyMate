@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Col, Icon, Button, Input } from 'react-materialize';
 
 class ActivityAdd extends React.Component {
   constructor(props) {
@@ -59,34 +60,16 @@ class ActivityAdd extends React.Component {
     return (
       <div>
         <form className="event-form" onSubmit={this.submit}>
-          <div className="form-group">
-            <label htmlFor="eventType">
-              <span className="input-label">Event Type</span>
-              <select className="event-type" name="eventType" onChange={this.onChangeEventType}>
-                <option value="phoneCall">Phone Call</option>
-                <option value="interview">Interview</option>
-              </select>
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="eventDate">
-              <span className="input-label">Event Date</span>
-              <input className="event-date" type="date" name="eventDate" value={this.state.eventDate} onChange={this.onChangeEventDate} />
-            </label>
-            <label htmlFor="eventTime">
-              <span className="input-label">Event Time</span>
-              <input className="event-time" type="time" name="eventTime" value={this.state.eventTime} onChange={this.onChangeEventTime} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="eventParticipates">
-              <span className="input-label">Who is participating?</span>
-              <input type="text" name="eventParticipates" value={this.state.eventParticipates} onChange={this.onChangeEventParticipates} />
-            </label>
-          </div>
-          <div className="form-group">
-            <input className="button" type="submit" value="Save" />
-          </div>
+          <Row>
+            <Input s={12} label="Event Type" type="select" name="eventType" defaultValue="phoneCall" value={this.state.eventType} onChange={this.onChangeEventType}>
+              <option value="phoneCall">Phone Call</option>
+              <option value="interview">Interview</option>
+            </Input>
+            <Input s={6} label="Event Date" type="date" name="eventDate" value={this.state.eventDate} onChange={this.onChangeEventDate} />
+            <Input s={6} label="Event Time" type="time" name="eventTime" value={this.state.eventTime} onChange={this.onChangeEventTime} />
+            <Input s={12} label="Who is participating?" type="text" name="eventParticipates" value={this.state.eventParticipates} onChange={this.onChangeEventParticipates} />
+          </Row>
+          <Button type="submit">Save</Button>
         </form>
       </div>
     );
