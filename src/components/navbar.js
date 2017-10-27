@@ -50,7 +50,6 @@ class Nav extends React.Component {
 //   </ul>
 // </div>
 Navbar.propTypes = {
-  TESTBUTTON: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
 };
 export default Nav;

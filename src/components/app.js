@@ -61,9 +61,9 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
-          {this.routes('/signup', <Signup setUser={this.setUser} TESTBUTTON={this.TESTBUTTON} />, <Redirect to="/home" />)}
-          {this.routes('/login', <Login setUser={this.setUser} TESTBUTTON={this.TESTBUTTON} />, <Redirect to="/home" />)}
-          {this.routes('/home', <Redirect to="/login" />, <Home TESTBUTTON={this.TESTBUTTON} user={this.state.user} setUser={this.setUser} />)}
+          {this.routes('/signup', <Signup setUser={this.setUser} />, <Redirect to="/home" />)}
+          {this.routes('/login', <Login setUser={this.setUser} />, <Redirect to="/home" />)}
+          {this.routes('/home', <Redirect to="/login" />, <Home user={this.state.user} setUser={this.setUser} />)}
           <Route
             exact
             path="*"

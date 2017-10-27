@@ -65,7 +65,6 @@ class UploadedResume extends React.Component {
 
   render() {
     const resume = `${this.props.userResume}`;
-
     let pagination = null;
     if (this.state.pages > 1) {
       pagination = this.renderPagination(this.state.page, this.state.pages);
@@ -77,7 +76,7 @@ class UploadedResume extends React.Component {
     } else if (!resume && this.props.resumeLoadToggle) {
       resumeElement = (<ThreeBounce
         size={15}
-        color="blue"
+        color="#26a69a"
       />);
     } else {
       resumeElement = (<PDF
