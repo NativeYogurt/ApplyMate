@@ -8,14 +8,14 @@ class Twitter extends React.Component {
     super(props);
     this.state = {
       searchTerm: this.props.companyName,
-      data: {},
-      pic: '/imgs/TempHeader.jpg'
+      data: [],
+      pic: '/imgs/TempHeader.jpg',
     };
     this.twitterApiCall = this.twitterApiCall.bind(this);
   }
 
   componentDidMount() {
-    this.twitterApiCall()
+    this.twitterApiCall();
   }
 
   twitterApiCall() {
@@ -24,15 +24,43 @@ class Twitter extends React.Component {
         this.setState({
           data: data.data,
           pic: data.data[0].pic,
-        })
-      })
+        });
+      });
   }
+
 
   render() {
     return (
-      <div id="TwitterComponent">  
-        <img src={this.state.pic} style={{ width: '1500px', height: '500px' }} alt="hello world" />
-        <pre><code>{JSON.stringify(this.state.data, null, 4)}</code></pre>
+      <div id="TwitterComponent">
+        <img id="twitterBanner" src={this.state.pic} style={{ width: '1500px', height: '500px' }} alt="hello world" />
+        {!this.state.data[0] ? (
+          <div id="tweetsContainer">
+            This company has no tweets.
+          </div>
+        ) : (
+          <div id="tweetsContainer">
+              Tweets from <a href={`http://${this.state.data[0].url}`}> {this.state.data[0].url.slice(16)}</a>
+            <br /> <br />
+            {this.state.data.map((tweet) => {
+                return (
+                  <div key={tweet.time}>
+                    <img src="/imgs/tweetLogo.png" alt="tweet: " /> {' '}
+                    {tweet.time.slice(0, 19)} {' '}
+                    <img src="https://ton.twitter.com/hc_assets/1496970859_1377.png" alt="retweets: " /> {' '}
+                    {tweet.retweet} {' '}
+                    <img src="https://ton.twitter.com/hc_assets/1487281908_1244.png" alt="likes: " /> {' '}
+                    {tweet.favorite}
+                    <br />
+                    {tweet.text}
+                    <br />
+                    <br />
+                  </div>
+                );
+              })}
+          </div>
+         )}
+
+
       </div>
     );
   }
