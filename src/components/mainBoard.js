@@ -163,18 +163,6 @@ class Main extends React.Component {
       <div>
         <Switch>
           <Route
-            path="/home/profile/resume"
-            render={() => (
-              <Resume
-                userId={this.props.userId}
-                getJobComparison={this.state.getJobComparison}
-                getUserInfo={this.state.getUserInfo}
-                userResume={this.state.resume}
-                clearResume={this.state.clearResume}
-              />
-            )}
-          />
-          <Route
             path="/home/analytics"
             render={() => (
               <Analytics
@@ -208,6 +196,18 @@ class Main extends React.Component {
                 userId={this.props.userId}
                 getJobs={this.getJobs}
                 addJob={this.addJob}
+              />
+            )}
+          />
+          <Route
+            path="/home/profile/resume"
+            render={() => (
+              <Resume
+                userId={this.props.userId}
+                getJobComparison={this.state.getJobComparison}
+                getUserInfo={this.state.getUserInfo}
+                userResume={this.state.resume}
+                clearResume={this.state.clearResume}
               />
             )}
           />

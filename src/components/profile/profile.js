@@ -128,6 +128,8 @@ class Profile extends React.Component {
         <Card>
           <ProfileNav />
           <h5>Hello, {githubHandle || username}!</h5>
+          <h6>Github Username: {githubHandle}</h6>
+          <br />
           <br />
           <strong>Update Your Info</strong><br />
           <form name="updateUser" onSubmit={this.handleSubmit}>
@@ -136,15 +138,10 @@ class Profile extends React.Component {
               <Input s={6} label="Last Name" type="text" name="lastName" defaultValue={this.state.lastName} value={this.state.lastName} onChange={this.onChangeLastName} />
               <Input s={12} label="Email" type="email" name="email" defaultValue={this.state.email} value={this.state.email} onChange={this.onChangeEmail} />
             </Row>
-            <br />
-            {emailReminderRadioButtons}
-            <br />
-            Github Username: {githubHandle}
-            <br />
             <Button type="submit">Submit</Button>
           </form>
           <br />
-          <b>Change Password</b>
+          <strong>Change Password</strong>
           <form name="changePassword" onSubmit={this.handlePasswordSubmit}>
             <Row>
               <Input s={6} label="New Password:" type="password" onChange={this.onChangePassword1} />
@@ -152,6 +149,8 @@ class Profile extends React.Component {
             </Row>
             <Button type="submit">Change Password</Button>
           </form>
+          <br />
+          {emailReminderRadioButtons}
         </Card>
       </div>
     );

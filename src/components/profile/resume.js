@@ -48,10 +48,10 @@ class Resume extends React.Component {
             <div className="file-field input-field">
               <div className="btn">
                 <span>File</span>
-                <Input s={6} type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
+                <input type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
               </div>
               <div className="file-path-wrapper">
-                <Input s={6} className="file-path validate" type="text" />
+                <input className="file-path validate" type="text" />
               </div>
             </div>
           </form>
