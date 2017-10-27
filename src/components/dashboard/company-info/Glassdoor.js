@@ -13,15 +13,10 @@ class Glassdoor extends React.Component {
       website: '',
       companyName: '',
       ratingNum: 0,
-      cultureAndValuesRating: 0,
-      seniorLeadershipRating: 0,
-      compensationAndBenefitsRating: 0,
-      careerOpportunitiesRating: 0,
-      workLifeBalanceRating: 0,
       recommendToFriendRating: 0,
       bossApprove: 0,
-      bossDisapp: 0,
-      barRatings: [],
+      barKeys:['Culture and Values', 'Senior Leadership', 'Compensation and Benefits', 'Career Opportunities', 'Work/Life Balance'],
+      barVals: [],
       obj: {},
     };
     this.GlassdoorApiCall = this.GlassdoorApiCall.bind(this);
@@ -35,14 +30,14 @@ class Glassdoor extends React.Component {
     axios.post('/api/Glassdoor', { searchTerm: this.state.searchTerm })
       .then(res => {
         const data = res.data.response.employers[0];
-        const barRatings = [];
-        barRatings.push({ 'Culture and Values': data.cultureAndValuesRating });
-        barRatings.push({ 'Senior Leadership': data.seniorLeadershipRating });
-        barRatings.push({ 'Compensation and Benefits': data.compensationAndBenefitsRating });
-        barRatings.push({ 'Career Opportunities': data.careerOpportunitiesRating });
-        barRatings.push({ 'Work/Life Balance': data.workLifeBalanceRating });
+        const barVals = [];
+        barVals.push(data.cultureAndValuesRating);
+        barVals.push(data.seniorLeadershipRating);
+        barVals.push(data.compensationAndBenefitsRating);
+        barVals.push(data.careerOpportunitiesRating);
+        barVals.push(data.workLifeBalanceRating);
         this.setState({
-          barRatings,
+          barVals,
           companyName: data.name,
           website: data.website,
           ratingNum: data.numberOfRatings,
@@ -57,18 +52,19 @@ class Glassdoor extends React.Component {
   render() {
     return (
       <div id="GlassdoorComponent">
+        {this.state.companyName} @ {this.state.website}, with {this.state.ratingNum} ratings. {'      '}
+        <a href="https://www.glassdoor.com/index.htm">powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
         <br />
-        <div id="GlassdoorDoughnuts">
-          <CompletionDoughnut name="Recommend To Friend" rating={this.state.recommendToFriendRating} size="225px" />
-          <CompletionDoughnut name="Overall Rating" rating={this.state.overallRating} size="300px" />
-          <CompletionDoughnut name="CEO Approval" rating={this.state.bossApprove} size="225px" />
+        <div id="glassdoorDoughnuts">
+          <CompletionDoughnut name="Recommend To Friend" rating={this.state.recommendToFriendRating} size="195px"/>
+          <CompletionDoughnut name="Overall Rating" rating={this.state.overallRating} size="223px"/>
+          <CompletionDoughnut name="CEO Approval" rating={this.state.bossApprove} size="195px"/>
         </div>
         <div>
-          <BarGraph />
+          <BarGraph data={this.state.barVals} labels={this.state.barKeys} companyName={this.state.companyName} />
         </div>
-        <pre><code>{JSON.stringify(this.state.obj, null, 4)}</code></pre>
-        <br />
-        <a href="https://www.glassdoor.com/index.htm">powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
+        {/* <pre><code>{JSON.stringify(this.state.obj, null, 4)}</code></pre> */}
+
       </div>
     );
   }

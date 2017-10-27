@@ -5,7 +5,6 @@ const CompletionDoughnut = (props) => {
   const data = {
     labels: [
       'Rating',
-      '',
     ],
     datasets: [{
       data: [props.rating, Math.round((5 - props.rating) * 10) / 10],
@@ -18,16 +17,16 @@ const CompletionDoughnut = (props) => {
         '#969393',
       ],
     }],
-    options: {
-      legend: {
-        display: false,
-      }
-    }
   };
+  const options = {
+    legend: {
+      display: false,
+    }
+  }
   return (
-    <div style={{ width: props.size, height: props.size }} >
-      {props.name}
-      <Doughnut data={data} />
+    <div className="doughnut" style={{ width: props.size }} >
+      <div className="centerText"> {props.name} </div>
+      <Doughnut data={data} options={options} />
     </div>
   );
 };
