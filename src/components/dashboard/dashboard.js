@@ -126,7 +126,7 @@ class Dashboard extends React.Component {
       <div>
         <Row>
           <Col s={2}>
-            <select className="browser-default">
+            <select className="browser-default" onChange={this.onChangeSortBy}>
               <option value="status">Status</option>
               <option value="dateApplied">DateApplied</option>
               <option value="favorite">Favorites</option>
