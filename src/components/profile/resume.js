@@ -40,7 +40,7 @@ class Resume extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Card>
           <ProfileNav />
           <h5>Upload Resume:</h5>
@@ -48,14 +48,13 @@ class Resume extends React.Component {
             <div className="file-field input-field">
               <div className="btn">
                 <span>File</span>
-                <input type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
+                <Input s={6} type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
               </div>
               <div className="file-path-wrapper">
-                <input className="file-path validate" type="text" />
+                <Input s={6} className="file-path validate" type="text" />
               </div>
             </div>
           </form>
-
           <h5>My Resume:</h5>
           <UploadedResume
             userResume={this.props.userResume}

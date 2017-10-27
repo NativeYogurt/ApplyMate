@@ -110,6 +110,7 @@ class Profile extends React.Component {
 
   render() {
     const username = `${this.props.userFirstName} ${this.props.userLastName}`;
+    const githubHandle = `${this.state.githubUsername}`;
     const githubSkills = `${this.props.githubSkills}`;
     const emailReminderRadioButtons = (this.state.emailReminder === true) ?
       (<label htmlFor="emailReminder">
@@ -126,7 +127,7 @@ class Profile extends React.Component {
       <div className="container">
         <Card>
           <ProfileNav />
-          <h5>Hello, {this.state.githubUsername || username}!</h5>
+          <h5>Hello, {githubHandle || username}!</h5>
           <br />
           <strong>Update Your Info</strong><br />
           <form name="updateUser" onSubmit={this.handleSubmit}>
@@ -138,7 +139,7 @@ class Profile extends React.Component {
             <br />
             {emailReminderRadioButtons}
             <br />
-            Github Username: {this.state.githubUsername}
+            Github Username: {githubHandle}
             <br />
             <Button type="submit">Submit</Button>
           </form>

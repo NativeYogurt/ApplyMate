@@ -136,6 +136,10 @@ table .dashboard, .dashboard th, .dashboard td {
   padding-right: 8px;
 }
 
+/*.file-path-wrapper {
+  width: 60%;
+}*/
+
 /*.resource-list table, .resource-list th, .resource-list td {
     border-bottom: 1px solid #ddd;
     border-collapse: collapse;
