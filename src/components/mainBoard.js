@@ -23,7 +23,7 @@ class Main extends React.Component {
       githubUsername: '',
       githubSkills: {},
       savedJobs: [],
-      resume: '',
+      userResume: '',
       userSkills: [],
       missingSkills: [],
       emailReminder: '',
@@ -40,7 +40,6 @@ class Main extends React.Component {
   componentDidMount() {
     this.getUserInfo();
     this.getJobs();
-    // this.getJobComparison();
   }
 
   getUserInfo() {
@@ -57,7 +56,7 @@ class Main extends React.Component {
           email: data.email,
           githubUsername: data.githubUsername,
           githubSkills: data.githubSkills,
-          resume: data.resumeURL || '',
+          userResume: data.resumeURL || '',
           emailReminder: data.emailReminder,
         });
       })
@@ -155,25 +154,13 @@ class Main extends React.Component {
   }
 
   clearResume() {
-    this.setState({ resume: '' });
+    this.setState({ userResume: '' });
   }
 
   render() {
     return (
       <div>
         <Switch>
-          <Route
-            path="/home/profile/resume"
-            render={() => (
-              <Resume
-                userId={this.props.userId}
-                getJobComparison={this.state.getJobComparison}
-                getUserInfo={this.state.getUserInfo}
-                userResume={this.state.resume}
-                clearResume={this.state.clearResume}
-              />
-            )}
-          />
           <Route
             path="/home/analytics"
             render={() => (
@@ -212,6 +199,18 @@ class Main extends React.Component {
             )}
           />
           <Route
+            path="/home/profile/resume"
+            render={() => (
+              <Resume
+                userId={this.props.userId}
+                getJobComparison={this.getJobComparison}
+                getUserInfo={this.getUserInfo}
+                userResume={this.state.userResume}
+                clearResume={this.clearResume}
+              />
+            )}
+          />
+          <Route
             path="/home/profile"
             render={() => (
               <Profile
@@ -219,7 +218,7 @@ class Main extends React.Component {
                 userFirstName={this.state.firstName}
                 userLastName={this.state.lastName}
                 userEmail={this.state.email}
-                userResume={this.state.resume}
+                userResume={this.state.userResume}
                 githubUsername={this.state.githubUsername}
                 githubSkills={this.state.githubSkills}
                 getJobComparison={this.getJobComparison}
