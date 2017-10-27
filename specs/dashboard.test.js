@@ -17,33 +17,28 @@ test('CheckboxWithLabel changes the text after click', () => {
   let savedJob = shallow((
     <SavedJobs jobPosting={{ favorite, skills}} favoriteJob={favoriteJob} deleteJob={deleteJob} />
   ));
-  expect(savedJob.find('#favorite').getElements()[0].props.src).toEqual('http://res.cloudinary.com/dxcydtwom/image/upload/v1508791216/hollow_gold_star_unli4s.png');
-
-  savedJob.find('#favorite').simulate('click');
+  expect(savedJob.find('.favorite').getElements()[0].props.icon).toEqual('favorite_border');
+  savedJob.find('.favorite').simulate('click');
   savedJob = shallow((
     <SavedJobs jobPosting={{ favorite, deleteJob, skills}} favoriteJob={favoriteJob} deleteJob={deleteJob}/>
   ));
-  expect(savedJob.find('#favorite').getElements()[0].props.src).toEqual('http://res.cloudinary.com/dxcydtwom/image/upload/v1508791828/gold_star_bagtk7.png');
+  expect(savedJob.find('.favorite').getElements()[0].props.icon).toEqual('favorite');
 });
 
 //
 test('Should error if not all required fields are filled out when adding a job', async () => {
 
-  const getJobs = jest.fn();
-  const savedJobs = [];
-  const dashboard = mount((
-    <Dashboard userId="1" savedJobs={savedJobs} getJobs={getJobs} deleteJob={jest.fn()} addJob={jest.fn()} getJobComparison={jest.fn()}/>
-  ));
-  const nightmare = Nightmare();
+  const nightmare = Nightmare({show: true});
   let test = await nightmare
     .goto('http://localhost:3000')
     .wait('#signin')
     .type('#email', 'nightmare@test.com')
     .type('#pw', 'nightmare')
     .click('#signin-button')
-    .wait('.button')
-    .click('.button')
-    .wait(1000)
+    .wait('#add')
+    .click('#add')
+    .wait('#add-job')
+    .click('#add-job')
     .evaluate(() => {
       let error = document.querySelector('.error').innerText;
       return error;
@@ -53,6 +48,5 @@ test('Should error if not all required fields are filled out when adding a job',
       expect(error).toEqual('Please Add a Company Name')
   });
 
-  //dashboard.find('.button').simulate('submit');
 
 }, 20000);
