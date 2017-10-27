@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import CompletionDoughnut from './completion-doughnut.js';
+import BarGraph from './bar-graph.js';
 
 
 class Glassdoor extends React.Component {
@@ -9,7 +11,7 @@ class Glassdoor extends React.Component {
     this.state = {
       searchTerm: this.props.companyName,
       website: '',
-      companyName:'',
+      companyName: '',
       ratingNum: 0,
       cultureAndValuesRating: 0,
       seniorLeadershipRating: 0,
@@ -19,53 +21,52 @@ class Glassdoor extends React.Component {
       recommendToFriendRating: 0,
       bossApprove: 0,
       bossDisapp: 0,
-      bossRatingNum: 0,
+      barRatings: [],
       obj: {},
     };
     this.GlassdoorApiCall = this.GlassdoorApiCall.bind(this);
   }
 
   componentDidMount() {
-    this.GlassdoorApiCall()
+    this.GlassdoorApiCall();
   }
 
   GlassdoorApiCall() {
     axios.post('/api/Glassdoor', { searchTerm: this.state.searchTerm })
       .then(res => {
-        const data = res.data.response.employers[0]
+        const data = res.data.response.employers[0];
+        const barRatings = [];
+        barRatings.push({ 'Culture and Values': data.cultureAndValuesRating });
+        barRatings.push({ 'Senior Leadership': data.seniorLeadershipRating });
+        barRatings.push({ 'Compensation and Benefits': data.compensationAndBenefitsRating });
+        barRatings.push({ 'Career Opportunities': data.careerOpportunitiesRating });
+        barRatings.push({ 'Work/Life Balance': data.workLifeBalanceRating });
         this.setState({
+          barRatings,
           companyName: data.name,
           website: data.website,
           ratingNum: data.numberOfRatings,
-          cultureAndValuesRating: data.cultureAndValuesRating,
-          seniorLeadershipRating: data.seniorLeadershipRating,
-          compensationAndBenefitsRating: data.compensationAndBenefitsRating,
-          careerOpportunitiesRating: data.careerOpportunitiesRating,
-          workLifeBalanceRating: data.workLifeBalanceRating,
-          recommendToFriendRating: data.recommendToFriendRating,
-          bossApprove: data.ceo.pctApprove,
-          bossDisapp: data.ceo.pctDisapprove,
-          bossRatingNum: data.ceo.numberOfRatings,
-          obj: res,
-        })
-      })
+          overallRating: data.overallRating,
+          recommendToFriendRating: data.recommendToFriendRating / 20 ,
+          bossApprove: data.ceo.pctApprove /20 ,
+          obj: data,
+        });
+      });
   }
 
   render() {
     return (
       <div id="GlassdoorComponent">
         <br />
-        {this.state.companyName} @ {this.state.website}<br />
-        ratingNum: {this.state.ratingNum}<br />
-        cultureAndValuesRating: {this.state.cultureAndValuesRating}<br />
-        seniorLeadershipRating: {this.state.seniorLeadershipRating}<br />
-        compensationAndBenefitsRating: {this.state.compensationAndBenefitsRating}<br />
-        careerOpportunitiesRating: {this.state.careerOpportunitiesRating}<br />
-        workLifeBalanceRating: {this.state.workLifeBalanceRating}<br />
-        recommendToFriendRating: {this.state.recommendToFriendRating}<br />
-        bossApprove: {this.state.bossApprove}<br />
-        bossDisapp: {this.state.bossDisapp}<br />
-        bossRatingNum: {this.state.bossRatingNum}<br />
+        <div id="GlassdoorDoughnuts">
+          <CompletionDoughnut name="Recommend To Friend" rating={this.state.recommendToFriendRating} size="225px" />
+          <CompletionDoughnut name="Overall Rating" rating={this.state.overallRating} size="300px" />
+          <CompletionDoughnut name="CEO Approval" rating={this.state.bossApprove} size="225px" />
+        </div>
+        <div>
+          <BarGraph />
+        </div>
+        <pre><code>{JSON.stringify(this.state.obj, null, 4)}</code></pre>
         <br />
         <a href="https://www.glassdoor.com/index.htm">powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
       </div>
