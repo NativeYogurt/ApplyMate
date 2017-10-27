@@ -92,7 +92,6 @@ class Tasks extends React.Component {
     return (
       <div>
         <Card>
-          <h5>Add Task</h5>
           <form className="task-form" onSubmit={this.submit}>
               <label htmlFor="taskDesc">
                 What needs to be done?

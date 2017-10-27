@@ -19,7 +19,7 @@ class CompanyInfo extends React.Component {
       <div id="companyInformationTab">
         {<Twitter companyName={this.state.companyName} />}
         {/* {<BBB companyName={this.state.companyName} />} */}
-        {<Glassdoor companyName={this.state.companyName} />}
+        {/* {<Glassdoor companyName={this.state.companyName} />} */}
         {/* {<EDGAR companyName={this.state.companyName} />} */}
       </div>
     );
