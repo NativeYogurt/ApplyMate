@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Row, Col, Icon, Button, Input, Card } from 'react-materialize';
 
 import TaskEntry from './task-entry';
 
@@ -90,23 +91,17 @@ class Tasks extends React.Component {
     }).reverse().map(this.createTasks);
     return (
       <div>
-        <form className="task-form" onSubmit={this.submit}>
-          <div className="form-group">
-            <label htmlFor="taskDesc">
-              <span className="input-label">What needs to be done?</span>
-              <textarea name="taskDesc" value={this.state.taskDesc} onChange={this.onChangeTaskDesc} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="taskDueDate">
-              <span className="input-label">Due Date</span>
-              <input className="task-due-date" type="date" name="taskDueDate" value={this.state.taskDueDate} onChange={this.onChangeTaskDueDate} />
-            </label>
-          </div>
-          <div className="form-group">
-            <input className="button" type="submit" value="Save" />
-          </div>
-        </form>
+        <Card>
+          <h5>Add Task</h5>
+          <form className="task-form" onSubmit={this.submit}>
+              <label htmlFor="taskDesc">
+                What needs to be done?
+                <textarea className="materialize-textarea" name="taskDesc" value={this.state.taskDesc} onChange={this.onChangeTaskDesc} />
+              </label>
+              <Input label="Due Date" type="date" name="taskDueDate" value={this.state.taskDueDate} onChange={this.onChangeTaskDueDate} />
+            <Button type="submit">Save</Button>
+          </form>
+        </Card>
         <div>
           {sortedByDate}
         </div>

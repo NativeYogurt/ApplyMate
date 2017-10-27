@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Row, Col, Icon, Button, Input, Card } from 'react-materialize';
 
 const TaskEntry = (props) => {
   return (
-    <div>
+    <Card>
       <div>{props.task.taskDesc}</div>
       <div>Due: {props.task.taskDueDate}</div>
-      <button onClick={() => props.deleteTask(props.task.taskId)}>Delete</button>
-    </div>
+      <Button onClick={() => props.deleteTask(props.task.taskId)} icon="delete" />
+    </Card>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Col, Icon, Button, Input } from 'react-materialize';
 
 class ContactAdd extends React.Component {
   constructor(props) {
@@ -94,55 +95,28 @@ class ContactAdd extends React.Component {
     return (
       <div>
         <form className="contact-form" onSubmit={this.submit}>
-          <div className="form-group">
-            <label htmlFor="firstname">
-              <span className="input-label">First Name</span>
-              <input className="contact-first-name" type="text" name="firstName" value={this.state.firstName} onChange={this.onChangeFirstName} />
-            </label>
-            <label htmlFor="lastname">
-              <span className="input-label">Last Name</span>
-              <input className="contact-last-name" type="text" name="lastName" value={this.state.lastName} onChange={this.onChangeLastName} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="jobtitle">
-              <span className="input-label">Job Title</span>
-              <input type="text" name="jobtitle" value={this.state.jobTitle} onChange={this.onChangeJobTitle} />
-            </label>
-            <label htmlFor="email">
-              <span className="input-label">Email</span>
-              <input type="text" name="email" value={this.state.email} onChange={this.onChangeEmail} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="linkedInProfile">
-              <span className="input-label">LinkedIn Profile</span>
-              <input type="text" name="linkedInProfile" value={this.state.linkedInProfile} onChange={this.onChangeLinkedInProfile} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="workPhone">
-              <span className="input-label">Work Phone</span>
-              <input type="text" name="workPhone" value={this.state.workPhone} onChange={this.onChangeWorkPhone} />
-            </label>
-            <label htmlFor="personalPhone">
-              <span className="input-label">Personal Phone</span>
-              <input type="text" name="personalPhone" value={this.state.personalPhone} onChange={this.onChangePersonalPhone} />
-            </label>
-          </div>
-          <div className="form-group">
-            <label htmlFor="howWeMet">
-              <span className="input-label">How We Met</span>
-              <textarea name="howWeMet" value={this.state.howWeMet} onChange={this.onChangeHowWeMet} />
-            </label>
-            <label htmlFor="notes">
-              <span className="input-label">Notes</span>
-              <textarea name="notes" value={this.state.notes} onChange={this.onChangeNotes} />
-            </label>
-          </div>
-          <div className="form-group">
-            <input className="button" type="submit" value="Save" />
-          </div>
+          <Row>
+            <Input s={6} label="First Name" type="text" name="firstName" value={this.state.firstName} onChange={this.onChangeFirstName} />
+            <Input s={6} label="Last Name" type="text" name="lastName" value={this.state.lastName} onChange={this.onChangeLastName} />
+            <Input s={6} label="Job Title" type="text" name="jobtitle" value={this.state.jobTitle} onChange={this.onChangeJobTitle} />
+            <Input s={6} label="Email" type="email" name="email" value={this.state.email} onChange={this.onChangeEmail} />
+            <Input s={12} label="LinkedIn Profile" type="text" name="linkedInProfile" value={this.state.linkedInProfile} onChange={this.onChangeLinkedInProfile} />
+            <Input s={6} label="Work Phone" type="text" name="workPhone" value={this.state.workPhone} onChange={this.onChangeWorkPhone} />
+            <Input s={6} label="Personal Phone" type="text" name="personalPhone" value={this.state.personalPhone} onChange={this.onChangePersonalPhone} />
+            <Col s={6}>
+              <label htmlFor="howWeMet">
+                How We Met
+                <textarea className="materialize-textarea" name="howWeMet" value={this.state.howWeMet} onChange={this.onChangeHowWeMet} />
+              </label>
+            </Col>
+            <Col s={6}>
+              <label htmlFor="notes">
+                Notes
+                <textarea className="materialize-textarea" name="notes" value={this.state.notes} onChange={this.onChangeNotes} />
+              </label>
+            </Col>
+          </Row>
+          <Button type="submit">Save</Button>
         </form>
       </div>
     );

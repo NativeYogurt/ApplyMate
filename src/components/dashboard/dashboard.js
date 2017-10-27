@@ -126,12 +126,12 @@ class Dashboard extends React.Component {
       <div>
         <Row>
           <Col s={2}>
-            <Input small type="select" name="sortBy" label="Sort By" value={this.state.sortBy} onChange={this.onChangeSortBy}>
+            <select className="browser-default">
               <option value="status">Status</option>
               <option value="dateApplied">DateApplied</option>
               <option value="favorite">Favorites</option>
               <option value="location">Location</option>
-            </Input>
+            </select>
           </Col>
         </Row>
         <Table className="dashboard">
@@ -199,6 +199,8 @@ class Dashboard extends React.Component {
       </div>);
   }
 }
+// <Input small type="select" name="sortBy" label="Sort By" value={this.state.sortBy} onChange={this.onChangeSortBy}>
+
 // <a className="btn-floating right waves-effect waves-light red"><Icon small>add</Icon></a>
 // <div className="container">
 //   <div className="card">
