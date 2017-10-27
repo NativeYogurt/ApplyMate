@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Row, Col, Icon, Button, Input, Card, Table } from 'react-materialize';
 
 class VideoListEntry extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class VideoListEntry extends React.Component {
           </a>
           <div className="video-list-entry-detail">{this.props.video.snippet.description}</div>
         </div>
-        <button onClick={this.handleSubmit} disabled={this.state.added}>Add</button>
+        <Button onClick={this.handleSubmit} disabled={this.state.added}>Add</Button>
       </div>
     );
   }
