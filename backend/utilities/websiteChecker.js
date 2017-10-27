@@ -3,9 +3,10 @@ const Nightmare = require('nightmare');
 const cloudinary = require('cloudinary');
 const Datauri = require('datauri');
 const http = require('http');
+const sequelize = require('../db/db');
 const request = require('request').defaults({ encoding: null });
 const rp = require('request-promise').defaults({ encoding: null });
-//const SavedJobs = require('../models/SavedJobs.js');
+const SavedJobs = require('../models/SavedJobs.js');
 
 const uploadImagetoCloudinary = (dataURI) => {
   cloudinary.config(process.env.CLOUDINARY_URL);
@@ -16,6 +17,16 @@ const uploadImagetoCloudinary = (dataURI) => {
     }
     return result;
   });
+};
+
+const disableJobPost = (jobId) => {
+  SavedJobs.update({
+    activeJobPosting: false,
+  }, {
+    where: {
+      jobId
+    },
+  })
 };
 
 const takePicture = async (url, save, jobId) => {
@@ -56,36 +67,46 @@ const takePicture = async (url, save, jobId) => {
     }
     return picture
   } catch (e) {
+    if (e.code === -300) {
+      disableJobPost(jobId);
+      return;
+    }
     console.error(e);
   }
 }
 
-const comparePictures = async (jobId) => {
+const comparePictures = async (jobId, jobUrl, screenShotUrl) => {
   try {
-    let livePictureBuffer = await takePicture('https://jobs.lever.co/gospotcheck/59414d83-9e23-4a5e-94a1-8573e23073c7')
-    let dbPictureData = await rp.get('http://res.cloudinary.com/dxcydtwom/image/upload/v1509134202/upuxkadljixsovtjt1ep.png')
-    console.log(dbPictureData)
+    let livePictureBuffer = await takePicture(jobUrl, null, jobId)
+    let dbPictureData = await rp.get(screenShotUrl)
     var diff = resemble(dbPictureData).compareTo(livePictureBuffer).ignoreColors().onComplete(function(data){
-      console.log(data.misMatchPercentage);
-      /*
-      {
-      misMatchPercentage : 100, // %
-      isSameDimensions: true, // or false
-      getImageDataUrl: function(){} // returns base64-encoded image
-      pngStream: function(){} // returns stream with image data
-      getBuffer: function(cb){} // calls callback with image buffer
-    }
-    */
+      if (data.misMatchPercentage > 5.0) {
+        disableJobPost(jobId);
+      }
     });
   } catch (e) {
     if (e.statusCode === 404) {
-      console.log('job no longer available')
+      disableJobPost(jobId);
+      return
     }
-    console.error(e.statusCode);
+    console.error(e);
   }
 }
 
-comparePictures()
+const checkActivePosts = async () => {
+  const jobIds = await SavedJobs.findAll({
+    attributes: ['jobId', 'url', 'screenShotUrl'],
+    where: {
+      activeJobPosting: true,
+    }
+  })
+  jobIds.forEach(job => {
+    if (job.screenShotUrl) {
+      comparePictures(job.jobId, job.url, job.screenShotUrl);
+    }
+  })
+}
 
-//takePicture('https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-345-spear-st-san-francisco-ca-usa-2683110138&f=true&', 'https://jobs.lever.co/gospotcheck/59414d83-9e23-4a5e-94a1-8573e23073c7');
+
 exports.takePicture = takePicture;
+exports.checkActivePosts = checkActivePosts;

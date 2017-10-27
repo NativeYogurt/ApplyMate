@@ -47,5 +47,5 @@ new CronJob('30 16 * * *', function() {
   console.log('You will see this message every day at 4:30pm et');
   Github.cronGitHubUpdate();
   Emailer.sendInterviewReminder();
-  //websiteChecker.takePicture();
+  websiteChecker.checkActivePosts();
 }, null, true, 'America/New_York');
