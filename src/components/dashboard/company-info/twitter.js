@@ -32,7 +32,7 @@ class Twitter extends React.Component {
   render() {
     return (
       <div id="TwitterComponent">
-        <img id="twitterBanner" src={this.state.pic} style={{ width: '1500px', height: '500px' }} alt="hello world" />
+        <img id="twitterBanner" src={this.state.pic} style={{ maxWidth: '100%', maxHeight: '100%' }} alt="hello world" />
         {!this.state.data[0] ? (
           <div id="tweetsContainer">
             This company has no tweets.
