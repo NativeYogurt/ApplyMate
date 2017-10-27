@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Row, Col, Icon, Button, Input, Card, Table } from 'react-materialize';
 
 class TutorialListEntry extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class TutorialListEntry extends React.Component {
           </div>
           <div className="Tutorial-list-entry-detail">
             <a href={this.props.tutorial.link} target="_blank">{this.props.tutorial.link}</a>
-            <button onClick={this.handleSubmit} disabled={this.state.added}>Add</button>
+            <Button onClick={this.handleSubmit} disabled={this.state.added}>Add</Button>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Row, Col, Icon, Button, Input, Card, Table } from 'react-materialize';
 
 import SkillEntry from './skillentry';
 
@@ -111,12 +112,11 @@ class Resources extends React.Component {
         {this.state.missingSkills.length > 0 ? hasMissingSkills : noMissingSkills}
         {this.state.missingSkills.length > 0 ? (
           <div className="resource-list">
-            <table>
+            <table className="bordered">
               <thead>
                 <tr>
                   <th className="skill">Skill</th>
-                  <th className="video">Video Tutorials</th>
-                  <th className="web">Online Resources</th>
+                  <th className="video">Tutorials</th>
                 </tr>
               </thead>
               <tbody>
@@ -137,6 +137,8 @@ class Resources extends React.Component {
     );
   }
 }
+// <th className="web">Online Resources</th>
+
 Resources.propTypes = {
   userId: PropTypes.string.isRequired,
   missingSkills: PropTypes.array.isRequired,

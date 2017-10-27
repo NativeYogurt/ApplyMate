@@ -136,7 +136,7 @@ table .dashboard, .dashboard th, .dashboard td {
   padding-right: 8px;
 }
 
-.resource-list table, .resource-list th, .resource-list td {
+/*.resource-list table, .resource-list th, .resource-list td {
     border-bottom: 1px solid #ddd;
     border-collapse: collapse;
 }
@@ -147,21 +147,21 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .resource-list th {
     text-align: left;
-}
+}*/
 
-.resource-list td .web, .resource-list td .video {
-    /*white-space: nowrap;*/
+/*.resource-list td .web, .resource-list td .video {
+    white-space: nowrap;
     width: 30%;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .resource-list td .skill {
-    /*white-space: nowrap;*/
+    white-space: nowrap;
     width: 10%;
     overflow: hidden;
     text-overflow: ellipsis;
-}
+}*/
 
 .pager {
     list-style: none;
