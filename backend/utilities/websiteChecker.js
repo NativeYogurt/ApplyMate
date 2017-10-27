@@ -63,7 +63,7 @@ const takePicture = async (url, save, jobId) => {
 const comparePictures = async (jobId) => {
   try {
     let livePictureBuffer = await takePicture('https://jobs.lever.co/gospotcheck/59414d83-9e23-4a5e-94a1-8573e23073c7')
-    let dbPictureData = await rp.get('http://res.cloudinary.com/dxcydtwom/image/upload/v1509134202/upuxkadljixsovtjt1e.png')
+    let dbPictureData = await rp.get('http://res.cloudinary.com/dxcydtwom/image/upload/v1509134202/upuxkadljixsovtjt1ep.png')
     console.log(dbPictureData)
     var diff = resemble(dbPictureData).compareTo(livePictureBuffer).ignoreColors().onComplete(function(data){
       console.log(data.misMatchPercentage);
