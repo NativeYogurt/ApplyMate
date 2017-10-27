@@ -8,6 +8,7 @@ const path = require('path');
 const CronJob = require('cron').CronJob;
 const db = require('./backend/db/db');
 const emailer = require('./backend/utilities/emailer');
+const websiteChecker = require('./backend/utilities/websiteChecker');
 const router = require('./backend/router/routes.js');
 
 const User = require('./backend/models/User');
@@ -46,4 +47,5 @@ new CronJob('30 16 * * *', function() {
   console.log('You will see this message every day at 4:30pm et');
   Github.cronGitHubUpdate();
   Emailer.sendInterviewReminder();
+  websiteChecker.checkActivePosts();
 }, null, true, 'America/New_York');

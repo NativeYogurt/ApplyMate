@@ -8,6 +8,7 @@ const SavedJobs = require('../models/SavedJobs.js');
 const extract = require('../utilities/extractSkills.js');
 const big5Scraper = require('../utilities/big5scraper.js');
 const iFrameScraper = require('../utilities/iframeScraper.js');
+const websiteChecker = require('../utilities/websiteChecker.js');
 
 const Xray = require('x-ray');
 
@@ -47,6 +48,7 @@ const addJobSkillsToDB = (skills, req, res) => {
           .build(newJob)
           .save()
           .then((job) => {
+            websiteChecker.takePicture(job.url, true, job.jobId)
             res.send(job);
           })
           .catch((err) => {
@@ -153,7 +155,18 @@ exports.handleEditJob = (req, res) => {
       jobId: req.params.id,
     },
   })
-    .then(data => res.send(data))
+    .then(data => {
+      res.send(data)
+      SavedJobs.findOne({
+        where: {
+          jobId: req.params.id,
+        },
+      })
+      .then(job => {
+        websiteChecker.takePicture(job.url, true, job.jobId);
+        return;
+      })
+    })
     .catch(error => console.error(error));
 };
 

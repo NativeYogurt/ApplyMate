@@ -172,6 +172,7 @@ class Dashboard extends React.Component {
                 className="red"
                 waves="light"
                 icon="add"
+                id="add"
               />}
             >
               <Error error={this.state.errorMessage} />
@@ -190,7 +191,7 @@ class Dashboard extends React.Component {
                 <Input type="text" name="location" label="Job Location" />
                 <Input type="text" name="url" label="Job URL" />
                 <Input type="text" name="companyUrl" label="Company URL" />
-                <Button type="submit">Add</Button>
+                <Button id="add-job" type="submit">Add</Button>
               </form>
             </Modal>
           </Col>

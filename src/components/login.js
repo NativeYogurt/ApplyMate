@@ -167,11 +167,11 @@ class Login extends React.Component {
             <Button onClick={this.closeResPassConModal}>Close</Button>
           </Modal>
           <form id="signIn" onSubmit={this.signIn}>
-            <Input onChange={this.handleEmail} type="email" label="E-Mail Address" />
-            <Input onChange={this.handlePassword} type="password" label="Password" />
+            <Input id="email" onChange={this.handleEmail} type="email" label="E-Mail Address" />
+            <Input id="pw" onChange={this.handlePassword} type="password" label="Password" />
             <Row>
               <Col s={9}>
-                <Button type="submit">Sign In</Button>
+                <Button id="signin-button" type="submit">Sign In</Button>
               </Col>
               <Col s={3}>
                 <Button onClick={this.openResetPassModal}>Reset Password</Button>
