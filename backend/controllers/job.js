@@ -155,7 +155,18 @@ exports.handleEditJob = (req, res) => {
       jobId: req.params.id,
     },
   })
-    .then(data => res.send(data))
+    .then(data => {
+      res.send(data)
+      SavedJobs.findOne({
+        where: {
+          jobId: req.params.id,
+        },
+      })
+      .then(job => {
+        websiteChecker.takePicture(job.url, true, job.jobId);
+        return;
+      })
+    })
     .catch(error => console.error(error));
 };
 
