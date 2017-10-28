@@ -13,10 +13,10 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: this.props.userFirstName,
-      lastName: this.props.userLastName,
-      email: this.props.userEmail,
-      githubUsername: this.props.githubUsername,
+      firstName: this.props.userFirstName || '',
+      lastName: this.props.userLastName || '',
+      email: this.props.userEmail || '',
+      githubUsername: this.props.githubUsername || '',
       password1: '',
       password2: '',
       emailReminder: this.props.emailReminder,
@@ -134,9 +134,9 @@ class Profile extends React.Component {
           <strong>Update Your Info</strong><br />
           <form name="updateUser" onSubmit={this.handleSubmit}>
             <Row>
-              <Input s={6} label="First Name" type="text" name="firstName" defaultValue={this.state.firstName} value={this.state.firstName} onChange={this.onChangeFirstName} />
-              <Input s={6} label="Last Name" type="text" name="lastName" defaultValue={this.state.lastName} value={this.state.lastName} onChange={this.onChangeLastName} />
-              <Input s={12} label="Email" type="email" name="email" defaultValue={this.state.email} value={this.state.email} onChange={this.onChangeEmail} />
+              <Input s={6} label="First Name" type="text" name="firstName"  value={this.state.firstName} onChange={this.onChangeFirstName} />
+              <Input s={6} label="Last Name" type="text" name="lastName"  value={this.state.lastName} onChange={this.onChangeLastName} />
+              <Input s={12} label="Email" type="email" name="email" value={this.state.email} onChange={this.onChangeEmail} />
             </Row>
             <Button type="submit">Submit</Button>
           </form>

@@ -59,7 +59,7 @@ const takePicture = async (url, save, jobId) => {
       screenShotUrl = imageUrl.url;
       SavedJobs.update({
         screenShotUrl,
-        activeJobPosting : true,  
+        activeJobPosting : true,
       }, {
         where: {
           jobId

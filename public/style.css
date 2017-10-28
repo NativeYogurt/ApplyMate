@@ -48,10 +48,11 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .dashboard td {
     white-space: nowrap;
-    max-width: 250px;
+    max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 
 /* saved-job-posting on dashboard */
 .saved-job-posting:hover {
