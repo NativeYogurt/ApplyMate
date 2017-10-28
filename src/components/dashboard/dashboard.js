@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Icon, Input, Button, Col, Row, Modal, Table } from 'react-materialize';
+import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown } from 'react-materialize';
 
 import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
