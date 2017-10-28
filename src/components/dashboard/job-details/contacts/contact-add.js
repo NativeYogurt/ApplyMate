@@ -77,7 +77,6 @@ class ContactAdd extends React.Component {
       body: JSON.stringify(newContact),
     }).then(res => res.json())
       .then((data) => {
-        console.log('contact added', data);
         this.setState({
           firstName: '',
           lastName: '',
