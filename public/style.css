@@ -121,3 +121,7 @@ table .dashboard, .dashboard th, .dashboard td {
   grid-row:2;
 } */
 /* end of company info styling */
+
+.inactive {
+  color: red;
+};
