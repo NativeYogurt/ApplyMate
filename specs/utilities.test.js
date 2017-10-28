@@ -1,4 +1,7 @@
 const extract = require('../backend/utilities/extractSkills');
+const env = require('dotenv').config();
+const db = require('../backend/db/db');
+const SavedJobs = require('../backend/models/SavedJobs');
 
 const text = 'javascript alex Python GOPHER scAla Objective-C javascript';
 

@@ -170,6 +170,7 @@ class Dashboard extends React.Component {
           <Col s={1}>
             <Modal
               trigger={<Button
+                id="add"
                 floating
                 className="red"
                 waves="light"
@@ -192,7 +193,7 @@ class Dashboard extends React.Component {
                 <Input type="text" name="location" label="Job Location" />
                 <Input type="text" name="url" label="Job URL" />
                 <Input type="text" name="companyUrl" label="Company URL" />
-                <Button type="submit">Add</Button>
+                <Button id="add-job" type="submit">Add</Button>
               </form>
             </Modal>
           </Col>

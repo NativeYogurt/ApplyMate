@@ -59,7 +59,7 @@ const takePicture = async (url, save, jobId) => {
       screenShotUrl = imageUrl.url;
       SavedJobs.update({
         screenShotUrl,
-        activeJobPosting : true,  
+        activeJobPosting : true,
       }, {
         where: {
           jobId
@@ -81,7 +81,8 @@ const comparePictures = async (jobId, jobUrl, screenShotUrl) => {
     let livePictureBuffer = await takePicture(jobUrl, null, jobId)
     let dbPictureData = await rp.get(screenShotUrl)
     var diff = resemble(dbPictureData).compareTo(livePictureBuffer).ignoreColors().onComplete(function(data){
-      if (data.misMatchPercentage > 5.0) {
+      if (data.misMatchPercentage > 10.0) {
+        console.log(data.misMatchPercentage)
         disableJobPost(jobId);
       }
     });
