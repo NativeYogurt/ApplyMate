@@ -34,15 +34,16 @@ class Nav extends React.Component {
             <li><Link to="/home/resources">Resources</Link></li>
             <li><Link to="/home/tasks">Tasks</Link></li>
             <li><Link to="/home/analytics">Analytics</Link></li>
-            <li><a className="dropdown-button" data-activates="dropdown1"><i className="large material-icons">account_circle</i></a>
-              <ul id="dropdown1" className="dropdown-content">
-                <li><Link to="/home/profile"><i className="large material-icons">settings</i> Profile</Link></li>
-                <li className="divider" />
-                <li onClick={e => this.handleSignOut(e)}><Link to="/"><i className="large material-icons">exit_to_app</i>Sign Out</Link></li>
-              </ul>
-            </li>
+            <li><a className="dropdown-button" data-activates="dropdown1"><i className="large material-icons">account_circle</i></a></li>
           </ul>
         </div>
+
+        <ul id="dropdown1" className="dropdown-content">
+          <li><Link to="/home/profile"><i className="large material-icons">settings</i> Profile</Link></li>
+          <li className="divider" />
+          <li onClick={e => this.handleSignOut(e)}><Link to="/"><i className="large material-icons">exit_to_app</i>Sign Out</Link></li>
+        </ul>
+
       </nav>
     );
   }
