@@ -29,7 +29,7 @@ test('CheckboxWithLabel changes the text after click', () => {
 //
 xtest('Should error if not all required fields are filled out when adding a job', async () => {
 
-  const nightmare = Nightmare({show: true});
+  const nightmare = Nightmare();
   let test = await nightmare
     .goto('http://localhost:3000')
     .wait('#signin')
