@@ -107,8 +107,8 @@ class JobEdit extends React.Component {
       <div>
         <div>
           <div>Quick Actions</div>
-          <span className="quick-actions"><Link to="/home/dashboard/job/activity/new">Log Interview</Link></span>
-          <span className="quick-actions"><Link to="/home/dashboard/job/contacts/new">Add Contact</Link></span>
+          <span className="btn-space"><Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity/new">Log Interview</Link></span>
+          <span className="btn-space"><Link className="waves-effect waves-light btn" to="/home/dashboard/job/contacts/new">Add Contact</Link></span>
         </div>
         <form className="job-edit-form" onSubmit={this.submit}>
           <Row>
@@ -139,8 +139,8 @@ class JobEdit extends React.Component {
               </label>
             </Col>
           </Row>
-          <Button type="submit">Save</Button>
-          <Link className="button" to="/home/dashboard">Back</Link>
+          <span className="btn-space"><Button type="submit">Save</Button></span>
+          <Link class="waves-effect waves-light btn" to="/home/dashboard">Back</Link>
         </form>
         {this.state.successVisible ? success : null}
       </div>

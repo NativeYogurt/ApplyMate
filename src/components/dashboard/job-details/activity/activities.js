@@ -49,7 +49,7 @@ class Activity extends React.Component {
             </div>
             ) : null
           }
-          <Link to="/home/dashboard/job/activity/new">Add</Link>
+          <Link class="waves-effect waves-light btn" to="/home/dashboard/job/activity/new">Add</Link>
         </div>
         <div>
           {this.state.activities.length > 0 ? this.state.activities.map(activity => {

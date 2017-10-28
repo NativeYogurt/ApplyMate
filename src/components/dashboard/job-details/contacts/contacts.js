@@ -50,7 +50,7 @@ class Contacts extends React.Component {
             </div>
             ) : null
           }
-          <Link to="/home/dashboard/job/contacts/new">Add</Link>
+          <Link class="waves-effect waves-light btn" to="/home/dashboard/job/contacts/new">Add</Link>
         </div>
         <div>
           {this.state.contacts.length > 0 ? this.state.contacts.map(contact => {
