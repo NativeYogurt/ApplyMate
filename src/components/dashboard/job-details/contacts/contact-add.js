@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Icon, Button, Input } from 'react-materialize';
+import { Link } from 'react-router-dom';
 
 class ContactAdd extends React.Component {
   constructor(props) {
@@ -116,6 +117,9 @@ class ContactAdd extends React.Component {
             </Col>
           </Row>
           <Button type="submit">Save</Button>
+          <span className="btn-space">
+            <Link className="waves-effect waves-light btn" to="/home/dashboard/job/contacts">Cancel</Link>
+          </span>
         </form>
       </div>
     );
