@@ -11,6 +11,9 @@
   padding-right: 8px;
 }
 
+.icon-button {
+  padding: 2px 10px 2px 10px;
+}
 /* The alert message box */
 .alert, .error {
     padding: 20px;

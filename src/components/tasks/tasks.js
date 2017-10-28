@@ -99,7 +99,7 @@ class Tasks extends React.Component {
           </form>
         </Card>
         <div>
-          {sortedByDate}
+            {sortedByDate}
         </div>
       </div>
     );

@@ -61,7 +61,8 @@ class ActivityAdd extends React.Component {
       <div>
         <form className="event-form" onSubmit={this.submit}>
           <Row>
-            <Input s={12} label="Event Type" type="select" name="eventType" defaultValue="phoneCall" value={this.state.eventType} onChange={this.onChangeEventType}>
+            <Input s={12} type="select" name="eventType" value={this.state.eventType} onChange={this.onChangeEventType}>
+              <option value="" disabled>Choose your option</option>
               <option value="phoneCall">Phone Call</option>
               <option value="interview">Interview</option>
             </Input>
@@ -75,4 +76,13 @@ class ActivityAdd extends React.Component {
     );
   }
 }
+// <Col s={12}>
+//   <label htmlFor="eventType">
+//     <select className="browser-default" name="eventType" value={this.state.eventType} onChange={this.onChangeEventType}>
+//       <option value="" disabled>Choose your option</option>
+//       <option value="phoneCall">Phone Call</option>
+//       <option value="interview">Interview</option>
+//     </select>
+//   </label>
+// </Col>
 export default ActivityAdd;

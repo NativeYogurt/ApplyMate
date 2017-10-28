@@ -129,13 +129,13 @@ class SearchJobs extends React.Component {
           </form>
         </div>
         <div className="job-search-results">
-          {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
-            return (
-              <Row>
+          <Row>
+            {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
+              return (
                 <JobSearchResult key={job.id} job={job} handleJobAdd={this.handleJobAdd} />
-              </Row>
               );
-          }) : null}
+            }) : null}
+          </Row>
         </div>
       </div>
     );
