@@ -34,4 +34,4 @@ exports.githubUidLookup = (req, res) => {
     .catch(err => {
       console.error(err)
     })
-}
+};

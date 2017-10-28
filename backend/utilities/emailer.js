@@ -19,7 +19,7 @@ exports.sendInterviewReminder = async () => {
         githubName: user.githubUsername,
         email: user.email,
       };
-      emailSender(userObj)
+      emailSender(userObj);
     });
   } catch (err) {
     console.error(err);

@@ -39,7 +39,7 @@ class UploadedResume extends React.Component {
   }
 
   renderPagination(page, pages) {
-    let previousButton = <Button className="previous" onClick={this.handlePrevious}><Icon>keyboard_arrow_left</Icon></Button>;
+    let previousButton = <li className="previous" onClick={this.handlePrevious}><Icon>keyboard_arrow_left</Icon></li>;
     if (page === 1) {
       previousButton = <li className="previous disabled"><Icon>keyboard_arrow_left</Icon></li>;
     }
