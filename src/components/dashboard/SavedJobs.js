@@ -18,9 +18,9 @@ const SavedJobs = (props) => {
       <td><a href={props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank"><Icon>{activePosting ? 'bookmark' : 'cancel'}</Icon></a>{activePosting ? null : <span onClick={() => props.revertJobUrlToActive(props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
       <td onClick={() => redirect()} >{props.jobPosting.skills.join(', ')}</td>
       <td>
-        <Button icon={favoriteState ? 'favorite' : 'favorite_border'} onClick={() => props.favoriteJob(props.jobPosting.jobId)} />
+        <Button className="icon-button" icon={favoriteState ? 'favorite' : 'favorite_border'} onClick={() => props.favoriteJob(props.jobPosting.jobId)} />
       </td>
-      <td><Button icon="delete" onClick={() => props.deleteJob(props.jobPosting.jobId)} /></td>
+      <td><Button className="icon-button" icon="delete" onClick={() => props.deleteJob(props.jobPosting.jobId)} /></td>
     </tr>
   );
 };
