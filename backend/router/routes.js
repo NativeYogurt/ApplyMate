@@ -18,6 +18,7 @@ router.post('/githubUidLookup', userHandler.githubUidLookup);
 router.post('/job', job.handleJobAdd);
 router.put('/job/delete', job.handleJobDelete);
 router.put('/job/favorite', job.handleJobFavorite);
+router.put('/job/updateScreenshot', job.updateScreenshot)
 router.get('/jobs/:id', job.handleGetJob);
 router.put('/jobs/:id', job.handleEditJob);
 router.get('/jobs', job.handleGetJobs);

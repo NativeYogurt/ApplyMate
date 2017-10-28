@@ -73,18 +73,20 @@ class SearchJobs extends React.Component {
     }
   }
   fixURL(url) {
-    if (url.lastIndexOf('//') !== -1) {
-      const int = url.lastIndexOf('//');
-      url = url.slice(int + 2);
-    }
-    if (url.lastIndexOf('www.') !== -1) {
-      const int = url.lastIndexOf('www.');
-      url = url.slice(int + 4);
-    }
+    if (url) {
+      if (url.lastIndexOf('//') !== -1) {
+        const int = url.lastIndexOf('//');
+        url = url.slice(int + 2);
+      }
+      if (url.lastIndexOf('www.') !== -1) {
+        const int = url.lastIndexOf('www.');
+        url = url.slice(int + 4);
+      }
 
-    if (url.lastIndexOf('/') !== -1) {
-      const int = url.lastIndexOf('/');
-      url = url.slice(0, int);
+      if (url.lastIndexOf('/') !== -1) {
+        const int = url.lastIndexOf('/');
+        url = url.slice(0, int);
+      }
     }
     return url;
   }
