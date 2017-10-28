@@ -18,7 +18,7 @@ class App extends React.Component {
     this.TESTBUTTON = this.TESTBUTTON.bind(this);
   }
   componentWillMount() {
-    let unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
           user,

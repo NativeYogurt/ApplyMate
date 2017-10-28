@@ -9,7 +9,6 @@ function Home(props) {
     <div>
       <div className="navHolder">
         <Nav
-          TESTBUTTON={props.TESTBUTTON}
           setUser={props.setUser}
         />
       </div>

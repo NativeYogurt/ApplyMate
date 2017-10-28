@@ -10,6 +10,8 @@ const big5Scraper = require('../utilities/big5scraper.js');
 const iFrameScraper = require('../utilities/iframeScraper.js');
 const websiteChecker = require('../utilities/websiteChecker.js');
 
+const Op = Sequelize.Op;
+
 const Xray = require('x-ray');
 
 const x = Xray();
@@ -162,10 +164,10 @@ exports.handleEditJob = (req, res) => {
           jobId: req.params.id,
         },
       })
-      .then(job => {
-        websiteChecker.takePicture(job.url, true, job.jobId);
-        return;
-      })
+        .then(job => {
+          websiteChecker.takePicture(job.url, true, job.jobId);
+          return;
+        });
     })
     .catch(error => console.error(error));
 };
@@ -201,7 +203,7 @@ exports.updateScreenshot = async (req, res) => {
     where: {
       jobId,
     },
-  })
+  });
   const picture = await websiteChecker.takePicture(jobUrl.url, true, jobId);
   res.send('updated screenshot');
   // SavedJobs.update({
@@ -211,4 +213,4 @@ exports.updateScreenshot = async (req, res) => {
   //     jobId: req.body.jobId,
   //   },
   // })
-}
+};
