@@ -6,12 +6,7 @@ import { Icon, Button } from 'react-materialize';
 const SavedJobs = (props) => {
   const redirect = function () { window.location = `/#/home/dashboard/${props.jobPosting.jobId}`; };
   const favoriteState = props.jobPosting.favorite;
-  let favoriteUrl = '';
-  if (favoriteState) {
-    favoriteUrl = 'http://res.cloudinary.com/dxcydtwom/image/upload/v1508791828/gold_star_bagtk7.png';
-  } else {
-    favoriteUrl = 'http://res.cloudinary.com/dxcydtwom/image/upload/v1508791216/hollow_gold_star_unli4s.png';
-  }
+  const activePosting = props.jobPosting.activeJobPosting
 
   return (
     <tr className="saved-job-posting">
