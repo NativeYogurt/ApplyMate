@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown } from 'react-materialize';
 
+
 import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
 
@@ -14,6 +15,7 @@ class Dashboard extends React.Component {
       sortBy: 'status',
       errorMessage: null,
       search: '',
+      isPaneOpen: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeSortBy = this.onChangeSortBy.bind(this);

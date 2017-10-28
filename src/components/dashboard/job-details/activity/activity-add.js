@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Icon, Button, Input } from 'react-materialize';
+import { Link } from 'react-router-dom';
 
 class ActivityAdd extends React.Component {
   constructor(props) {
@@ -71,6 +72,9 @@ class ActivityAdd extends React.Component {
             <Input s={12} label="Who is participating?" type="text" name="eventParticipates" value={this.state.eventParticipates} onChange={this.onChangeEventParticipates} />
           </Row>
           <Button type="submit">Save</Button>
+          <span className="btn-space">
+            <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity">Cancel</Link>
+          </span>
         </form>
       </div>
     );
