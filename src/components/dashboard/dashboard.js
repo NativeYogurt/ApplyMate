@@ -80,9 +80,11 @@ class Dashboard extends React.Component {
         favoriteJob={this.props.favoriteJob}
         getJobs={this.props.getJobs}
         getJobComparison={this.props.getJobComparison}
+        revertJobUrlToActive={this.props.revertJobUrlToActive}
       />
     );
   }
+
   updateSearch(e) {
     e.preventDefault();
     this.setState({

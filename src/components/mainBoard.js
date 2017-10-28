@@ -35,6 +35,7 @@ class Main extends React.Component {
     this.addJob = this.addJob.bind(this);
     this.clearResume = this.clearResume.bind(this);
     this.favoriteJob = this.favoriteJob.bind(this);
+    this.revertJobUrlToActive = this.revertJobUrlToActive.bind(this);
   }
 
   componentDidMount() {
@@ -153,6 +154,20 @@ class Main extends React.Component {
     });
   }
 
+
+  revertJobUrlToActive(jobId) {
+    let jobs = this.state.savedJobs.map(job => {
+      if (job.jobId === jobId) {
+        job.activeJobPosting = true;
+      }
+      return job
+    })
+    this.setState({
+      savedJobs: jobs,
+    });
+    axios.put('/api/job/updateScreenshot', { jobId });
+  }
+
   clearResume() {
     this.setState({ userResume: '' });
   }
@@ -237,6 +252,7 @@ class Main extends React.Component {
               <Dashboard
                 userId={this.props.userId}
                 getJobs={this.getJobs}
+                revertJobUrlToActive={this.revertJobUrlToActive}
                 savedJobs={this.state.savedJobs}
                 deleteJob={this.deleteJob}
                 favoriteJob={this.favoriteJob}
