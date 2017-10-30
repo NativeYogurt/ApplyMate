@@ -80,7 +80,7 @@ class Login extends React.Component {
   closeMergeModal() {
     this.setState({
       gitMergeModal: false,
-    });
+    }, () =>  location.reload());
   }
   handleMergePassword(e) {
     e.preventDefault();

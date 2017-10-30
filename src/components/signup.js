@@ -31,23 +31,6 @@ class Signup extends React.Component {
         if (err) alert(err);
         else {
           this.props.setUser(user, true);
-          let intervals = 0;
-          let stopInterval = setInterval(() => {
-            firebase.auth().currentUser.reload();
-            const fireBaseUser = firebase.auth().currentUser
-            intervals++;
-            if (fireBaseUser.emailVerified) {
-              let update = axios.put('/api/updateEmailValidation', {
-                userId: fireBaseUser.uid,
-                emailVerified: fireBaseUser.emailVerified,
-              })
-              .then(() => this.props.rerender())
-              .catch(err => console.error(err));
-            }
-            if (intervals === 6 || fireBaseUser.emailVerified) {
-              clearInterval(stopInterval)
-            }
-          },20000)
         }
       });
     } else {

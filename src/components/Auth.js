@@ -65,6 +65,8 @@ exports.gitAuth = (cb) => {
                 id: githubUser.user.uid,
                 email: githubUser.user.email,
                 githubUsername: githubUser.additionalUserInfo.username,
+                emailReminder: true,
+                verifiedEmail: true,
               },
             })
               .then((data) => {
@@ -103,6 +105,8 @@ exports.gitAuthMerge = (pass, errCred, errEmail, cb) => {
                     axios.put('/api/updateUser', {
                       userId: user.uid,
                       githubUsername: result.data,
+                      verifiedEmail: true,
+                      emailReminder: true,
                     })
                       .then(() => cb())
                       .catch(err => alert(err))

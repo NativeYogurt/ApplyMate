@@ -9,6 +9,8 @@ exports.signUp = (req, res) => {
     lastName: req.body.data.lastName,
     email: req.body.data.email,
     githubUsername: req.body.data.githubUsername,
+    emailReminder: req.body.data.emailReminder,
+    verifiedEmail: req.body.data.verifiedEmail,
   })
     .then(DBUser => {
       if (DBUser.githubUsername) {
