@@ -35,8 +35,12 @@ const User = sequelize.define('user', {
   },
   emailReminder: {
     type: Sequelize.BOOLEAN,
-    defaultValue: true,
+    defaultValue: false,
   },
+  verifiedEmail: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  }
 });
 
 // User.sync();

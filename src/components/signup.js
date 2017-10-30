@@ -26,6 +26,7 @@ class Signup extends React.Component {
   handleSignUp(e) {
     e.preventDefault();
     if (this.state.signUpPassword === this.state.signUpPassword2) {
+      console.log(this.state.signUpUsername)
       Auth.signUp(this.state.signUpUsername, this.state.signUpPassword, this.state.firstName, this.state.lastName, (err, user) => {
         if (err) alert(err);
         else {

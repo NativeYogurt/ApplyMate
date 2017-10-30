@@ -4,38 +4,69 @@ import firebase from 'firebase';
 import fire from './Firebase.js';
 
 // sign up using email and password
-exports.signUp = (user, pass, first, last, cb) => {
-  fire.auth().createUserWithEmailAndPassword(user, pass)
-    .then((firebaseUser) => {
-      axios.post('/api/signUp', {
-        data: {
-          id: firebaseUser.uid,
-          firstName: first,
-          lastName: last,
-          email: firebaseUser.email,
-        },
-      })
-        .then((DBUser) => {
-          cb(undefined, firebaseUser)
-        })
-        .catch((err) => {
-          cb(err);
-        });
+exports.signUp = async (user, pass, first, last, cb) => {
+  try {
+    const firebaseUser = await fire.auth().createUserWithEmailAndPassword(user, pass);
+    const testuser = firebase.auth().currentUser;
+    const emailVerification = await firebaseUser.sendEmailVerification();
+    const dbUser = await axios.post('/api/signUp', {
+      data: {
+        id: firebaseUser.uid,
+        firstName: first,
+        lastName: last,
+        email: firebaseUser.email,
+      },
     })
-    .catch((error) => {
-      cb(error);
-    });
+    cb(undefined, firebaseUser)
+  } catch (e) {
+    cb(e)
+  }
 };
+
+exports.signIn = async (user, pass, cb) => {
+  try {
+    let fireBaseUser = await fire.auth().signInWithEmailAndPassword(user, pass);
+    if (fireBaseUser.emailVerified) {
+      console.log(fireBaseUser.emailVerified)
+    }
+    cb(undefined, fireBaseUser);
+  } catch (e) {
+    cb(error.message);
+  }
+};
+// exports.signUp = (user, pass, first, last, cb) => {
+//   fire.auth().createUserWithEmailAndPassword(user, pass)
+//     .then((firebaseUser) => {
+//       axios.post(`/api/signUp`, {
+//         data: {
+//           id: firebaseUser.uid,
+//           firstName: first,
+//           lastName: last,
+//           email: firebaseUser.email,
+//         },
+//       })
+//         .then((DBUser) => {
+//           cb(undefined, firebaseUser)
+//         })
+//         .catch((err) => {
+//           cb(err);
+//         });
+//     })
+//     .catch((error) => {
+//       cb(error);
+//     });
+// };
 // signing in with email and password
-exports.signIn = (user, pass, cb) => {
-  fire.auth().signInWithEmailAndPassword(user, pass)
-    .then((win) => {
-      cb(undefined, win);
-    })
-    .catch((error) => {
-      cb(error.message);
-    });
-};
+// exports.signIn = (user, pass, cb) => {
+//   fire.auth().signInWithEmailAndPassword(user, pass)
+//     .then((win) => {
+//       console.log(win)
+//       cb(undefined, win);
+//     })
+//     .catch((error) => {
+//       cb(error.message);
+//     });
+// };
 // general sign out
 exports.signOut = (cb) => {
   fire.auth().signOut()
@@ -78,7 +109,7 @@ exports.gitAuth = (cb) => {
         })
         .catch(err => alert(err));
     })
-    // if signing in with Github when signed up with email, 
+    // if signing in with Github when signed up with email,
     // error gets thrown to front end
     .catch((error) => {
       const errCred = error.credential;

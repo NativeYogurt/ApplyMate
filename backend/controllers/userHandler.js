@@ -35,3 +35,25 @@ exports.githubUidLookup = (req, res) => {
       console.error(err)
     })
 };
+
+exports.updateEmailValidation = async (req, res) => {
+  try {
+    let userEmailAttribute = await User.findOne({
+      attributes: ['verifiedEmail'],
+      where: { userId: req.body.userId },
+    })
+    let updateEmailValidation;
+    if (req.body.emailVerified !== userEmailAttribute.verifiedEmail) {
+        updateEmailValidation = await User.update({
+        emailReminder: req.body.emailVerified,
+        verifiedEmail: req.body.emailVerified,
+      },{
+        where: { userId: req.body.userId },
+      })
+    }
+    res.send(updateEmailValidation || 'Nothing to update')
+  } catch (e) {
+    console.error(e);
+    res.send(e);
+  }
+}
