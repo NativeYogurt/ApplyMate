@@ -134,9 +134,21 @@ class Profile extends React.Component {
           <strong>Update Your Info</strong><br />
           <form name="updateUser" onSubmit={this.handleSubmit}>
             <Row>
-              <Input s={6} label="First Name" type="text" name="firstName"  value={this.state.firstName} onChange={this.onChangeFirstName} />
-              <Input s={6} label="Last Name" type="text" name="lastName"  value={this.state.lastName} onChange={this.onChangeLastName} />
-              <Input s={12} label="Email" type="email" name="email" value={this.state.email} onChange={this.onChangeEmail} />
+              <Col s={6}>
+                <label htmlFor="firstName">
+                  <input type="text" name="firstName" value={this.state.firstName} onChange={this.onChangeFirstName} />
+                </label>
+              </Col>
+              <Col s={6}>
+                <label htmlFor="lastName">
+                  <input type="text" name="lastName" value={this.state.lastName} onChange={this.onChangeLastName} />
+                </label>
+              </Col>
+              <Col s={12}>
+                <label htmlFor="email">
+                  <input type="email" name="email" value={this.state.email} onChange={this.onChangeEmail} />
+                </label>
+              </Col>
             </Row>
             <Button type="submit">Submit</Button>
           </form>
