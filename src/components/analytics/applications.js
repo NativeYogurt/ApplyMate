@@ -1,7 +1,6 @@
 import React from 'react';
 import { Bar, Line, Pie, Doughnut, Radar, Polar } from 'react-chartjs-2';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { Row, Col, Card, Button, Input } from 'react-materialize';
 
 const Applications = ({ savedJobs }) => {
   const statusObj = savedJobs.reduce((a, b) => {
@@ -10,13 +9,14 @@ const Applications = ({ savedJobs }) => {
     return a;
   }, {});
 
-  const labels = Object.keys(statusObj);
   const numberOfSavedJobs = savedJobs.length;
   const applicationData = [numberOfSavedJobs];
-  labels.forEach((status) => {
+  savedJobs.forEach((job) => {
     let appliedCount = null;
-    status === 'applied' ? appliedCount++ : null;
-    applicationData.push(appliedCount);
+    if (job.status === 'applied') {
+      appliedCount++;
+      applicationData.push(appliedCount);
+    }
   });
 
   const data = {
@@ -59,14 +59,12 @@ const Applications = ({ savedJobs }) => {
   };
 
   return (
-    <div>
-      <Doughnut
-        data={data}
-        width={10}
-        height={3}
-        options={options}
-      />
-    </div>
+    <Doughnut
+      data={data}
+      width={10}
+      height={3}
+      options={options}
+    />
   );
 };
 
