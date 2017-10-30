@@ -3,7 +3,7 @@ import React from 'react';
 const Twitter = (props) => (
   <div id="tweetsContainer">
     {!props.twitterData[0] ? (
-      <p>This company has no tweets.</p>
+      <div className="centerText"> This company has no tweets. </div>
     ) : (
       <div>
         Tweets from <a href={`http://${props.twitterData[0].url}`}> {props.twitterData[0].url.slice(16)}</a>
