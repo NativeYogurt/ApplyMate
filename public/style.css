@@ -207,10 +207,8 @@ button {
 /* start of company info styling */
 #companyInformationTab{
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: auto auto;
-  grid-column-gap: 10px;
-  grid-row-gap: 0px;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: 1fr 1fr;
 }
 
 #twitterBanner{
@@ -226,21 +224,13 @@ button {
   grid-row:2/3;
 }
 #glassdoorDoughnuts{
-  display: grid;
-  grid-template-columns: 30% 40% 30%;
-}
-.GDdoughnut{
-  display:grid;
+  display: flex;
+  flex-direction: row;
   align-items: flex-end;
+  justify-content: center;
 }
-#GDD1{
-  grid-column: 1/2;
-}
-#GDD2{
-  grid-column: 2/3;
-}
-#GDD3{
-  grid-column: 3/4;
+.doughnut{
+  justify-content: center;
 }
 .centerText{
   display: flex;
