@@ -32,6 +32,7 @@ class Profile extends React.Component {
     this.updatePassword = this.updatePassword.bind(this);
     this.onChangeGithubUsername = this.onChangeGithubUsername.bind(this);
     this.onChangeEmailReminder = this.onChangeEmailReminder.bind(this);
+    this.sendEmailVerification = this.sendEmailVerification.bind(this);
   }
 
   onChangeFirstName(e) {
@@ -60,6 +61,31 @@ class Profile extends React.Component {
 
   onChangeEmailReminder(e) {
     this.setState({ emailReminder: e.target.value }, () => console.log(this.state.emailReminder));
+  }
+
+  sendEmailVerification() {
+    const emailVerfication = async () => {
+      const firebaseUser = firebase.auth().currentUser;
+      const emailVerification = await firebaseUser.sendEmailVerification();
+    };
+    emailVerfication();
+    let intervals = 0;
+    let stopInterval = setInterval(() => {
+      firebase.auth().currentUser.reload();
+      const fireBaseUser = firebase.auth().currentUser
+      intervals++;
+      if (fireBaseUser.emailVerified) {
+        let update = axios.put('/api/updateEmailValidation', {
+          userId: fireBaseUser.uid,
+          emailVerified: fireBaseUser.emailVerified,
+        })
+        .then(() => this.props.getUserInfo())
+        .catch(err => console.error(err));
+      }
+      if (intervals === 6 || fireBaseUser.emailVerified) {
+        clearInterval(stopInterval)
+      }
+    },20000)
   }
 
   handleSubmit(e) {
@@ -162,7 +188,7 @@ class Profile extends React.Component {
             <Button type="submit">Change Password</Button>
           </form>
           <br />
-          {emailReminderRadioButtons}
+          {this.props.verifiedEmail ? emailReminderRadioButtons : <Button onClick={this.sendEmailVerification}>Click Here to Verify Your Email and Receive Email Notifications</Button>}
         </Card>
       </div>
     );

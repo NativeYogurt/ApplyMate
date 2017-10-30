@@ -27,6 +27,7 @@ class Main extends React.Component {
       userSkills: [],
       missingSkills: [],
       emailReminder: '',
+      verifiedEmail: '',
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.getJobs = this.getJobs.bind(this);
@@ -51,6 +52,7 @@ class Main extends React.Component {
     })
       .then((result) => {
         const { data } = result;
+        console.log('verifiedEmail', data.verifiedEmail)
         this.setState({
           firstName: data.firstName,
           lastName: data.lastName,
@@ -59,6 +61,7 @@ class Main extends React.Component {
           githubSkills: data.githubSkills,
           userResume: data.resumeURL || '',
           emailReminder: data.emailReminder,
+          verifiedEmail: data.verifiedEmail,
         });
       })
       .catch(err => console.log('error getting user data', err));
@@ -240,6 +243,7 @@ class Main extends React.Component {
                 getUserInfo={this.getUserInfo}
                 clearResume={this.clearResume}
                 emailReminder={this.state.emailReminder}
+                verifiedEmail={this.state.verifiedEmail}
               />
             )}
           />

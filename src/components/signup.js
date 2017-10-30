@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { Card, Input, Button, Row } from 'react-materialize';
+import axios from 'axios';
 
 import Auth from './Auth';
 
@@ -26,11 +27,27 @@ class Signup extends React.Component {
   handleSignUp(e) {
     e.preventDefault();
     if (this.state.signUpPassword === this.state.signUpPassword2) {
-      console.log(this.state.signUpUsername)
       Auth.signUp(this.state.signUpUsername, this.state.signUpPassword, this.state.firstName, this.state.lastName, (err, user) => {
         if (err) alert(err);
         else {
           this.props.setUser(user, true);
+          let intervals = 0;
+          let stopInterval = setInterval(() => {
+            firebase.auth().currentUser.reload();
+            const fireBaseUser = firebase.auth().currentUser
+            intervals++;
+            if (fireBaseUser.emailVerified) {
+              let update = axios.put('/api/updateEmailValidation', {
+                userId: fireBaseUser.uid,
+                emailVerified: fireBaseUser.emailVerified,
+              })
+              .then(() => this.props.rerender())
+              .catch(err => console.error(err));
+            }
+            if (intervals === 6 || fireBaseUser.emailVerified) {
+              clearInterval(stopInterval)
+            }
+          },20000)
         }
       });
     } else {

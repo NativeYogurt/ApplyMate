@@ -7,7 +7,6 @@ import fire from './Firebase.js';
 exports.signUp = async (user, pass, first, last, cb) => {
   try {
     const firebaseUser = await fire.auth().createUserWithEmailAndPassword(user, pass);
-    const testuser = firebase.auth().currentUser;
     const emailVerification = await firebaseUser.sendEmailVerification();
     const dbUser = await axios.post('/api/signUp', {
       data: {
@@ -27,46 +26,16 @@ exports.signIn = async (user, pass, cb) => {
   try {
     let fireBaseUser = await fire.auth().signInWithEmailAndPassword(user, pass);
     if (fireBaseUser.emailVerified) {
-      console.log(fireBaseUser.emailVerified)
+      let update = await axios.put('/api/updateEmailValidation', {
+        userId: fireBaseUser.uid,
+        emailVerified: fireBaseUser.emailVerified,
+      })
     }
     cb(undefined, fireBaseUser);
   } catch (e) {
     cb(error.message);
   }
 };
-// exports.signUp = (user, pass, first, last, cb) => {
-//   fire.auth().createUserWithEmailAndPassword(user, pass)
-//     .then((firebaseUser) => {
-//       axios.post(`/api/signUp`, {
-//         data: {
-//           id: firebaseUser.uid,
-//           firstName: first,
-//           lastName: last,
-//           email: firebaseUser.email,
-//         },
-//       })
-//         .then((DBUser) => {
-//           cb(undefined, firebaseUser)
-//         })
-//         .catch((err) => {
-//           cb(err);
-//         });
-//     })
-//     .catch((error) => {
-//       cb(error);
-//     });
-// };
-// signing in with email and password
-// exports.signIn = (user, pass, cb) => {
-//   fire.auth().signInWithEmailAndPassword(user, pass)
-//     .then((win) => {
-//       console.log(win)
-//       cb(undefined, win);
-//     })
-//     .catch((error) => {
-//       cb(error.message);
-//     });
-// };
 // general sign out
 exports.signOut = (cb) => {
   fire.auth().signOut()
