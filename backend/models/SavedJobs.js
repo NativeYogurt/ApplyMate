@@ -45,6 +45,13 @@ const SavedJobs = sequelize.define(
       type: Sequelize.BOOLEAN,
       defaultValue: false,
     },
+    screenShotUrl: {
+      type: Sequelize.TEXT,
+    },
+    activeJobPosting: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+    },
     userId: {
       type: Sequelize.STRING,
       references: {

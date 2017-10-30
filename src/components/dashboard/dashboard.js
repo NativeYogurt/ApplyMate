@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Icon, Input, Button, Col, Row, Modal, Table } from 'react-materialize';
+import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown } from 'react-materialize';
+
 
 import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
@@ -14,6 +15,7 @@ class Dashboard extends React.Component {
       sortBy: 'status',
       errorMessage: null,
       search: '',
+      isPaneOpen: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeSortBy = this.onChangeSortBy.bind(this);
@@ -80,9 +82,11 @@ class Dashboard extends React.Component {
         favoriteJob={this.props.favoriteJob}
         getJobs={this.props.getJobs}
         getJobComparison={this.props.getJobComparison}
+        revertJobUrlToActive={this.props.revertJobUrlToActive}
       />
     );
   }
+
   updateSearch(e) {
     e.preventDefault();
     this.setState({
@@ -133,6 +137,9 @@ class Dashboard extends React.Component {
               <option value="location">Location</option>
             </select>
           </Col>
+          <Col s={3}>
+            <input type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
+          </Col>
         </Row>
         <Table className="dashboard">
           <thead>
@@ -161,13 +168,11 @@ class Dashboard extends React.Component {
           <Col s={3}>
             <h5>Job Applications</h5>
           </Col>
-          <Col s={3}>
-            <input type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
-          </Col>
-          <Col s={5} />
+          <Col s={8} />
           <Col s={1}>
             <Modal
               trigger={<Button
+                id="add"
                 floating
                 className="red"
                 waves="light"
@@ -190,7 +195,7 @@ class Dashboard extends React.Component {
                 <Input type="text" name="location" label="Job Location" />
                 <Input type="text" name="url" label="Job URL" />
                 <Input type="text" name="companyUrl" label="Company URL" />
-                <Button type="submit">Add</Button>
+                <Button id="add-job" type="submit">Add</Button>
               </form>
             </Modal>
           </Col>

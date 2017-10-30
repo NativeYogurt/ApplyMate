@@ -7,15 +7,16 @@ import { Row, Col, Card, Button, Input } from 'react-materialize';
 
 import GithubSkills from './github-skills';
 import Resume from './resume';
+import ProfileNav from './profile-nav';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: this.props.userFirstName,
-      lastName: this.props.userLastName,
-      email: this.props.userEmail,
-      githubUsername: this.props.githubUsername,
+      firstName: this.props.userFirstName || '',
+      lastName: this.props.userLastName || '',
+      email: this.props.userEmail || '',
+      githubUsername: this.props.githubUsername || '',
       password1: '',
       password2: '',
       emailReminder: this.props.emailReminder,
@@ -109,54 +110,48 @@ class Profile extends React.Component {
 
   render() {
     const username = `${this.props.userFirstName} ${this.props.userLastName}`;
+    const githubHandle = `${this.state.githubUsername}`;
     const githubSkills = `${this.props.githubSkills}`;
     const emailReminderRadioButtons = (this.state.emailReminder === true) ?
       (<label htmlFor="emailReminder">
         Interview Email Reminder:
         <Input label="On" type="radio" name="emailReminder" value="true" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
         <Input label="Off" type="radio" name="emailReminder" value="false" onClick={this.onChangeEmailReminder} />
-       </label>) :
+      </label>) :
       (<label htmlFor="emailReminder">
         Interview Email Reminder:
         <Input label="On" type="radio" name="emailReminder" value="true" onClick={this.onChangeEmailReminder} />
         <Input label="Off" type="radio" name="emailReminder" value="false" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
        </label>);
-
     return (
       <div className="container">
-        <h5>Hello, {this.state.githubUsername || username}!</h5>
-        <br />
-        <strong>Update Your Info</strong><br />
-        <form name="updateUser" onSubmit={this.handleSubmit}>
-          <Row>
-            <Input s={6} label="First Name" type="text" name="firstName" defaultValue={this.state.firstName} value={this.state.firstName} onChange={this.onChangeFirstName} />
-            <Input s={6} label="Last Name" type="text" name="lastName" defaultValue={this.state.lastName} value={this.state.lastName} onChange={this.onChangeLastName} />
-            <Input s={12} label="Email" type="email" name="email" defaultValue={this.state.email} value={this.state.email} onChange={this.onChangeEmail} />
-          </Row>
+        <Card>
+          <ProfileNav />
+          <h5>Hello, {githubHandle || username}!</h5>
+          <h6>Github Username: {githubHandle}</h6>
+          <br />
+          <br />
+          <strong>Update Your Info</strong><br />
+          <form name="updateUser" onSubmit={this.handleSubmit}>
+            <Row>
+              <Input s={6} label="First Name" type="text" name="firstName"  value={this.state.firstName} onChange={this.onChangeFirstName} />
+              <Input s={6} label="Last Name" type="text" name="lastName"  value={this.state.lastName} onChange={this.onChangeLastName} />
+              <Input s={12} label="Email" type="email" name="email" value={this.state.email} onChange={this.onChangeEmail} />
+            </Row>
+            <Button type="submit">Submit</Button>
+          </form>
+          <br />
+          <strong>Change Password</strong>
+          <form name="changePassword" onSubmit={this.handlePasswordSubmit}>
+            <Row>
+              <Input s={6} label="New Password:" type="password" onChange={this.onChangePassword1} />
+              <Input s={6} label="Verify Password:" type="password" onChange={this.onChangePassword2} />
+            </Row>
+            <Button type="submit">Change Password</Button>
+          </form>
           <br />
           {emailReminderRadioButtons}
-          <br />
-          Github Username: {this.state.githubUsername}
-          <br />
-          <Button type="submit">Submit</Button>
-        </form>
-        <br />
-        <b>Change Password</b>
-        <form name="changePassword" onSubmit={this.handlePasswordSubmit}>
-          <Row>
-            <Input s={6} label="New Password:" type="password" onChange={this.onChangePassword1} />
-            <Input s={6} label="Verify Password:" type="password" onChange={this.onChangePassword2} />
-          </Row>
-          <Button type="submit">Change Password</Button>
-        </form>
-        <hr />
-        <Resume
-          userId={this.props.userId}
-          getJobComparison={this.props.getJobComparison}
-          getUserInfo={this.props.getUserInfo}
-          userResume={this.props.userResume}
-          clearResume={this.props.clearResume}
-        />
+        </Card>
       </div>
     );
   }

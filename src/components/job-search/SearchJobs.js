@@ -88,18 +88,20 @@ class SearchJobs extends React.Component {
     }
   }
   fixURL(url) {
-    if (url.lastIndexOf('//') !== -1) {
-      const int = url.lastIndexOf('//');
-      url = url.slice(int + 2);
-    }
-    if (url.lastIndexOf('www.') !== -1) {
-      const int = url.lastIndexOf('www.');
-      url = url.slice(int + 4);
-    }
+    if (url) {
+      if (url.lastIndexOf('//') !== -1) {
+        const int = url.lastIndexOf('//');
+        url = url.slice(int + 2);
+      }
+      if (url.lastIndexOf('www.') !== -1) {
+        const int = url.lastIndexOf('www.');
+        url = url.slice(int + 4);
+      }
 
-    if (url.lastIndexOf('/') !== -1) {
-      const int = url.lastIndexOf('/');
-      url = url.slice(0, int);
+      if (url.lastIndexOf('/') !== -1) {
+        const int = url.lastIndexOf('/');
+        url = url.slice(0, int);
+      }
     }
     return url;
   }
@@ -144,13 +146,13 @@ class SearchJobs extends React.Component {
           </form>
         </div>
         <div className="job-search-results">
-          {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
-            return (
-              <Row>
+          <Row>
+            {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
+              return (
                 <JobSearchResult key={job.id} job={job} handleJobAdd={this.handleJobAdd} />
-              </Row>
               );
-          }) : null}
+            }) : null}
+          </Row>
         </div>
       </div>
     );

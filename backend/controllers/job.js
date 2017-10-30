@@ -8,6 +8,9 @@ const SavedJobs = require('../models/SavedJobs.js');
 const extract = require('../utilities/extractSkills.js');
 const big5Scraper = require('../utilities/big5scraper.js');
 const iFrameScraper = require('../utilities/iframeScraper.js');
+const websiteChecker = require('../utilities/websiteChecker.js');
+
+const Op = Sequelize.Op;
 
 const Xray = require('x-ray');
 
@@ -47,6 +50,7 @@ const addJobSkillsToDB = (skills, req, res) => {
           .build(newJob)
           .save()
           .then((job) => {
+            websiteChecker.takePicture(job.url, true, job.jobId)
             res.send(job);
           })
           .catch((err) => {
@@ -153,7 +157,18 @@ exports.handleEditJob = (req, res) => {
       jobId: req.params.id,
     },
   })
-    .then(data => res.send(data))
+    .then(data => {
+      res.send(data)
+      SavedJobs.findOne({
+        where: {
+          jobId: req.params.id,
+        },
+      })
+        .then(job => {
+          websiteChecker.takePicture(job.url, true, job.jobId);
+          return;
+        });
+    })
     .catch(error => console.error(error));
 };
 
@@ -179,4 +194,23 @@ exports.handleJobFavorite = (req, res) => {
   })
     .then(success => res.send('success'))
     .catch(error => console.error(error));
+};
+
+exports.updateScreenshot = async (req, res) => {
+  const jobId = req.body.jobId
+  const jobUrl = await SavedJobs.findOne({
+    attributes: ['url'],
+    where: {
+      jobId,
+    },
+  });
+  const picture = await websiteChecker.takePicture(jobUrl.url, true, jobId);
+  res.send('updated screenshot');
+  // SavedJobs.update({
+  //   favorite: req.body.favoriteStatus,
+  // }, {
+  //   where: {
+  //     jobId: req.body.jobId,
+  //   },
+  // })
 };

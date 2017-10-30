@@ -25,32 +25,30 @@ class Nav extends React.Component {
   }
   render() {
     return (
-      <Navbar brand="ApplyMate" right>
-        <NavItem><Link to="/home/dashboard">Dashboard</Link></NavItem>
-        <NavItem><Link to="/home/searchjobs">Search Jobs</Link></NavItem>
-        <NavItem><Link to="/home/resources">Resources</Link></NavItem>
-        <NavItem><Link to="/home/tasks">Tasks</Link></NavItem>
-        <NavItem><Link to="/home/analytics">Analytics</Link></NavItem>
-        <NavItem><Link to="/home/profile">Profile</Link></NavItem>
-        <NavItem onClick={e => this.handleSignOut(e)}><Link to="/">Sign Out</Link></NavItem>
-      </Navbar>
+      <nav>
+        <div className="nav-wrapper">
+          <a href="#" className="brand-logo">ApplyMate</a>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <li><Link to="/home/dashboard">Dashboard</Link></li>
+            <li><Link to="/home/searchjobs">Search Jobs</Link></li>
+            <li><Link to="/home/resources">Resources</Link></li>
+            <li><Link to="/home/tasks">Tasks</Link></li>
+            <li><Link to="/home/analytics">Analytics</Link></li>
+            <li><a className="dropdown-button" data-activates="dropdown1"><i className="large material-icons">account_circle</i></a></li>
+          </ul>
+        </div>
+
+        <ul id="dropdown1" className="dropdown-content">
+          <li><Link to="/home/profile"><i className="large material-icons">settings</i> Profile</Link></li>
+          <li className="divider" />
+          <li onClick={e => this.handleSignOut(e)}><Link to="/"><i className="large material-icons">exit_to_app</i>Sign Out</Link></li>
+        </ul>
+
+      </nav>
     );
   }
 }
-// <div>
-//   <ul id="main-navigation">
-//     <li>ApplyMate</li>
-//     <li className="navBar"><Link to="/home/dashboard">Dashboard</Link></li>
-//     <li className="navBar"><Link to="/home/searchjobs">Search Jobs</Link></li>
-//     <li className="navBar"><Link to="/home/resources">Resources</Link></li>
-//     <li className="navBar"><Link to="/home/tasks">Tasks</Link></li>
-//     <li className="navBar"><Link to="/home/analytics">Analytics</Link></li>
-//     <li className="navBar"><Link to="/home/profile">Profile</Link></li>
-//     <li className="navBar" onClick={e => this.handleSignOut(e)}><Link to="/">Sign Out</Link></li>
-//   </ul>
-// </div>
 Navbar.propTypes = {
-  TESTBUTTON: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
 };
 export default Nav;

@@ -5,7 +5,7 @@ const db = require('../db/db');
 const Users = require('../models/User.js');
 const Events = require('../models/Events');
 
-exports.getUserByInterviewDate = async () => {
+exports.sendInterviewReminder = async () => {
   try {
     const date = new Date();
     const tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
@@ -19,7 +19,7 @@ exports.getUserByInterviewDate = async () => {
         githubName: user.githubUsername,
         email: user.email,
       };
-      emailSender(userObj)
+      emailSender(userObj);
     });
   } catch (err) {
     console.error(err);

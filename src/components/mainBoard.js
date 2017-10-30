@@ -7,6 +7,7 @@ import axios from 'axios';
 import Dashboard from './dashboard/dashboard';
 import Resources from './resources/resources';
 import Profile from './profile/profile';
+import Resume from './profile/resume';
 import Analytics from './analytics/analytics';
 import SearchJobs from './job-search/SearchJobs';
 import JobHome from './dashboard/job-details/JobHome';
@@ -22,7 +23,7 @@ class Main extends React.Component {
       githubUsername: '',
       githubSkills: {},
       savedJobs: [],
-      resume: '',
+      userResume: '',
       userSkills: [],
       missingSkills: [],
       emailReminder: '',
@@ -34,12 +35,12 @@ class Main extends React.Component {
     this.addJob = this.addJob.bind(this);
     this.clearResume = this.clearResume.bind(this);
     this.favoriteJob = this.favoriteJob.bind(this);
+    this.revertJobUrlToActive = this.revertJobUrlToActive.bind(this);
   }
 
   componentDidMount() {
     this.getUserInfo();
     this.getJobs();
-    // this.getJobComparison();
   }
 
   getUserInfo() {
@@ -56,7 +57,7 @@ class Main extends React.Component {
           email: data.email,
           githubUsername: data.githubUsername,
           githubSkills: data.githubSkills,
-          resume: data.resumeURL || '',
+          userResume: data.resumeURL || '',
           emailReminder: data.emailReminder,
         });
       })
@@ -153,8 +154,22 @@ class Main extends React.Component {
     });
   }
 
+
+  revertJobUrlToActive(jobId) {
+    let jobs = this.state.savedJobs.map(job => {
+      if (job.jobId === jobId) {
+        job.activeJobPosting = true;
+      }
+      return job
+    })
+    this.setState({
+      savedJobs: jobs,
+    });
+    axios.put('/api/job/updateScreenshot', { jobId });
+  }
+
   clearResume() {
-    this.setState({ resume: '' });
+    this.setState({ userResume: '' });
   }
 
   render() {
@@ -199,6 +214,18 @@ class Main extends React.Component {
             )}
           />
           <Route
+            path="/home/profile/resume"
+            render={() => (
+              <Resume
+                userId={this.props.userId}
+                getJobComparison={this.getJobComparison}
+                getUserInfo={this.getUserInfo}
+                userResume={this.state.userResume}
+                clearResume={this.clearResume}
+              />
+            )}
+          />
+          <Route
             path="/home/profile"
             render={() => (
               <Profile
@@ -206,7 +233,7 @@ class Main extends React.Component {
                 userFirstName={this.state.firstName}
                 userLastName={this.state.lastName}
                 userEmail={this.state.email}
-                userResume={this.state.resume}
+                userResume={this.state.userResume}
                 githubUsername={this.state.githubUsername}
                 githubSkills={this.state.githubSkills}
                 getJobComparison={this.getJobComparison}
@@ -225,6 +252,7 @@ class Main extends React.Component {
               <Dashboard
                 userId={this.props.userId}
                 getJobs={this.getJobs}
+                revertJobUrlToActive={this.revertJobUrlToActive}
                 savedJobs={this.state.savedJobs}
                 deleteJob={this.deleteJob}
                 favoriteJob={this.favoriteJob}

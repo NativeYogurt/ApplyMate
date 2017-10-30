@@ -23,7 +23,6 @@ class Resources extends React.Component {
     this.getResources();
   }
   getJobComparison(jobId) {
-    console.log('user', this.props.userId);
     axios.get('/api/comparison', {
       params: {
         userId: this.props.userId,

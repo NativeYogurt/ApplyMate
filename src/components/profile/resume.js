@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Row, Col, Card, Button, Input } from 'react-materialize';
 
+import ProfileNav from './profile-nav';
 import UploadedResume from './uploaded-resume';
 
 class Resume extends React.Component {
@@ -38,30 +40,33 @@ class Resume extends React.Component {
 
   render() {
     return (
-      <div>
-        <h5>Upload Resume:</h5>
-        <form action="#">
-          <div className="file-field input-field">
-            <div className="btn">
-              <span>File</span>
-              <input type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
+      <div className="container">
+        <Card>
+          <ProfileNav />
+          <h5>Upload Resume:</h5>
+          <form action="#">
+            <div className="file-field input-field">
+              <div className="btn">
+                <span>File</span>
+                <input type="file" name="resume" accept="application/pdf" onChange={this.readPDF} />
+              </div>
+              <div className="file-path-wrapper">
+                <input className="file-path validate" type="text" />
+              </div>
             </div>
-            <div className="file-path-wrapper">
-              <input className="file-path validate" type="text" />
-            </div>
-          </div>
-        </form>
-
-        <h5>My Resume:</h5>
-        <UploadedResume
-          userResume={this.props.userResume}
-          resumeLoadToggle={this.state.resumeLoadToggle}
-          toggleResume={this.toggleResume}
-        />
+          </form>
+          <h5>My Resume:</h5>
+          <UploadedResume
+            userResume={this.props.userResume}
+            resumeLoadToggle={this.state.resumeLoadToggle}
+            toggleResume={this.toggleResume}
+          />
+        </Card>
       </div>
     );
   }
 }
+
 Resume.propTypes = {
   userId: PropTypes.string.isRequired,
   userResume: PropTypes.string.isRequired,

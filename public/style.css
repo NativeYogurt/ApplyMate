@@ -1,48 +1,20 @@
-
-/*#main-navigation {
-    height: 54px;
-    overflow: hidden;
-    background-color: lightblue;
+/* Global Settings */
+.button {
+  padding: 10px 15px;
 }
 
-#main-navigation li {
-    font-size: 1em;
-    text-transform: uppercase;
-    list-style: none;
-    float: left;
-    width: 10%;
-    display: block;
-    text-align: center;
-    padding: 18px 16px;
-    color: white;
-}*/
-
-/* Change the link color to #111 (black) on hover */
-/*#main-navigation .navBar:hover {
-    background-color: blue;
-}*/
-
-/*#main-navigation .navBar-active {
-    background-color: red;
-}*/
-
-#job-navbar {
-    height: 54px;
-    overflow: hidden;
-    /*background-color: lightblue;*/
+.icon-button {
+  padding: 15px;
 }
 
-#job-navbar li {
-    font-size: 0.8em;
-    text-transform: uppercase;
-    list-style: none;
-    float: left;
-    width: 10%;
-    display: block;
-    text-align: center;
-    padding: 18px 16px;
-    color: white;
+.btn-space {
+  padding-left: 8px;
 }
+
+.icon-button {
+  padding: 2px 10px 2px 10px;
+}
+
 /* The alert message box */
 .alert, .error {
     padding: 20px;
@@ -58,6 +30,7 @@
   background-color: #f44336;
 }
 
+/* dashboard table */
 table .dashboard, .dashboard th, .dashboard td {
     border-bottom: 1px solid #ddd;
     border-collapse: collapse;
@@ -76,53 +49,21 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .dashboard td {
     white-space: nowrap;
-    max-width: 250px;
+    max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.button {
-  padding: 10px 15px;
+
+/* saved-job-posting on dashboard */
+.saved-job-posting:hover {
+  background-color: #D3D3D3;
 }
 
-/*.job-edit-form {
-  padding: 20px;
+#refresh {
+  cursor: pointer;
 }
-
-.job-edit-form .form-group {
-  padding-bottom: 15px;
-}
-
-.job-edit-form label {
-  padding-right: 15px;
-}
-
-.job-edit-form input[type="text"], .job-edit-form textarea {
-  padding: 8px;
-  width: 20%;
-}
-
-.job-edit-form input[type="submit"] {
-  padding: 10px 15px;
-}
-
-.job-edit-form .back-link {
-  padding-left: 15px;
-}*/
-
-.job-add-form .form-group {
-  padding-right: 15px;
-}
-
-.job-add-form input[type="text"], .job-add-form input[type="date"], .job-edit-form select {
-  padding: 8px;
-  max-width: 100%;
-}
-
-.job-search-form .form-group {
-  padding-right: 15px;
-}
-
+/* job-search-form */
 .job-search-form input[type="text"], .job-add-form input[type="date"], .job-edit-form select {
   padding: 8px;
   max-width: 100%;
@@ -132,78 +73,16 @@ table .dashboard, .dashboard th, .dashboard td {
   text-align: center;
 }
 
-.input-label {
-  padding-right: 8px;
+/* file-path-wrapper */
+.file-path-wrapper {
+  width: 60%;
 }
 
-/*.resource-list table, .resource-list th, .resource-list td {
-    border-bottom: 1px solid #ddd;
-    border-collapse: collapse;
-}
-
-.resource-list th, .resource-list td {
-    padding: 15px;
-}
-
-.resource-list th {
-    text-align: left;
-}*/
-
-/*.resource-list td .web, .resource-list td .video {
-    white-space: nowrap;
-    width: 30%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.resource-list td .skill {
-    white-space: nowrap;
-    width: 10%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}*/
-
+/* .pager */
 .pager {
-    list-style: none;
+  list-style: none;
 }
 
-button {
-  display: inline-block;
-}
-
-/*.contact-form {
-  padding: 20px;
-}
-
-.contact-form .form-group {
-  padding-bottom: 15px;
-}
-
-.contact-form label {
-  padding-right: 15px;
-}
-
-.contact-form input[type="text"], .contact-form textarea {
-  padding: 8px;
-  width: 20%;
-}
-
-.contact-form input[type="submit"] {
-  padding: 10px 15px;
-}*/
-
-.quick-actions {
-  padding-right: 8px;
-}
-
-.saved-job-posting:hover {
-  background-color: #D3D3D3;
-}
-
-.search-input {
-  padding-right: 8px;
-  padding-left: 8px;
-}
 /* start of company info styling */
 #companyInformationTab{
   display: grid;
@@ -260,3 +139,7 @@ button {
   grid-row:2;
 } */
 /* end of company info styling */
+
+.inactive {
+  color: red;
+};
