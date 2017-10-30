@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import PDF from 'react-pdf-js';
 import { ThreeBounce } from 'better-react-spinkit';
-import { Button, Icon } from 'react-materialize';
+import { Button, Icon, Card } from 'react-materialize';
 
 class UploadedResume extends React.Component {
   constructor(props) {
@@ -72,12 +72,16 @@ class UploadedResume extends React.Component {
         color="#26a69a"
       />);
     } else {
-      resumeElement = (<PDF
-        file={resume}
-        onDocumentComplete={this.onDocumentComplete}
-        onPageComplete={this.onPageComplete}
-        page={this.state.page}
-      />);
+      resumeElement = (
+        <Card>
+          <PDF
+            file={resume}
+            onDocumentComplete={this.onDocumentComplete}
+            onPageComplete={this.onPageComplete}
+            page={this.state.page}
+          />
+        </Card>
+      );
     }
     return (
       <div>
