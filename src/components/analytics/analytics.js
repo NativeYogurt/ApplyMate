@@ -9,14 +9,15 @@ import Applications from './applications';
 
 const Analytics = (props) => {
   return (
-    <div>
-      <JobStatus savedJobs={props.savedJobs} />
-      <Applications savedJobs={props.savedJobs} />
-      {Object.keys(props.githubSkills).length ?
-        <GithubSkills
-          githubSkills={props.githubSkills}
-        /> : null }
-    </div>
+    props.savedJobs.length !== 0 && Object.keys(props.githubSkills).length !== 0 ?
+      <div>
+        <JobStatus savedJobs={props.savedJobs} />
+        <Applications savedJobs={props.savedJobs} />
+        {Object.keys(props.githubSkills).length ?
+          <GithubSkills
+            githubSkills={props.githubSkills}
+          /> : null }
+      </div> : <h6>Add Jobs To Your Dashboard To Track Your Analytics!</h6>
   );
 };
 
