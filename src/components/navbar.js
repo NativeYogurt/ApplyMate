@@ -29,7 +29,6 @@ class Nav extends React.Component {
         <div className="nav-wrapper">
           <a href="#" className="brand-logo">ApplyMate</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><a className="dropdown-button btn" data-activates="dropdown1"><i className="large material-icons">account_circle</i></a></li>
             <li><Link to="/home/dashboard">Dashboard</Link></li>
             <li><Link to="/home/searchjobs">Search Jobs</Link></li>
             <li><Link to="/home/resources">Resources</Link></li>
@@ -40,7 +39,8 @@ class Nav extends React.Component {
 	                <NavItem><Link to="/home/profile"><i className="large material-icons">settings</i> Profile</Link></NavItem>
 	                <NavItem divider />
 	                <NavItem onClick={e => this.handleSignOut(e)}><Link to="/"><i className="large material-icons">exit_to_app</i>Sign Out</Link></NavItem>
-                </Dropdown></li>
+                </Dropdown>
+            </li>
           </ul>
         </div>
 
