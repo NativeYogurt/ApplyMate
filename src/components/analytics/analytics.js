@@ -8,8 +8,10 @@ import JobStatus from './jobstatus';
 import Applications from './applications';
 
 const Analytics = (props) => {
-  return (
-    props.savedJobs.length !== 0 && Object.keys(props.githubSkills).length !== 0 ?
+  const hasAnalytics = props.savedJobs.length && Object.keys(props.githubSkills).length !== 0;
+
+  return hasAnalytics ?
+    (
       <div>
         <JobStatus savedJobs={props.savedJobs} />
         <Applications savedJobs={props.savedJobs} />
@@ -17,8 +19,8 @@ const Analytics = (props) => {
           <GithubSkills
             githubSkills={props.githubSkills}
           /> : null }
-      </div> : <h6>Add Jobs To Your Dashboard To Track Your Analytics!</h6>
-  );
+      </div>
+    ) : <h6>Add Jobs To Your Dashboard To Track Your Analytics!</h6>;
 };
 
 export default Analytics;
