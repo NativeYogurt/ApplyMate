@@ -35,6 +35,22 @@ class Profile extends React.Component {
     this.sendEmailVerification = this.sendEmailVerification.bind(this);
   }
 
+  componentWillMount() {
+    const checkUserEmailVerification = async () =>  {
+      await firebase.auth().currentUser.reload();
+      const fireBaseUser = firebase.auth().currentUser;
+      console.log(fireBaseUser.emailVerified, this.props.verifiedEmail)
+      if (fireBaseUser.emailVerified === true && this.props.verifiedEmail === false) {
+        let update = axios.put('/api/updateEmailValidation', {
+          userId: fireBaseUser.uid,
+          emailVerified: fireBaseUser.emailVerified,
+        })
+        .then(() => this.props.getUserInfo())
+      }
+    }
+    checkUserEmailVerification()
+  }
+
   onChangeFirstName(e) {
     this.setState({ firstName: e.target.value });
   }
