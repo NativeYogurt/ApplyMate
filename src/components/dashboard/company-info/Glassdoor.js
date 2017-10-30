@@ -15,7 +15,7 @@ class Glassdoor extends React.Component {
       ratingNum: 0,
       recommendToFriendRating: 0,
       bossApprove: 0,
-      barKeys: ['Culture and Values', 'Senior Leadership', 'Compensation and Benefits', 'Career Opportunities', 'Work/Life Balance'],
+      barKeys:['Culture and Values', 'Senior Leadership', 'Compensation and Benefits', 'Career Opportunities', 'Work/Life Balance'],
       barVals: [],
       obj: {},
     };
@@ -42,8 +42,8 @@ class Glassdoor extends React.Component {
           website: data.website,
           ratingNum: data.numberOfRatings,
           overallRating: data.overallRating,
-          recommendToFriendRating: data.recommendToFriendRating / 20,
-          bossApprove: data.ceo.pctApprove / 20,
+          recommendToFriendRating: data.recommendToFriendRating / 20 ,
+          bossApprove: data.ceo.pctApprove /20 ,
           obj: data,
         });
       });
@@ -52,24 +52,18 @@ class Glassdoor extends React.Component {
   render() {
     return (
       <div id="GlassdoorComponent">
-        {!this.state.companyName ? (
-          <div className="centerText" > This company is not on Glassdoor </div>
-          ) : (
-            <div className="centerText" >
-              {this.state.companyName} @ {this.state.website}, with {this.state.ratingNum} ratings. &nbsp; &nbsp; {'    '}
-              <a href="https://www.glassdoor.com/index.htm"> {'  '} powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
-            </div>
-          )}
+        {this.state.companyName} @ {this.state.website}, with {this.state.ratingNum} ratings. {'      '}
+        <a href="https://www.glassdoor.com/index.htm">powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
         <br />
         <div id="glassdoorDoughnuts">
-          <CompletionDoughnut name="Recommend To Friend" rating={this.state.recommendToFriendRating} id="GDD1" size="195px" />
-          <CompletionDoughnut name="Overall Rating" rating={this.state.overallRating} id="GDD2" size="223px" />
-          <CompletionDoughnut name="CEO Approval" rating={this.state.bossApprove} id="GDD3" size="195px" />
+          <CompletionDoughnut name="Recommend To Friend" rating={this.state.recommendToFriendRating} size="195px"/>
+          <CompletionDoughnut name="Overall Rating" rating={this.state.overallRating} size="223px"/>
+          <CompletionDoughnut name="CEO Approval" rating={this.state.bossApprove} size="195px"/>
         </div>
         <div>
           <BarGraph data={this.state.barVals} labels={this.state.barKeys} companyName={this.state.companyName} />
         </div>
-
+        {/* <pre><code>{JSON.stringify(this.state.obj, null, 4)}</code></pre> */}
 
       </div>
     );

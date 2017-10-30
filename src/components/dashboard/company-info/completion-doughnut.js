@@ -24,7 +24,7 @@ const CompletionDoughnut = (props) => {
     }
   }
   return (
-    <div className="GDdoughnut" id={props.id} style={{ maxWidth: '100%', maxHeight: '100%' }} >
+    <div className="doughnut" style={{ width: props.size }} >
       <div className="centerText"> {props.name} </div>
       <Doughnut data={data} options={options} />
     </div>

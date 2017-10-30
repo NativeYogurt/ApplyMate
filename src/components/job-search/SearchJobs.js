@@ -45,7 +45,8 @@ class SearchJobs extends React.Component {
   }
   handleJobAdd(job) {
     console.log('job', job);
-    if (!job.company_url) {
+    const companyUrl = this.fixURL(job.company_url);
+    if (!(this.isURL(companyUrl))) {
       this.findCompanyURL(job.company, (foundCompanyURL) => {
         this.props.addJob({
           company: job.company,
@@ -59,32 +60,16 @@ class SearchJobs extends React.Component {
         });
       });
     } else {
-      const companyUrl = this.fixURL(job.company_url);
-      if (!(this.isURL(companyUrl))) {
-        this.findCompanyURL(job.company, (foundCompanyURL) => {
-          this.props.addJob({
-            company: job.company,
-            jobTitle: job.title,
-            status: 'wishlist',
-            location: job.location,
-            url: job.url,
-            skills: [],
-            companyUrl: foundCompanyURL,
-            userId: this.props.userId,
-          });
-        });
-      } else {
-        this.props.addJob({
-          company: job.company,
-          jobTitle: job.title,
-          status: 'wishlist',
-          location: job.location,
-          url: job.url,
-          skills: [],
-          companyUrl,
-          userId: this.props.userId,
-        });
-      }
+      this.props.addJob({
+        company: job.company,
+        jobTitle: job.title,
+        status: 'wishlist',
+        location: job.location,
+        url: job.url,
+        skills: [],
+        companyUrl,
+        userId: this.props.userId,
+      });
     }
   }
   fixURL(url) {
@@ -122,7 +107,7 @@ class SearchJobs extends React.Component {
   findCompanyURL(companyName, cb) {
     axios.post('/api/getCompanyUrl', { searchTerm: companyName })
       .then(results => {
-        let URL = results.data.BusinessURLs[0];
+        let URL = results.data;
         URL = this.fixURL(URL);
         cb(URL);
       });
