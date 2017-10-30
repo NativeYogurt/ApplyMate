@@ -80,24 +80,40 @@ exports.EDGAR = (req, res) => {
           },
         })
           .then(data => {
+            const obj = {
+              period: [], 
+              income: [], 
+              RD: [], 
+              rev: [],
+            };
             if (data.data.result.totalrows !== 0) {
               const arr = [];
               const array = [];
               for (let i = 0; i < data.data.result.totalrows; i++) {
-                arr.push(data.data.result.rows[i].values.filter((item, ind) => {
+
+                arr.push(data.data.result.rows[i].values.filter(item => {
+                  if (!obj.symb) {
+                    if (item.field === 'primarysymbol') obj.symb = item.value;
+                  }
+                  if (!obj.companyName) {
+                    if (item.field === 'companyname') obj.companyName = item.value;
+                  }
                   if (item.field === 'totalrevenue' || item.field === 'researchdevelopmentexpense' || item.field === 'periodenddate' || item.field === 'incomebeforetaxes') {
                     return item.value;
                   }
                 }));
               }
               for (let i = 0; i < arr.length; i++) {
-                const temp = [];
-                for (let j = 0; j < arr[i].length; j++) {
-                  temp.push(`${arr[i][j].field}: ${arr[i][j].value}`);
-                }
-                array.push(temp);
+                obj.period.push(arr[i][0].value);
+                obj.income.push(arr[i][1].value);
+                obj.RD.push(arr[i][2].value);
+                obj.rev.push(arr[i][3].value);
               }
-              return res.send(array);
+              obj.period.reverse();
+              obj.income.reverse();
+              obj.RD.reverse();
+              obj.rev.reverse();
+              return res.send(obj);
             } else if (++i <= Symbols.length) {
               setTimeout(() => {
                 edgarCall(i);
