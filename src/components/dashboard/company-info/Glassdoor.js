@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import CompletionDoughnut from './completion-doughnut.js';
-import BarGraph from './bar-graph.js';
+import GDBarGraph from './gdBarGraph.js';
 
 
 class Glassdoor extends React.Component {
@@ -67,7 +67,7 @@ class Glassdoor extends React.Component {
           <CompletionDoughnut name="CEO Approval" rating={this.state.bossApprove} id="GDD3" size="195px" />
         </div>
         <div>
-          <BarGraph data={this.state.barVals} labels={this.state.barKeys} companyName={this.state.companyName} />
+          <GDBarGraph data={this.state.barVals} labels={this.state.barKeys} companyName={this.state.companyName} />
         </div>
 
 

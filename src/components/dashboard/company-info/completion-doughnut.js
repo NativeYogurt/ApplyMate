@@ -5,6 +5,7 @@ const CompletionDoughnut = (props) => {
   const data = {
     labels: [
       'Rating',
+      ''
     ],
     datasets: [{
       data: [props.rating, Math.round((5 - props.rating) * 10) / 10],
