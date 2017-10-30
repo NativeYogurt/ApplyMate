@@ -13,8 +13,10 @@ class App extends React.Component {
     this.state = {
       user: null,
       isLoggedIn: false,
+      rerender: false,
     };
     this.setUser = this.setUser.bind(this);
+    this.rerender = this.rerender.bind(this);
     this.TESTBUTTON = this.TESTBUTTON.bind(this);
   }
   componentWillMount() {
@@ -29,6 +31,12 @@ class App extends React.Component {
     setTimeout(() => unsubscribe(), 5000);
   }
 
+  rerender() {
+    console.log(this.state.rerender, !this.state.rerender)
+    this.setState({
+      rerender: !this.state.rerender,
+    }, ()=> console.log(this.state.rerender))
+  }
   setUser(user, bool) {
     this.setState({
       user,
@@ -61,9 +69,9 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
-          {this.routes('/signup', <Signup setUser={this.setUser} />, <Redirect to="/home" />)}
+          {this.routes('/signup', <Signup setUser={this.setUser} rerender={this.rerender}/>, <Redirect to="/home" />)}
           {this.routes('/login', <Login setUser={this.setUser} />, <Redirect to="/home" />)}
-          {this.routes('/home', <Redirect to="/login" />, <Home user={this.state.user} setUser={this.setUser} />)}
+          {this.routes('/home', <Redirect to="/login" />, <Home rerender={this.state.rerender} user={this.state.user} setUser={this.setUser} />)}
           <Route
             exact
             path="*"

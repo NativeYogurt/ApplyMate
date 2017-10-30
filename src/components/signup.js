@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { Card, Input, Button, Row } from 'react-materialize';
+import axios from 'axios';
 
 import Auth from './Auth';
 
