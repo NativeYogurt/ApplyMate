@@ -153,7 +153,6 @@ class Dashboard extends React.Component {
               <th>Required Skills</th>
               <th>Favorite</th>
               <th />
-              <th />
             </tr>
           </thead>
           <tbody>
