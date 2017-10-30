@@ -17,6 +17,7 @@ const Applications = ({ savedJobs }) => {
     let appliedCount = null;
     status === 'applied' ? appliedCount++ : null;
     applicationData.push(appliedCount);
+    console.log(appliedCount);
   });
 
   const data = {
