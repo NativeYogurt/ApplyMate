@@ -71,7 +71,7 @@ class ActivityAdd extends React.Component {
             <Input s={6} label="Event Time" type="time" name="eventTime" value={this.state.eventTime} onChange={this.onChangeEventTime} />
             <Input s={12} label="Who is participating?" type="text" name="eventParticipates" value={this.state.eventParticipates} onChange={this.onChangeEventParticipates} />
           </Row>
-          <Button type="submit">Save</Button>
+          <Button type="submit" onClick={() => { window.history.back(); }}>Save</Button>
           <span className="btn-space">
             <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity">Cancel</Link>
           </span>
@@ -80,13 +80,4 @@ class ActivityAdd extends React.Component {
     );
   }
 }
-// <Col s={12}>
-//   <label htmlFor="eventType">
-//     <select className="browser-default" name="eventType" value={this.state.eventType} onChange={this.onChangeEventType}>
-//       <option value="" disabled>Choose your option</option>
-//       <option value="phoneCall">Phone Call</option>
-//       <option value="interview">Interview</option>
-//     </select>
-//   </label>
-// </Col>
 export default ActivityAdd;
