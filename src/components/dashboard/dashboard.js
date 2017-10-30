@@ -177,12 +177,18 @@ class Dashboard extends React.Component {
                 waves="light"
                 icon="add"
               />}
+              actions={
+                <div>
+                  <Button type="submit" onClick={this.handleSubmit}>Add</Button>
+                  <span className="btn-space"><Button className="modal-action modal-close">Close</Button></span>
+                </div>
+              }
             >
-              <Error error={this.state.errorMessage} />
+              <h5>New Job Application</h5>
               <form className="card-content" name="jobAdd" onSubmit={this.handleSubmit}>
-                <Input label="Company" type="text" name="company" />
-                <Input label="Job Title" type="text" name="jobtitle" />
-                <Input type="select" name="status" label="Status" defaultValue="wishlist">
+                <Input label="Company" validate type="text" name="company" />
+                <Input label="Job Title" validate type="text" name="jobtitle" />
+                <Input type="select" name="status" label="Status" validate defaultValue="wishlist">
                   <option value="wishlist">Wishlist</option>
                   <option value="applied">Applied</option>
                   <option value="phone">Phone</option>
@@ -190,12 +196,13 @@ class Dashboard extends React.Component {
                   <option value="rejected">Rejected</option>
                   <option value="offer">Offer</option>
                 </Input>
-                <Input label="Date Applied" type="date" name="dateApplied" />
-                <Input type="text" name="location" label="Job Location" />
-                <Input type="text" name="url" label="Job URL" />
-                <Input type="text" name="companyUrl" label="Company URL" />
-                <Button id="add-job" type="submit">Add</Button>
+                <Input label="Date validateApplied" type="date" name="dateApplied" />
+                <Input type="text" name="location" label="Job Location" validate />
+                <Input type="text" name="url" label="Job URL" validate />
+                <Input type="text" name="companyUrl" label="Company URL" validate />
               </form>
+              <Error error={this.state.errorMessage} />
+              {this.state.successVisible ? success : null}
             </Modal>
           </Col>
         </Row>
@@ -203,34 +210,6 @@ class Dashboard extends React.Component {
       </div>);
   }
 }
-// <Input small type="select" name="sortBy" label="Sort By" value={this.state.sortBy} onChange={this.onChangeSortBy}>
-
-// <a className="btn-floating right waves-effect waves-light red"><Icon small>add</Icon></a>
-// <div className="container">
-//   <div className="card">
-//     {this.state.successVisible ? success : null}
-//     <Error error={this.state.errorMessage} />
-//     <form className="card-content" name="jobAdd" onSubmit={this.handleSubmit}>
-//       <Input label="Company" type="text" name="company" />
-//       <Input label="Job Title" type="text" name="jobtitle" />
-//       <Input type="select" name="status" label="Status" defaultValue="wishlist">
-//         <option value="wishlist">Wishlist</option>
-//         <option value="applied">Applied</option>
-//         <option value="phone">Phone</option>
-//         <option value="onSite">OnSite</option>
-//         <option value="rejected">Rejected</option>
-//         <option value="offer">Offer</option>
-//       </Input>
-//       <Input label="Date Applied" type="date" name="dateApplied" />
-//       <Input type="text" name="location" label="Job Location" />
-//       <Input type="text" name="url" label="Job URL" />
-//       <Input type="text" name="companyUrl" label="Company URL" />
-//       <span className="form-group">
-//         <input className="button" type="submit" value="Add" />
-//       </span>
-//     </form>
-//   </div>
-// </div>
 Dashboard.propTypes = {
   getJobs: PropTypes.func.isRequired,
   getJobComparison: PropTypes.func.isRequired,
