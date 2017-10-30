@@ -1,7 +1,7 @@
 import React from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 
-const BarGraph = (props) => {
+const GDBarGraph = (props) => {
   const data = {
     labels: props.labels,
     datasets: [
@@ -29,7 +29,6 @@ const BarGraph = (props) => {
     },
     legend: {
       display: false,
-      position: 'bottom',
     },
   }
   return (
@@ -40,4 +39,4 @@ const BarGraph = (props) => {
 };
 
 
-export default BarGraph;
+export default GDBarGraph;

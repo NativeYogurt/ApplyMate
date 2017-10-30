@@ -36,18 +36,23 @@ class CompanyInfo extends React.Component {
   }
 
   render() {
-    return (
+    return ( 
       <div id="companyInformationTab">
-        {<Twitter twitterData={this.state.twitterData} />}
         <TwitterBanner twitterPic={this.state.twitterPic} />
-        {/* {<BBB companyName={this.state.companyName} />} */}
-        {<Glassdoor companyName={this.state.companyName} />}
-        {/* {<EDGAR companyName={this.state.companyName} />} */}
+        <div id="companyInformationLeft">
+          <Twitter twitterData={this.state.twitterData} />
+          
+        </div>
+        <div id="companyInformationRight">
+          <Glassdoor companyName={this.state.companyName} />
+          <EDGAR companyName={this.state.companyName} />
+        </div>
+        
       </div>
     );
   }
 }
-
+{/* {<BBB companyName={this.state.companyName} />} */}
 CompanyInfo.propTypes = {
   company: PropTypes.string.isRequired,
 };
