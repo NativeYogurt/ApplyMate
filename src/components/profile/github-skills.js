@@ -10,7 +10,6 @@ const GithubSkills = (props) => {
     datasets: [{
       label: 'Github Data',
       data: skillData,
-      // backgroundColor:'green',
       backgroundColor: [
         'rgba(255, 99, 132, 0.6)',
         'rgba(54, 162, 235, 0.6)',
