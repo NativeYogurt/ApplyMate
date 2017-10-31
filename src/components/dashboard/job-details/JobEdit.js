@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Row, Col, Button, Icon } from 'react-materialize';
+import { Row, Col, Button, Icon, Modal } from 'react-materialize';
 
 class JobEdit extends React.Component {
   constructor(props) {
@@ -93,7 +93,8 @@ class JobEdit extends React.Component {
       body: JSON.stringify(job),
     }).then(res => res.json())
       .then(data =>
-        this.showSuccess());
+        // this.showSuccess());
+        Materialize.toast('Job application saved!', 4000));
   }
 
   render() {

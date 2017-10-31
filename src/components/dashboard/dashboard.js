@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown } from 'react-materialize';
-
+import $ from 'jquery';
 
 import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
@@ -72,6 +72,8 @@ class Dashboard extends React.Component {
       successVisible: true,
       errorMessage: null,
     });
+    $('.modal-close').trigger('click');
+    Materialize.toast('Job application saved!', 4000);
   }
   createJobs(job) {
     return (
@@ -127,25 +129,13 @@ class Dashboard extends React.Component {
       listJobs = sortedByDate;
     }
     const emptyTable = (
-      <div>
-        <Table className="dashboard">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Job Title</th>
-              <th>Status</th>
-              <th>Date Applied</th>
-              <th>Location</th>
-              <th>Job Posting URL</th>
-              <th>Required Skills</th>
-              <th>Favorite</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </Table>
-        <h4 id="no-job-banner">Click the plus button to get started tracking your Job Applications</h4>
+      <div className="empty-state">
+        <Row className="center">
+          <Col s={12}>
+            <Icon medium>format_list_bulleted</Icon>
+            <p>Click the plus button to get started tracking your Job Applications</p>
+          </Col>
+        </Row>
       </div>
     )
     const jobList = (
@@ -192,6 +182,7 @@ class Dashboard extends React.Component {
           <Col s={8} />
           <Col s={1}>
             <Modal
+              id="modal1"
               trigger={<Button
                 id="add"
                 floating
@@ -218,13 +209,12 @@ class Dashboard extends React.Component {
                   <option value="rejected">Rejected</option>
                   <option value="offer">Offer</option>
                 </Input>
-                <Input label="Date validateApplied" type="date" name="dateApplied" />
+                <Input label="Date Applied" validate type="date" name="dateApplied" />
                 <Input type="text" name="location" label="Job Location" validate />
                 <Input type="text" name="url" label="Job URL" validate />
                 <Input type="text" name="companyUrl" label="Company URL" validate />
               </form>
               <Error error={this.state.errorMessage} />
-              {this.state.successVisible ? success : null}
             </Modal>
           </Col>
         </Row>

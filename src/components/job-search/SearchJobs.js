@@ -10,41 +10,39 @@ class SearchJobs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      jobSearchResults: [],
     };
-    this.searchJobs = this.searchJobs.bind(this);
+    // this.searchJobs = this.searchJobs.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleJobAdd = this.handleJobAdd.bind(this);
     this.fixURL = this.fixURL.bind(this);
     this.isURL = this.isURL.bind(this);
     this.findCompanyURL = this.findCompanyURL.bind(this);
   }
-  searchJobs(desc, loc) {
-    const link = `https://jobs.github.com/positions.json?description=${desc}&location=${loc}`;
-    $.ajax({
-      type: 'GET',
-      dataType: 'jsonp',
-      url: link,
-      success: data => {
-        this.setState({
-          jobSearchResults: data,
-        });
-      },
-      error: error => {
-        console.error('failed to search job', error);
-      },
-    });
-  }
+  // searchJobs(desc, loc) {
+  //   const link = `https://jobs.github.com/positions.json?description=${desc}&location=${loc}`;
+  //   $.ajax({
+  //     type: 'GET',
+  //     dataType: 'jsonp',
+  //     url: link,
+  //     success: data => {
+  //       this.setState({
+  //         jobSearchResults: data,
+  //       });
+  //     },
+  //     error: error => {
+  //       console.error('failed to search job', error);
+  //     },
+  //   });
+  // }
   handleSubmit(e) {
     e.preventDefault();
     const form = document.forms.jobSearch;
-    this.searchJobs(
+    this.props.searchJobs(
       form.searchTechSkill.value,
       form.searchJobLocation.value,
     );
   }
   handleJobAdd(job) {
-    console.log('job', job);
     if (!job.company_url) {
       this.findCompanyURL(job.company, (foundCompanyURL) => {
         this.props.addJob({
@@ -147,9 +145,13 @@ class SearchJobs extends React.Component {
         </div>
         <div className="job-search-results">
           <Row>
-            {this.state.jobSearchResults.length > 0 ? this.state.jobSearchResults.map(job => {
+            {this.props.jobSearchResults.length > 0 ? this.props.jobSearchResults.map(job => {
               return (
-                <JobSearchResult key={job.id} job={job} handleJobAdd={this.handleJobAdd} />
+                <JobSearchResult
+                  key={job.id}
+                  job={job}
+                  handleJobAdd={this.handleJobAdd}
+                />
               );
             }) : null}
           </Row>
