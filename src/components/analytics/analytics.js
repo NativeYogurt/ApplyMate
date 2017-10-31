@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bar, Line, Pie, Doughnut, Radar, Polar } from 'react-chartjs-2';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { Row, Col, Icon } from 'react-materialize';
 import FlatButton from 'material-ui/FlatButton';
 import GithubSkills from '../profile/github-skills';
 
@@ -20,7 +20,15 @@ const Analytics = (props) => {
             githubSkills={props.githubSkills}
           /> : null }
       </div>
-    ) : <h6>Add Jobs To Your Dashboard To Track Your Analytics!</h6>;
+    ) :
+      <div className="empty-state">
+        <Row className="center">
+          <Col s={12}>
+            <Icon medium>insert_chart</Icon>
+            <p>Add Jobs To Your Dashboard To Track Your Progress!</p>
+          </Col>
+        </Row>
+      </div>;
 };
 
 export default Analytics;
