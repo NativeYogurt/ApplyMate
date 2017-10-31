@@ -16,11 +16,10 @@ class Profile extends React.Component {
       firstName: this.props.userFirstName || '',
       lastName: this.props.userLastName || '',
       email: this.props.userEmail || '',
-      githubUsername: this.props.githubUsername || '',
       password1: '',
       password2: '',
       emailReminder: this.props.emailReminder,
-      phoneNumber: this.props.phoneNumber || '',
+      phoneNumber: this.props.phoneNumber || 2125551234,
       textReminder: this.props.phoneReminder,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,7 +31,6 @@ class Profile extends React.Component {
     this.onChangePassword2 = this.onChangePassword2.bind(this);
     this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
-    this.onChangeGithubUsername = this.onChangeGithubUsername.bind(this);
     this.onChangeEmailReminder = this.onChangeEmailReminder.bind(this);
     this.sendEmailVerification = this.sendEmailVerification.bind(this);
     this.onChangePhoneNumber = this.onChangePhoneNumber.bind(this);
@@ -64,10 +62,6 @@ class Profile extends React.Component {
 
   onChangeEmail(e) {
     this.setState({ email: e.target.value });
-  }
-
-  onChangeGithubUsername(e) {
-    this.setState({ githubUsername: e.target.value });
   }
 
   onChangePassword1(e) {
@@ -171,8 +165,8 @@ class Profile extends React.Component {
       displayName = `${this.props.userFirstName} ${this.props.userLastName}`;
     } else if (this.props.userFirstName) {
       displayName = this.props.userFirstName;
-    } else if (this.props.githubHandle) {
-      displayName = this.props.githubHandle;
+    } else if (this.props.githubUsername) {
+      displayName = this.props.githubUsername;
     }
     const emailReminderRadioButtons = (this.state.emailReminder === true) ? (
       <label htmlFor="emailReminder">
@@ -199,7 +193,7 @@ class Profile extends React.Component {
         <Card>
           <ProfileNav />
           <h5>Hello, {displayName}!</h5>
-          <h6>Github Username: {this.state.githubHandle}</h6>
+          <h6>Github Username: {this.props.githubUsername}</h6>
           <br />
           <br />
           <strong>Update Your Info</strong><br />
@@ -228,7 +222,6 @@ class Profile extends React.Component {
               <Col s={6}>
                 {this.props.verifiedEmail ? <div > Interview E-Mail Reminder: <br /> {emailReminderRadioButtons} </div> :
                 <Button onClick={this.sendEmailVerification}>Click Here to Verify Your Email
-                and Receive Email Notifications
                 </Button>}
               </Col>
               <Col s={6}>
