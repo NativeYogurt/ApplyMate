@@ -126,6 +126,28 @@ class Dashboard extends React.Component {
     } else {
       listJobs = sortedByDate;
     }
+    const emptyTable = (
+      <div>
+        <Table className="dashboard">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Job Title</th>
+              <th>Status</th>
+              <th>Date Applied</th>
+              <th>Location</th>
+              <th>Job Posting URL</th>
+              <th>Required Skills</th>
+              <th>Favorite</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </Table>
+        <h4 id="no-job-banner">Click the plus button to get started tracking your Job Applications</h4>
+      </div>
+    )
     const jobList = (
       <div>
         <Row>
@@ -206,7 +228,7 @@ class Dashboard extends React.Component {
             </Modal>
           </Col>
         </Row>
-        {this.props.savedJobs.length > 0 ? jobList : null}
+        {this.props.savedJobs.length > 0 ? jobList : emptyTable}
       </div>);
   }
 }
