@@ -173,3 +173,7 @@ table .dashboard, .dashboard th, .dashboard td {
 .dropdown-content li>a>i {
   margin: 0 18px 0 0;
 }
+
+.profile-github-handle {
+  font-size: .8em;
+}

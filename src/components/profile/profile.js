@@ -170,7 +170,7 @@ class Profile extends React.Component {
         <Card>
           <ProfileNav />
           <h5>Hello, {githubHandle || username}!</h5>
-          {githubHandle ? <h6>*Github Username: {githubHandle}</h6> : ''}
+          {githubHandle ? <p className="profile-github-handle">Github Username: {githubHandle}</p> : ''}
           <br />
           <br />
           <strong>Update Your Info</strong><br />
