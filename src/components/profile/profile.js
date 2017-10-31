@@ -86,22 +86,22 @@ class Profile extends React.Component {
     };
     emailVerfication();
     let intervals = 0;
-    let stopInterval = setInterval(() => {
+    const stopInterval = setInterval(() => {
       firebase.auth().currentUser.reload();
-      const fireBaseUser = firebase.auth().currentUser
+      const fireBaseUser = firebase.auth().currentUser;
       intervals++;
       if (fireBaseUser.emailVerified) {
-        let update = axios.put('/api/updateEmailValidation', {
+        const update = axios.put('/api/updateEmailValidation', {
           userId: fireBaseUser.uid,
           emailVerified: fireBaseUser.emailVerified,
         })
-        .then(() => this.props.getUserInfo())
-        .catch(err => console.error(err));
+          .then(() => this.props.getUserInfo())
+          .catch(err => console.error(err));
       }
       if (intervals === 6 || fireBaseUser.emailVerified) {
-        clearInterval(stopInterval)
+        clearInterval(stopInterval);
       }
-    },20000)
+    }, 20000);
   }
 
   handleSubmit(e) {
@@ -170,7 +170,7 @@ class Profile extends React.Component {
         <Card>
           <ProfileNav />
           <h5>Hello, {githubHandle || username}!</h5>
-          <h6>Github Username: {githubHandle}</h6>
+          {githubHandle ? <h6>*Github Username: {githubHandle}</h6> : ''}
           <br />
           <br />
           <strong>Update Your Info</strong><br />
