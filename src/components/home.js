@@ -1,21 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import Nav from './nav.js';
-import Main from './mainBoard.js';
+import Nav from './navbar';
+import Main from './mainBoard';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-  render() {
-    return (
-      <div>
-        <Nav signOut={this.props.signOut} />
-        <Main user={this.props.user} />
-      </div>);
-  }
-}
+const Home = (props) => {
+  return (
+    <div>
+      <div className="navHolder">
+        <Nav
+          setUser={props.setUser}
+          userName={props.user.displayName}
+        />
+      </div>
+      <Main userId={props.user ? props.user.uid : null} />
+    </div>);
+};
+
+Home.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
 
 export default Home;

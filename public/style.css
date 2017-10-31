@@ -1,0 +1,182 @@
+/* Global Settings */
+.button {
+  padding: 10px 15px;
+}
+
+.icon-button {
+  padding: 15px;
+}
+
+.btn-space {
+  padding-left: 8px;
+}
+
+.icon-button, .favorite {
+  padding: 2px 10px 2px 10px;
+}
+
+/* The alert message box */
+.alert, .error {
+    padding: 20px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.alert {
+    background-color: green; /* Red */
+}
+
+.error {
+  background-color: #f44336;
+}
+
+/* dashboard table */
+table .dashboard, .dashboard th, .dashboard td {
+    border-bottom: 1px solid #ddd;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-left: 0 none;
+    border-right: 0 none;
+}
+
+.dashboard th, .dashboard td {
+    padding: 15px;
+}
+
+.dashboard th {
+    text-align: left;
+}
+
+.dashboard td {
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* saved-job-posting on dashboard */
+.saved-job-posting:hover {
+  background-color: #D3D3D3;
+}
+
+#refresh {
+  cursor: pointer;
+}
+/* job-search-form */
+.job-search-form input[type="text"], .job-add-form input[type="date"], .job-edit-form select {
+  padding: 8px;
+  max-width: 100%;
+}
+
+.job-search-inputs {
+  text-align: center;
+}
+
+/* file-path-wrapper */
+.file-path-wrapper {
+  width: 60%;
+}
+
+/* .pager */
+.pager {
+  list-style: none;
+}
+
+/* start of company info styling */
+.centerText{
+  display: flex;
+  justify-content: center;
+}
+#companyInformationTab{
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: auto auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+}
+#twitterBanner{
+  grid-column:1/3;
+  grid-row:1/2;
+}
+#companyInformationLeft{
+  grid-row: 2/3;
+  grid-column: 1/2;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-row-gap: 0px;
+}
+#tweetsContainer{
+  grid-row:1/2;
+}
+#companyInformationRight{
+  grid-row: 2/3;
+  grid-column: 2/3;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 100%;
+  grid-row-gap: 0px;
+}
+#GlassdoorComponent{
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+#glassdoorDoughnuts{
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+}
+.GDdoughnut{
+  display:grid;
+  align-items: flex-end;
+}
+#GDD1{
+  grid-column: 1/2;
+}
+#GDD2{
+  grid-column: 2/3;
+}
+#GDD3{
+  grid-column: 3/4;
+}
+#EDGARComponent{
+  grid-row:2/3;
+}
+/* #BBBComponent{
+  grid-column:1;
+  grid-row: 2;
+}
+
+
+#FullContactComponent{
+  grid-column:1;
+  grid-row:2;
+} */
+/* end of company info styling */
+
+.inactive {
+  color: red;
+}
+
+.empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 1.2em;
+}
+
+.dropdown-content {
+  min-width: 142px;
+}
+
+.dropdown-content li>a>i {
+  margin: 0 18px 0 0;
+}
+
+#no-job-banner {
+  text-align: center;
+
+.profile-github-handle {
+  font-size: .8em;
+}

@@ -1,83 +1,72 @@
 import React from 'react';
 import firebase from 'firebase';
 import { browserHistory, Route, Redirect, Switch } from 'react-router-dom';
-import fire from './Firebase.js' 
-import Signup from './signup.js';
-import Login from './login.js';
-import Home from './home.js';
-import Auth from './Auth.js'
+import Modal from 'react-modal';
+import Signup from './signup';
+import Login from './login';
+import Home from './home';
+import Auth from './Auth';
 
 class App extends React.Component {
-  static GitAuth(e) {
-    e.preventDefault();
-    const provider = new firebase.auth.GithubAuthProvider();
-    firebase.auth().signInWithPopup(provider)
-      .then((result) => {
-        console.log('token', result.credential.accessToken);
-        console.log('user', result.user);
-      })
-      .catch((error) => {
-        console.log('Git Auth Error:', error.code);
-        console.log(error.message);
-        console.log(error.email);
-        console.log(error.credential);
-      });
-  }
-
   constructor(props) {
     super(props);
     this.state = {
       user: null,
       isLoggedIn: false,
+      rerender: false,
     };
-    this.signUp = this.signUp.bind(this);
-    this.signIn = this.signIn.bind(this);
-    this.signOut = this.signOut.bind(this);
+    this.setUser = this.setUser.bind(this);
+    this.rerender = this.rerender.bind(this);
     this.TESTBUTTON = this.TESTBUTTON.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          user,
+          isLoggedIn: true,
+        });
+      }
+    });
+    setTimeout(() => unsubscribe(), 5000);
   }
 
-  signUp(user, pass) {
-    Auth.signUp(user, pass);
+  setUser(user, bool) {
     this.setState({
-      isLoggedIn: true,
-    });
-  }
-  signIn(user, pass) {
-    Auth.signIn(user, pass);
-    this.setState({
-      isLoggedIn: true,
+      user,
+      isLoggedIn: bool,
     });
   }
 
-  signOut() {
-    Auth.signOut();
+  rerender() {
+    console.log(this.state.rerender, !this.state.rerender);
     this.setState({
-      isLoggedIn: false,
-    });
+      rerender: !this.state.rerender,
+    }, () => console.log(this.state.rerender));
   }
 
   TESTBUTTON(e) {
-    e.preventDefault();
     console.log('firebase.auth().currentUser', firebase.auth().currentUser);
     console.log('this.state.user', this.state.user);
+    console.log('this.state.isLoggedIn', this.state.isLoggedIn);
   }
+
   requireAuth() {
     return !this.state.isLoggedIn;
   }
+
   routes(reRoutePath, isAuthReq, isAuthNotReq) {
     return (
       <Route
         path={reRoutePath}
         render={() => (
-        this.requireAuth() ? (
-        isAuthReq
-      ) : (
-        isAuthNotReq
-      )
-      )}
+          this.requireAuth() ? (
+            isAuthReq
+          ) : (
+            isAuthNotReq
+          )
+        )}
       />
     );
   }
@@ -85,9 +74,9 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
-          {this.routes('/signup', <Signup signUp={this.signUp} TESTBUTTON={this.TESTBUTTON} />, <Redirect to="/home" />)}
-          {this.routes('/login', <Login signIn={this.signIn} />, <Redirect to="/home" />)}
-          {this.routes('/home', <Redirect to="/login" />, <Home signOut={this.signOut} user={this.state.user} />)}
+          {this.routes('/signup', <Signup setUser={this.setUser} rerender={this.rerender}/>, <Redirect to="/home" />)}
+          {this.routes('/login', <Login setUser={this.setUser} />, <Redirect to="/home" />)}
+          {this.routes('/home', <Redirect to="/login" />, <Home rerender={this.state.rerender} user={this.state.user} setUser={this.setUser} />)}
           <Route
             exact
             path="*"

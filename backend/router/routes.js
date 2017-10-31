@@ -1,12 +1,56 @@
-// const express = require('express');
 const router = require('express').Router();
 const resume = require('../controllers/resume.js');
+const userHandler = require('../controllers/userHandler');
+const job = require('../controllers/job.js');
+const jobInfo = require('../controllers/jobInfo.js');
+const user = require('../controllers/user');
+const comparison = require('../controllers/comparison.js');
+const resource = require('../controllers/resource.js');
+const contact = require('../controllers/contact.js');
+const event = require('../controllers/event.js');
+const task = require('../controllers/task.js');
+// const github = require('../utilities/githubRepoCrawler.js');
 
-// const signupHandler = require('../controllers/signupHandler');
-// const loginHandler = require('../controllers/loginHandler');
-//
 router.post('/resume', resume.uploadHandler);
-//
-// router.post('/login', loginHandler.handleLogin);
+router.post('/signUp', userHandler.signUp);
+router.post('/scanForUser', userHandler.scanforUser);
+router.put('/updateEmailValidation', userHandler.updateEmailValidation);
+router.post('/githubUidLookup', userHandler.githubUidLookup);
+router.post('/job', job.handleJobAdd);
+router.put('/job/delete', job.handleJobDelete);
+router.put('/job/favorite', job.handleJobFavorite);
+router.put('/job/updateScreenshot', job.updateScreenshot);
+router.get('/jobs/:id', job.handleGetJob);
+router.put('/jobs/:id', job.handleEditJob);
+router.get('/jobs', job.handleGetJobs);
+router.get('/comparison', comparison.getComparison);
+router.get('/findUser', user.handleUserFind);
+router.put('/updateUser', user.handleUpdateUser);
+router.post('/resource', resource.handleResourceAdd);
+router.get('/resource', resource.handleGetResources);
+router.put('/resource/delete', resource.handleResourceDelete);
+router.post('/BBB', jobInfo.BBB);
+router.post('/Glassdoor', jobInfo.Glassdoor);
+router.post('/EDGAR', jobInfo.EDGAR);
+router.post('/fullContact', jobInfo.fullContact);
+router.post('/Twitter', jobInfo.Twitter);
+router.post('/contacts', contact.handleContactAdd);
+router.get('/contacts', contact.handleGetContacts);
+router.get('/contacts/:id', contact.handleGetContact);
+router.put('/contacts/:id', contact.handleEditContact);
+router.put('/contact/delete', contact.handleContactDelete);
+router.post('/getCompanyUrl', jobInfo.getCompanyUrl);
+
+router.post('/activities', event.handleEventAdd);
+router.get('/activities', event.handleGetEvents);
+router.get('/activitiesbyuser', event.handleGetUserEvents);
+router.get('/activities/:id', event.handleGetEvent);
+router.put('/activities/:id', event.handleEditEvent);
+router.put('/activity/delete', event.handleEventDelete);
+router.post('/tasks', task.handleTaskAdd);
+router.get('/tasks', task.handleGetTasks);
+router.get('/tasksbyuser', task.handleGetTasksByUser);
+router.put('/task/delete', task.handleTaskDelete);
+// router.get('/test', github.cronGitHubUpdate);
 
 module.exports = router;

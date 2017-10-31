@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../db/db');
 
-const User = sequelize.define('users', {
+
+const User = sequelize.define('user', {
   userId: {
     type: Sequelize.STRING,
     primaryKey: true,
@@ -16,24 +17,41 @@ const User = sequelize.define('users', {
   email: {
     type: Sequelize.STRING,
   },
+  resume: {
+    type: Sequelize.TEXT,
+  },
+  resumeURL: {
+    type: Sequelize.STRING,
+  },
   skills: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
+    defaultValue: [],
+  },
+  githubUsername: {
+    type: Sequelize.STRING,
+  },
+  githubSkills: {
+    type: Sequelize.JSON,
+    defaultValue: {},
+  },
+  emailReminder: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  verifiedEmail: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  phoneNumber: {
+    type: Sequelize.STRING,
+    defaultValue: '11234567890',
+  },
+  textReminder: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
   },
 });
 
-// builds table
-User.sync();
 
-// drops, then builds table to account for errors
-// User.sync({ force: true }).then(() => {
-//   // Table created
-//   return User.create({
-//     userId: 5,
-//     firstName: 'John',
-//     lastName: 'Hancock',
-//     email: 'jh@jh.com',
-//     skills: ['running', 'jumping'],
-//   });
-// });
-
+// User.sync();
 module.exports = User;

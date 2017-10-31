@@ -2,41 +2,76 @@ const Sequelize = require('sequelize');
 const sequelize = require('../db/db');
 const User = require('./User');
 
-const SavedJobs = sequelize.define('saved_jobs', {
-  jobId: {
-    type: Sequelize.STRING,
-    primaryKey: true,
-    allowNull: false,
-  },
-  skills: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
-  },
-  url: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  userId: {
-    type: Sequelize.STRING,
-    references: {
-      model: User,
-      key: 'userId',
-      deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+const SavedJobs = sequelize.define(
+  'saved_jobs', {
+    jobId: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    company: {
+      type: Sequelize.STRING,
+    },
+    jobTitle: {
+      type: Sequelize.STRING,
+    },
+    status: {
+      type: Sequelize.STRING,
+    },
+    dateApplied: {
+      type: Sequelize.DATEONLY,
+    },
+    location: {
+      type: Sequelize.STRING,
+    },
+    url: {
+      type: Sequelize.TEXT,
+      allowNull: false,
+    },
+    skills: {
+      type: Sequelize.ARRAY(Sequelize.TEXT),
+    },
+    companyUrl: {
+      type: Sequelize.TEXT,
+    },
+    notes: {
+      type: Sequelize.TEXT,
+    },
+    deleted: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+    },
+    favorite: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+    },
+    screenShotUrl: {
+      type: Sequelize.TEXT,
+    },
+    activeJobPosting: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: true,
+    },
+    userId: {
+      type: Sequelize.STRING,
+      references: {
+        model: User,
+        key: 'userId',
+        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+      },
     },
   },
-});
+  {
+    indexes: [
+      {
+        unique: true,
+        fields: ['userId', 'url', 'deleted'],
+      },
+    ],
+  },
+);
 
-// builds table
-SavedJobs.sync();
 
-// drops, then builds table to account for errors
-// SavedJobs.sync({ force: true }).then(() => {
-//   // Table created
-//   return SavedJobs.create({
-//     jobId: 1,
-//     skills: ['running', 'jumping'],
-//     url: 'google.com',
-//     userId: 5,
-//   });
-// });
+// SavedJobs.sync();
 
 module.exports = SavedJobs;
