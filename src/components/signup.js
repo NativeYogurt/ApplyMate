@@ -91,10 +91,6 @@ class Signup extends React.Component {
             <br />
           </div>
         </Card>
-        <button onClick={() => {
-          axios.get('/api/testTwilio')
-        }} > TEST TWILLIO
-        </button>
       </div>
     );
   }

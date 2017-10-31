@@ -20,6 +20,8 @@ class Profile extends React.Component {
       password1: '',
       password2: '',
       emailReminder: this.props.emailReminder,
+      phoneNumber: this.props.phoneNumber || '',
+      textReminder: this.props.phoneReminder,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -33,13 +35,14 @@ class Profile extends React.Component {
     this.onChangeGithubUsername = this.onChangeGithubUsername.bind(this);
     this.onChangeEmailReminder = this.onChangeEmailReminder.bind(this);
     this.sendEmailVerification = this.sendEmailVerification.bind(this);
+    this.onChangePhoneNumber = this.onChangePhoneNumber.bind(this);
+    this.onChangeTextReminder = this.onChangeTextReminder.bind(this);
   }
 
   componentWillMount() {
     const checkUserEmailVerification = async () => {
       await firebase.auth().currentUser.reload();
       const fireBaseUser = firebase.auth().currentUser;
-      console.log(fireBaseUser.emailVerified, this.props.verifiedEmail);
       if (fireBaseUser.emailVerified === true && this.props.verifiedEmail === false) {
         const update = axios.put('/api/updateEmailValidation', {
           userId: fireBaseUser.uid,
@@ -76,7 +79,15 @@ class Profile extends React.Component {
   }
 
   onChangeEmailReminder(e) {
-    this.setState({ emailReminder: e.target.value }, () => console.log(this.state.emailReminder));
+    this.setState({ emailReminder: e.target.value });
+  }
+
+  onChangePhoneNumber(e) {
+    this.setState({ phoneNumber: e.target.value });
+  }
+
+  onChangeTextReminder(e) {
+    this.setState({ textReminder: e.target.value });
   }
 
   sendEmailVerification() {
@@ -86,22 +97,22 @@ class Profile extends React.Component {
     };
     emailVerfication();
     let intervals = 0;
-    let stopInterval = setInterval(() => {
+    const stopInterval = setInterval(() => {
       firebase.auth().currentUser.reload();
-      const fireBaseUser = firebase.auth().currentUser
+      const fireBaseUser = firebase.auth().currentUser;
       intervals++;
       if (fireBaseUser.emailVerified) {
-        let update = axios.put('/api/updateEmailValidation', {
+        const update = axios.put('/api/updateEmailValidation', {
           userId: fireBaseUser.uid,
           emailVerified: fireBaseUser.emailVerified,
         })
-        .then(() => this.props.getUserInfo())
-        .catch(err => console.error(err));
+          .then(() => this.props.getUserInfo())
+          .catch(err => console.error(err));
       }
       if (intervals === 6 || fireBaseUser.emailVerified) {
-        clearInterval(stopInterval)
+        clearInterval(stopInterval);
       }
-    },20000)
+    }, 20000);
   }
 
   handleSubmit(e) {
@@ -112,6 +123,8 @@ class Profile extends React.Component {
       lastName: form.lastName.value || this.state.lastName,
       email: form.email.value || this.state.email,
       emailReminder: this.state.emailReminder,
+      phoneNumber: this.state.phoneNumber,
+      textReminder: this.state.textReminder,
     }, () => this.updateUser());
     // clear the form for the next input
     form.firstName.value = '';
@@ -128,6 +141,8 @@ class Profile extends React.Component {
       lastName: this.state.lastName,
       email: this.state.email,
       emailReminder: this.state.emailReminder,
+      phoneNumber: this.state.phoneNumber,
+      textReminder: this.state.textReminder,
     })
       .then((data) => {
         alert('User has been updated!');
@@ -151,26 +166,40 @@ class Profile extends React.Component {
   }
 
   render() {
-    const username = `${this.props.userFirstName} ${this.props.userLastName}`;
-    const githubHandle = `${this.state.githubUsername}`;
-    const githubSkills = `${this.props.githubSkills}`;
-    const emailReminderRadioButtons = (this.state.emailReminder === true) ?
-      (<label htmlFor="emailReminder">
-        Interview Email Reminder:
+    let displayName = 'Stranger';
+    if (this.props.userFirstName && this.props.userLastName) {
+      displayName = `${this.props.userFirstName} ${this.props.userLastName}`;
+    } else if (this.props.userFirstName) {
+      displayName = this.props.userFirstName;
+    } else if (this.props.githubHandle) {
+      displayName = this.props.githubHandle;
+    }
+    const emailReminderRadioButtons = (this.state.emailReminder === true) ? (
+      <label htmlFor="emailReminder">
         <Input label="On" type="radio" name="emailReminder" value="true" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
         <Input label="Off" type="radio" name="emailReminder" value="false" onClick={this.onChangeEmailReminder} />
-      </label>) :
-      (<label htmlFor="emailReminder">
-        Interview Email Reminder:
-        <Input label="On" type="radio" name="emailReminder" value="true" onClick={this.onChangeEmailReminder} />
-        <Input label="Off" type="radio" name="emailReminder" value="false" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
-       </label>);
+      </label>) : (
+        <label htmlFor="emailReminder">
+          <Input label="On" type="radio" name="emailReminder" value="true" onClick={this.onChangeEmailReminder} />
+          <Input label="Off" type="radio" name="emailReminder" value="false" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
+        </label>
+    );
+    const textReminderRadioButtons = (this.state.textReminder === true) ? (
+      <label htmlFor="emailReminder">
+        <Input label="On" type="radio" name="emailReminder" value="true" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
+        <Input label="Off" type="radio" name="emailReminder" value="false" onClick={this.onChangeEmailReminder} />
+      </label>) : (
+        <label htmlFor="textReminder">
+          <Input label="On" type="radio" name="textReminder" value="true" onClick={this.onChangeTextReminder} />
+          <Input label="Off" type="radio" name="textReminder" value="false" defaultChecked="checked" onClick={this.onChangeTextReminder} />
+        </label>
+    );
     return (
       <div className="container">
         <Card>
           <ProfileNav />
-          <h5>Hello, {githubHandle || username}!</h5>
-          <h6>Github Username: {githubHandle}</h6>
+          <h5>Hello, {displayName}!</h5>
+          <h6>Github Username: {this.state.githubHandle}</h6>
           <br />
           <br />
           <strong>Update Your Info</strong><br />
@@ -178,18 +207,32 @@ class Profile extends React.Component {
             <Row>
               <Col s={6}>
                 <label htmlFor="firstName">
-                  <input type="text" name="firstName" value={this.state.firstName} onChange={this.onChangeFirstName} />
+                  <input type="text" name="firstName" placeholder={this.state.firstName} onChange={this.onChangeFirstName} />
                 </label>
               </Col>
               <Col s={6}>
                 <label htmlFor="lastName">
-                  <input type="text" name="lastName" value={this.state.lastName} onChange={this.onChangeLastName} />
+                  <input type="text" name="lastName" placeholder={this.state.lastName} onChange={this.onChangeLastName} />
                 </label>
               </Col>
-              <Col s={12}>
+              <Col s={6}>
                 <label htmlFor="email">
-                  <input type="email" name="email" value={this.state.email} onChange={this.onChangeEmail} />
+                  <input type="email" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
                 </label>
+              </Col>
+              <Col s={6}>
+                <label htmlFor="phoneNumber">
+                  <input type="text" name="phoneNumber" placeholder={this.state.phoneNumber} onChange={this.onChangePhoneNumber} />
+                </label>
+              </Col>
+              <Col s={6}>
+                {this.props.verifiedEmail ? <div > Interview E-Mail Reminder: <br /> {emailReminderRadioButtons} </div> :
+                <Button onClick={this.sendEmailVerification}>Click Here to Verify Your Email
+                and Receive Email Notifications
+                </Button>}
+              </Col>
+              <Col s={6}>
+                Interview Text Reminder: <br /> {textReminderRadioButtons}
               </Col>
             </Row>
             <Button type="submit">Submit</Button>
@@ -204,10 +247,6 @@ class Profile extends React.Component {
             <Button type="submit">Change Password</Button>
           </form>
           <br />
-          {this.props.verifiedEmail ? emailReminderRadioButtons :
-          <Button onClick={this.sendEmailVerification}>Click Here to Verify Your Email
-          and Receive Email Notifications
-          </Button>}
         </Card>
       </div>
     );
