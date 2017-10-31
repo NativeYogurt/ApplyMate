@@ -23,13 +23,15 @@ exports.sendInterviewReminder = async () => {
     const randoInspiration = inspiration[Math.floor(Math.random() * inspiration.length)];
 
     users.forEach(user => {
-      const userObj = {
-        firstName: user.firstName,
-        githubName: user.githubUsername,
-        email: user.email,
-        inspiration: randoInspiration,
-      };
-      emailSender(userObj);
+      if (user.emailReminder && user.verifiedEmail) {
+        const userObj = {
+          firstName: user.firstName,
+          githubName: user.githubUsername,
+          email: user.email,
+          inspiration: randoInspiration,
+        };
+        emailSender(userObj);
+      }
     });
   } catch (err) {
     console.error(err);
