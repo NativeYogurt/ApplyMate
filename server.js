@@ -19,6 +19,7 @@ const Tasks = require('./backend/models/Tasks');
 
 const Github = require('./backend/utilities/githubRepoCrawler');
 const Emailer = require('./backend/utilities/emailer');
+const Texter = require('./backend/utilities/twilio')
 
 const app = express();
 
@@ -48,4 +49,5 @@ new CronJob('30 16 * * *', function() {
   Github.cronGitHubUpdate();
   Emailer.sendInterviewReminder();
   websiteChecker.checkActivePosts();
+  Texter.sendTextReminder();
 }, null, true, 'America/New_York');
