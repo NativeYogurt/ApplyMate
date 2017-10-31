@@ -104,9 +104,6 @@ class Main extends React.Component {
         } else {
           missing = [];
         }
-        // if (jobs[0]) {
-        //   missing = jobs[0].missingSkills;
-        // }
         this.setState({
           userSkills,
           missingSkills: missing,
@@ -157,7 +154,6 @@ class Main extends React.Component {
     });
   }
 
-
   revertJobUrlToActive(jobId) {
     let jobs = this.state.savedJobs.map(job => {
       if (job.jobId === jobId) {
@@ -177,96 +173,94 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div>
-        <Switch>
-          <Route
-            path="/home/analytics"
-            render={() => (
-              <Analytics
-                savedJobs={this.state.savedJobs}
-                githubSkills={this.state.githubSkills}
-              />
-            )}
-          />
-          <Route
-            path="/home/tasks"
-            render={() => (
-              <Tasks
-                userId={this.props.userId}
-                savedJobs={this.state.savedJobs}
-              />
-            )}
-          />
-          <Route
-            path="/home/resources"
-            render={() => (
-              <Resources
-                userId={this.props.userId}
-                missingSkills={this.state.missingSkills}
-              />
-            )}
-          />
-          <Route
-            path="/home/searchjobs"
-            render={() => (
-              <SearchJobs
-                userId={this.props.userId}
-                getJobs={this.getJobs}
-                addJob={this.addJob}
-              />
-            )}
-          />
-          <Route
-            path="/home/profile/resume"
-            render={() => (
-              <Resume
-                userId={this.props.userId}
-                getJobComparison={this.getJobComparison}
-                getUserInfo={this.getUserInfo}
-                userResume={this.state.userResume}
-                clearResume={this.clearResume}
-              />
-            )}
-          />
-          <Route
-            path="/home/profile"
-            render={() => (
-              <Profile
-                userId={this.props.userId}
-                userFirstName={this.state.firstName}
-                userLastName={this.state.lastName}
-                userEmail={this.state.email}
-                userResume={this.state.userResume}
-                githubUsername={this.state.githubUsername}
-                githubSkills={this.state.githubSkills}
-                getJobComparison={this.getJobComparison}
-                getUserInfo={this.getUserInfo}
-                clearResume={this.clearResume}
-                emailReminder={this.state.emailReminder}
-                verifiedEmail={this.state.verifiedEmail}
-              />
-            )}
-          />
-          <Route
-            path="/home/dashboard/:id"
-            component={JobHome}
-          />
-          <Route
-            render={() => (
-              <Dashboard
-                userId={this.props.userId}
-                getJobs={this.getJobs}
-                revertJobUrlToActive={this.revertJobUrlToActive}
-                savedJobs={this.state.savedJobs}
-                deleteJob={this.deleteJob}
-                favoriteJob={this.favoriteJob}
-                getJobComparison={this.getJobComparison}
-                addJob={this.addJob}
-              />
-           )}
-          />
-        </Switch>
-      </div>
+      <Switch>
+        <Route
+          path="/home/analytics"
+          render={() => (
+            <Analytics
+              savedJobs={this.state.savedJobs}
+              githubSkills={this.state.githubSkills}
+            />
+          )}
+        />
+        <Route
+          path="/home/tasks"
+          render={() => (
+            <Tasks
+              userId={this.props.userId}
+              savedJobs={this.state.savedJobs}
+            />
+          )}
+        />
+        <Route
+          path="/home/resources"
+          render={() => (
+            <Resources
+              userId={this.props.userId}
+              missingSkills={this.state.missingSkills}
+            />
+          )}
+        />
+        <Route
+          path="/home/searchjobs"
+          render={() => (
+            <SearchJobs
+              userId={this.props.userId}
+              getJobs={this.getJobs}
+              addJob={this.addJob}
+            />
+          )}
+        />
+        <Route
+          path="/home/profile/resume"
+          render={() => (
+            <Resume
+              userId={this.props.userId}
+              getJobComparison={this.getJobComparison}
+              getUserInfo={this.getUserInfo}
+              userResume={this.state.userResume}
+              clearResume={this.clearResume}
+            />
+          )}
+        />
+        <Route
+          path="/home/profile"
+          render={() => (
+            <Profile
+              userId={this.props.userId}
+              userFirstName={this.state.firstName}
+              userLastName={this.state.lastName}
+              userEmail={this.state.email}
+              userResume={this.state.userResume}
+              githubUsername={this.state.githubUsername}
+              githubSkills={this.state.githubSkills}
+              getJobComparison={this.getJobComparison}
+              getUserInfo={this.getUserInfo}
+              clearResume={this.clearResume}
+              emailReminder={this.state.emailReminder}
+              verifiedEmail={this.state.verifiedEmail}
+            />
+          )}
+        />
+        <Route
+          path="/home/dashboard/:id"
+          component={JobHome}
+        />
+        <Route
+          render={() => (
+            <Dashboard
+              userId={this.props.userId}
+              getJobs={this.getJobs}
+              revertJobUrlToActive={this.revertJobUrlToActive}
+              savedJobs={this.state.savedJobs}
+              deleteJob={this.deleteJob}
+              favoriteJob={this.favoriteJob}
+              getJobComparison={this.getJobComparison}
+              addJob={this.addJob}
+            />
+         )}
+        />
+      </Switch>
     );
   }
 }
