@@ -72,6 +72,8 @@ class Dashboard extends React.Component {
       successVisible: true,
       errorMessage: null,
     });
+    $('.modal-close').trigger('click');
+    Materialize.toast('Job application saved!', 4000);
   }
   createJobs(job) {
     return (

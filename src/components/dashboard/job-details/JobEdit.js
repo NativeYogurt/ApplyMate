@@ -93,7 +93,8 @@ class JobEdit extends React.Component {
       body: JSON.stringify(job),
     }).then(res => res.json())
       .then(data =>
-        this.showSuccess());
+        // this.showSuccess());
+        Materialize.toast('Job application saved!', 4000));
   }
 
   render() {

@@ -28,6 +28,7 @@ class Main extends React.Component {
       missingSkills: [],
       emailReminder: '',
       verifiedEmail: '',
+      jobSearchResults: [],
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.getJobs = this.getJobs.bind(this);
@@ -37,6 +38,7 @@ class Main extends React.Component {
     this.clearResume = this.clearResume.bind(this);
     this.favoriteJob = this.favoriteJob.bind(this);
     this.revertJobUrlToActive = this.revertJobUrlToActive.bind(this);
+    this.searchJobs = this.searchJobs.bind(this);
   }
 
   componentDidMount() {
@@ -121,7 +123,6 @@ class Main extends React.Component {
       body: JSON.stringify(job),
     }).then(res => res.json())
       .then((data) => {
-        console.log('job add', data);
         this.getJobs();
         this.getJobComparison(data.jobId);
       });
@@ -171,6 +172,23 @@ class Main extends React.Component {
     this.setState({ userResume: '' });
   }
 
+  searchJobs(desc, loc) {
+    const link = `https://jobs.github.com/positions.json?description=${desc}&location=${loc}`;
+    $.ajax({
+      type: 'GET',
+      dataType: 'jsonp',
+      url: link,
+      success: data => {
+        this.setState({
+          jobSearchResults: data,
+        });
+      },
+      error: error => {
+        console.error('failed to search job', error);
+      },
+    });
+  }
+
   render() {
     return (
       <Switch>
@@ -208,6 +226,8 @@ class Main extends React.Component {
               userId={this.props.userId}
               getJobs={this.getJobs}
               addJob={this.addJob}
+              jobSearchResults={this.state.jobSearchResults}
+              searchJobs={this.searchJobs}
             />
           )}
         />

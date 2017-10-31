@@ -12,7 +12,16 @@ const SavedJobs = (props) => {
     <tr className="saved-job-posting">
       <td onClick={() => redirect()} >{props.jobPosting.company}</td>
       <td onClick={() => redirect()} >{props.jobPosting.jobTitle}</td>
-      <td onClick={() => redirect()} >{props.jobPosting.status}</td>
+      <td>
+        <select className="browser-default" name="status" value={props.jobPosting.status}>
+          <option value="wishlist">Wishlist</option>
+          <option value="applied">Applied</option>
+          <option value="phone">Phone</option>
+          <option value="onSite">OnSite</option>
+          <option value="rejected">Rejected</option>
+          <option value="offer">Offer</option>
+        </select>
+      </td>
       <td onClick={() => redirect()} >{props.jobPosting.dateApplied}</td>
       <td onClick={() => redirect()} >{props.jobPosting.location}</td>
       <td><a href={props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank"><Icon>{activePosting ? 'bookmark' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" onClick={() => props.revertJobUrlToActive(props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
