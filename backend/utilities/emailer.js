@@ -5,7 +5,7 @@ const db = require('../db/db');
 const Users = require('../models/User.js');
 const Events = require('../models/Events');
 
-const sendInterviewReminder = async () => {
+exports.sendInterviewReminder = async () => {
   try {
     const date = new Date();
     const tomorrow = new Date(date.getTime() + 24 * 60 * 60 * 1000);
@@ -66,5 +66,3 @@ const emailSender = (userObj, email) => {
     });
   });
 };
-
-sendInterviewReminder();
