@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { Card, Input, Button, Row } from 'react-materialize';
+import Modal from 'react-modal';
 import axios from 'axios';
 import Auth from './Auth';
 
@@ -14,6 +15,7 @@ class Signup extends React.Component {
       signUpUsername: '',
       signUpPassword: '',
       signUpPassword2: '',
+      existingEmailModal: false,
     };
     this.handleFirstName = this.handleFirstName.bind(this);
     this.handleLastName = this.handleLastName.bind(this);
@@ -21,6 +23,7 @@ class Signup extends React.Component {
     this.handlePassword = this.handlePassword.bind(this);
     this.handlePassword2 = this.handlePassword2.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.closeExistingEmailModal = this.closeExistingEmailModal.bind(this);
   }
 
   handleSignUp(e) {
@@ -28,10 +31,14 @@ class Signup extends React.Component {
     if (this.state.signUpPassword === this.state.signUpPassword2) {
       Auth.signUp(this.state.signUpUsername, this.state.signUpPassword, this.state.firstName, this.state.lastName, (err, user) => {
         if (err) {
-          console.log('hey kenny', err)
-          alert(err);
-        }
-        else {
+          if (err.code === 'auth/email-already-in-use') {
+            this.setState({
+              existingEmailModal: true,
+            })
+          } else {
+            alert(err);
+          }
+        } else {
           this.props.setUser(user, true);
         }
       });
@@ -69,6 +76,12 @@ class Signup extends React.Component {
       signUpPassword2: e.target.value,
     });
   }
+  closeExistingEmailModal(e) {
+    e.preventDefault();
+    this.setState({
+      existingEmailModal: false,
+    });
+  }
   // handleTest(e) {
   //   e.preventDefault();
   //   this.props.TESTBUTTON();
@@ -78,6 +91,11 @@ class Signup extends React.Component {
     return (
       <div className="container">
         <Card>
+          <Modal isOpen={this.state.existingEmailModal} onRequestClose={this.closeExistingEmailModal}>
+            <h3>That email already exists.</h3>
+            <p>The email address, {this.state.signUpUsername}, already exists within our authentication system. Please <a href="/#/login" >click here </a> to return to the login page, or sign up using a different email address.</p>
+            <Button onClick={this.closeExistingEmailModal}>Cancel</Button>
+          </Modal>
           <div id="temp">
             <h3>Sign Up</h3>
             <form id="signUp" onSubmit={this.handleSignUp}>
