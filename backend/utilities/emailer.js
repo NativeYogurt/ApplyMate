@@ -23,9 +23,6 @@ exports.sendInterviewReminder = async () => {
     const randoInspiration = inspiration[Math.floor(Math.random() * inspiration.length)];
 
     users.forEach(user => {
-      console.log('kenny the email is here', user.email)
-      console.log('kenny look here for email remidner', user.emailReminder)
-      console.log('kenny look here for verifiedEmail', user.verifiedEmail)
       if (user.emailReminder && user.verifiedEmail) {
         const userObj = {
           firstName: user.firstName,
