@@ -19,6 +19,7 @@ class App extends React.Component {
     this.rerender = this.rerender.bind(this);
     this.TESTBUTTON = this.TESTBUTTON.bind(this);
   }
+
   componentWillMount() {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -31,26 +32,30 @@ class App extends React.Component {
     setTimeout(() => unsubscribe(), 5000);
   }
 
-  rerender() {
-    console.log(this.state.rerender, !this.state.rerender)
-    this.setState({
-      rerender: !this.state.rerender,
-    }, ()=> console.log(this.state.rerender))
-  }
   setUser(user, bool) {
     this.setState({
       user,
       isLoggedIn: bool,
     });
   }
+
+  rerender() {
+    console.log(this.state.rerender, !this.state.rerender);
+    this.setState({
+      rerender: !this.state.rerender,
+    }, () => console.log(this.state.rerender));
+  }
+
   TESTBUTTON(e) {
     console.log('firebase.auth().currentUser', firebase.auth().currentUser);
     console.log('this.state.user', this.state.user);
     console.log('this.state.isLoggedIn', this.state.isLoggedIn);
   }
+
   requireAuth() {
     return !this.state.isLoggedIn;
   }
+
   routes(reRoutePath, isAuthReq, isAuthNotReq) {
     return (
       <Route
