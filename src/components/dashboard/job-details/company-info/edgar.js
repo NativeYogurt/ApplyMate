@@ -32,7 +32,7 @@ class EDGAR extends React.Component {
   render() {
     return (
       <div id="EDGARComponent">
-        {!this.state.obj.period[0] ? (
+        {!this.state.obj.period ? (
           <div className="centerText" > This company is not on EDGAR </div>
         ) : (
           <EDGARGraph

@@ -9,6 +9,7 @@ const resource = require('../controllers/resource.js');
 const contact = require('../controllers/contact.js');
 const event = require('../controllers/event.js');
 const task = require('../controllers/task.js');
+const twilio = require('../controllers/twilio.js');
 // const github = require('../utilities/githubRepoCrawler.js');
 
 router.post('/resume', resume.uploadHandler);
@@ -49,6 +50,7 @@ router.post('/tasks', task.handleTaskAdd);
 router.get('/tasks', task.handleGetTasks);
 router.get('/tasksbyuser', task.handleGetTasksByUser);
 router.put('/task/delete', task.handleTaskDelete);
+router.get('/testTwilio', twilio.TestTwilio);
 // router.get('/test', github.cronGitHubUpdate);
 
 module.exports = router;
