@@ -129,25 +129,13 @@ class Dashboard extends React.Component {
       listJobs = sortedByDate;
     }
     const emptyTable = (
-      <div>
-        <Table className="dashboard">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Job Title</th>
-              <th>Status</th>
-              <th>Date Applied</th>
-              <th>Location</th>
-              <th>Job Posting URL</th>
-              <th>Required Skills</th>
-              <th>Favorite</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </Table>
-        <h4 id="no-job-banner">Click the plus button to get started tracking your Job Applications</h4>
+      <div className="empty-state">
+        <Row className="center">
+          <Col s={12}>
+            <Icon medium>format_list_bulleted</Icon>
+            <p>Click the plus button to get started tracking your Job Applications</p>
+          </Col>
+        </Row>
       </div>
     )
     const jobList = (

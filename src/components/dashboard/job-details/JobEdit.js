@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Row, Col, Button, Icon } from 'react-materialize';
+import { Row, Col, Button, Icon, Modal } from 'react-materialize';
 
 class JobEdit extends React.Component {
   constructor(props) {
