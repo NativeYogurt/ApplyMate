@@ -38,6 +38,18 @@ exports.handleGetEvents = (req, res) => {
     });
 };
 
+exports.handleGetUserEvents = (req, res) => {
+  console.log(req);
+  Events.findAll({
+    where: {
+      userId: req.query.userId,
+    },
+  })
+    .then(events => {
+      res.send(events);
+    });
+};
+
 exports.handleGetEvent = (req, res) => {
   Events.findOne({
     where: {

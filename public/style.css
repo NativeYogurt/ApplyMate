@@ -176,4 +176,7 @@ table .dashboard, .dashboard th, .dashboard td {
 
 #no-job-banner {
   text-align: center;
+
+.profile-github-handle {
+  font-size: .8em;
 }

@@ -202,6 +202,7 @@ class Main extends React.Component {
             <Analytics
               savedJobs={this.state.savedJobs}
               githubSkills={this.state.githubSkills}
+              userId={this.props.userId}
             />
           )}
         />

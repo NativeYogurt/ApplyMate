@@ -10,7 +10,6 @@ class Nav extends React.Component {
     this.state = {
       active: 'dashboard',
     };
-    console.log(props);
   }
 
   setActive(item) {
@@ -65,7 +64,7 @@ class Nav extends React.Component {
               onClick={() => {this.setActive('profile')}}>
               <Dropdown
                 trigger={<a><i className="large material-icons">account_circle</i></a>}
-                options={{ hover: false, belowOrigin: true }}
+                options={{ hover: !true, belowOrigin: true }}
               >
                 <li><Link to="/home/profile"><i className="large material-icons">settings</i> Profile</Link></li>
                 <li onClick={e => this.handleSignOut(e)}><Link to="/"><i className="large material-icons">exit_to_app</i>Sign Out</Link></li>
