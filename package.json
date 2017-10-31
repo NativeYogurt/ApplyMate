@@ -60,6 +60,7 @@
     "sequelize-cli": "^3.0.0",
     "sinon": "^4.0.2",
     "striptags": "^3.1.0",
+    "twilio": "^3.9.1",
     "twit": "^2.2.9",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0",
