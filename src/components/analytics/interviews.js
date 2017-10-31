@@ -10,7 +10,7 @@ class Interviews extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get('/api/activitiesbyuser', {
       params: {
         userId: this.props.userId,
@@ -27,10 +27,16 @@ class Interviews extends React.Component {
   }
 
   render() {
+    const eventFullDates = this.state.userEvents;
+    const eventDayDates = eventFullDates.map((date) => date.slice(8));
+    console.log(eventDayDates);
+    const ints = eventDayDates.map(parseFloat);
+    console.log(ints);
+
     const data = {
-      labels: ['Interviews By Date'],
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
       datasets: [{
-        data: [2017-10-31, 2017-10-31, 2017-10-28],
+        data: ints, // [10,12,49],
         backgroundColor: [
           'rgba(255, 99, 132, 0.6)',
           'rgba(54, 162, 235, 0.6)',
@@ -51,7 +57,7 @@ class Interviews extends React.Component {
         fontSize: 25,
       },
       legend: {
-        display: true,
+        display: false,
         position: 'top',
         labels: {
           fontColor: '#000',
@@ -73,7 +79,7 @@ class Interviews extends React.Component {
 
     return (
       <div>
-        <Pie
+        <Line
           data={data}
           width={10}
           height={3}
