@@ -95,7 +95,7 @@ class Tasks extends React.Component {
           <form className="task-form" onSubmit={this.submit}>
             <Input label="What needs to be done?" name="taskDesc" value={this.state.taskDesc} onChange={this.onChangeTaskDesc} />
             <Input label="Due Date" className="task-due-date" type="date" name="taskDueDate" value={this.state.taskDueDate} onChange={this.onChangeTaskDueDate} />
-            <Button icon="save" type="submit" />
+            <Button type="submit">Save</Button>
           </form>
         </Card>
         <div>

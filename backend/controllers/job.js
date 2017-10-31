@@ -143,6 +143,7 @@ exports.handleGetJob = (req, res) => {
 };
 
 exports.handleEditJob = (req, res) => {
+  console.log('req',req.body.status);
   SavedJobs.update({
     company: req.body.company,
     jobTitle: req.body.jobTitle,

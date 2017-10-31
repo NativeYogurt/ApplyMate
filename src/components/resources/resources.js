@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Row, Col, Button } from 'react-materialize';
+import { Row, Col, Button, Icon } from 'react-materialize';
 
 import SavedResources from './SavedResources';
 
@@ -49,7 +49,17 @@ class Resources extends React.Component {
             resource={resource}
             deleteResource={this.deleteResource}
           />);
-        }) : null}
+        }) : (
+          <div className="empty-state">
+            <Row className="center">
+              <Col s={12}>
+                <Icon medium>save</Icon>
+                <p>Add resources from Job Details!</p>
+              </Col>
+            </Row>
+          </div>
+        )
+        }
       </div>
     );
   }
