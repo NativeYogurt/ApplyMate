@@ -8,7 +8,7 @@ import Applications from './applications';
 import Interviews from './interviews';
 
 const Analytics = (props) => {
-  const hasAnalytics = props.savedJobs.length && Object.keys(props.githubSkills).length !== 0;
+  const hasAnalytics = props.savedJobs.length || Object.keys(props.githubSkills).length !== 0;
   return hasAnalytics ?
     (
       <div>
@@ -18,7 +18,6 @@ const Analytics = (props) => {
           <GithubSkills
             githubSkills={props.githubSkills}
           /> : null }
-        <Interviews userId={props.userId} />
       </div>
     ) :
       <div className="empty-state">
@@ -32,3 +31,5 @@ const Analytics = (props) => {
 };
 
 export default Analytics;
+
+// <Interviews userId={props.userId} />
