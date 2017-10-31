@@ -19,7 +19,7 @@ router.post('/githubUidLookup', userHandler.githubUidLookup);
 router.post('/job', job.handleJobAdd);
 router.put('/job/delete', job.handleJobDelete);
 router.put('/job/favorite', job.handleJobFavorite);
-router.put('/job/updateScreenshot', job.updateScreenshot)
+router.put('/job/updateScreenshot', job.updateScreenshot);
 router.get('/jobs/:id', job.handleGetJob);
 router.put('/jobs/:id', job.handleEditJob);
 router.get('/jobs', job.handleGetJobs);
@@ -43,6 +43,7 @@ router.post('/getCompanyUrl', jobInfo.getCompanyUrl);
 
 router.post('/activities', event.handleEventAdd);
 router.get('/activities', event.handleGetEvents);
+router.get('/activitiesbyuser', event.handleGetUserEvents);
 router.get('/activities/:id', event.handleGetEvent);
 router.put('/activities/:id', event.handleEditEvent);
 router.put('/activity/delete', event.handleEventDelete);
