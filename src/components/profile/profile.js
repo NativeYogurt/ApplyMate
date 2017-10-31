@@ -36,19 +36,19 @@ class Profile extends React.Component {
   }
 
   componentWillMount() {
-    const checkUserEmailVerification = async () =>  {
+    const checkUserEmailVerification = async () => {
       await firebase.auth().currentUser.reload();
       const fireBaseUser = firebase.auth().currentUser;
-      console.log(fireBaseUser.emailVerified, this.props.verifiedEmail)
+      console.log(fireBaseUser.emailVerified, this.props.verifiedEmail);
       if (fireBaseUser.emailVerified === true && this.props.verifiedEmail === false) {
-        let update = axios.put('/api/updateEmailValidation', {
+        const update = axios.put('/api/updateEmailValidation', {
           userId: fireBaseUser.uid,
           emailVerified: fireBaseUser.emailVerified,
         })
-        .then(() => this.props.getUserInfo())
+          .then(() => this.props.getUserInfo());
       }
-    }
-    checkUserEmailVerification()
+    };
+    checkUserEmailVerification();
   }
 
   onChangeFirstName(e) {
@@ -204,7 +204,10 @@ class Profile extends React.Component {
             <Button type="submit">Change Password</Button>
           </form>
           <br />
-          {this.props.verifiedEmail ? emailReminderRadioButtons : <Button onClick={this.sendEmailVerification}>Click Here to Verify Your Email and Receive Email Notifications</Button>}
+          {this.props.verifiedEmail ? emailReminderRadioButtons :
+          <Button onClick={this.sendEmailVerification}>Click Here to Verify Your Email
+          and Receive Email Notifications
+          </Button>}
         </Card>
       </div>
     );

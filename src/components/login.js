@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { Card, Input, Button, Row, Col } from 'react-materialize';
 
-import Auth from './Auth.js'
+import Auth from './Auth';
 
 class Login extends React.Component {
   constructor(props) {
