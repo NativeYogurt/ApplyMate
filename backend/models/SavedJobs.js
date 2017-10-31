@@ -71,5 +71,7 @@ const SavedJobs = sequelize.define(
   },
 );
 
+
 // SavedJobs.sync();
+
 module.exports = SavedJobs;

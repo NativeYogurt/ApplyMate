@@ -10,7 +10,6 @@ const db = require('./backend/db/db');
 const emailer = require('./backend/utilities/emailer');
 const websiteChecker = require('./backend/utilities/websiteChecker');
 const router = require('./backend/router/routes.js');
-
 const User = require('./backend/models/User');
 const SavedJobs = require('./backend/models/SavedJobs');
 const Contacts = require('./backend/models/Contacts');

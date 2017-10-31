@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../db/db');
 
+
 const User = sequelize.define('user', {
   userId: {
     type: Sequelize.STRING,
@@ -50,6 +51,7 @@ const User = sequelize.define('user', {
     defaultValue: false,
   },
 });
+
 
 // User.sync();
 module.exports = User;
