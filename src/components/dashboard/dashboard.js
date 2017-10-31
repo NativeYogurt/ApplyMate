@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown } from 'react-materialize';
-
+import $ from 'jquery';
 
 import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
@@ -192,6 +192,7 @@ class Dashboard extends React.Component {
           <Col s={8} />
           <Col s={1}>
             <Modal
+              id="modal1"
               trigger={<Button
                 id="add"
                 floating
@@ -218,13 +219,12 @@ class Dashboard extends React.Component {
                   <option value="rejected">Rejected</option>
                   <option value="offer">Offer</option>
                 </Input>
-                <Input label="Date validateApplied" type="date" name="dateApplied" />
+                <Input label="Date Applied" validate type="date" name="dateApplied" />
                 <Input type="text" name="location" label="Job Location" validate />
                 <Input type="text" name="url" label="Job URL" validate />
                 <Input type="text" name="companyUrl" label="Company URL" validate />
               </form>
               <Error error={this.state.errorMessage} />
-              {this.state.successVisible ? success : null}
             </Modal>
           </Col>
         </Row>
