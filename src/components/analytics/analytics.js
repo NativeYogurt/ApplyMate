@@ -8,7 +8,7 @@ import JobStatus from './jobstatus';
 import Applications from './applications';
 
 const Analytics = (props) => {
-  const hasAnalytics = props.savedJobs.length && Object.keys(props.githubSkills).length !== 0;
+  const hasAnalytics = props.savedJobs.length || Object.keys(props.githubSkills).length !== 0;
 
   return hasAnalytics ?
     (
