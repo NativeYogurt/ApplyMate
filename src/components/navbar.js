@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Dropdown, Button, Navbar, NavItem } from 'react-materialize';
+import { Dropdown, Navbar, NavItem } from 'react-materialize';
 import Auth from './Auth';
 
 class Nav extends React.Component {
@@ -10,11 +10,15 @@ class Nav extends React.Component {
     this.state = {
       active: 'dashboard',
     };
+    console.log(props);
   }
-  handleTest(e) {
-    e.preventDefault();
-    this.props.TESTBUTTON();
+
+  setActive(item) {
+    this.setState({
+      active: item,
+    });
   }
+
   handleSignOut(e) {
     e.preventDefault();
     Auth.signOut((err, user) => {
@@ -24,11 +28,7 @@ class Nav extends React.Component {
       }
     });
   }
-  setActive(item) {
-    this.setState({
-      active: item,
-    });
-  }
+
   render() {
     return (
       <nav>
@@ -65,6 +65,7 @@ class Nav extends React.Component {
               onClick={() => {this.setActive('profile')}}>
               <Dropdown
                 trigger={<a><i className="large material-icons">account_circle</i></a>}
+                options={{ hover: false, belowOrigin: true }}
               >
                 <li><Link to="/home/profile"><i className="large material-icons">settings</i> Profile</Link></li>
                 <li onClick={e => this.handleSignOut(e)}><Link to="/"><i className="large material-icons">exit_to_app</i>Sign Out</Link></li>
@@ -77,8 +78,8 @@ class Nav extends React.Component {
   }
 }
 
-
 Navbar.propTypes = {
   setUser: PropTypes.func.isRequired,
 };
+
 export default Nav;
