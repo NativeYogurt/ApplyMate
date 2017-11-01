@@ -6,7 +6,9 @@ const Twitter = (props) => (
       <div className="centerText"> This company has no tweets. </div>
     ) : (
       <div>
-        Tweets from <a href={`http://${props.twitterData[0].url}`}> {props.twitterData[0].url.slice(16)}</a>
+        <div className="centerText">
+          Tweets from <a href={`http://${props.twitterData[0].url}`}> {props.twitterData[0].url.slice(16)}</a>
+        </div>
         {props.twitterData.map((tweet) => {
             return (
               <div key={tweet.time}>
