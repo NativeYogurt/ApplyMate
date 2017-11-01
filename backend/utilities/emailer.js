@@ -49,7 +49,7 @@ const emailSender = (userObj, email) => {
     });
 
     const mailOptions = {
-      from: '"ApplyMate" <applymatebot@gmail.com>',
+      from: '".apply(me)" <applymatebot@gmail.com>',
       to: userObj.email,
       subject: 'You have an interview! 🔥🔥',
       text: `Hey ${userObj.firstName || userObj.githubName}, You have an interview! have an interview tomorrow. Good luck! -ApplyMate`,

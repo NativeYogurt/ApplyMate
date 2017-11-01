@@ -35,7 +35,7 @@ const sendText = (obj) => {
     .create({
       from: process.env.TWILIO_FROM,
       to: obj.number,
-      body: `From to.Hired():  Hey ${obj.name}, Good luck on your interview tomorrow! ${quotes[Math.floor(Math.random() * quotes.length)]}`,
+      body: `From .apply(me):  Hey ${obj.name}, Good luck on your interview tomorrow! ${quotes[Math.floor(Math.random() * quotes.length)]}`,
     })
     .catch(err => console.error(err));
 };
@@ -60,4 +60,3 @@ exports.sendTextReminder = async () => {
     console.error(err);
   }
 };
-
