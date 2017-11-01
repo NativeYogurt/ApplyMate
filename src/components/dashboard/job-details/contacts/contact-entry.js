@@ -9,7 +9,7 @@ const ContactEntry = (props) => {
         <Card>
           <div>{props.contact.firstName} {props.contact.lastName}</div>
           <div>{props.contact.jobTitle}</div>
-          <div><Link to={`/home/dashboard/job/contacts/${props.contact.contactId}`}>Edit</Link></div>
+          <div><Link to={`/home/dashboard/${props.jobId}/contacts/${props.contact.contactId}`}>Edit</Link></div>
           <Button onClick={() => props.deleteContact(props.contact.contactId)} icon="delete" />
         </Card>
       </Col>
