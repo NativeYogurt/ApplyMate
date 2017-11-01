@@ -118,14 +118,7 @@ class Main extends React.Component {
   }
 
   addJob(job) {
-    fetch('/api/job', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(job),
-    }).then(res => res.json())
+    axios.post('/api/job', job)
       .then((data) => {
         this.getJobs();
         this.getJobComparison(data.jobId);

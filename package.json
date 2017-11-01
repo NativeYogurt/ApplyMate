@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "compile": "webpack",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "jest"
+  },
+  "engines": {
+    "node": "8.5.0"
   },
   "keywords": [],
   "author": "",
