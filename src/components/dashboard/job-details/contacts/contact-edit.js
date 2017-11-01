@@ -15,6 +15,7 @@ class ContactEdit extends React.Component {
       personalPhone: '',
       howWeMet: '',
       notes: '',
+      jobId: '',
     };
     this.submit = this.submit.bind(this);
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -72,6 +73,7 @@ class ContactEdit extends React.Component {
           personalPhone: data.personalPhone,
           howWeMet: data.howWeMet,
           notes: data.notes,
+          jobId: data.jobId,
         });
       });
   }
@@ -161,9 +163,9 @@ class ContactEdit extends React.Component {
               </label>
             </Col>
           </Row>
-          <Button type="submit">Save</Button>
+          <Button type="submit" onClick={() => { window.history.back(); }}>Save</Button>
           <span className="btn-space">
-            <Link className="waves-effect waves-light btn" to="/home/dashboard/job/contacts">Cancel</Link>
+            <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.state.jobId}/contacts`}>Cancel</Link>
           </span>
         </form>
       </div>

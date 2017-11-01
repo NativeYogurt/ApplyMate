@@ -10,6 +10,7 @@ class ActivityEdit extends React.Component {
       eventDate: '',
       eventTime: '',
       eventParticipates: '',
+      jobId: '',
     };
     this.submit = this.submit.bind(this);
     this.onChangeEventType = this.onChangeEventType.bind(this);
@@ -41,6 +42,7 @@ class ActivityEdit extends React.Component {
           eventDate: data.eventDate,
           eventTime: data.eventTime,
           eventParticipates: data.eventParticipates,
+          jobId: data.jobId,
         });
       });
   }
@@ -92,9 +94,9 @@ class ActivityEdit extends React.Component {
               </label>
             </Col>
           </Row>
-          <Button type="submit">Save</Button>
+          <Button type="submit" onClick={() => { window.history.back(); }}>Save</Button>
           <span className="btn-space">
-            <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity">Cancel</Link>
+            <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.state.jobId}/activity`}>Cancel</Link>
           </span>
         </form>
       </div>

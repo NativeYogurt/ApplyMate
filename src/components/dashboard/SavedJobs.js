@@ -12,6 +12,12 @@ class SavedJobs extends React.Component {
     this.onChangeStatus = this.onChangeStatus.bind(this);
     this.redirect = this.redirect.bind(this);
   }
+  componentWillReceiveProps(newProps) {
+    if (newProps.jobPosting.status === this.state.status) {
+      return;
+    }
+    this.setState({ status: newProps.jobPosting.status });
+  }
   onChangeStatus(e) {
     this.setState({ status: e.target.value });
     const job = {
@@ -41,10 +47,8 @@ class SavedJobs extends React.Component {
     window.location = `/#/home/dashboard/${this.props.jobPosting.jobId}`;
   }
   render() {
-    // const redirect = function () { window.location = `/#/home/dashboard/${this.props.jobPosting.jobId}`; };
     const favoriteState = this.props.jobPosting.favorite;
     const activePosting = this.props.jobPosting.activeJobPosting
-
     return (
       <tr className="saved-job-posting">
         <td onClick={() => this.redirect()} >{this.props.jobPosting.company}</td>
