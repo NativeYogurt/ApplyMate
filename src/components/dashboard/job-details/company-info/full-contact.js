@@ -21,7 +21,7 @@ class FullContact extends React.Component {
     axios.post('/api/fullContact', { searchTerm: this.state.searchTerm })
       .then(data => {
         this.setState({
-          data,
+          data: data.data,
         })
       })
   }
