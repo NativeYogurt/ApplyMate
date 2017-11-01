@@ -10,7 +10,7 @@ const ActivityEntry = (props) => {
           <div>{props.activity.eventType}</div>
           <div>{props.activity.eventDate} {props.activity.eventTime}</div>
           <div>{props.activity.eventParticipates}</div>
-          <div><Link to={`/home/dashboard/job/activity/${props.activity.eventId}`}>Edit</Link></div>
+          <div><Link to={`/home/dashboard/${props.jobId}/activity/${props.activity.eventId}`}>Edit</Link></div>
           <Button onClick={() => props.deleteActivity(props.activity.eventId)} icon="delete" />
         </Card>
       </Col>

@@ -143,7 +143,6 @@ exports.handleGetJob = (req, res) => {
 };
 
 exports.handleEditJob = (req, res) => {
-  console.log('req',req.body.status);
   SavedJobs.update({
     company: req.body.company,
     jobTitle: req.body.jobTitle,
@@ -174,6 +173,7 @@ exports.handleEditJob = (req, res) => {
 };
 
 exports.handleJobDelete = (req, res) => {
+  console.log('jobid', req.body.jobId);
   SavedJobs.update({
     deleted: true,
   }, {

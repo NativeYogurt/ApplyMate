@@ -183,20 +183,4 @@ class JobEdit extends React.Component {
     );
   }
 }
-// <Col s={6}>
-//   <label htmlFor="status">
-//     Status:
-//     <select className="browser-default" name="status" value={this.state.status} onChange={this.onChangeStatus}>
-//       <option value="wishlist">Wishlist</option>
-//       <option value="applied">Applied</option>
-//       <option value="phone">Phone</option>
-//       <option value="onSite">OnSite</option>
-//       <option value="rejected">Rejected</option>
-//       <option value="offer">Offer</option>
-//     </select>
-//   </label>
-// </Col>
-// <Col s={1}>
-//   <a href={this.state.url} target="_blank"><Icon>directions_run</Icon></a>
-// </Col>
 module.exports = JobEdit;

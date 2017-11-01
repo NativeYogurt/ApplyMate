@@ -73,7 +73,7 @@ class ActivityAdd extends React.Component {
           </Row>
           <Button type="submit" onClick={() => { window.history.back(); }}>Save</Button>
           <span className="btn-space">
-            <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity">Cancel</Link>
+            <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/activity`}>Cancel</Link>
           </span>
         </form>
       </div>

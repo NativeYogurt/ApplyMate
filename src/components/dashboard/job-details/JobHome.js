@@ -62,7 +62,9 @@ class JobHome extends React.Component {
         <Card>
           <h5>{this.state.company} | {this.state.jobTitle}</h5>
           <div className="job-detail-navbar">
-            <JobNavBar />
+            <JobNavBar
+              jobId={this.state.jobId}
+            />
           </div>
           <JobBoard
             paramsId={this.props.match.params.id}

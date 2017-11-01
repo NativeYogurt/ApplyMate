@@ -49,7 +49,7 @@ class Activity extends React.Component {
             </div>
             ) : null
           }
-          <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity/new">Add</Link>
+          <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/activity/new`}>Add</Link>
         </div>
         <div>
           {this.state.activities.length > 0 ? this.state.activities.map(activity => {
@@ -57,6 +57,7 @@ class Activity extends React.Component {
               key={activity.eventId}
               activity={activity}
               deleteActivity={this.deleteActivity}
+              jobId={this.props.jobId}
             />
           );
           }) : null

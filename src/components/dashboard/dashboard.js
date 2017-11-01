@@ -107,7 +107,7 @@ class Dashboard extends React.Component {
     const sortedByStatus = [].concat(filteredJobs).sort((a, b) =>
       a.status < b.status).map(this.createJobs);
     const sortedByDate = [].concat(filteredJobs).sort((a, b) => {
-      return a.dateApplied > b.dateApplied;
+      return (Date.parse(a.dateApplied) || 0) > (Date.parse(b.dateApplied) || 0);
     }).reverse().map(this.createJobs);
     const sortedByFavorite = [].concat(filteredJobs).sort((a, b) => {
       if (a.favorite) {
