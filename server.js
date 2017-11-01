@@ -18,7 +18,7 @@ const Tasks = require('./backend/models/Tasks');
 
 const Github = require('./backend/utilities/githubRepoCrawler');
 const Emailer = require('./backend/utilities/emailer');
-const Texter = require('./backend/utilities/twilio')
+const Texter = require('./backend/utilities/twilio');
 
 const app = express();
 
