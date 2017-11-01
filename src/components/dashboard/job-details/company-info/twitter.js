@@ -6,15 +6,17 @@ const Twitter = (props) => (
       <div className="centerText"> This company has no tweets. </div>
     ) : (
       <div>
-        Tweets from <a href={`http://${props.twitterData[0].url}`}> {props.twitterData[0].url.slice(16)}</a>
+        <div className="centerText">
+          Tweets from &nbsp; <a href={`http://${props.twitterData[0].url}`}> {props.twitterData[0].url.slice(16)}</a>
+        </div>
         {props.twitterData.map((tweet) => {
             return (
               <div key={tweet.time}>
-                <img src="/imgs/tweetLogo.png" alt="tweet: " /> {' '}
-                {tweet.time.slice(0, 19)} {' '}
-                <img src="https://ton.twitter.com/hc_assets/1496970859_1377.png" alt="retweets: " /> {' '}
-                {tweet.retweet} {' '}
-                <img src="https://ton.twitter.com/hc_assets/1487281908_1244.png" alt="likes: " /> {' '}
+                <img src="/imgs/tweetLogo.png" alt="tweet: " /> &nbsp;
+                {tweet.time.slice(0, 19)} &nbsp;&nbsp;
+                <img src="/imgs/twitterRetweet.png" alt="retweets: " /> &nbsp;
+                {tweet.retweet} &nbsp;&nbsp;
+                <img src="/imgs/twitterHeart.png" alt="likes: " /> &nbsp;
                 {tweet.favorite}
                 <br />
                 {tweet.text}
