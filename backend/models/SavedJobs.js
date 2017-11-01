@@ -60,16 +60,7 @@ const SavedJobs = sequelize.define(
         deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
       },
     },
-  },
-  {
-    indexes: [
-      {
-        unique: true,
-        fields: ['userId', 'url', 'deleted'],
-      },
-    ],
-  },
-);
+  });
 
 
 // SavedJobs.sync();
