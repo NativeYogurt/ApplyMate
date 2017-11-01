@@ -168,6 +168,7 @@ class Profile extends React.Component {
     } else if (this.props.githubUsername) {
       displayName = this.props.githubUsername;
     }
+
     const emailReminderRadioButtons = (this.state.emailReminder === true) ? (
       <label htmlFor="emailReminder">
         <Input label="On" type="radio" name="emailReminder" value="true" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
@@ -178,6 +179,7 @@ class Profile extends React.Component {
           <Input label="Off" type="radio" name="emailReminder" value="false" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
         </label>
     );
+
     const textReminderRadioButtons = (this.state.textReminder === true) ? (
       <label htmlFor="emailReminder">
         <Input label="On" type="radio" name="emailReminder" value="true" defaultChecked="checked" onClick={this.onChangeEmailReminder} />
@@ -193,7 +195,7 @@ class Profile extends React.Component {
         <Card>
           <ProfileNav />
           <h5>Hello, {displayName}!</h5>
-          {displayName ? <p className="profile-github-handle">Github Username: {displayName}</p> : ''}
+          {this.props.githubUsername ? <p className="profile-github-handle">Github Username: {this.props.githubUsername}</p> : ''}
           <br />
           <br />
           <strong>Update Your Info</strong><br />

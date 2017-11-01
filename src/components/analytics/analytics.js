@@ -8,29 +8,39 @@ import Applications from './applications';
 import Interviews from './interviews';
 
 const Analytics = (props) => {
-  const hasAnalytics = props.savedJobs.length || Object.keys(props.githubSkills).length !== 0;
+  const hasJobAnalytics = props.savedJobs.length;
+  const hasGithubAnalytics = Object.keys(props.githubSkills).length;
 
-  return hasAnalytics ?
-    (
-      <div>
-        <JobStatus savedJobs={props.savedJobs} />
-        <Applications savedJobs={props.savedJobs} />
-        {Object.keys(props.githubSkills).length ?
-          <GithubSkills
-            githubSkills={props.githubSkills}
-          /> : null }
-      </div>
-    ) :
-      <div className="empty-state">
-        <Row className="center">
-          <Col s={12}>
-            <Icon medium>insert_chart</Icon>
-            <p>Add Jobs To Your Dashboard To Track Your Progress!</p>
-          </Col>
-        </Row>
-      </div>;
+  let charts;
+  if (hasJobAnalytics && hasGithubAnalytics) {
+    charts =
+    (<div>
+      <JobStatus savedJobs={props.savedJobs} />
+      <Applications savedJobs={props.savedJobs} />
+      <GithubSkills githubSkills={props.githubSkills} />
+     </div>);
+  } else if (hasJobAnalytics) {
+    charts =
+     (<div>
+       <JobStatus savedJobs={props.savedJobs} />
+       <Applications savedJobs={props.savedJobs} />
+      </div>);
+  } else if (hasGithubAnalytics) {
+    charts = <GithubSkills githubSkills={props.githubSkills} />;
+  } else {
+    charts =
+    (<div className="empty-state">
+      <Row className="center">
+        <Col s={12}>
+          <Icon medium>insert_chart</Icon>
+          <p>Add Jobs To Your Dashboard To Track Your Progress!</p>
+        </Col>
+      </Row>
+     </div>);
+  }
+  return (
+    <div>{charts}</div>
+  );
 };
 
 export default Analytics;
-
-// <Interviews userId={props.userId} />
