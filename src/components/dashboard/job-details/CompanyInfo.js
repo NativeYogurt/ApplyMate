@@ -20,12 +20,12 @@ class CompanyInfo extends React.Component {
       twitterPic: '/imgs/TempHeader.jpg',
     };
     this.twitterApiCall = this.twitterApiCall.bind(this);
-    this.yahooApiCall = this.yahooApiCall.bind(this);
+    // this.yahooApiCall = this.yahooApiCall.bind(this);
   }
 
   componentDidMount() {
     this.twitterApiCall();
-    this.yahooApiCall();
+    // this.yahooApiCall();
   }
 
   twitterApiCall() {
@@ -40,14 +40,14 @@ class CompanyInfo extends React.Component {
       });
   }
 
-  yahooApiCall() {
-    axios.post('/api/yahoo', { searchTerm: this.state.companyName })
-      .then(data => {
-        this.setState({
-          stockSymbs: data.data,
-        });
-      });
-  }
+  // yahooApiCall() {
+  //   axios.post('/api/yahoo', { searchTerm: this.state.companyName })
+  //     .then(data => {
+  //       this.setState({
+  //         stockSymbs: data.data,
+  //       });
+  //     });
+  // }
 
   render() {
     return ( 
