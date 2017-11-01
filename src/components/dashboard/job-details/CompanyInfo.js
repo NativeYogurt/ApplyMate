@@ -60,7 +60,8 @@ class CompanyInfo extends React.Component {
         <div id="companyInformationRight">
           <Glassdoor companyName={this.state.companyName} />
           <EDGAR companyName={this.state.companyName} />
-          <Tradier companyName={this.state.companyName} />
+          {/* Alex said no stock info... */}
+          {/* <Tradier companyName={this.state.companyName} /> */}
         </div>
       </div>
     );
