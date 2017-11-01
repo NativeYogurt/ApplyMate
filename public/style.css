@@ -115,7 +115,7 @@ table .dashboard, .dashboard th, .dashboard td {
 #FullContactComponent{
   grid-column:1/2;
   grid-row:2/3;
-} 
+}
 #companyInformationRight{
   grid-row: 2;
   grid-column: 2/3;
@@ -177,6 +177,7 @@ table .dashboard, .dashboard th, .dashboard td {
 
 #no-job-banner {
   text-align: center;
+}
 
 .profile-github-handle {
   font-size: .8em;
