@@ -123,15 +123,6 @@ class Main extends React.Component {
         this.getJobs();
         this.getJobComparison(data.jobId);
       });
-
-      // fetch('/api/job', {
-      //   method: 'POST',
-      //   headers: {
-      //     Accept: 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(job),
-      // })
   }
 
   deleteJob(jobId) {
