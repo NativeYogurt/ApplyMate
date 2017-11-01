@@ -50,17 +50,4 @@ class EDGAR extends React.Component {
 }
 
 
-// {!this.state.companyName ? (
-//   <div className="centerText" > This company is not on Glassdoor </div>
-//   ) : (
-//     <div className="centerText" >
-//       {this.state.companyName} @ {this.state.website}, with {this.state.ratingNum} ratings. &nbsp; &nbsp; {'    '}
-//       <a href="https://www.glassdoor.com/index.htm"> {'  '} powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
-//     </div>
-//   )}
-
-
-EDGAR.propTypes = {
-  companyName: PropTypes.string.isRequired,
-};
 export default EDGAR;

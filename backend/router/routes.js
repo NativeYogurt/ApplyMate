@@ -30,10 +30,12 @@ router.post('/resource', resource.handleResourceAdd);
 router.get('/resource', resource.handleGetResources);
 router.put('/resource/delete', resource.handleResourceDelete);
 router.post('/BBB', jobInfo.BBB);
+// router.post('/yahoo', jobInfo.yahoo);
 router.post('/Glassdoor', jobInfo.Glassdoor);
 router.post('/EDGAR', jobInfo.EDGAR);
 router.post('/fullContact', jobInfo.fullContact);
 router.post('/Twitter', jobInfo.Twitter);
+router.post('/Tradier', jobInfo.Tradier)
 router.post('/contacts', contact.handleContactAdd);
 router.get('/contacts', contact.handleGetContacts);
 router.get('/contacts/:id', contact.handleGetContact);
