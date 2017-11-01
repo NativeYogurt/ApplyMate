@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col, Icon, Button, Input } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
+import Error from '../../errorBanner';
+
 class ContactEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,7 @@ class ContactEdit extends React.Component {
       howWeMet: '',
       notes: '',
       jobId: '',
+      errorMessage: null,
     };
     this.submit = this.submit.bind(this);
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -79,6 +82,12 @@ class ContactEdit extends React.Component {
   }
   submit(e) {
     e.preventDefault();
+    if (!this.state.firstName && !this.state.lastName) {
+      this.setState({
+        errorMessage: 'Please enter first or last name',
+      });
+      return;
+    }
     const contact = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -100,8 +109,12 @@ class ContactEdit extends React.Component {
       },
       body: JSON.stringify(contact),
     }).then(res => res.json())
-      .then(data =>
-        console.log('contact edited', data));
+      .then(data => {
+        this.setState({
+          errorMessage: null,
+        });
+        window.history.back();
+      });
   }
   render() {
     return (
@@ -163,11 +176,12 @@ class ContactEdit extends React.Component {
               </label>
             </Col>
           </Row>
-          <Button type="submit" onClick={() => { window.history.back(); }}>Save</Button>
+          <Button type="submit">Save</Button>
           <span className="btn-space">
             <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.state.jobId}/contacts`}>Cancel</Link>
           </span>
         </form>
+        <Error error={this.state.errorMessage} />
       </div>
     );
   }

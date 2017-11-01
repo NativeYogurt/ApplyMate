@@ -101,6 +101,7 @@ const JobBoard = (props) => {
                   companyUrl={props.companyUrl}
                   notes={props.notes}
                   paramsId={props.paramsId}
+                  jobId={props.jobId}
                 />
               )}
             />

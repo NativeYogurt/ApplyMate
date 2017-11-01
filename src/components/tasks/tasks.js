@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Row, Col, Input, Button, Card } from 'react-materialize';
 
 import TaskEntry from './task-entry';
+import Error from '../dashboard/errorBanner';
 
 class Tasks extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Tasks extends React.Component {
       taskDesc: '',
       taskDueDate: '',
       tasks: [],
+      errorMessage: null,
     };
     this.onChangeTaskDesc = this.onChangeTaskDesc.bind(this);
     this.onChangeTaskDueDate = this.onChangeTaskDueDate.bind(this);
@@ -54,6 +56,12 @@ class Tasks extends React.Component {
   }
   submit(e) {
     e.preventDefault();
+    if (!this.state.taskDesc) {
+      this.setState({
+        errorMessage: 'Please enter task description',
+      });
+      return;
+    }
     const newTask = {
       taskDesc: this.state.taskDesc,
       taskDueDate: this.state.taskDueDate,
@@ -72,6 +80,7 @@ class Tasks extends React.Component {
         this.setState({
           taskDesc: '',
           taskDueDate: '',
+          errorMessage: null,
         });
         this.getTasks();
       });
@@ -97,6 +106,7 @@ class Tasks extends React.Component {
             <Input label="Due Date" className="task-due-date" type="date" name="taskDueDate" value={this.state.taskDueDate} onChange={this.onChangeTaskDueDate} />
             <Button type="submit">Save</Button>
           </form>
+          <Error error={this.state.errorMessage} />
         </Card>
         <div>
             {sortedByDate}

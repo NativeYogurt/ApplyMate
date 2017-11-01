@@ -203,21 +203,25 @@ class Profile extends React.Component {
             <Row>
               <Col s={6}>
                 <label htmlFor="firstName">
+                  First Name:
                   <input type="text" name="firstName" placeholder={this.state.firstName} onChange={this.onChangeFirstName} />
                 </label>
               </Col>
               <Col s={6}>
                 <label htmlFor="lastName">
+                  Last Name:
                   <input type="text" name="lastName" placeholder={this.state.lastName} onChange={this.onChangeLastName} />
                 </label>
               </Col>
               <Col s={6}>
                 <label htmlFor="email">
+                  Email:
                   <input type="email" name="email" placeholder={this.state.email} onChange={this.onChangeEmail} />
                 </label>
               </Col>
               <Col s={6}>
                 <label htmlFor="phoneNumber">
+                  Phone:
                   <input type="text" name="phoneNumber" placeholder={this.state.phoneNumber} onChange={this.onChangePhoneNumber} />
                 </label>
               </Col>
