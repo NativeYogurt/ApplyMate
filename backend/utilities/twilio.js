@@ -37,7 +37,6 @@ const sendText = (obj) => {
       to: obj.number,
       body: `From to.Hired():  Hey ${obj.name}, Good luck on your interview tomorrow! ${quotes[Math.floor(Math.random() * quotes.length)]}`,
     })
-    .then(message => console.log(message))
     .catch(err => console.error(err));
 };
 
