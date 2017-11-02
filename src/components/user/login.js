@@ -142,7 +142,8 @@ class Login extends React.Component {
       <div className="bg">
         <Row>
           <Col s={4}>
-            <a href="#" className="brand-logo-signup">.apply(me)</a>
+            <a href="#" className="brand-logo-signup">.apply(me)<span className="blinking-cursor-signup">|</span>
+            </a>
           </Col>
         </Row>
         <div className="container">
