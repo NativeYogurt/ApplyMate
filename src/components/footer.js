@@ -20,14 +20,13 @@ class Footer extends React.Component {
       <footer className="page-footer">
         <div className="container">
           <div className="row">
-            <div className="col l6 s12">
+            <div className="col s6">
               <h5 className="white-text">.apply(me)</h5>
               <p className="grey-text text-lighten-4">Getting you jobs. Making you smarter.</p>
             </div>
-            <div className="footer-links">
-            <div className="col l2 offset-l s12">
+            <div className="col s6">
               <h5 className="white-text">Links</h5>
-              <ul>
+              <ul className="footer-links">
                 <li
                   className={this.state.active === 'dashboard' ? 'active' : ''}
                   onClick={() => {this.setActive('dashboard')}}>
@@ -55,7 +54,6 @@ class Footer extends React.Component {
                 </li>
               </ul>
             </div>
-            </div>
           </div>
         </div>
         <div className="footer-copyright">
@@ -63,7 +61,7 @@ class Footer extends React.Component {
           © 2017 Copyright .apply(me)
           </div>
         </div>
-    </footer>
+      </footer>
     );
   }
 }

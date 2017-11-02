@@ -210,14 +210,20 @@ table .dashboard, .dashboard th, .dashboard td {
   background-color: #455a64;
 }
 
-.active a {
-  color: #26a69a;
+.footer-links {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: -20px;
 }
 
-.footer-links {
-
+.footer-links a {
+  color: white;
 }
 
 footer {
   margin-top: 9em;
+}
+
+.active a {
+  color: #26a69a;
 }
