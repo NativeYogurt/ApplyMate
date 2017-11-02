@@ -15,6 +15,26 @@
   padding: 2px 10px 2px 10px;
 }
 
+/* Sign up page */
+.brand-logo-signup {
+  font-size: xx-large;
+  color: hotpink;
+}
+
+.bg {
+  background-image: url("./imgs/bg.jpeg");
+  /*background-image: url(https://static.pexels.com/photos/306533/pexels-photo-306533.jpeg);*/
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card {
+ width:800px;
+ margin: auto;
+}
+
 /* The alert message box */
 .alert, .error {
     padding: 20px;

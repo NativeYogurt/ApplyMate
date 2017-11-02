@@ -107,9 +107,11 @@ class JobEdit extends React.Component {
     return (
       <div>
         <Row>
-          <div>Quick Actions</div>
-          <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/activity/new`}>Log Interview</Link>
-          <span className="btn-space"><Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/contacts/new`}>Add Contact</Link></span>
+          <Col s={12}>
+            <div>Quick Actions</div>
+            <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/activity/new`}>Log Interview</Link>
+            <span className="btn-space"><Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/contacts/new`}>Add Contact</Link></span>
+          </Col>
         </Row>
         <form className="job-edit-form" onSubmit={this.submit}>
           <Row>
