@@ -44,7 +44,6 @@ const User = sequelize.define('user', {
   },
   phoneNumber: {
     type: Sequelize.STRING,
-    defaultValue: '11234567890',
   },
   textReminder: {
     type: Sequelize.BOOLEAN,
