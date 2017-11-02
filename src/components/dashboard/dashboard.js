@@ -156,6 +156,7 @@ class Dashboard extends React.Component {
         <Table className="dashboard">
           <thead>
             <tr>
+              <th />
               <th>Company</th>
               <th>Job Title</th>
               <th>Status</th>
@@ -163,7 +164,6 @@ class Dashboard extends React.Component {
               <th>Location</th>
               <th>Job Posting URL</th>
               <th>Required Skills</th>
-              <th>Favorite</th>
               <th />
             </tr>
           </thead>

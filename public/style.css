@@ -182,3 +182,7 @@ table .dashboard, .dashboard th, .dashboard td {
 .profile-github-handle {
   font-size: .8em;
 }
+
+.hidden {
+  visibility: hidden;
+}
