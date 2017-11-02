@@ -182,3 +182,19 @@ table .dashboard, .dashboard th, .dashboard td {
 .profile-github-handle {
   font-size: .8em;
 }
+
+.page-footer {
+  background-color: #455a64;
+}
+
+.active a {
+  color: #26a69a;
+}
+
+.footer-links {
+
+}
+
+footer {
+  margin-top: 9em;
+}
