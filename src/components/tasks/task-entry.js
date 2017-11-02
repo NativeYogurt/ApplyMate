@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Card, Button } from 'react-materialize';
 import ReactTooltip from 'react-tooltip';
+import moment from 'moment';
 
 class TaskEntry extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class TaskEntry extends React.Component {
           (<div>{this.state.company}|{this.state.jobTitle}</div>) :
         null}
         <div>{this.props.task.taskDesc}</div>
-        <div>Due: {this.props.task.taskDueDate}</div>
+        <div>Due: {this.props.task.taskDueDate ? moment(this.props.task.taskDueDate).format('MMM Do YYYY') : ''}</div>
         <Button icon="delete" onClick={() => this.props.deleteTask(this.props.task.taskId)} data-tip="Delete" />
         <ReactTooltip />
       </Card>
