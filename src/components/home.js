@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Nav from './navbar';
+import Footer from './footer';
 import Main from './mainBoard';
 
 const Home = (props) => {
@@ -14,6 +15,7 @@ const Home = (props) => {
         />
       </div>
       <Main userId={props.user ? props.user.uid : null} />
+      <Footer />
     </div>);
 };
 
