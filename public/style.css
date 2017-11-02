@@ -30,11 +30,15 @@
   background-size: cover;
 }
 
-.card {
+.sign-up, .sign-in {
  width:800px;
  margin: auto;
 }
 
+/* subnavbar */
+.tab .active {
+  text-decoration: underline;
+}
 /* The alert message box */
 .alert, .error {
     padding: 20px;

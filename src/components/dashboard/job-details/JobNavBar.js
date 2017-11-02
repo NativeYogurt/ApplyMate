@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Row, Col } from 'react-materialize';
 
 class JobNavbar extends React.Component {
   constructor(props) {
