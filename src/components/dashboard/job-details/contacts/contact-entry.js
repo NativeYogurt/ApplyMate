@@ -11,7 +11,7 @@ const ContactEntry = (props) => {
           <div>{props.contact.firstName} {props.contact.lastName}</div>
           <div>{props.contact.jobTitle}</div>
           <div><Link to={`/home/dashboard/${props.jobId}/contacts/${props.contact.contactId}`}>Edit</Link></div>
-          <Button onClick={() => props.deleteContact(props.contact.contactId)} icon="delete" data-tip="Delete" />
+          <Button onClick={() => props.deleteContact(props.contact.contactId)} icon="delete" data-tip="Delete" className="delete icon-button" />
         </Card>
       </Col>
       <ReactTooltip />

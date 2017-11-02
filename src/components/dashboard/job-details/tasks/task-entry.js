@@ -9,7 +9,7 @@ const TaskEntry = (props) => {
     <Card>
       <div>{props.task.taskDesc}</div>
       <div>Due: {props.task.taskDueDate ? moment(props.task.taskDueDate).format('MMM Do YYYY') : ''}</div>
-      <Button onClick={() => props.deleteTask(props.task.taskId)} icon="delete" data-tip="Delete" />
+      <Button onClick={() => props.deleteTask(props.task.taskId)} className="delete icon-button" icon="delete" data-tip="Delete" />
       <ReactTooltip />
     </Card>
   );
