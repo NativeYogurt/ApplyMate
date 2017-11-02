@@ -181,7 +181,7 @@ class Login extends React.Component {
                   <Button id="signin-button" type="submit">Sign In</Button>
                 </Col>
                 <Col s={3}>
-                  <Button onClick={this.openResetPassModal}>Reset Password</Button>
+                  <a href="#" onClick={this.openResetPassModal}>Forgot your password?</a>
                 </Col>
               </Row>
             </form>
