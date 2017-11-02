@@ -62,8 +62,12 @@ const findCompanyURL = (company, URL, cb) => {
         headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
       })
         .then(data => {
-          if (data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]) {
-            cb(formatURL(data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]));
+          if(data.data.TotalResults !== 0){
+            if (data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]) {
+              cb(formatURL(data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]));
+            }
+          } else {
+            cb('http://Please enter Website for addiotional company info')
           }
         })
         .catch(err2 => {
