@@ -35,9 +35,19 @@
 .btn-space {
   padding-left: 8px;
 }
+
 .btn-floating {
   margin-top: 10px;
 }
+
+.delete {
+  background-color: #dd2c00;
+}
+
+.delete:hover {
+  background-color: red;
+}
+
 .icon-button, .favorite {
   padding: 2px 10px 2px 10px;
 }
@@ -117,7 +127,6 @@ table .dashboard, .dashboard th, .dashboard td {
     text-overflow: ellipsis;
 }
 
-
 /* saved-job-posting on dashboard */
 .saved-job-posting:hover {
   background-color: #D3D3D3;
@@ -126,6 +135,7 @@ table .dashboard, .dashboard th, .dashboard td {
 #refresh {
   cursor: pointer;
 }
+
 /* job-search-form */
 .job-search-form input[type="text"], .job-add-form input[type="date"], .job-edit-form select {
   padding: 8px;
@@ -333,4 +343,12 @@ nav .brand-logo {
   50% {
     color: white;
   }
+}
+
+#job-dashboard-status {
+  border: 1px solid lightgray;
+}
+
+input:not([type]), input[type=text]:not(.browser-default) {
+  border-bottom: 1px solid lightgray;
 }

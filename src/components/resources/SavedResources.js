@@ -41,6 +41,7 @@ const SavedResources = (props) => {
       { props.resource.tutorialType === 'link' ? tutorial : video }
       <Button
         icon="delete"
+        className="delete icon-button"
         onClick={() => props.deleteResource(props.resource.resourceId)}
       />
     </Card>

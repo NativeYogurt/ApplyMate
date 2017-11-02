@@ -5,7 +5,6 @@ import PDF from 'react-pdf-js';
 import PropTypes from 'prop-types';
 import { Row, Col, Card, Button, Input } from 'react-materialize';
 
-import GithubSkills from './github-skills';
 import Resume from './resume';
 import ProfileNav from './profile-nav';
 
