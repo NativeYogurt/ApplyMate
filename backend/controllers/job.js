@@ -18,8 +18,12 @@ const x = Xray();
 
 
 const extractSkills = (data) => {
-  const text = data.join(' ');
-  return extract.extractSkills(text);
+  if (data) {
+    const text = data.join(' ');
+    return extract.extractSkills(text);
+  } else {
+    return [];
+  }
 };
 
 const addJobSkillsToDB = (skills, req, res) => {
@@ -95,20 +99,20 @@ const addJobSkillsToDB = (skills, req, res) => {
 
 exports.handleJobAdd = async (req, res) => {
   try {
-    let scrapeData = '';
-    let skills = '';
-    scrapeData = await big5Scraper.big5Scraper(req.body.url);
-    skills = await extractSkills(scrapeData);
-    if (skills) {
-      await addJobSkillsToDB(skills, req, res);
-      return;
-    }
-    scrapeData = await iFrameScraper.scrapeIframe(req.body.url);
-    skills = await extractSkills(scrapeData);
-    if (skills) {
-      await addJobSkillsToDB(skills, req, res);
-      return;
-    }
+    // let scrapeData = '';
+    // let skills = '';
+    // scrapeData = await big5Scraper.big5Scraper(req.body.url);
+    // skills = await extractSkills(scrapeData);
+    // if (skills) {
+    //   await addJobSkillsToDB(skills, req, res);
+    //   return;
+    // }
+    // scrapeData = await iFrameScraper.scrapeIframe(req.body.url);
+    // skills = await extractSkills(scrapeData);
+    // if (skills) {
+    //   await addJobSkillsToDB(skills, req, res);
+    //   return;
+    // }
     x(req.body.url, (['ol'], ['ul'], ['li']))((err, data) => {
       extractSkills(data)
         .then(xskills => addJobSkillsToDB(xskills, req, res))
@@ -207,11 +211,4 @@ exports.updateScreenshot = async (req, res) => {
   });
   const picture = await websiteChecker.takePicture(jobUrl.url, true, jobId);
   res.send('updated screenshot');
-  // SavedJobs.update({
-  //   favorite: req.body.favoriteStatus,
-  // }, {
-  //   where: {
-  //     jobId: req.body.jobId,
-  //   },
-  // })
 };

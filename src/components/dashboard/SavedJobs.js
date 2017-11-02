@@ -8,9 +8,12 @@ class SavedJobs extends React.Component {
     super(props);
     this.state = {
       status: this.props.jobPosting.status,
+      hover: false,
     };
     this.onChangeStatus = this.onChangeStatus.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.onMouseLeaveHandler = this.onMouseLeaveHandler.bind(this);
+    this.onMouseEnterHandler = this.onMouseEnterHandler.bind(this);
   }
   componentWillReceiveProps(newProps) {
     if (newProps.jobPosting.status === this.state.status) {
@@ -18,6 +21,13 @@ class SavedJobs extends React.Component {
     }
     this.setState({ status: newProps.jobPosting.status });
   }
+  onMouseLeaveHandler() {
+    this.setState({ hover: false });
+  }
+  onMouseEnterHandler(){
+    this.setState({ hover: true });
+  }
+
   onChangeStatus(e) {
     this.setState({ status: e.target.value });
     const job = {
@@ -50,7 +60,14 @@ class SavedJobs extends React.Component {
     const favoriteState = this.props.jobPosting.favorite;
     const activePosting = this.props.jobPosting.activeJobPosting
     return (
-      <tr className="saved-job-posting">
+      <tr className="saved-job-posting" onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>
+        <td>
+          {this.state.hover || favoriteState ?
+            <Button className="favorite" icon={favoriteState ? 'favorite' : 'favorite_border'} onClick={() => this.props.favoriteJob(this.props.jobPosting.jobId)} />
+          :
+            <Button className="favorite hidden" icon={favoriteState ? 'favorite' : 'favorite_border'} />
+          }
+        </td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.company}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.jobTitle}</td>
         <td>
@@ -67,10 +84,13 @@ class SavedJobs extends React.Component {
         <td onClick={() => this.redirect()} >{this.props.jobPosting.location}</td>
         <td><a href={this.props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank"><Icon>{activePosting ? 'bookmark' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" onClick={() => this.props.revertJobUrlToActive(this.props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.skills.join(', ')}</td>
+
         <td>
-          <Button className="favorite" icon={favoriteState ? 'favorite' : 'favorite_border'} onClick={() => this.props.favoriteJob(this.props.jobPosting.jobId)} />
-        </td>
-        <td><Button className="icon-button" icon="delete" onClick={() => this.props.deleteJob(this.props.jobPosting.jobId)} /></td>
+        {this.state.hover ?
+          <Button className="icon-button" icon="delete" onClick={() => this.props.deleteJob(this.props.jobPosting.jobId)} />
+        :
+          <Button className="icon-button hidden" icon="delete" />
+        }</td>
       </tr>
     );
   }

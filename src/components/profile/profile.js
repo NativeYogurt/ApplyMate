@@ -227,7 +227,7 @@ class Profile extends React.Component {
               </Col>
               <Col s={6}>
                 {this.props.verifiedEmail ? <div > Interview E-Mail Reminder: <br /> {emailReminderRadioButtons} </div> :
-                <Button onClick={this.sendEmailVerification}>Click Here to Verify Your Email
+                <Button type="button" onClick={this.sendEmailVerification}>Click Here to Verify Your Email
                 </Button>}
               </Col>
               <Col s={6}>
