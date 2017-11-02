@@ -113,7 +113,7 @@ class Tasks extends React.Component {
         </Card>
         <div>
           {sortedByDate}
-        </div>
+        </div>  
       </div>
     );
   }

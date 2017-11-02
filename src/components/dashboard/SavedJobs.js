@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Icon, Button } from 'react-materialize';
+import ReactTooltip from 'react-tooltip';
 
 class SavedJobs extends React.Component {
   constructor(props) {
@@ -82,15 +83,16 @@ class SavedJobs extends React.Component {
         </td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.dateApplied}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.location}</td>
-        <td><a href={this.props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank"><Icon>{activePosting ? 'bookmark' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" onClick={() => this.props.revertJobUrlToActive(this.props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
+        <td><a href={this.props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank" data-tip="Job URL"><Icon>{activePosting ? 'bookmark' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" data-tip="Confirm URL" onClick={() => this.props.revertJobUrlToActive(this.props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.skills.join(', ')}</td>
 
         <td>
         {this.state.hover ?
-          <Button className="icon-button" icon="delete" onClick={() => this.props.deleteJob(this.props.jobPosting.jobId)} />
+          <Button className="icon-button" icon="delete" onClick={() => this.props.deleteJob(this.props.jobPosting.jobId)} data-tip="Delete" />
         :
-          <Button className="icon-button hidden" icon="delete" />
+          <Button className="icon-button hidden" icon="delete" data-tip="Delete" />
         }</td>
+        <ReactTooltip />
       </tr>
     );
   }

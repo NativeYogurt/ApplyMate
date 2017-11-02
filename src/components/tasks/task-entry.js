@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Card, Button } from 'react-materialize';
+import ReactTooltip from 'react-tooltip';
 
 class TaskEntry extends React.Component {
   constructor(props) {
@@ -33,7 +34,8 @@ class TaskEntry extends React.Component {
         null}
         <div>{this.props.task.taskDesc}</div>
         <div>Due: {this.props.task.taskDueDate}</div>
-        <Button icon="delete" onClick={() => this.props.deleteTask(this.props.task.taskId)} />
+        <Button icon="delete" onClick={() => this.props.deleteTask(this.props.task.taskId)} data-tip="Delete" />
+        <ReactTooltip />
       </Card>
     );
   }
