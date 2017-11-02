@@ -185,6 +185,7 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .page-footer {
   background-color: #455a64;
+  margin-top: 9em;
 }
 
 .footer-links {
@@ -195,10 +196,6 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .footer-links a {
   color: white;
-}
-
-footer {
-  margin-top: 9em;
 }
 
 .active a {

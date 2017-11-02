@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown } from 'react-materialize';
+import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown, Card } from 'react-materialize';
 import $ from 'jquery';
 
 import Error from './errorBanner';
@@ -137,7 +137,7 @@ class Dashboard extends React.Component {
           </Col>
         </Row>
       </div>
-    )
+    );
     const jobList = (
       <div>
         <Row>
