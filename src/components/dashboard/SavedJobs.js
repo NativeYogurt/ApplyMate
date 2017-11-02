@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Icon, Button } from 'react-materialize';
 import ReactTooltip from 'react-tooltip';
+import moment from 'moment';
 
 class SavedJobs extends React.Component {
   constructor(props) {
@@ -81,7 +82,7 @@ class SavedJobs extends React.Component {
             <option value="offer">Offer</option>
           </select>
         </td>
-        <td onClick={() => this.redirect()} >{this.props.jobPosting.dateApplied}</td>
+        <td onClick={() => this.redirect()} >{this.props.jobPosting.dateApplied ? moment(this.props.jobPosting.dateApplied).format('MMM Do YY') : ''}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.location}</td>
         <td><a href={this.props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank" data-tip="Job URL"><Icon>{activePosting ? 'bookmark' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" data-tip="Confirm URL" onClick={() => this.props.revertJobUrlToActive(this.props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.skills.join(', ')}</td>

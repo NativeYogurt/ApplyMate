@@ -190,7 +190,7 @@ class Dashboard extends React.Component {
                 className="red"
                 waves="light"
                 icon="add"
-                data-tip="Add"
+                data-tip="Add Job"
               />}
               actions={
                 <div>
