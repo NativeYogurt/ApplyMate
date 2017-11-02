@@ -2,7 +2,7 @@ const router = require('express').Router();
 const resume = require('../controllers/resume.js');
 const userHandler = require('../controllers/userHandler');
 const job = require('../controllers/job.js');
-const jobInfo = require('../controllers/jobInfo.js');
+const companyInfo = require('../controllers/companyInfo.js');
 const user = require('../controllers/user');
 const comparison = require('../controllers/comparison.js');
 const resource = require('../controllers/resource.js');
@@ -29,19 +29,19 @@ router.put('/updateUser', user.handleUpdateUser);
 router.post('/resource', resource.handleResourceAdd);
 router.get('/resource', resource.handleGetResources);
 router.put('/resource/delete', resource.handleResourceDelete);
-router.post('/BBB', jobInfo.BBB);
-// router.post('/yahoo', jobInfo.yahoo);
-router.post('/Glassdoor', jobInfo.Glassdoor);
-router.post('/EDGAR', jobInfo.EDGAR);
-router.post('/fullContact', jobInfo.fullContact);
-router.post('/Twitter', jobInfo.Twitter);
-router.post('/Tradier', jobInfo.Tradier)
+router.post('/BBB', companyInfo.BBB);
+// router.post('/yahoo', companyInfo.yahoo);
+router.post('/Glassdoor', companyInfo.Glassdoor);
+router.post('/EDGAR', companyInfo.EDGAR);
+router.post('/fullContact', companyInfo.fullContact);
+router.post('/Twitter', companyInfo.Twitter);
+router.post('/Tradier', companyInfo.Tradier)
+router.post('/getCompanyUrl', companyInfo.getCompanyUrl);
 router.post('/contacts', contact.handleContactAdd);
 router.get('/contacts', contact.handleGetContacts);
 router.get('/contacts/:id', contact.handleGetContact);
 router.put('/contacts/:id', contact.handleEditContact);
 router.put('/contact/delete', contact.handleContactDelete);
-router.post('/getCompanyUrl', jobInfo.getCompanyUrl);
 
 router.post('/activities', event.handleEventAdd);
 router.get('/activities', event.handleGetEvents);

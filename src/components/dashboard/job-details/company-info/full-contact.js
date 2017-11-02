@@ -29,7 +29,7 @@ class FullContact extends React.Component {
   render() {
     return (
       <div id="FullContactComponent">
-        {!this.state.name ? (<div className="centerText" > This company is not on Full Contact </div>
+        {!this.state.data.name ? (<div className="centerText" > This company is not on Full Contact </div>
         ) : (
           <div>
             <div className="centerText">{this.state.data.name}</div>
@@ -46,7 +46,7 @@ class FullContact extends React.Component {
             {this.state.data.globalRanking ? (<span><img src="/imgs/globe.png" alt="Global:" /> &nbsp;&nbsp; #{this.state.data.globalRanking}  </span>) : (null)} &nbsp;&nbsp;&nbsp;
             {this.state.data.usRanking ? (<span><img src="/imgs/USA.png" alt="USA: " />  &nbsp;&nbsp; #{this.state.data.usRanking}  </span>) : (null)}
           </div>
-      )}
+        )}
       </div>
     );
   }

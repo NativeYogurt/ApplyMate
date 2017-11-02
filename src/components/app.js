@@ -2,10 +2,10 @@ import React from 'react';
 import firebase from 'firebase';
 import { browserHistory, Route, Redirect, Switch } from 'react-router-dom';
 import Modal from 'react-modal';
-import Signup from './signup';
-import Login from './login';
+import Signup from './user/signup';
+import Login from './user/login';
 import Home from './home';
-import Auth from './Auth';
+import Auth from './user/Auth';
 
 class App extends React.Component {
   constructor(props) {
