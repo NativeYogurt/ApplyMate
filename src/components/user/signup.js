@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 import { Link } from 'react-router-dom';
-import { Card, Input, Button, Row } from 'react-materialize';
+import { Card, Input, Button, Row, Col } from 'react-materialize';
 import Modal from 'react-modal';
 import axios from 'axios';
 import Auth from './Auth';
@@ -89,29 +89,36 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <Card>
-          <Modal isOpen={this.state.existingEmailModal} onRequestClose={this.closeExistingEmailModal}>
-            <h3>That email already exists.</h3>
-            <p>The email address, {this.state.signUpUsername}, already exists within our authentication system. Please <a href="/#/login" >click here </a> to return to the login page, or sign up using a different email address.</p>
-            <Button onClick={this.closeExistingEmailModal}>Cancel</Button>
-          </Modal>
-          <div id="temp">
-            <h3>Sign Up</h3>
-            <form id="signUp" onSubmit={this.handleSignUp}>
-              <Row>
-                <Input s={6} onChange={this.handleFirstName} type="text" label="First Name" />
-                <Input s={6} onChange={this.handleLastName} type="text" label="Last Name" />
-                <Input s={12} onChange={this.handleSignUpUsername} type="email" placeholder="E-Mail Address" /><br />
-                <Input s={6} onChange={this.handlePassword} type="password" placeholder="Password" /><br />
-                <Input s={6} onChange={this.handlePassword2} type="password" placeholder="Verify Password" /><br />
-              </Row>
-              <Button type="submit">Sign Up</Button>
-            </form>
-            Already have an account? <Link to="/login">Sign in!</Link>
-            <br />
-          </div>
-        </Card>
+      <div className="bg">
+        <Row>
+          <Col s={4}>
+            <a href="#" className="brand-logo-signup">.apply(me)</a>
+          </Col>
+        </Row>
+        <div className="container">
+          <Card>
+            <Modal isOpen={this.state.existingEmailModal} onRequestClose={this.closeExistingEmailModal}>
+              <h3>That email already exists.</h3>
+              <p>The email address, {this.state.signUpUsername}, already exists within our authentication system. Please <a href="/#/login" >click here </a> to return to the login page, or sign up using a different email address.</p>
+              <Button onClick={this.closeExistingEmailModal}>Cancel</Button>
+            </Modal>
+            <div id="temp">
+              <h3>Sign Up</h3>
+              <form id="signUp" onSubmit={this.handleSignUp}>
+                <Row>
+                  <Input s={6} onChange={this.handleFirstName} type="text" label="First Name" />
+                  <Input s={6} onChange={this.handleLastName} type="text" label="Last Name" />
+                  <Input s={12} onChange={this.handleSignUpUsername} type="email" placeholder="E-Mail Address" /><br />
+                  <Input s={6} onChange={this.handlePassword} type="password" placeholder="Password" /><br />
+                  <Input s={6} onChange={this.handlePassword2} type="password" placeholder="Verify Password" /><br />
+                </Row>
+                <Button type="submit">Sign Up</Button>
+              </form>
+              Already have an account? <Link to="/login">Sign in!</Link>
+              <br />
+            </div>
+          </Card>
+        </div>
       </div>
     );
   }

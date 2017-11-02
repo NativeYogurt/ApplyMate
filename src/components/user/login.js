@@ -139,61 +139,68 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <Card>
-          <h3>Sign In</h3>
-          <Modal isOpen={this.state.gitMergeModal} onRequestClose={this.closeMergeModal}>
-            <h3>Looks like your Github Email address already exists.</h3>
-            <p>You're seeing this because an account associated with your github email address, {this.state.mergeEmail} already exists within our authentication system. Please enter the password for that email address below, and we'll merge the two accounts.</p>
-            <br />
-            <form id="merge" onSubmit={this.GitMerge}>
-              <Input onChange={this.handleMergePassword} type="password" label="Email Password" />
-              <Button type="submit">Submit</Button>
+      <div className="bg">
+        <Row>
+          <Col s={4}>
+            <a href="#" className="brand-logo-signup">.apply(me)</a>
+          </Col>
+        </Row>
+        <div className="container">
+          <Card>
+            <h3>Sign In</h3>
+            <Modal isOpen={this.state.gitMergeModal} onRequestClose={this.closeMergeModal}>
+              <h3>Looks like your Github Email address already exists.</h3>
+              <p>You're seeing this because an account associated with your github email address, {this.state.mergeEmail} already exists within our authentication system. Please enter the password for that email address below, and we'll merge the two accounts.</p>
+              <br />
+              <form id="merge" onSubmit={this.GitMerge}>
+                <Input onChange={this.handleMergePassword} type="password" label="Email Password" />
+                <Button type="submit">Submit</Button>
+              </form>
+              <Button onClick={this.closeMergeModal}>Cancel</Button>
+            </Modal>
+            <Modal isOpen={this.state.resetPasswordModal} onRequestClose={this.closeResetPassModal}>
+              <h3>Reset Password</h3>
+              <p>Forgot your password? Don't worry, happens to the best of us. Just enter your email address below and we'll send you an email with a reset password link.</p>
+              <form onSubmit={this.resetPassword} >
+                <Input onChange={this.handleResetPassEmail} type="text" placeholder="pika@chu.com" />
+                <Button type="submit">Send Reset Link</Button>
+              </form>
+              <Button onClick={this.closeResetPassModal}> Close </Button>
+            </Modal>
+            <Modal isOpen={this.state.resetEmailSetModal} onRequestClose={this.closeResPassConModal}>
+              <h1>Email has been sent, please check your inbox</h1>
+              <br />
+              <Button onClick={this.closeResPassConModal}>Close</Button>
+            </Modal>
+            <form id="signIn" onSubmit={this.signIn}>
+              <Input id="email" onChange={this.handleEmail} type="email" label="E-Mail Address" />
+              <Input id="pw" onChange={this.handlePassword} type="password" label="Password" />
+              <Row>
+                <Col s={9}>
+                  <Button id="signin-button" type="submit">Sign In</Button>
+                </Col>
+                <Col s={3}>
+                  <Button onClick={this.openResetPassModal}>Reset Password</Button>
+                </Col>
+              </Row>
             </form>
-            <Button onClick={this.closeMergeModal}>Cancel</Button>
-          </Modal>
-          <Modal isOpen={this.state.resetPasswordModal} onRequestClose={this.closeResetPassModal}>
-            <h3>Reset Password</h3>
-            <p>Forgot your password? Don't worry, happens to the best of us. Just enter your email address below and we'll send you an email with a reset password link.</p>
-            <form onSubmit={this.resetPassword} >
-              <Input onChange={this.handleResetPassEmail} type="text" placeholder="pika@chu.com" />
-              <Button type="submit">Send Reset Link</Button>
-            </form>
-            <Button onClick={this.closeResetPassModal}> Close </Button>
-          </Modal>
-          <Modal isOpen={this.state.resetEmailSetModal} onRequestClose={this.closeResPassConModal}>
-            <h1>Email has been sent, please check your inbox</h1>
-            <br />
-            <Button onClick={this.closeResPassConModal}>Close</Button>
-          </Modal>
-          <form id="signIn" onSubmit={this.signIn}>
-            <Input id="email" onChange={this.handleEmail} type="email" label="E-Mail Address" />
-            <Input id="pw" onChange={this.handlePassword} type="password" label="Password" />
             <Row>
-              <Col s={9}>
-                <Button id="signin-button" type="submit">Sign In</Button>
-              </Col>
-              <Col s={3}>
-                <Button onClick={this.openResetPassModal}>Reset Password</Button>
+              <Col s={12}>
+                or sign in with
               </Col>
             </Row>
-          </form>
-          <Row>
-            <Col s={12}>
-              or sign in with
-            </Col>
-          </Row>
-          <Row>
-            <Col s={12}>
-              <Button id="GitAuthButton" onClick={this.gitAuth}>Login using Github</Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col s={12}>
-              Do not have an account? <Link to="/signup">Sign up!</Link>
-            </Col>
-          </Row>
-        </Card>
+            <Row>
+              <Col s={12}>
+                <Button id="GitAuthButton" onClick={this.gitAuth}>Login using Github</Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col s={12}>
+                Do not have an account? <Link to="/signup">Sign up!</Link>
+              </Col>
+            </Row>
+          </Card>
+        </div>
       </div>
     );
   }
