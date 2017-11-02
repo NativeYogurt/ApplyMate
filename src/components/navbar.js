@@ -32,7 +32,8 @@ class Nav extends React.Component {
     return (
       <nav className="blue-grey darken-2">
         <div className="nav-wrapper">
-          <a href="#" className="brand-logo">.apply(me)</a>
+          <a href="#" className="brand-logo">.apply(me)<span className="blinking-cursor">|</span>
+          </a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li
               className={this.state.active === 'dashboard' ? 'active' : ''}
