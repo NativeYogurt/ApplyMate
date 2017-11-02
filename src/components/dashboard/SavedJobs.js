@@ -92,8 +92,9 @@ class SavedJobs extends React.Component {
           <Button className="icon-button" icon="delete" onClick={() => this.props.deleteJob(this.props.jobPosting.jobId)} data-tip="Delete" />
         :
           <Button className="icon-button hidden" icon="delete" data-tip="Delete" />
-        }</td>
+        }
         <ReactTooltip />
+        </td>
       </tr>
     );
   }
