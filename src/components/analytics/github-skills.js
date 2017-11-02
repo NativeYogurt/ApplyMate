@@ -5,6 +5,7 @@ const GithubSkills = (props) => {
   const labels = Object.keys(props.githubSkills);
   const skillData = [];
   labels.forEach(skill => skillData.push(props.githubSkills[skill] * .000001));
+
   const data = {
     labels,
     datasets: [{
@@ -23,36 +24,37 @@ const GithubSkills = (props) => {
     ],
   };
 
+  const options = {
+    title: {
+      display: true,
+      text: 'Your Most Used Languages On Github (MegaBytes)',
+      fontSize: 25,
+    },
+    legend: {
+      display: true,
+      position: 'top',
+      labels: {
+        fontColor: '#000',
+      },
+    },
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: 0,
+      },
+    },
+    tooltips: {
+      enabled: true,
+    },
+    maintainAspectRatio: true,
+  };
+
   return (
     <Pie
       data={data}
-      options={{
-        title: {
-          display: true,
-          text: 'Your Most Used Languages On Github (MegaBytes)',
-          fontSize: 25,
-        },
-        legend: {
-          display: true,
-          position: 'top',
-          labels: {
-            fontColor: '#000',
-          },
-        },
-        layout: {
-          padding: {
-            left: 50,
-            right: 0,
-            bottom: 0,
-            top: 0,
-          },
-        },
-        tooltips: {
-          enabled: true,
-        },
-        maintainAspectRatio: true,
-      }
-    }
+      options={options}
     />
   );
 };

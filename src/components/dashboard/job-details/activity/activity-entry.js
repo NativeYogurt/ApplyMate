@@ -13,7 +13,7 @@ const ActivityEntry = (props) => {
           <div>{moment(props.activity.eventDate).format('MMM Do YYYY')} {props.activity.eventTime}</div>
           <div>{props.activity.eventParticipates}</div>
           <div><Link to={`/home/dashboard/${props.jobId}/activity/${props.activity.eventId}`}>Edit</Link></div>
-          <Button onClick={() => props.deleteActivity(props.activity.eventId)} icon="delete" data-tip="Delete" />
+          <Button onClick={() => props.deleteActivity(props.activity.eventId)} icon="delete" data-tip="Delete" className="delete icon-button" />
         </Card>
       </Col>
       <ReactTooltip />

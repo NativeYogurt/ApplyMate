@@ -65,9 +65,9 @@ class SavedJobs extends React.Component {
       <tr className="saved-job-posting" onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>
         <td>
           {this.state.hover || favoriteState ?
-            <Button className="favorite" icon={favoriteState ? 'favorite' : 'favorite_border'} onClick={() => this.props.favoriteJob(this.props.jobPosting.jobId)} />
+            <Button className="favorite" icon={favoriteState ? 'favorite' : 'favorite_border'} data-tip="Favorite" onClick={() => this.props.favoriteJob(this.props.jobPosting.jobId)} />
           :
-            <Button className="favorite hidden" icon={favoriteState ? 'favorite' : 'favorite_border'} />
+            <Button className="favorite hidden" icon={favoriteState ? 'favorite' : 'favorite_border'} data-tip="Favorite" />
           }
         </td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.company}</td>
@@ -84,17 +84,15 @@ class SavedJobs extends React.Component {
         </td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.dateApplied ? moment(this.props.jobPosting.dateApplied).format('MMM Do YY') : ''}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.location}</td>
-        <td><a href={this.props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank" data-tip="Job URL"><Icon>{activePosting ? 'bookmark' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" data-tip="Confirm URL" onClick={() => this.props.revertJobUrlToActive(this.props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
+        <td><a href={this.props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank" data-tip="Job URL"><Icon>{activePosting ? 'launch' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" data-tip="Confirm URL" onClick={() => this.props.revertJobUrlToActive(this.props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.skills.join(', ')}</td>
-
         <td>
         {this.state.hover ?
-          <Button className="icon-button" icon="delete" onClick={() => this.props.deleteJob(this.props.jobPosting.jobId)} data-tip="Delete" />
+          <Button className="delete icon-button" icon="delete" data-tip="Delete" onClick={() => this.props.deleteJob(this.props.jobPosting.jobId)} />
         :
-          <Button className="icon-button hidden" icon="delete" data-tip="Delete" />
-        }
+          <Button className="delete icon-button hidden" icon="delete" data-tip="Delete" />
+        }</td>
         <ReactTooltip />
-        </td>
       </tr>
     );
   }

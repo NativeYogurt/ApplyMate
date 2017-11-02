@@ -35,7 +35,7 @@ class TaskEntry extends React.Component {
         null}
         <div>{this.props.task.taskDesc}</div>
         <div>Due: {this.props.task.taskDueDate ? moment(this.props.task.taskDueDate).format('MMM Do YYYY') : ''}</div>
-        <Button icon="delete" onClick={() => this.props.deleteTask(this.props.task.taskId)} data-tip="Delete" />
+        <Button icon="delete" className="delete icon-button" onClick={() => this.props.deleteTask(this.props.task.taskId)} data-tip="Delete" />
         <ReactTooltip />
       </Card>
     );
