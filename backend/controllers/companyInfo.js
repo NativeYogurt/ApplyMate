@@ -3,6 +3,7 @@ const axios = require('axios');
 const request = require('request');
 const Twit = require('twit');
 
+// BBB in the end was just too inconsistent to use.
 exports.BBB = (req, res) => {
   axios.get('https://api.bbb.org/api/orgs/search', {
     params: { primaryOrganizationName: req.body.searchTerm },
@@ -24,27 +25,7 @@ exports.BBB = (req, res) => {
       res.send(err);
     });
 };
-exports.getCompanyUrl = (req, res) => {
-  axios.get('https://api.bbb.org/api/orgs/search', {
-    params: { primaryOrganizationName: req.body.searchTerm },
-    headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
-  })
-    .then(data => {
-      if (data.data.SearchResults.find(el => {
-        return el.OrganizationName === req.body.searchTerm;
-      }) !== undefined) {
-        res.send(data.data.SearchResults.find(el => {
-          return el.OrganizationName === req.body.searchTerm.BusinessURLs[0];
-        }));
-      } else {
-        res.send(data.data.SearchResults[0]);
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      res.send(err);
-    });
-};
+
 exports.Glassdoor = (req, res) => {
   axios.get('http://api.glassdoor.com/api/api.htm', {
     params: {
@@ -234,7 +215,7 @@ exports.Twitter = (req, res) => {
     }
   });
 };
-
+// This API got cut. It works tho.
 exports.Tradier = (req, res) => {
   axios.get(`http://d.yimg.com/autoc.finance.yahoo.com/autoc?query=${req.body.searchTerm}&lang=en`)
     .then(result => {
@@ -242,7 +223,8 @@ exports.Tradier = (req, res) => {
       if (Symbols.length === 0) return res.send('This Company is not publically traded.');
       axios.get('https://sandbox.tradier.com/v1/markets/history', {
         params: {
-          symbol: Symbols[1].symbol,
+          // maybe not so much this part. Need to make a recursive function like in the EDGAR file, instead of hard coding in [0]
+          symbol: Symbols[0].symbol,
           interval: 'weekly',
         },
         headers: {
@@ -255,7 +237,7 @@ exports.Tradier = (req, res) => {
     })
     .catch(err => console.error(err));
 };
-
+// Testing Data for Full Contact. 100 API calls a month blows.
 const FCGoogle = {
   status: 200,
   requestId: 'a93ca84c-9b59-4c8b-84d7-fd3c1274cef1',
