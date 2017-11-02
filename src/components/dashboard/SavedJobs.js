@@ -93,7 +93,6 @@ class SavedJobs extends React.Component {
           <Button className="delete icon-button hidden" icon="delete" data-tip="Delete" />
         }</td>
         <ReactTooltip />
-        </td>
       </tr>
     );
   }
