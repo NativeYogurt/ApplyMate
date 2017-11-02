@@ -96,8 +96,11 @@ class Signup extends React.Component {
           </Col>
         </Row>
         <div className="container">
-          <Card>
-            <Modal isOpen={this.state.existingEmailModal} onRequestClose={this.closeExistingEmailModal}>
+          <Card className="sign-up">
+            <Modal
+              isOpen={this.state.existingEmailModal}
+              onRequestClose={this.closeExistingEmailModal}
+            >
               <h3>That email already exists.</h3>
               <p>The email address, {this.state.signUpUsername}, already exists within our authentication system. Please <a href="/#/login" >click here </a> to return to the login page, or sign up using a different email address.</p>
               <Button onClick={this.closeExistingEmailModal}>Cancel</Button>
