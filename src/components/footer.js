@@ -27,7 +27,7 @@ class Footer extends React.Component {
             <div className="col s6">
               <h5 className="white-text">Links</h5>
               <ul className="footer-links">
-                <li class="left"
+                <li 
                   className={this.state.active === 'dashboard' ? 'active' : ''}
                   onClick={() => {this.setActive('dashboard')}}>
                   <Link to="/home/dashboard">Dashboard</Link>
