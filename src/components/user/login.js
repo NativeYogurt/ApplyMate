@@ -146,7 +146,7 @@ class Login extends React.Component {
           </Col>
         </Row>
         <div className="container">
-          <Card>
+          <Card className="sign-in">
             <h3>Sign In</h3>
             <Modal isOpen={this.state.gitMergeModal} onRequestClose={this.closeMergeModal}>
               <h3>Looks like your Github Email address already exists.</h3>
