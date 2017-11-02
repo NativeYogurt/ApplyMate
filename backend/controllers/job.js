@@ -1,7 +1,7 @@
 const express = require('express');
 const Sequelize = require('sequelize');
 const parser = require('body-parser');
-
+const axios = require('axios');
 const sequelize = require('../db/db.js');
 const Users = require('../models/User.js');
 const SavedJobs = require('../models/SavedJobs.js');
@@ -9,6 +9,8 @@ const extract = require('../utilities/extractSkills.js');
 const big5Scraper = require('../utilities/big5scraper.js');
 const iFrameScraper = require('../utilities/iframeScraper.js');
 const websiteChecker = require('../utilities/websiteChecker.js');
+const urlExists = require('url-exists');
+
 
 const Op = Sequelize.Op;
 
@@ -25,52 +27,104 @@ const extractSkills = (data) => {
     return [];
   }
 };
+const formatURL = (url) => {
+  if (url) {
+    if (url.lastIndexOf('//') !== -1) {
+      const int = url.lastIndexOf('//');
+      url = url.slice(int + 2);
+    }
+    if (url.lastIndexOf('www.') !== -1) {
+      const int = url.lastIndexOf('www.');
+      url = url.slice(int + 4);
+    }
 
-const addJobSkillsToDB = (skills, req, res) => {
-  const newJob = {
-    company: req.body.company,
-    jobTitle: req.body.jobTitle,
-    status: req.body.status,
-    dateApplied: req.body.dateApplied,
-    location: req.body.location,
-    url: req.body.url,
-    companyUrl: req.body.companyUrl,
-    skills,
-    notes: req.body.notes,
-    userId: req.body.userId,
-  };
-  SavedJobs.findOne({
-    where: {
-      userId: req.body.userId,
-      url: req.body.url,
-      deleted: false,
-    },
-  })
-    .then(job => {
-      if (job !== null) {
-        res.send(job);
-      } else {
-        SavedJobs
-          .build(newJob)
-          .save()
-          .then((job) => {
-            websiteChecker.takePicture(job.url, true, job.jobId)
-            res.send(job);
-          })
-          .catch((err) => {
-            throw err;
-          });
-      }
-    })
-    .catch((error) => {
-      throw error;
-    });
+    if (url.lastIndexOf('/') !== -1) {
+      const int = url.lastIndexOf('/');
+      url = url.slice(0, int);
+    }
+  }
+  return `http://${url}`;
 };
 
-//TODO OLD VERSON WILL DELETE AFTER NEW VERSION HAS BEEN TESTED OVER THE NEXT FEW DAYS
+const findCompanyURL = (company, URL, cb) => {
+  let companyUrl = '';
+  if (URL === '' || URL === undefined || URL === null) {
+    companyUrl = formatURL(`${company.replace(/\s/g, '')}.com`);
+  } else {
+    companyUrl = formatURL(URL);
+  }
+  urlExists(companyUrl, (err, exist) => {
+    if (exist) {
+      cb(companyUrl);
+    } else {
+      axios.get('https://api.bbb.org/api/orgs/search', {
+        params: { primaryOrganizationName: company },
+        headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
+      })
+        .then(data => {
+          if (data.data.TotalResults !== 0) {
+            if (data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]) {
+              cb(formatURL(data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]));
+            }
+          } else {
+            cb('http://Please enter Website for addiotional company info')
+          }
+        })
+        .catch(err2 => {
+          console.error(err2);
+        });
+    }
+  });
+};
+
+const addJobSkillsToDB = async (skills, req, res) => {
+  findCompanyURL(req.body.company, req.body.companyUrl, (companyUrl) => {
+    const newJob = {
+      company: req.body.company,
+      jobTitle: req.body.jobTitle,
+      status: req.body.status,
+      dateApplied: req.body.dateApplied,
+      location: req.body.location,
+      url: req.body.url,
+      // not sure if the slicing is necessary, but it is for test data.
+      companyUrl: companyUrl.slice(7).toLowerCase(), 
+      skills,
+      notes: req.body.notes,
+      userId: req.body.userId,
+    };
+    SavedJobs.findOne({
+      where: {
+        userId: req.body.userId,
+        url: req.body.url,
+        deleted: false,
+      },
+    })
+      .then(job => {
+        if (job !== null) {
+          res.send(job);
+        } else {
+          SavedJobs
+            .build(newJob)
+            .save()
+            .then((job) => {
+              websiteChecker.takePicture(job.url, true, job.jobId);
+              res.send(job);
+            })
+            .catch((err) => {
+              throw err;
+            });
+        }
+      })
+      .catch((error) => {
+        throw error;
+      });
+  });
+};
+
+// TODO OLD VERSON WILL DELETE AFTER NEW VERSION HAS BEEN TESTED OVER THE NEXT FEW DAYS
 
 // exports.handleJobAdd = (req, res) => {
-//   const big5 = ['amazon', 'google', 'microsoft', 'apple', 'facebook'];
+//   const big5 = ['amazon', 'google', 'mifacebook'];
 //   const big5Check = big5.some(company => req.body.url.includes(company));
 //   if (big5Check) {
 //     big5Scraper.big5Scraper(req.body.url)
@@ -162,7 +216,7 @@ exports.handleEditJob = (req, res) => {
     },
   })
     .then(data => {
-      res.send(data)
+      res.send(data);
       SavedJobs.findOne({
         where: {
           jobId: req.params.id,
@@ -170,7 +224,6 @@ exports.handleEditJob = (req, res) => {
       })
         .then(job => {
           websiteChecker.takePicture(job.url, true, job.jobId);
-          return;
         });
     })
     .catch(error => console.error(error));
@@ -202,7 +255,7 @@ exports.handleJobFavorite = (req, res) => {
 };
 
 exports.updateScreenshot = async (req, res) => {
-  const jobId = req.body.jobId
+  const jobId = req.body.jobId;
   const jobUrl = await SavedJobs.findOne({
     attributes: ['url'],
     where: {
