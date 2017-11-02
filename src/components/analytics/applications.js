@@ -9,18 +9,18 @@ const Applications = ({ savedJobs }) => {
     return a;
   }, {});
 
-  const numberOfSavedJobs = savedJobs.length;
-  const applicationData = [numberOfSavedJobs];
+  let numberOfSavedJobs = savedJobs.length;
+  let appliedCount = null;
   savedJobs.forEach((job) => {
-    let appliedCount = null;
-    if (job.status === 'applied') {
+    if (job.status !== 'wishlist') {
       appliedCount++;
-      applicationData.push(appliedCount);
+      numberOfSavedJobs--;
     }
   });
+  const applicationData = [numberOfSavedJobs, appliedCount];
 
   const data = {
-    labels: ['Saved Jobs', 'Applied'],
+    labels: ['Not Applied', 'Applied'],
     datasets: [{
       data: applicationData,
       backgroundColor: [
@@ -34,7 +34,7 @@ const Applications = ({ savedJobs }) => {
   const options = {
     title: {
       display: true,
-      text: 'Saved Jobs vs. Jobs Applied',
+      text: 'Applied Jobs vs Not Applied Jobs',
       fontSize: 25,
     },
     legend: {

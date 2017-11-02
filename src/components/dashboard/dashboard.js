@@ -178,7 +178,7 @@ class Dashboard extends React.Component {
       <div>
         <Row>
           <Col s={3}>
-            <h5>Job Applications</h5>
+            {this.props.savedJobs.length > 0 ? <h5>Job Applications</h5> : null}
           </Col>
           <Col s={8} />
           <Col s={1}>
