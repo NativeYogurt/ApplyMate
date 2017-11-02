@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Dropdown, Navbar, NavItem } from 'react-materialize';
-import Auth from './Auth';
+import Auth from './user/Auth';
 
 class Nav extends React.Component {
   constructor(props) {
