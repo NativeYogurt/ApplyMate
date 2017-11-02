@@ -62,7 +62,7 @@ const findCompanyURL = (company, URL, cb) => {
         headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
       })
         .then(data => {
-          if(data.data.TotalResults !== 0){
+          if (data.data.TotalResults !== 0) {
             if (data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]) {
               cb(formatURL(data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]));
             }
@@ -124,7 +124,7 @@ const addJobSkillsToDB = async (skills, req, res) => {
 // TODO OLD VERSON WILL DELETE AFTER NEW VERSION HAS BEEN TESTED OVER THE NEXT FEW DAYS
 
 // exports.handleJobAdd = (req, res) => {
-//   const big5 = ['amazon', 'google', 'microsoft', 'apple', 'facebook'];
+//   const big5 = ['amazon', 'google', 'mifacebook'];
 //   const big5Check = big5.some(company => req.body.url.includes(company));
 //   if (big5Check) {
 //     big5Scraper.big5Scraper(req.body.url)
