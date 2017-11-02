@@ -26,8 +26,6 @@ const GithubSkills = (props) => {
   return (
     <Pie
       data={data}
-      width={10}
-      height={3}
       options={{
         title: {
           display: true,

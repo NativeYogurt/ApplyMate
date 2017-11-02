@@ -59,12 +59,10 @@ const Applications = ({ savedJobs }) => {
   };
 
   return (
-    <Doughnut
-      data={data}
-      width={10}
-      height={3}
-      options={options}
-    />
+      <Doughnut
+        data={data}
+        options={options}
+      />
   );
 };
 

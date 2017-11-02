@@ -60,8 +60,6 @@ const JobStatus = ({ savedJobs }) => {
     <div>
       <Pie
         data={data}
-        width={10}
-        height={3}
         options={options}
       />
     </div>
