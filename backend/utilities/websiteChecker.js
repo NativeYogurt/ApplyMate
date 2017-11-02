@@ -102,9 +102,11 @@ const checkActivePosts = async () => {
       activeJobPosting: true,
     }
   })
+  let interval = 20000;
   jobIds.forEach(job => {
     if (job.screenShotUrl) {
-      comparePictures(job.jobId, job.url, job.screenShotUrl);
+       setTimeout(() => comparePictures(job.jobId, job.url, job.screenShotUrl), interval);
+       interval += 20000;
     }
   })
 }
