@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown, Card } from 'react-materialize';
 import $ from 'jquery';
+import ReactTooltip from 'react-tooltip';
 
 import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
@@ -189,6 +190,7 @@ class Dashboard extends React.Component {
                 className="red"
                 waves="light"
                 icon="add"
+                data-tip="Add"
               />}
               actions={
                 <div>
@@ -219,6 +221,7 @@ class Dashboard extends React.Component {
           </Col>
         </Row>
         {this.props.savedJobs.length > 0 ? jobList : emptyTable}
+        <ReactTooltip />
       </div>);
   }
 }
