@@ -119,6 +119,7 @@ table .dashboard, .dashboard th, .dashboard td {
 #refresh {
   cursor: pointer;
 }
+
 /* job-search-form */
 .job-search-form input[type="text"], .job-add-form input[type="date"], .job-edit-form select {
   padding: 8px;
