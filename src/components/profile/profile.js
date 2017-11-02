@@ -19,11 +19,7 @@ class Profile extends React.Component {
       password1: '',
       password2: '',
       emailReminder: this.props.emailReminder,
-<<<<<<< HEAD
       phoneNumber: this.props.phoneNumber || null,
-=======
-      phoneNumber: this.props.phoneNumber,
->>>>>>> featBranch60
       textReminder: this.props.phoneReminder,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
