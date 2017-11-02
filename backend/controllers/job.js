@@ -22,7 +22,7 @@ const extractSkills = (data) => {
     const text = data.join(' ');
     return extract.extractSkills(text);
   } else {
-    return [];  
+    return [];
   }
 };
 
@@ -211,11 +211,4 @@ exports.updateScreenshot = async (req, res) => {
   });
   const picture = await websiteChecker.takePicture(jobUrl.url, true, jobId);
   res.send('updated screenshot');
-  // SavedJobs.update({
-  //   favorite: req.body.favoriteStatus,
-  // }, {
-  //   where: {
-  //     jobId: req.body.jobId,
-  //   },
-  // })
 };
