@@ -205,4 +205,89 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .hidden {
   visibility: hidden;
+}  
+
+.page-footer {
+  background-color: #455a64;
+  margin-top: 9em;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: -20px;
+}
+
+.footer-links a {
+  color: white;
+}
+
+.active a {
+  color: #26a69a;
+}
+
+nav .brand-logo {
+  margin-left: 10px;
+  font-size: 1.8rem
+  /*font-family: 'Saira Extra Condensed', sans-serif;
+  font-family: 'Cuprum', sans-serif;
+  font-family: 'Bree Serif', serif;
+  font-family: 'Cantora One', sans-serif;
+  font-family: 'Righteous', cursive;*/
+}
+
+.blinking-cursor {
+  font-weight: 300;
+  font-size: 34px;
+  color: #2E3D48;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
 }
