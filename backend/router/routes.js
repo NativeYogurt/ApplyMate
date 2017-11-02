@@ -35,8 +35,7 @@ router.post('/Glassdoor', companyInfo.Glassdoor);
 router.post('/EDGAR', companyInfo.EDGAR);
 router.post('/fullContact', companyInfo.fullContact);
 router.post('/Twitter', companyInfo.Twitter);
-router.post('/Tradier', companyInfo.Tradier)
-router.post('/getCompanyUrl', companyInfo.getCompanyUrl);
+router.post('/Tradier', companyInfo.Tradier);
 router.post('/contacts', contact.handleContactAdd);
 router.get('/contacts', contact.handleGetContacts);
 router.get('/contacts/:id', contact.handleGetContact);

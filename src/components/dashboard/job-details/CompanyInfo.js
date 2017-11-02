@@ -40,6 +40,7 @@ class CompanyInfo extends React.Component {
       });
   }
 
+  // this ApiCall is for if we were using Tradier, Tradier and Edgar both use symbols, we can make one call at the top and pass it down.
   // yahooApiCall() {
   //   axios.post('/api/yahoo', { searchTerm: this.state.companyName })
   //     .then(data => {
@@ -60,14 +61,14 @@ class CompanyInfo extends React.Component {
         <div id="companyInformationRight">
           <Glassdoor companyName={this.state.companyName} />
           <EDGAR companyName={this.state.companyName} />
-          {/* Alex said no stock info... */}
+          {/* Alex said no stock info... T-T */}
           {/* <Tradier companyName={this.state.companyName} /> */}
         </div>
       </div>
     );
   }
 }
-{/* {<BBB companyName={this.state.companyName} />} */}
+
 CompanyInfo.propTypes = {
   company: PropTypes.string.isRequired,
 };
