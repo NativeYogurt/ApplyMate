@@ -203,6 +203,10 @@ table .dashboard, .dashboard th, .dashboard td {
   font-size: .8em;
 }
 
+.hidden {
+  visibility: hidden;
+}  
+
 .page-footer {
   background-color: #455a64;
   margin-top: 9em;
