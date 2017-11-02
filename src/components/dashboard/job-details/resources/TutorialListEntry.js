@@ -34,15 +34,19 @@ class TutorialListEntry extends React.Component {
   render() {
     return (
       <div className="Tutorial-list-entry">
-        <div>
-          <div className="Tutorial-list-entry-title">
-            {this.props.tutorial.title}
-          </div>
-          <div className="Tutorial-list-entry-detail">
-            <a href={this.props.tutorial.link} target="_blank">{this.props.tutorial.link}</a>
+        <Row>
+          <Col s={10}>
+            <div className="Tutorial-list-entry-title">
+              {this.props.tutorial.title}
+            </div>
+            <div className="Tutorial-list-entry-detail">
+              <a href={this.props.tutorial.link} target="_blank">{this.props.tutorial.link}</a>
+            </div>
+          </Col>
+          <Col s={2}>
             <Button onClick={this.handleSubmit} disabled={this.state.added}>Add</Button>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     );
   }
