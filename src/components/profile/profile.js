@@ -19,7 +19,7 @@ class Profile extends React.Component {
       password1: '',
       password2: '',
       emailReminder: this.props.emailReminder,
-      phoneNumber: this.props.phoneNumber || 2125551234,
+      phoneNumber: this.props.phoneNumber || null,
       textReminder: this.props.phoneReminder,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -231,7 +231,8 @@ class Profile extends React.Component {
                 </Button>}
               </Col>
               <Col s={6}>
-                Interview Text Reminder: <br /> {textReminderRadioButtons}
+                {this.props.phoneNumber ? <div > Interview Text Reminder: <br /> {textReminderRadioButtons} </div> :
+                <div className="centerText" > Enter your phone number above, then refresh the page to enable text notifications.</div>}
               </Col>
             </Row>
             <Button type="submit">Submit</Button>
