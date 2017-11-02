@@ -18,8 +18,12 @@ const x = Xray();
 
 
 const extractSkills = (data) => {
-  const text = data.join(' ');
-  return extract.extractSkills(text);
+  if (data) {
+    const text = data.join(' ');
+    return extract.extractSkills(text);
+  } else {
+    return [];  
+  }
 };
 
 const addJobSkillsToDB = (skills, req, res) => {
