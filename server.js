@@ -43,7 +43,7 @@ const server = app.listen(process.env.PORT || 3000, () => {
   console.log('Example app listening at http://%s:%s', host, port);
 });
 
-new CronJob('30 16 * * *', function() {
+new CronJob('30 03 * * *', function() {
   console.log('You will see this message every day at 4:30pm et');
   Github.cronGitHubUpdate();
   Emailer.sendInterviewReminder();

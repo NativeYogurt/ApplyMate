@@ -187,6 +187,7 @@ class Dashboard extends React.Component {
               trigger={<Button
                 id="add"
                 floating
+                medium
                 className="red"
                 waves="light"
                 icon="add"

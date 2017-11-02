@@ -36,7 +36,7 @@ const takePicture = async (url, save, jobId) => {
   try {
     const dimensions = await nightmare
       .goto(url)
-      .wait(5000)
+      .wait(3000)
       .wait('body')
       .evaluate(function() {
           var body = document.querySelector('body');
@@ -49,7 +49,7 @@ const takePicture = async (url, save, jobId) => {
     const picture = await nightmare
       .viewport(dimensions.width, dimensions.height)
       .goto(url)
-      .wait(5000)
+      .wait(3000)
       .screenshot()
       .end();
 
@@ -81,7 +81,7 @@ const comparePictures = async (jobId, jobUrl, screenShotUrl) => {
     let livePictureBuffer = await takePicture(jobUrl, null, jobId)
     let dbPictureData = await rp.get(screenShotUrl)
     var diff = resemble(dbPictureData).compareTo(livePictureBuffer).ignoreColors().onComplete(function(data){
-      if (data.misMatchPercentage > 10.0) {
+      if (data.misMatchPercentage > 30.0) {
         console.log(data.misMatchPercentage)
         disableJobPost(jobId);
       }
@@ -102,11 +102,22 @@ const checkActivePosts = async () => {
       activeJobPosting: true,
     }
   })
-  jobIds.forEach(job => {
+  let index = 0;
+  const loopThroughJobs = (index) => {
+    let job = jobIds[index]
     if (job.screenShotUrl) {
-      comparePictures(job.jobId, job.url, job.screenShotUrl);
+      comparePictures(job.jobId, job.url, job.screenShotUrl)
     }
-  })
+  }
+
+  let interval = setInterval(() => {
+    loopThroughJobs(index)
+    index++;
+    if (index === jobIds.length) {
+      clearInterval(interval);
+    }
+  }, 20000)
+
 }
 
 

@@ -35,7 +35,9 @@
 .btn-space {
   padding-left: 8px;
 }
-
+.btn-floating {
+  margin-top: 10px;
+}
 .icon-button, .favorite {
   padding: 2px 10px 2px 10px;
 }
