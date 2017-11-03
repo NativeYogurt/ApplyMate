@@ -9,7 +9,7 @@ const extract = require('../utilities/extractSkills.js');
 const big5Scraper = require('../utilities/big5scraper.js');
 const iFrameScraper = require('../utilities/iframeScraper.js');
 const websiteChecker = require('../utilities/websiteChecker.js');
-const urlExists = require('url-exists');
+const isUp = require('is-Up');
 
 
 const Op = Sequelize.Op;
@@ -23,9 +23,8 @@ const extractSkills = (data) => {
   if (data) {
     const text = data.join(' ');
     return extract.extractSkills(text);
-  } else {
-    return [];
   }
+  return [];
 };
 const formatURL = (url) => {
   if (url) {
@@ -43,7 +42,7 @@ const formatURL = (url) => {
       url = url.slice(0, int);
     }
   }
-  return `http://${url}`;
+  return url;
 };
 
 const findCompanyURL = (company, URL, cb) => {
@@ -53,28 +52,29 @@ const findCompanyURL = (company, URL, cb) => {
   } else {
     companyUrl = formatURL(URL);
   }
-  urlExists(companyUrl, (err, exist) => {
-    if (exist) {
-      cb(companyUrl);
-    } else {
-      axios.get('https://api.bbb.org/api/orgs/search', {
-        params: { primaryOrganizationName: company },
-        headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
-      })
-        .then(data => {
-          if (data.data.TotalResults !== 0) {
-            if (data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]) {
-              cb(formatURL(data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]));
-            }
-          } else {
-            cb('http://Please enter Website for addiotional company info')
-          }
+  isUp(companyUrl)
+    .then(exist => {
+      if (exist) {
+        cb(companyUrl);
+      } else {
+        axios.get('https://api.bbb.org/api/orgs/search', {
+          params: { primaryOrganizationName: company },
+          headers: { Authorization: `Bearer ${process.env.BBB_TOKEN}` },
         })
-        .catch(err2 => {
-          console.error(err2);
-        });
-    }
-  });
+          .then(data => {
+            if (data.data.TotalResults !== 0) {
+              if (data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]) {
+                cb(formatURL(data.data.SearchResults.find(el => el.BusinessURLs !== null).BusinessURLs[0]));
+              }
+            } else {
+              cb('http://Please enter Website for addiotional company info');
+            }
+          })
+          .catch(err2 => {
+            console.error(err2);
+          });
+      }
+    });
 };
 
 const addJobSkillsToDB = async (skills, req, res) => {
@@ -86,8 +86,7 @@ const addJobSkillsToDB = async (skills, req, res) => {
       dateApplied: req.body.dateApplied,
       location: req.body.location,
       url: req.body.url,
-      // not sure if the slicing is necessary, but it is for test data.
-      companyUrl: companyUrl.slice(7).toLowerCase(), 
+      companyUrl,
       skills,
       notes: req.body.notes,
       userId: req.body.userId,
