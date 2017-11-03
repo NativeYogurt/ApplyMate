@@ -117,11 +117,11 @@
 }
 
 .alert {
-    background-color: green; /* Red */
+    background-color: #26a69a; /* Red */
 }
 
 .error {
-  background-color: #f44336;
+  background-color: rgba(222,80,55,1);
 }
 
 /* dashboard table */
@@ -372,4 +372,10 @@ nav .brand-logo {
 
 input:not([type]), input[type=text]:not(.browser-default) {
   border-bottom: 1px solid lightgray;
+}
+
+#skill-header > h2 {
+  text-align: center;
+  text-transform: capitalize;
+  margin: -10px 0px;
 }

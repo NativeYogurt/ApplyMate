@@ -60,8 +60,11 @@ class SkillEntry extends React.Component {
   }
   render() {
     return (
+      <div>
+      <tr>
+        <th id="skill-header"><h2>{this.props.skill}</h2></th>
+      </tr>
       <tr className="skill-list-entry">
-        <td className="skill"><h2>{this.props.skill}</h2></td>
         <td className="video">
           <VideoList
             videos={this.state.videos}
@@ -81,6 +84,8 @@ class SkillEntry extends React.Component {
           />
         </td>
       </tr>
+      <hr />
+      </div>
     );
   }
 }
