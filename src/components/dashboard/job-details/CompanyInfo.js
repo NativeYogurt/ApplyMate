@@ -17,7 +17,7 @@ class CompanyInfo extends React.Component {
       companyUrl: this.props.companyUrl,
       // stockSymbs: [[]],
       twitterData: [],
-      twitterPic: '/imgs/TempHeader.jpg',
+      twitterPic: '/imgs/TempHeader.png',
     };
     this.twitterApiCall = this.twitterApiCall.bind(this);
     // this.yahooApiCall = this.yahooApiCall.bind(this);

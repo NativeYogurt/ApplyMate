@@ -51,26 +51,25 @@ class Glassdoor extends React.Component {
 
   render() {
     return (
-      <div id="GlassdoorComponent">
+      <div>
         {!this.state.companyName ? (
           <div className="centerText" > This company is not on Glassdoor </div>
           ) : (
-            <div className="centerText" >
-              {this.state.companyName} @ {this.state.website}, with {this.state.ratingNum} ratings. &nbsp; &nbsp; {'    '}
-              <a href="https://www.glassdoor.com/index.htm"> {'  '} powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
+            <div id="GlassdoorComponent">
+              <div className="centerText" >
+                {this.state.companyName} @ {this.state.website}, with {this.state.ratingNum} ratings. &nbsp; &nbsp; {'    '}
+                <a href="https://www.glassdoor.com/index.htm"> {'  '} powered by <img src="https://www.glassdoor.com/static/img/api/glassdoor_logo_80.png" title="Job Search" alt="Powered by Glassdoor" /></a>
+              </div>
+              <div id="glassdoorDoughnuts">
+                <CompletionDoughnut name="Recommend To Friend" rating={this.state.recommendToFriendRating} id="GDD1" size="195px" />
+                <CompletionDoughnut name="Overall Rating" rating={this.state.overallRating} id="GDD2" size="223px" />
+                <CompletionDoughnut name="CEO Approval" rating={this.state.bossApprove} id="GDD3" size="195px" />
+              </div>
+              <div>
+                <GDBarGraph data={this.state.barVals} labels={this.state.barKeys} companyName={this.state.companyName} />
+              </div>
             </div>
           )}
-        <br />
-        <div id="glassdoorDoughnuts">
-          <CompletionDoughnut name="Recommend To Friend" rating={this.state.recommendToFriendRating} id="GDD1" size="195px" />
-          <CompletionDoughnut name="Overall Rating" rating={this.state.overallRating} id="GDD2" size="223px" />
-          <CompletionDoughnut name="CEO Approval" rating={this.state.bossApprove} id="GDD3" size="195px" />
-        </div>
-        <div>
-          <GDBarGraph data={this.state.barVals} labels={this.state.barKeys} companyName={this.state.companyName} />
-        </div>
-
-
       </div>
     );
   }

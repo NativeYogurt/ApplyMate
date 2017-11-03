@@ -151,11 +151,11 @@ exports.fullContact = (req, res) => {
     if (ret.globalRanking) ret.globalRanking = ret.globalRanking.rank;
     return ret;
   };
-  if (req.body.searchTerm === 'google.com') res.send(format(FCGoogle));
-  if (req.body.searchTerm === 'amazon.com') res.send(format(FCAmazon));
-  if (req.body.searchTerm === 'facebook.com') res.send(format(FCFacebook));
-  if (req.body.searchTerm === 'microsoft.com') res.send(format(FCMicrosoft));
-  if (req.body.searchTerm === 'apple.com') res.send(format(FCApple));
+  if (req.body.searchTerm === 'Google.com') res.send(format(FCGoogle));
+  if (req.body.searchTerm === 'Amazon.com') res.send(format(FCAmazon));
+  if (req.body.searchTerm === 'Facebook.com') res.send(format(FCFacebook));
+  if (req.body.searchTerm === 'Microsoft.com') res.send(format(FCMicrosoft));
+  if (req.body.searchTerm === 'Apple.com') res.send(format(FCApple));
 // DISABLED FOR TESTING, ONLY 100 API CALLS A MONTH
 //   axios({
 //     method: 'GET',
