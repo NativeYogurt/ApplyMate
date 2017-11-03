@@ -68,6 +68,27 @@
   background-size: cover;
 }
 
+/*.bg-job {
+  background-color: #E2C2C3;
+  background: url(https://static.pexels.com/photos/399161/pexels-photo-399161.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  margin-top: -15px;
+  margin-bottom: -20px;
+}*/
+
+.parallax-container {
+  height: 200px;
+  margin-bottom: -20px;
+}
+
+.parallax img {
+  width: 100%;
+
+}
+
 .sign-up, .sign-in {
  width:800px;
  margin: auto;
