@@ -26,7 +26,7 @@ class SavedJobs extends React.Component {
   onMouseLeaveHandler() {
     this.setState({ hover: false });
   }
-  onMouseEnterHandler(){
+  onMouseEnterHandler() {
     this.setState({ hover: true });
   }
 

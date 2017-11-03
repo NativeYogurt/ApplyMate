@@ -51,7 +51,7 @@ class CompanyInfo extends React.Component {
   // }
 
   render() {
-    return ( 
+    return (
       <div id="companyInformationTab">
         <TwitterBanner twitterPic={this.state.twitterPic} />
         <div id="companyInformationLeft">

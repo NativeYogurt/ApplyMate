@@ -82,18 +82,13 @@ class Signup extends React.Component {
       existingEmailModal: false,
     });
   }
-  // handleTest(e) {
-  //   e.preventDefault();
-  //   this.props.TESTBUTTON();
-  // }
 
   render() {
     return (
       <div className="bg">
         <Row>
           <Col s={4}>
-            <a href="#" className="brand-logo-signup">.apply(me)<span className="blinking-cursor-signup">|</span>
-            </a>
+          <h3></h3>
           </Col>
         </Row>
         <div className="container">
@@ -107,7 +102,8 @@ class Signup extends React.Component {
               <Button onClick={this.closeExistingEmailModal}>Cancel</Button>
             </Modal>
             <div id="temp">
-              <h3>Sign Up</h3>
+              <h3 className="logo"><span className="login-logo">.apply(me)</span></h3>
+              <h5>Sign Up</h5>
               <form id="signUp" onSubmit={this.handleSignUp}>
                 <Row>
                   <Input s={6} onChange={this.handleFirstName} type="text" label="First Name" />

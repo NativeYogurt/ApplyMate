@@ -136,7 +136,7 @@ class JobEdit extends React.Component {
             <Col s={6}>
               <label htmlFor="status">
                 Status:
-                <select className="browser-default" name="status" value={this.state.status} onChange={this.onChangeStatus}>
+                <select id="status-select" className="browser-default" name="status" value={this.state.status} onChange={this.onChangeStatus}>
                   <option value="wishlist">Wishlist</option>
                   <option value="applied">Applied</option>
                   <option value="phone">Phone</option>

@@ -43,7 +43,7 @@ class Contacts extends React.Component {
         <div>
           {this.state.contacts.length === 0 ? (
             <div>
-              <Icon large>contacts</Icon>
+              <Icon medium>contacts</Icon>
               <div>Save contact information here for people related to this job
                  application or company.
               </div>

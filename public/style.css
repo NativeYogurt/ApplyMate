@@ -165,6 +165,7 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .job-search-inputs {
   text-align: center;
+  margin-top: 30px;
 }
 
 /* file-path-wrapper */
@@ -303,11 +304,6 @@ table .dashboard, .dashboard th, .dashboard td {
 nav .brand-logo {
   margin-left: 10px;
   font-size: 1.8rem
-  /*font-family: 'Saira Extra Condensed', sans-serif;
-  font-family: 'Cuprum', sans-serif;
-  font-family: 'Bree Serif', serif;
-  font-family: 'Cantora One', sans-serif;
-  font-family: 'Righteous', cursive;*/
 }
 
 .blinking-cursor {
@@ -366,12 +362,22 @@ nav .brand-logo {
   }
 }
 
-.login-logo {
-  font-size: 50px;
+.logo {
   text-align: center;
+  font-family: Squada One;
+  color: #26a69a;
+  font-size: 70px;
 }
 
-#job-dashboard-status {
+.login-logo {
+  text-shadow: 2px 2px lightgrey;
+}
+
+.logo-slogan {
+  font-size: 24px;
+}
+
+#status-select {
   border: 1px solid lightgray;
 }
 
