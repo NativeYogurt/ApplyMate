@@ -8,6 +8,7 @@ const ProfileNav = () => {
       <ul className="tabs">
         <li className="tab"><Link to="/home/profile">My Info</Link></li>
         <li className="tab"><Link to="/home/profile/resume">Resume</Link></li>
+        <li className="tab"><Link to="/home/profile/password">Password</Link></li>
       </ul>
     </div>
   );
