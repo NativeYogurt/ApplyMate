@@ -345,8 +345,9 @@ nav .brand-logo {
   }
 }
 
-.login-blinking-cursor {
-
+.login-logo {
+  font-size: 50px;
+  text-align: center;
 }
 
 #job-dashboard-status {
