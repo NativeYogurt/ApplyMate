@@ -231,7 +231,7 @@ class Profile extends React.Component {
               </Col>
               <Col s={6}>
                 {this.props.phoneNumber ? <div > Interview Text Reminder: <br /> {textReminderRadioButtons} </div> :
-                <div className="centerText" > Enter your phone number above, then refresh the page to enable text notifications.</div>}
+                <div className="centerText" >  Add your number and submit to enable text notifications!</div>}
               </Col>
             </Row>
             <Button type="submit">Submit</Button>

@@ -163,32 +163,25 @@ exports.fullContact = (req, res) => {
     if (ret.globalRanking) ret.globalRanking = ret.globalRanking.rank;
     return ret;
   };
-  if (req.body.searchTerm === 'google.com') res.send(format(FCGoogle));
-  if (req.body.searchTerm === 'amazon.com') res.send(format(FCAmazon));
-  if (req.body.searchTerm === 'facebook.com') res.send(format(FCFacebook));
-  if (req.body.searchTerm === 'microsoft.com') res.send(format(FCMicrosoft));
-  if (req.body.searchTerm === 'apple.com') res.send(format(FCApple));
-// DISABLED FOR TESTING, ONLY 100 API CALLS A MONTH
-//   axios({
-//     method: 'GET',
-//     url: 'https://api.fullcontact.com/v2/company/lookup.json',
-//     params: {
-//       domain: req.body.searchTerm,
-//       apiKey: process.env.FULLCONTACT_APIKEY,
-//     },
-//   })
-//     .then(data => {
-//       const obj = {};
-//       obj.name = data.data.organization.name;
-//       obj.employees = data.data.organization.approxEmployees;
-//       obj.founded = data.data.organization.founded;
-//       obj.twitter = data.data.socialProfiles.find((el) => { return el.typeId === 'twitter'; });
-//       obj.facebook = data.data.socialProfiles.find((el) => { return el.typeId === 'facebook'; });
-//       obj.linkedIn = data.data.socialProfiles.find((el) => { return el.typeId === 'linkedincompany'; });
-//       obj.angellist = data.data.socialProfiles.find((el) => { return el.typeId === 'angellist'; });
-//       res.send(obj);
-//     })
-//     .catch(err => alert(err));
+// DISABLE FOR LIVE
+  // if (req.body.searchTerm === 'google.com') res.send(format(FCGoogle));
+  // if (req.body.searchTerm === 'amazon.com') res.send(format(FCAmazon));
+  // if (req.body.searchTerm === 'facebook.com') res.send(format(FCFacebook));
+  // if (req.body.searchTerm === 'microsoft.com') res.send(format(FCMicrosoft));
+  // if (req.body.searchTerm === 'apple.com') res.send(format(FCApple));
+// DISABLE FOR TESTING, ONLY 100 API CALLS A MONTH
+  axios({
+    method: 'GET',
+    url: 'https://api.fullcontact.com/v2/company/lookup.json',
+    params: {
+      domain: req.body.searchTerm,
+      apiKey: process.env.FULLCONTACT_APIKEY,
+    },
+  })
+    .then(data => {
+      res.send(format(data.data));
+    })
+    .catch(err => alert(err));
 };
 exports.Twitter = (req, res) => {
   const T = new Twit({
