@@ -345,6 +345,10 @@ nav .brand-logo {
   }
 }
 
+.login-blinking-cursor {
+
+}
+
 #job-dashboard-status {
   border: 1px solid lightgray;
 }

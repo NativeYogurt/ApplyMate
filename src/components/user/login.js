@@ -143,12 +143,14 @@ class Login extends React.Component {
     return (
       <div className="bg">
         <Row>
-          <Col s={4} />
+          <Col s={4}>
+          <h3></h3>
+          </Col>
         </Row>
         <div className="container">
           <Card className="sign-in">
-            <p>.apply(me)<span className="blinking-cursor">|</span></p>
-            <h4>Sign In</h4>
+            <h4>.apply(me)<span className="login-blinking-cursor">|</span></h4>
+            <h5>Sign In</h5>
             <Modal isOpen={this.state.gitMergeModal} onRequestClose={this.closeMergeModal}>
               <h3>Looks like your Github Email address already exists.</h3>
               <p>You're seeing this because an account associated with your github email address, {this.state.mergeEmail} already exists within our authentication system. Please enter the password for that email address below, and we'll merge the two accounts.</p>
