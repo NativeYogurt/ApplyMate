@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Row, Col, Card, Button, Input } from 'react-materialize';
 import ProfileNav from './profile-nav';
 
-class Security extends React.Component {
+class Password extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,8 +62,8 @@ class Security extends React.Component {
   }
 }
 
-Security.propTypes = {
+Password.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default Security;
+export default Password;

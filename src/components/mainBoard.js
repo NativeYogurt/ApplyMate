@@ -8,7 +8,7 @@ import Dashboard from './dashboard/dashboard';
 import Resources from './resources/resources';
 import Profile from './profile/profile';
 import Resume from './profile/resume';
-import Security from './profile/security';
+import Password from './profile/password';
 import Analytics from './analytics/analytics';
 import SearchJobs from './job-search/SearchJobs';
 import JobHome from './dashboard/job-details/JobHome';
@@ -243,9 +243,9 @@ class Main extends React.Component {
           )}
         />
         <Route
-          path="/home/profile/security"
+          path="/home/profile/password"
           render={() => (
-            <Security
+            <Password
               userId={this.props.userId}
             />
           )}
