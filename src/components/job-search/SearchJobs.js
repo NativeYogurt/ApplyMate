@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Row, Col, Button, Input } from 'react-materialize';
+import { Row, Col, Button, Input, Parallax } from 'react-materialize';
 
 import JobSearchResult from './JobSearchResult';
 
@@ -53,7 +53,8 @@ class SearchJobs extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="bg-job">
+        <Parallax imageSrc="https://static.pexels.com/photos/399161/pexels-photo-399161.jpeg" />
         <div className="job-search-inputs">
           <h4>Jobs. All day.</h4>
           <h5>Go get them!</h5>
@@ -82,6 +83,7 @@ class SearchJobs extends React.Component {
             }) : null}
           </Row>
         </div>
+        <Parallax imageSrc="https://static.pexels.com/photos/399161/pexels-photo-399161.jpeg" />
       </div>
     );
   }
