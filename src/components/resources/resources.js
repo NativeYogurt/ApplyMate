@@ -54,7 +54,7 @@ class Resources extends React.Component {
             <Row className="center">
               <Col s={12}>
                 <Icon medium>save</Icon>
-                <p>Add resources from Job Details!</p>
+                <p>Add your resume and save jobs to get Resources!</p>
               </Col>
             </Row>
           </div>

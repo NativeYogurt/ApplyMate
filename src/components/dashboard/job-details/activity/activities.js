@@ -46,7 +46,7 @@ class Activity extends React.Component {
         <div>
           {this.state.activities.length === 0 ? (
             <div>
-              <Icon large>event</Icon>
+              <Icon medium>event</Icon>
               <div>Add Interview for this job.
               </div>
             </div>
