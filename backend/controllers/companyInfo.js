@@ -62,7 +62,6 @@ exports.EDGAR = (req, res) => {
     .then(result => {
       const Symbols = result.data.ResultSet.Result;
       if (Symbols.length === 0) return res.send('This Company is not publically traded.');
-
       function edgarCall(i) {
         axios.get('http://edgaronline.api.mashery.com/v2/corefinancials/qtr', {
           params: {
@@ -81,7 +80,6 @@ exports.EDGAR = (req, res) => {
               const arr = [];
               const array = [];
               for (let i = 0; i < data.data.result.totalrows; i++) {
-
                 arr.push(data.data.result.rows[i].values.filter(item => {
                   if (!obj.symb) {
                     if (item.field === 'primarysymbol') obj.symb = item.value;
@@ -94,17 +92,31 @@ exports.EDGAR = (req, res) => {
                   }
                 }));
               }
-              for (let i = 0; i < arr.length; i++) {
-                obj.period.push(arr[i][0].value);
-                obj.income.push(arr[i][1].value);
-                obj.RD.push(arr[i][2].value);
-                obj.rev.push(arr[i][3].value);
+              if (arr[0].length === 4) {
+                for (let i = 0; i < arr.length; i++) {
+                  obj.period.push(arr[i][0].value);
+                  obj.income.push(arr[i][1].value);
+                  obj.RD.push(arr[i][2].value);
+                  obj.rev.push(arr[i][3].value);
+                }
+                obj.period.reverse();
+                obj.income.reverse();
+                obj.RD.reverse();
+                obj.rev.reverse();
+                return res.send(obj);
               }
-              obj.period.reverse();
-              obj.income.reverse();
-              obj.RD.reverse();
-              obj.rev.reverse();
-              return res.send(obj);
+              if (arr[0].length === 3) {
+                for (let i = 0; i < arr.length; i++) {
+                  obj.period.push(arr[i][0].value);
+                  obj.income.push(arr[i][1].value);
+                  obj.rev.push(arr[i][2].value);
+                }
+                obj.period.reverse();
+                obj.income.reverse();
+                obj.rev.reverse();
+                console.log(obj)
+                return res.send(obj);
+              }
             } else if (++i <= Symbols.length) {
               setTimeout(() => {
                 edgarCall(i);
@@ -151,11 +163,11 @@ exports.fullContact = (req, res) => {
     if (ret.globalRanking) ret.globalRanking = ret.globalRanking.rank;
     return ret;
   };
-  if (req.body.searchTerm === 'Google.com') res.send(format(FCGoogle));
-  if (req.body.searchTerm === 'Amazon.com') res.send(format(FCAmazon));
-  if (req.body.searchTerm === 'Facebook.com') res.send(format(FCFacebook));
-  if (req.body.searchTerm === 'Microsoft.com') res.send(format(FCMicrosoft));
-  if (req.body.searchTerm === 'Apple.com') res.send(format(FCApple));
+  if (req.body.searchTerm === 'google.com') res.send(format(FCGoogle));
+  if (req.body.searchTerm === 'amazon.com') res.send(format(FCAmazon));
+  if (req.body.searchTerm === 'facebook.com') res.send(format(FCFacebook));
+  if (req.body.searchTerm === 'microsoft.com') res.send(format(FCMicrosoft));
+  if (req.body.searchTerm === 'apple.com') res.send(format(FCApple));
 // DISABLED FOR TESTING, ONLY 100 API CALLS A MONTH
 //   axios({
 //     method: 'GET',
@@ -191,6 +203,7 @@ exports.Twitter = (req, res) => {
     exclude_replies: true,
   };
   T.get('statuses/user_timeline', params, (err, tweets, response) => {
+    console.log(tweets[0].user.screen_name);
     const arr = [];
     if (tweets[0]) {
       for (let i = 0; i < tweets.length; i++) {
