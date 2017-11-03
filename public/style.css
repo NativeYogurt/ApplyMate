@@ -366,6 +366,11 @@ nav .brand-logo {
   }
 }
 
+.login-logo {
+  font-size: 50px;
+  text-align: center;
+}
+
 #job-dashboard-status {
   border: 1px solid lightgray;
 }

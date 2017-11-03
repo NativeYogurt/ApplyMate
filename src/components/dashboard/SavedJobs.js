@@ -77,7 +77,7 @@ class SavedJobs extends React.Component {
             <option value="wishlist">Wishlist</option>
             <option value="applied">Applied</option>
             <option value="phone">Phone</option>
-            <option value="onSite">OnSite</option>
+            <option value="onSite">On Site</option>
             <option value="rejected">Rejected</option>
             <option value="offer">Offer</option>
           </select>
