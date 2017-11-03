@@ -23,6 +23,7 @@ class EDGAR extends React.Component {
   EDGARApiCall() {
     axios.post('/api/EDGAR', { searchTerm: this.state.searchTerm })
       .then(response => {
+        console.log('wtf bro', response.data)
         this.setState({
           obj: response.data,
         });
