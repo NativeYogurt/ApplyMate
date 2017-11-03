@@ -96,15 +96,16 @@ class Resources extends React.Component {
   }
   render() {
     const hasMissingSkills = (
-      <div className="alert">
+      <div className="error">
         You are missing the following skills required by the job.
       </div>
     );
     const noMissingSkills = (
-      <div className="alert">
+      <div className="error">
         You have all the skills required by the job.
       </div>
     );
+
     // console.log('missing skills', this.props.missingSkills);
     return (
       <div>
@@ -114,7 +115,6 @@ class Resources extends React.Component {
             <table className="bordered">
               <thead>
                 <tr>
-                  <th className="skill">Skill</th>
                   <th className="video">Tutorials</th>
                 </tr>
               </thead>
