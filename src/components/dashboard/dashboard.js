@@ -145,7 +145,7 @@ class Dashboard extends React.Component {
           <Col s={2}>
             <select id="job-dashboard-status" className="browser-default" onChange={this.onChangeSortBy}>
               <option value="status">Status</option>
-              <option value="dateApplied">DateApplied</option>
+              <option value="dateApplied">Date Applied</option>
               <option value="favorite">Favorites</option>
               <option value="location">Location</option>
             </select>
@@ -208,7 +208,7 @@ class Dashboard extends React.Component {
                   <option value="wishlist">Wishlist</option>
                   <option value="applied">Applied</option>
                   <option value="phone">Phone</option>
-                  <option value="onSite">OnSite</option>
+                  <option value="onSite">On Site</option>
                   <option value="rejected">Rejected</option>
                   <option value="offer">Offer</option>
                 </Input>
