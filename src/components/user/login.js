@@ -149,7 +149,7 @@ class Login extends React.Component {
         </Row>
         <div className="container">
           <Card className="sign-in">
-            <h4>.apply(me)<span className="login-blinking-cursor">|</span></h4>
+            <h4>.apply(me)<span className="blinking-cursor">|</span></h4>
             <h5>Sign In</h5>
             <Modal isOpen={this.state.gitMergeModal} onRequestClose={this.closeMergeModal}>
               <h3>Looks like your Github Email address already exists.</h3>
@@ -187,11 +187,7 @@ class Login extends React.Component {
                 </Col>
               </Row>
             </form>
-            <Row>
-              <Col s={12}>
-                or sign in with
-              </Col>
-            </Row>
+            <br />
             <Row>
               <Col s={12}>
                 <Button id="GitAuthButton" onClick={this.gitAuth}>Login using Github</Button>
