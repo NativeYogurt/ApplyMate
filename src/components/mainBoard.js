@@ -8,6 +8,7 @@ import Dashboard from './dashboard/dashboard';
 import Resources from './resources/resources';
 import Profile from './profile/profile';
 import Resume from './profile/resume';
+import Password from './profile/password';
 import Analytics from './analytics/analytics';
 import SearchJobs from './job-search/SearchJobs';
 import JobHome from './dashboard/job-details/JobHome';
@@ -118,14 +119,7 @@ class Main extends React.Component {
   }
 
   addJob(job) {
-    fetch('/api/job', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(job),
-    }).then(res => res.json())
+    axios.post('/api/job', job)
       .then((data) => {
         this.getJobs();
         this.getJobComparison(data.jobId);
@@ -245,6 +239,14 @@ class Main extends React.Component {
               getUserInfo={this.getUserInfo}
               userResume={this.state.userResume}
               clearResume={this.clearResume}
+            />
+          )}
+        />
+        <Route
+          path="/home/profile/password"
+          render={() => (
+            <Password
+              userId={this.props.userId}
             />
           )}
         />

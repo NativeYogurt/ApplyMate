@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col, Icon, Button, Input } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
+import Error from '../../errorBanner';
+
 class ActivityAdd extends React.Component {
   constructor(props) {
     super(props);
@@ -10,6 +12,7 @@ class ActivityAdd extends React.Component {
       eventDate: '',
       eventTime: '',
       eventParticipates: '',
+      errorMessage: null,
     };
     this.submit = this.submit.bind(this);
     this.onChangeEventType = this.onChangeEventType.bind(this);
@@ -31,6 +34,24 @@ class ActivityAdd extends React.Component {
   }
   submit(e) {
     e.preventDefault();
+    if (!this.state.eventType) {
+      this.setState({
+        errorMessage: 'Please select event type',
+      });
+      return;
+    }
+    if (!this.state.eventDate) {
+      this.setState({
+        errorMessage: 'Please enter event date',
+      });
+      return;
+    }
+    if (!this.state.eventTime) {
+      this.setState({
+        errorMessage: 'Please enter event time',
+      });
+      return;
+    }
     const newEvent = {
       eventType: this.state.eventType,
       eventDate: this.state.eventDate,
@@ -54,7 +75,9 @@ class ActivityAdd extends React.Component {
           eventDate: '',
           eventTime: '',
           eventParticipates: '',
+          errorMessage: null,
         });
+        window.history.back();
       });
   }
   render() {
@@ -71,11 +94,12 @@ class ActivityAdd extends React.Component {
             <Input s={6} label="Event Time" type="time" name="eventTime" value={this.state.eventTime} onChange={this.onChangeEventTime} />
             <Input s={12} label="Who is participating?" type="text" name="eventParticipates" value={this.state.eventParticipates} onChange={this.onChangeEventParticipates} />
           </Row>
-          <Button type="submit" onClick={() => { window.history.back(); }}>Save</Button>
+          <Button type="submit">Save</Button>
           <span className="btn-space">
-            <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity">Cancel</Link>
+            <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/activity`}>Cancel</Link>
           </span>
         </form>
+        <Error error={this.state.errorMessage} />
       </div>
     );
   }

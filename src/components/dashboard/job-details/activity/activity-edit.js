@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col, Icon, Button, Input } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
+import Error from '../../errorBanner';
+
 class ActivityEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -10,6 +12,8 @@ class ActivityEdit extends React.Component {
       eventDate: '',
       eventTime: '',
       eventParticipates: '',
+      jobId: '',
+      errorMessage: null,
     };
     this.submit = this.submit.bind(this);
     this.onChangeEventType = this.onChangeEventType.bind(this);
@@ -41,11 +45,30 @@ class ActivityEdit extends React.Component {
           eventDate: data.eventDate,
           eventTime: data.eventTime,
           eventParticipates: data.eventParticipates,
+          jobId: data.jobId,
         });
       });
   }
   submit(e) {
     e.preventDefault();
+    if (!this.state.eventType) {
+      this.setState({
+        errorMessage: 'Please select event type',
+      });
+      return;
+    }
+    if (!this.state.eventDate) {
+      this.setState({
+        errorMessage: 'Please enter event date',
+      });
+      return;
+    }
+    if (!this.state.eventTime) {
+      this.setState({
+        errorMessage: 'Please enter event time',
+      });
+      return;
+    }
     const event = {
       eventType: this.state.eventType,
       eventDate: this.state.eventDate,
@@ -61,8 +84,12 @@ class ActivityEdit extends React.Component {
       },
       body: JSON.stringify(event),
     }).then(res => res.json())
-      .then(data =>
-        console.log('event edited', data));
+      .then(data => {
+        this.setState({
+          errorMessage: null,
+        });
+        window.history.back();
+      });
   }
   render() {
     return (
@@ -94,9 +121,10 @@ class ActivityEdit extends React.Component {
           </Row>
           <Button type="submit">Save</Button>
           <span className="btn-space">
-            <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity">Cancel</Link>
+            <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.state.jobId}/activity`}>Cancel</Link>
           </span>
         </form>
+        <Error error={this.state.errorMessage} />
       </div>
     );
   }

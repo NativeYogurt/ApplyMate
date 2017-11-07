@@ -54,7 +54,7 @@ exports.uploadHandler = async (req, res) => {
   let skills;
   try {
     pdfURL = await uploadPDFtoCloudinary(result);
-    pdfURL = pdfURL.url;
+    pdfURL = pdfURL.secure_url;
     textURL = await convertPDFtoText(pdfURL);
     text = await retrieveText(textURL);
     text = text.replace(/[^a-zA-Z0-9,. ]\n/g, ' ');

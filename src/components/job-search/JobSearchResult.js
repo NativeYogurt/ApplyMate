@@ -16,7 +16,7 @@ class JobSearchResult extends React.Component {
           <div>Job Title: {this.props.job.title}</div>
           <div>Company: {this.props.job.company}</div>
           <div>Location: {this.props.job.location}</div>
-          <div>Company URL: <a href={this.props.job.company_url} target="_blank">{this.props.job.company_url}</a></div>
+          <div>Company URL: <a href={this.props.job.company_url} target="_blank">Link</a></div>
           <div>Created at: {this.props.job.created_at}</div>
           <div><a href={this.props.job.url} target="_blank">Job Post</a></div>
           <div>

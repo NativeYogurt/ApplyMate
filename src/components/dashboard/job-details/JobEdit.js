@@ -106,11 +106,13 @@ class JobEdit extends React.Component {
 
     return (
       <div>
-        <div>
-          <div>Quick Actions</div>
-          <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity/new">Log Interview</Link>
-          <span className="btn-space"><Link className="waves-effect waves-light btn" to="/home/dashboard/job/contacts/new">Add Contact</Link></span>
-        </div>
+        <Row>
+          <Col s={12}>
+            <div>Quick Actions</div>
+            <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/activity/new`}>Log Interview</Link>
+            <span className="btn-space"><Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/contacts/new`}>Add Contact</Link></span>
+          </Col>
+        </Row>
         <form className="job-edit-form" onSubmit={this.submit}>
           <Row>
             <Col s={12}>
@@ -134,7 +136,7 @@ class JobEdit extends React.Component {
             <Col s={6}>
               <label htmlFor="status">
                 Status:
-                <select className="browser-default" name="status" value={this.state.status} onChange={this.onChangeStatus}>
+                <select id="status-select" className="browser-default" name="status" value={this.state.status} onChange={this.onChangeStatus}>
                   <option value="wishlist">Wishlist</option>
                   <option value="applied">Applied</option>
                   <option value="phone">Phone</option>
@@ -183,20 +185,4 @@ class JobEdit extends React.Component {
     );
   }
 }
-// <Col s={6}>
-//   <label htmlFor="status">
-//     Status:
-//     <select className="browser-default" name="status" value={this.state.status} onChange={this.onChangeStatus}>
-//       <option value="wishlist">Wishlist</option>
-//       <option value="applied">Applied</option>
-//       <option value="phone">Phone</option>
-//       <option value="onSite">OnSite</option>
-//       <option value="rejected">Rejected</option>
-//       <option value="offer">Offer</option>
-//     </select>
-//   </label>
-// </Col>
-// <Col s={1}>
-//   <a href={this.state.url} target="_blank"><Icon>directions_run</Icon></a>
-// </Col>
 module.exports = JobEdit;

@@ -2,10 +2,10 @@ import React from 'react';
 import firebase from 'firebase';
 import { browserHistory, Route, Redirect, Switch } from 'react-router-dom';
 import Modal from 'react-modal';
-import Signup from './signup';
-import Login from './login';
+import Signup from './user/signup';
+import Login from './user/login';
 import Home from './home';
-import Auth from './Auth';
+import Auth from './user/Auth';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +17,6 @@ class App extends React.Component {
     };
     this.setUser = this.setUser.bind(this);
     this.rerender = this.rerender.bind(this);
-    this.TESTBUTTON = this.TESTBUTTON.bind(this);
   }
 
   componentWillMount() {
@@ -74,7 +73,7 @@ class App extends React.Component {
     return (
       <div>
         <Switch>
-          {this.routes('/signup', <Signup setUser={this.setUser} rerender={this.rerender}/>, <Redirect to="/home" />)}
+          {this.routes('/signup', <Signup setUser={this.setUser} rerender={this.rerender} />, <Redirect to="/home" />)}
           {this.routes('/login', <Login setUser={this.setUser} />, <Redirect to="/home" />)}
           {this.routes('/home', <Redirect to="/login" />, <Home rerender={this.state.rerender} user={this.state.user} setUser={this.setUser} />)}
           <Route

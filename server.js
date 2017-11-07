@@ -18,7 +18,7 @@ const Tasks = require('./backend/models/Tasks');
 
 const Github = require('./backend/utilities/githubRepoCrawler');
 const Emailer = require('./backend/utilities/emailer');
-const Texter = require('./backend/utilities/twilio')
+const Texter = require('./backend/utilities/twilio');
 
 const app = express();
 
@@ -37,13 +37,13 @@ app.use(webpackDevMiddleware(compiler, {
   historyApiFallback: true,
 }));
 
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
   const host = server.address().address;
   const port = server.address().port;
   console.log('Example app listening at http://%s:%s', host, port);
 });
 
-new CronJob('30 16 * * *', function() {
+new CronJob('30 03 * * *', function() {
   console.log('You will see this message every day at 4:30pm et');
   Github.cronGitHubUpdate();
   Emailer.sendInterviewReminder();

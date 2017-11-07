@@ -38,25 +38,29 @@ class Activity extends React.Component {
     axios.put('/api/activity/delete', { eventId });
   }
   render() {
+    const sortedByDate = [].concat(this.state.activities).sort((a, b) => {
+      return a.eventDate > b.eventDate;
+    }).reverse();
     return (
       <div>
         <div>
           {this.state.activities.length === 0 ? (
             <div>
-              <Icon large>event</Icon>
+              <Icon medium>event</Icon>
               <div>Add Interview for this job.
               </div>
             </div>
             ) : null
           }
-          <Link className="waves-effect waves-light btn" to="/home/dashboard/job/activity/new">Add</Link>
+          <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/activity/new`}>Add Event</Link>
         </div>
         <div>
-          {this.state.activities.length > 0 ? this.state.activities.map(activity => {
+          {this.state.activities.length > 0 ? sortedByDate.map(activity => {
             return (<ActivityEntry
               key={activity.eventId}
               activity={activity}
               deleteActivity={this.deleteActivity}
+              jobId={this.props.jobId}
             />
           );
           }) : null

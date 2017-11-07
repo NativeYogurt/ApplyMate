@@ -20,7 +20,7 @@ const JobBoard = (props) => {
         <div>
           <Switch>
             <Route
-              path="/home/dashboard/job/resources"
+              path={`/home/dashboard/${props.jobId}/resources`}
               render={() => (
                 <Resources
                   jobId={props.jobId}
@@ -29,7 +29,7 @@ const JobBoard = (props) => {
               )}
             />
             <Route
-              path="/home/dashboard/job/company"
+              path={`/home/dashboard/${props.jobId}/company`}
               render={() => (
                 <CompanyInfo
                   company={props.company}
@@ -38,7 +38,7 @@ const JobBoard = (props) => {
               )}
             />
             <Route
-              path="/home/dashboard/job/contacts/new"
+              path={`/home/dashboard/${props.jobId}/contacts/new`}
               render={() => (
                 <ContactAdd
                   jobId={props.jobId}
@@ -46,11 +46,11 @@ const JobBoard = (props) => {
               )}
             />
             <Route
-              path="/home/dashboard/job/contacts/:id"
+              path={`/home/dashboard/${props.jobId}/contacts/:id`}
               component={ContactEdit}
             />
             <Route
-              path="/home/dashboard/job/contacts"
+              path={`/home/dashboard/${props.jobId}/contacts`}
               render={() => (
                 <Contacts
                   jobId={props.jobId}
@@ -58,7 +58,7 @@ const JobBoard = (props) => {
               )}
             />
             <Route
-              path="/home/dashboard/job/activity/new"
+              path={`/home/dashboard/${props.jobId}/activity/new`}
               render={() => (
                 <ActivityAdd
                   jobId={props.jobId}
@@ -67,11 +67,11 @@ const JobBoard = (props) => {
               )}
             />
             <Route
-              path="/home/dashboard/job/activity/:id"
+              path={`/home/dashboard/${props.jobId}/activity/:id`}
               component={ActivityEdit}
             />
             <Route
-              path="/home/dashboard/job/activity"
+              path={`/home/dashboard/${props.jobId}/activity`}
               render={() => (
                 <Activity
                   jobId={props.jobId}
@@ -79,7 +79,7 @@ const JobBoard = (props) => {
               )}
             />
             <Route
-              path="/home/dashboard/job/tasks"
+              path={`/home/dashboard/${props.jobId}/tasks`}
               render={() => (
                 <Tasks
                   jobId={props.jobId}
@@ -101,6 +101,7 @@ const JobBoard = (props) => {
                   companyUrl={props.companyUrl}
                   notes={props.notes}
                   paramsId={props.paramsId}
+                  jobId={props.jobId}
                 />
               )}
             />

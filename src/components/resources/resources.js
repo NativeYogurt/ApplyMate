@@ -42,7 +42,7 @@ class Resources extends React.Component {
   render() {
     return (
       <div className="container">
-        <h5>Your Saved Resources</h5>
+        {this.state.savedResources.length > 0 ? <h5>Your Saved Resources</h5> : null}
         {this.state.savedResources.length > 0 ? this.state.savedResources.map(resource => {
           return (<SavedResources
             key={resource.resourceId}
@@ -54,7 +54,7 @@ class Resources extends React.Component {
             <Row className="center">
               <Col s={12}>
                 <Icon medium>save</Icon>
-                <p>Add resources from Job Details!</p>
+                <p>Add your resume and save jobs to get Resources!</p>
               </Col>
             </Row>
           </div>

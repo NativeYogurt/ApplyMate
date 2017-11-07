@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Dropdown, Navbar, NavItem } from 'react-materialize';
-import Auth from './Auth';
+import Auth from './user/Auth';
 
 class Nav extends React.Component {
   constructor(props) {
@@ -30,9 +30,10 @@ class Nav extends React.Component {
 
   render() {
     return (
-      <nav>
+      <nav className="blue-grey darken-2">
         <div className="nav-wrapper">
-          <a href="#" className="brand-logo">ApplyMate</a>
+          <a href="#" className="brand-logo">.apply(me)<span className="blinking-cursor">|</span>
+          </a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li
               className={this.state.active === 'dashboard' ? 'active' : ''}

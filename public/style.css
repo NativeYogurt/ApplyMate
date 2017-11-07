@@ -1,4 +1,29 @@
 /* Global Settings */
+:root {
+    --space: 1.5em 0;
+    --space: 2em 0;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-content {
+    flex: 1 0 auto;
+    padding: var(--space) var(--space) 0;
+    width: 100%;
+}
+
+.site-content:after {
+    content: '\00a0';
+    display: block;
+    margin-top: var(--space);
+    height: 0;
+    visibility: hidden;
+}
+
 .button {
   padding: 10px 15px;
 }
@@ -11,8 +36,77 @@
   padding-left: 8px;
 }
 
+.btn-floating {
+  margin-top: 10px;
+}
+
+.delete {
+  background-color: #dd2c00;
+}
+
+.delete:hover {
+  background-color: red;
+}
+
 .icon-button, .favorite {
   padding: 2px 10px 2px 10px;
+}
+
+/* Sign up page */
+.brand-logo-signup {
+  font-size: xx-large;
+  color: hotpink;
+}
+
+.blinking-cursor-signup {
+  font-weight: 300;
+  font-size: 34px;
+  color: hotpink;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+.bg {
+  background-image: url("./imgs/bg.jpeg");
+  /*background-image: url(https://static.pexels.com/photos/306533/pexels-photo-306533.jpeg);*/
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*.bg-job {
+  background-color: #E2C2C3;
+  background: url(https://static.pexels.com/photos/399161/pexels-photo-399161.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  margin-top: -15px;
+  margin-bottom: -20px;
+}*/
+
+.parallax-container {
+  height: 200px;
+  margin-bottom: -20px;
+}
+
+.parallax img {
+  width: 100%;
+
+}
+
+.sign-up, .sign-in {
+ width:800px;
+ margin: auto;
+}
+
+/* subnavbar */
+.tab .active {
+  text-decoration: underline;
 }
 
 /* The alert message box */
@@ -23,11 +117,11 @@
 }
 
 .alert {
-    background-color: green; /* Red */
+    background-color: #26a69a; /* Red */
 }
 
 .error {
-  background-color: #f44336;
+  background-color: rgba(222,80,55,1);
 }
 
 /* dashboard table */
@@ -54,7 +148,6 @@ table .dashboard, .dashboard th, .dashboard td {
     text-overflow: ellipsis;
 }
 
-
 /* saved-job-posting on dashboard */
 .saved-job-posting:hover {
   background-color: #D3D3D3;
@@ -63,6 +156,7 @@ table .dashboard, .dashboard th, .dashboard td {
 #refresh {
   cursor: pointer;
 }
+
 /* job-search-form */
 .job-search-form input[type="text"], .job-add-form input[type="date"], .job-edit-form select {
   padding: 8px;
@@ -71,6 +165,7 @@ table .dashboard, .dashboard th, .dashboard td {
 
 .job-search-inputs {
   text-align: center;
+  margin-top: 30px;
 }
 
 /* file-path-wrapper */
@@ -100,20 +195,27 @@ table .dashboard, .dashboard th, .dashboard td {
   grid-row:1/2;
 }
 #companyInformationLeft{
-  grid-row: 2/3;
+  grid-row: 2;
   grid-column: 1/2;
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 100%;
   grid-row-gap: 0px;
 }
 #tweetsContainer{
+  grid-column:1/2;
   grid-row:1/2;
+  height: 100%;
+}
+#FullContactComponent{
+  grid-column:1/2;
+  grid-row:2/3;
 }
 #companyInformationRight{
-  grid-row: 2/3;
+  grid-row: 2;
   grid-column: 2/3;
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto 1fr;
   grid-template-columns: 100%;
   grid-row-gap: 0px;
 }
@@ -141,16 +243,10 @@ table .dashboard, .dashboard th, .dashboard td {
 #EDGARComponent{
   grid-row:2/3;
 }
-/* #BBBComponent{
-  grid-column:1;
-  grid-row: 2;
+#TradierComponent{
+  grid-row:3/4;
 }
 
-
-#FullContactComponent{
-  grid-column:1;
-  grid-row:2;
-} */
 /* end of company info styling */
 
 .inactive {
@@ -176,7 +272,121 @@ table .dashboard, .dashboard th, .dashboard td {
 
 #no-job-banner {
   text-align: center;
+}
 
 .profile-github-handle {
   font-size: .8em;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.page-footer {
+  background-color: #455a64;
+  margin-top: 20px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: -20px;
+}
+
+.footer-links a {
+  color: white;
+}
+
+.active a {
+  color: #26a69a;
+}
+
+nav .brand-logo {
+  margin-left: 10px;
+  font-size: 1.8rem
+}
+
+.blinking-cursor {
+  font-weight: 300;
+  font-size: 34px;
+  color: #2E3D48;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: white;
+  }
+}
+
+.logo {
+  text-align: center;
+  font-family: 'Squada One', cursive;
+  color: #26a69a;
+  font-size: 70px;
+}
+
+.login-logo {
+  text-shadow: 2px 2px lightgrey;
+}
+
+.logo-slogan {
+  font-size: 24px;
+}
+
+#status-select {
+  border: 1px solid lightgray;
+}
+
+input:not([type]), input[type=text]:not(.browser-default) {
+  border-bottom: 1px solid lightgray;
+}
+
+#skill-header > h2 {
+  text-align: center;
+  text-transform: capitalize;
+  margin: -10px 0px;
 }

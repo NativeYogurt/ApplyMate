@@ -43,14 +43,14 @@ class Contacts extends React.Component {
         <div>
           {this.state.contacts.length === 0 ? (
             <div>
-              <Icon large>contacts</Icon>
+              <Icon medium>contacts</Icon>
               <div>Save contact information here for people related to this job
                  application or company.
               </div>
             </div>
             ) : null
           }
-          <Link className="waves-effect waves-light btn" to="/home/dashboard/job/contacts/new">Add</Link>
+          <Link className="waves-effect waves-light btn" to={`/home/dashboard/${this.props.jobId}/contacts/new`}>Add Contact</Link>
         </div>
         <div>
           {this.state.contacts.length > 0 ? this.state.contacts.map(contact => {
@@ -58,6 +58,7 @@ class Contacts extends React.Component {
               key={contact.contactId}
               contact={contact}
               deleteContact={this.deleteContact}
+              jobId={this.props.jobId}
             />
           );
           }) : null

@@ -58,11 +58,14 @@ class JobHome extends React.Component {
 
   render() {
     return (
+      <div className="bg-job">
       <div className="container">
         <Card>
           <h5>{this.state.company} | {this.state.jobTitle}</h5>
           <div className="job-detail-navbar">
-            <JobNavBar />
+            <JobNavBar
+              jobId={this.state.jobId}
+            />
           </div>
           <JobBoard
             paramsId={this.props.match.params.id}
@@ -79,6 +82,7 @@ class JobHome extends React.Component {
             userId={this.state.userId}
           />
         </Card>
+      </div>
       </div>
     );
   }

@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown } from 'react-materialize';
+import { Icon, Input, Button, Col, Row, Modal, Table, Dropdown, Card } from 'react-materialize';
 import $ from 'jquery';
+import ReactTooltip from 'react-tooltip';
 
 import Error from './errorBanner';
 import SavedJobs from './SavedJobs';
@@ -107,7 +108,7 @@ class Dashboard extends React.Component {
     const sortedByStatus = [].concat(filteredJobs).sort((a, b) =>
       a.status < b.status).map(this.createJobs);
     const sortedByDate = [].concat(filteredJobs).sort((a, b) => {
-      return a.dateApplied > b.dateApplied;
+      return (Date.parse(a.dateApplied) || 0) > (Date.parse(b.dateApplied) || 0);
     }).reverse().map(this.createJobs);
     const sortedByFavorite = [].concat(filteredJobs).sort((a, b) => {
       if (a.favorite) {
@@ -137,25 +138,26 @@ class Dashboard extends React.Component {
           </Col>
         </Row>
       </div>
-    )
+    );
     const jobList = (
       <div>
         <Row>
           <Col s={2}>
-            <select className="browser-default" onChange={this.onChangeSortBy}>
+            <select id="status-select" className="browser-default" onChange={this.onChangeSortBy}>
               <option value="status">Status</option>
-              <option value="dateApplied">DateApplied</option>
+              <option value="dateApplied">Date Applied</option>
               <option value="favorite">Favorites</option>
               <option value="location">Location</option>
             </select>
           </Col>
           <Col s={3}>
-            <input type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
+            <input className="job-dashboard-search" type="text" value={this.state.search} onChange={this.updateSearch} placeholder="Search Company" />
           </Col>
         </Row>
         <Table className="dashboard">
           <thead>
             <tr>
+              <th />
               <th>Company</th>
               <th>Job Title</th>
               <th>Status</th>
@@ -163,7 +165,6 @@ class Dashboard extends React.Component {
               <th>Location</th>
               <th>Job Posting URL</th>
               <th>Required Skills</th>
-              <th>Favorite</th>
               <th />
             </tr>
           </thead>
@@ -177,7 +178,7 @@ class Dashboard extends React.Component {
       <div>
         <Row>
           <Col s={3}>
-            <h5>Job Applications</h5>
+            {this.props.savedJobs.length > 0 ? <h5>Job Applications</h5> : null}
           </Col>
           <Col s={8} />
           <Col s={1}>
@@ -186,9 +187,11 @@ class Dashboard extends React.Component {
               trigger={<Button
                 id="add"
                 floating
+                medium
                 className="red"
                 waves="light"
                 icon="add"
+                data-tip="Add Job"
               />}
               actions={
                 <div>
@@ -205,7 +208,7 @@ class Dashboard extends React.Component {
                   <option value="wishlist">Wishlist</option>
                   <option value="applied">Applied</option>
                   <option value="phone">Phone</option>
-                  <option value="onSite">OnSite</option>
+                  <option value="onSite">On Site</option>
                   <option value="rejected">Rejected</option>
                   <option value="offer">Offer</option>
                 </Input>
@@ -219,6 +222,7 @@ class Dashboard extends React.Component {
           </Col>
         </Row>
         {this.props.savedJobs.length > 0 ? jobList : emptyTable}
+        <ReactTooltip />
       </div>);
   }
 }
