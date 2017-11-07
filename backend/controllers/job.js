@@ -106,7 +106,7 @@ const addJobSkillsToDB = async (skills, req, res) => {
             .build(newJob)
             .save()
             .then((job) => {
-              websiteChecker.takePicture(job.url, true, job.jobId);
+              //websiteChecker.takePicture(job.url, true, job.jobId);
               res.send(job);
             })
             .catch((err) => {
@@ -221,9 +221,9 @@ exports.handleEditJob = (req, res) => {
           jobId: req.params.id,
         },
       })
-        .then(job => {
-          websiteChecker.takePicture(job.url, true, job.jobId);
-        });
+        // .then(job => {
+        //   websiteChecker.takePicture(job.url, true, job.jobId);
+        // });
     })
     .catch(error => console.error(error));
 };
@@ -261,6 +261,6 @@ exports.updateScreenshot = async (req, res) => {
       jobId,
     },
   });
-  const picture = await websiteChecker.takePicture(jobUrl.url, true, jobId);
+  //const picture = await websiteChecker.takePicture(jobUrl.url, true, jobId);
   res.send('updated screenshot');
 };
