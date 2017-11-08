@@ -43,5 +43,5 @@ const Events = sequelize.define('events', {
   },
 });
 
-// Events.sync();
+Events.sync();
 module.exports = Events;

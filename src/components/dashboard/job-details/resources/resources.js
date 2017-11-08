@@ -101,7 +101,7 @@ class Resources extends React.Component {
       </div>
     );
     const noMissingSkills = (
-      <div className="error">
+      <div className="alert">
         You have all the skills required by the job.
       </div>
     );

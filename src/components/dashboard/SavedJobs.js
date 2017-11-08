@@ -84,7 +84,7 @@ class SavedJobs extends React.Component {
         </td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.dateApplied ? moment(this.props.jobPosting.dateApplied).format('MMM Do YY') : ''}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.location}</td>
-        <td><a href={this.props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank" data-tip="Job URL"><Icon>{activePosting ? 'launch' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" data-tip="Confirm URL" onClick={() => this.props.revertJobUrlToActive(this.props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
+        <td><a href={this.props.jobPosting.url} className={activePosting ? 'active' : 'inactive'} target="_blank" data-tip={activePosting ? 'Active Link' : 'Inactive Link'}><Icon>{activePosting ? 'launch' : 'cancel'}</Icon></a>{activePosting ? null : <span id="refresh" data-tip="Revert to active" onClick={() => this.props.revertJobUrlToActive(this.props.jobPosting.jobId)}><Icon>refresh</Icon></span>}</td>
         <td onClick={() => this.redirect()} >{this.props.jobPosting.skills.join(', ') || 'Unable to Scrape Skills :('}</td>
         <td>
         {this.state.hover ?

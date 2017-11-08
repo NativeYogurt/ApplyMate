@@ -49,5 +49,5 @@ const Contacts = sequelize.define('contacts', {
   },
 });
 
-// Contacts.sync();
+Contacts.sync();
 module.exports = Contacts;
