@@ -47,6 +47,6 @@ new CronJob('30 03 * * *', function() {
   console.log('You will see this message every day at 4:30pm et');
   Github.cronGitHubUpdate();
   Emailer.sendInterviewReminder();
-  websiteChecker.checkActivePosts();
+  // websiteChecker.checkActivePosts(); had to comment out, active posts uses nightmare
   Texter.sendTextReminder();
 }, null, true, 'America/New_York');

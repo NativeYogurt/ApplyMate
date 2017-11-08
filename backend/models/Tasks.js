@@ -37,5 +37,5 @@ const Tasks = sequelize.define('tasks', {
   },
 });
 
-// Tasks.sync();
+Tasks.sync();
 module.exports = Tasks;
