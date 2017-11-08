@@ -167,7 +167,7 @@ class JobEdit extends React.Component {
             <Col s={12}>
               <label htmlFor="skills">
                 Required Skills:
-                <textarea className="materialize-textarea" name="skills" value={this.state.skills} disabled />
+                <textarea className="materialize-textarea" name="skills" value={this.state.skills} />
               </label>
             </Col>
             <Col s={12}>
