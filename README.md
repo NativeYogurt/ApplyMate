@@ -68,7 +68,7 @@ EDGAR_KEY=(Edgar API Key) // Available from [Edgar](http://developer.edgar-onlin
 
 ## Usage
 
-![Splash](public/imgs/applyMe.png)
+![Splash](https://github.com/bryangxyz/ApplyMate/blob/dev/public/imgs/appleMe.png)
 
 ### Login
 
