@@ -11,8 +11,8 @@ apply(Me) is a job application tracker which replace your spreadsheet or note-ta
 
 1. [Team](#team)
 1. [Getting Started](#getting-started)
-1. [Usage](#Usage)
-1. [Built With](#build-with)
+1. [Usage](#usage)
+1. [Built With](#built-with)
 1. [License](#license)
 
 ## Team
