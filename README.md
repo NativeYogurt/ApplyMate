@@ -68,6 +68,8 @@ EDGAR_KEY=(Edgar API Key) // Available from [Edgar](http://developer.edgar-onlin
 
 ## Usage
 
+![Splash](public/imgs/applyMe.png)
+
 ### Login
 
 apply(Me) needs to track your profile in order to learn about you, so start by signing up or logging in using Github.
