@@ -9,8 +9,7 @@
 - Add contacts at target companies and keep notes of your interactions
 - Receive reminders at every stage of the process to keep you engaged and proactive
 
-
-![test](https://user-images.githubusercontent.com/6298501/32750352-6852f7b0-c890-11e7-87e5-b61b978540b5.png)
+![app_screenshots](https://user-images.githubusercontent.com/6298501/32752089-e376c052-c895-11e7-8634-2298ad445d78.png)
 
 ## Table of Contents
 
@@ -22,7 +21,7 @@
 
 ## Team
 
-apply(Me) is being developed by four full-stack engineers.
+.apply(me) is being developed by four full-stack engineers.
 
 * **Alexander Lukens** - [alexanderlukens](https://github.com/alexanderlukens)
 * **Bryan Wang** - [bryangxyz](https://github.com/bryangxyz)
@@ -39,13 +38,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Fork the repo and clone it to your development environment of choice.
 
-2. To install apple(Me) dependencies, run the following command from the cloned repo's directory:
+2. To install .apply(me) dependencies, run the following command from the cloned repo's directory:
 
 ```npm install```
 
 ### Configuration
 
-You will need several API Keys to run your own build of apply(Me). We use the NPM package [dotenv](https://github.com/motdotla/dotenv) for our local environment variables. You should make a .env file, placed in your clone's root directory, that looks like this:
+You will need several API Keys to run your own build of apply(me). We use the NPM package [dotenv](https://github.com/motdotla/dotenv) for our local environment variables. You should make a .env file, placed in your clone's root directory, that looks like this:
 
 ```
 DB_HOST=(Your mysql db host)
@@ -75,7 +74,7 @@ EDGAR_KEY=(Edgar API Key) // Available from [Edgar](http://developer.edgar-onlin
 
 ### Login
 
-.apply(Me) needs to track your profile in order to learn about you, so start by signing up or logging in using Github.
+.apply(me) needs to track your profile in order to learn about you, so start by signing up or logging in using Github.
 
 Contact us if you have any questions!
 
