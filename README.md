@@ -99,7 +99,7 @@ Contact us if you have any questions!
 ### TODO
 - Add additional styling
 - Optimize pageload speed
-- Known issues: https://github.com/NativeYogurt/ApplyMate/issues
+- [Known issues](https://github.com/NativeYogurt/ApplyMate/issues)
 
 
 ## License
