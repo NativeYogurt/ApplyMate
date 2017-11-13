@@ -4,9 +4,11 @@
 
 You're a new software developer looking to break into the field or a seasoned vet looking for a new gig. 
 
-Searching for jobs is fragmented and broken process. Furthermore, in a rapidly changing industry there are always new skills to gain. How do you keep up with the Jones'?
+Searching for jobs is a fragmented and broken process. Furthermore, the industry moves so fast and there are always new skills to gain. 
 
-Wouldn't it be nice if there was one place where you could find jobs, determine what skills you need to meet their criteria, and get helpful study material to level up your skill? 
+How do you keep up with the Jones'?
+
+Wouldn't it be nice if there was one place to find jobs, highlight the skills you need to get them, and get study material to level up? 
 
 .apply(me) is a job application tracker that replaces your spreadsheet or note-taking app with an elegant and intuitive web-based solution.  Main features include:
 - Recognize your missing skills required by the job and get recommended tutorials
