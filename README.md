@@ -88,7 +88,7 @@ Contact us if you have any questions!
 * [Node.js](https://nodejs.org) - JavaScript runtime
 * [Express](https://expressjs.com/)- Fantastic Node.js web server framework
 * [Firebase Authentication](https://firebase.google.com/docs/auth/)
-* [PostGreSQL](https://www.postgresql.org/) - Object-relational database
+* [PostgreSQL](https://www.postgresql.org/) - Object-relational database
 * [Sequelize](www.sequelizejs.com) - Powerful ORM tool for SQL databases
 * [React Materialize](https://react-materialize.github.io/#/) - Material design for react
 * [Materialize](http://materializecss.com/) - A modern responsive front-end framework based on Material Design
