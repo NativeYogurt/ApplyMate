@@ -82,13 +82,13 @@ EDGAR_KEY=(Edgar API Key) // Available from [Edgar](http://developer.edgar-onlin
 Contact us if you have any questions!
 
 ## Built With
-![app_stack](https://user-images.githubusercontent.com/6298501/32751939-69e5c274-c895-11e7-91ec-f98bf354790a.png)
+![app_stack](https://user-images.githubusercontent.com/6298501/32752828-ab066652-c898-11e7-914a-87acab719bd1.png)
 
 * [React](https://facebook.github.io/react/) - Facebook's powerful JavaScript framework
 * [Node.js](https://nodejs.org) - JavaScript runtime
 * [Express](https://expressjs.com/)- Fantastic Node.js web server framework
 * [Firebase Authentication](https://firebase.google.com/docs/auth/)
-* [MySQL](https://www.postgresql.org/) - Object-relational database
+* [PostGreSQL](https://www.postgresql.org/) - Object-relational database
 * [Sequelize](www.sequelizejs.com) - Powerful ORM tool for SQL databases
 * [React Materialize](https://react-materialize.github.io/#/) - Material design for react
 * [Materialize](http://materializecss.com/) - A modern responsive front-end framework based on Material Design
