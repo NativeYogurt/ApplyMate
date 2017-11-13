@@ -2,12 +2,15 @@
 <img width="378" alt="login_logo" src="https://user-images.githubusercontent.com/6298501/32675916-9a38f66a-c626-11e7-92a2-6dbda21fcc47.png">
 </p>
 
-apply(me) is a job application tracker that replaces your spreadsheet or note-taking app with an elegant and intuitive web-based solution.  Main features include:
+.apply(me) is a job application tracker that replaces your spreadsheet or note-taking app with an elegant and intuitive web-based solution.  Main features include:
 - Recognize your missing skills required by the job and get recommended tutorials
 - Save job applications and update statuses
 - Prioritize jobs based on status, location or company and see a complete picture of your job search
 - Add contacts at target companies and keep notes of your interactions
 - Receive reminders at every stage of the process to keep you engaged and proactive
+
+
+![test](https://user-images.githubusercontent.com/6298501/32750352-6852f7b0-c890-11e7-87e5-b61b978540b5.png)
 
 ## Table of Contents
 
@@ -27,8 +30,6 @@ apply(Me) is being developed by four full-stack engineers.
 * **Paul Jaffre** - [jaffrepaul](https://github.com/jaffrepaul)
 
 ## Usage
-
-![test](https://user-images.githubusercontent.com/6298501/32750352-6852f7b0-c890-11e7-87e5-b61b978540b5.png)
 
 ## Getting Started
 
@@ -79,8 +80,7 @@ EDGAR_KEY=(Edgar API Key) // Available from [Edgar](http://developer.edgar-onlin
 Contact us if you have any questions!
 
 ## Built With
-
-![app_stack](https://user-images.githubusercontent.com/6298501/32751708-c894be48-c894-11e7-803e-222bf1ce6780.png)
+![app_stack](https://user-images.githubusercontent.com/6298501/32751939-69e5c274-c895-11e7-91ec-f98bf354790a.png)
 
 * [React](https://facebook.github.io/react/) - Facebook's powerful JavaScript framework
 * [Node.js](https://nodejs.org) - JavaScript runtime
