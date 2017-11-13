@@ -2,11 +2,18 @@
 <img width="378" alt="login_logo" src="https://user-images.githubusercontent.com/6298501/32675916-9a38f66a-c626-11e7-92a2-6dbda21fcc47.png">
 </p>
 
+You're a new software developer looking to break into the field or a seasoned vet looking for a new gig. 
+
+Searching for jobs is fragmented and broken process. Furthermore, in a rapidly changing industry there are always new skills to gain. How do you keep up with the Jones'?
+
+Wouldn't it be nice if there was one place where you could find jobs, determine what skills you need to meet their criteria, and get helpful study material to level up your skill? 
+
 .apply(me) is a job application tracker that replaces your spreadsheet or note-taking app with an elegant and intuitive web-based solution.  Main features include:
 - Recognize your missing skills required by the job and get recommended tutorials
 - Save job applications and update statuses
 - Prioritize jobs based on status, location or company and see a complete picture of your job search
 - Add contacts at target companies and keep notes of your interactions
+- Visualize your job application status and preferrred language via Github
 - Receive reminders at every stage of the process to keep you engaged and proactive
 
 ![app_screenshots](https://user-images.githubusercontent.com/6298501/32752089-e376c052-c895-11e7-8634-2298ad445d78.png)
@@ -90,7 +97,7 @@ Contact us if you have any questions!
 * [React Materialize](https://react-materialize.github.io/#/) - Material design for react
 * [Materialize](http://materializecss.com/) - A modern responsive front-end framework based on Material Design
 * [Webpack](https://webpack.github.io/) - Module bundler
-* [Nightmare.js](http://www.nightmarejs.org/) - A high-level browser automation library.
+* [Nightmare.js](http://www.nightmarejs.org/) - A high-level browser automation library
 
 
 ### TODO
