@@ -4,7 +4,7 @@
 
 You're a new software developer looking to break into the field or a seasoned vet looking for a new gig. 
 
-Searching for jobs is a fragmented and broken process. Furthermore, the industry moves so fast and there are always new skills to gain. How do you keep up with the Jones'?
+Searching for jobs is a fragmented and broken process. Plus, the industry moves so fast and there are always new skills to gain. How do you keep up with the Jones'?
 
 Wouldn't it be nice if there was one place to find jobs, highlight the skills you need to get them, and get study material to level up? 
 
