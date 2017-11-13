@@ -1,10 +1,8 @@
-# .apply(me)
-
 <p align="center"> 
 <img width="378" alt="login_logo" src="https://user-images.githubusercontent.com/6298501/32675916-9a38f66a-c626-11e7-92a2-6dbda21fcc47.png">
 </p>
 
-apply(me) is a job application tracker that replaces your spreadsheet or note-taking app with an elegant and intuitive web-based application.  The main features include:
+apply(me) is a job application tracker that replaces your spreadsheet or note-taking app with an elegant and intuitive web-based solution.  Main features include:
 - Recognize your missing skills required by the job and get recommended tutorials
 - Save job applications and update statuses
 - Prioritize jobs based on status, location or company and see a complete picture of your job search
@@ -14,8 +12,8 @@ apply(me) is a job application tracker that replaces your spreadsheet or note-ta
 ## Table of Contents
 
 1. [Team](#team)
-1. [Getting Started](#getting-started)
 1. [Usage](#usage)
+1. [Getting Started](#getting-started)
 1. [Built With](#built-with)
 1. [License](#license)
 
@@ -28,6 +26,10 @@ apply(Me) is being developed by four full-stack engineers.
 * **Kenneth Tso** - [iamkennytso](https://github.com/iamkennytso)
 * **Paul Jaffre** - [jaffrepaul](https://github.com/jaffrepaul)
 
+## Usage
+
+![test](https://user-images.githubusercontent.com/6298501/32750352-6852f7b0-c890-11e7-87e5-b61b978540b5.png)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -39,10 +41,6 @@ These instructions will get you a copy of the project up and running on your loc
 2. To install apple(Me) dependencies, run the following command from the cloned repo's directory:
 
 ```npm install```
-
-## Usage
-
-![test](https://user-images.githubusercontent.com/6298501/32750352-6852f7b0-c890-11e7-87e5-b61b978540b5.png)
 
 ### Configuration
 
@@ -76,11 +74,13 @@ EDGAR_KEY=(Edgar API Key) // Available from [Edgar](http://developer.edgar-onlin
 
 ### Login
 
-apply(Me) needs to track your profile in order to learn about you, so start by signing up or logging in using Github.
+.apply(Me) needs to track your profile in order to learn about you, so start by signing up or logging in using Github.
 
 Contact us if you have any questions!
 
 ## Built With
+
+![app_stack](https://user-images.githubusercontent.com/6298501/32751708-c894be48-c894-11e7-803e-222bf1ce6780.png)
 
 * [React](https://facebook.github.io/react/) - Facebook's powerful JavaScript framework
 * [Node.js](https://nodejs.org) - JavaScript runtime
@@ -91,7 +91,8 @@ Contact us if you have any questions!
 * [React Materialize](https://react-materialize.github.io/#/) - Material design for react
 * [Materialize](http://materializecss.com/) - A modern responsive front-end framework based on Material Design
 * [Webpack](https://webpack.github.io/) - Module bundler
-* [Nightmare.js](http://www.nightmarejs.org/) - End to end testing library
+* [Nightmare.js](http://www.nightmarejs.org/) - A high-level browser automation library.
+
 
 ### TODO
 - Add additional styling
