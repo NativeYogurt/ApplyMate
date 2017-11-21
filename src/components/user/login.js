@@ -212,5 +212,3 @@ class Login extends React.Component {
   }
 }
 export default Login;
-
-// <span id="login-blinking-cursor">|</span>
