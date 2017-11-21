@@ -1,23 +1,32 @@
-# apple(Me)
+<p align="center"> 
+<img width="378" alt="login_logo" src="https://user-images.githubusercontent.com/6298501/32675916-9a38f66a-c626-11e7-92a2-6dbda21fcc47.png">
+</p>
 
-apply(Me) is a job application tracker which replace your spreadsheet or note-taking app with an elegant and intuitive web-based tracker.  The main features include
+You're a new software developer looking to break into the field or a seasoned vet looking for a new gig.
+
+Wouldn't it be nice if there was one place to find jobs, highlight the skills you need to get them, and get study material to level up?
+
+.apply(me) is a job application tracker that replaces your spreadsheet or note-taking app with an elegant and intuitive web-based solution.  Main features include:
+- Recognize your missing skills required by the job and get recommended tutorials
 - Save job applications and update statuses
-- Prioritize jobs based on status, location or company and see a complete picture of your job search.
-- Recoganize your missing skills required by the job and get recommended tutorials
-- Add contacts at target companies and keep notes of your interactions.
+- Prioritize jobs based on status, location or company and see a complete picture of your job search
+- Add contacts at target companies and keep notes of your interactions
+- Visualize your job application status and preferrred language via Github
 - Receive reminders at every stage of the process to keep you engaged and proactive
+
+![app_screenshots](https://user-images.githubusercontent.com/6298501/32752089-e376c052-c895-11e7-8634-2298ad445d78.png)
 
 ## Table of Contents
 
 1. [Team](#team)
-1. [Getting Started](#getting-started)
 1. [Usage](#usage)
+1. [Getting Started](#getting-started)
 1. [Built With](#built-with)
 1. [License](#license)
 
 ## Team
 
-apply(Me) is being developed by four full-stack engineers.
+.apply(me) is being developed by four full-stack engineers.
 
 * **Alexander Lukens** - [alexanderlukens](https://github.com/alexanderlukens)
 * **Bryan Wang** - [bryangxyz](https://github.com/bryangxyz)
@@ -32,13 +41,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Fork the repo and clone it to your development environment of choice.
 
-2. To install apple(Me) dependencies, run the following command from the cloned repo's directory:
+2. To install .apply(me) dependencies, run the following command from the cloned repo's directory:
 
 ```npm install```
 
 ### Configuration
 
-You will need several API Keys to run your own build of apply(Me). We use the NPM package [dotenv](https://github.com/motdotla/dotenv) for our local environment variables. You should make a .env file, placed in your clone's root directory, that looks like this:
+You will need several API Keys to run your own build of apply(me). We use the NPM package [dotenv](https://github.com/motdotla/dotenv) for our local environment variables. You should make a .env file, placed in your clone's root directory, that looks like this:
 
 ```
 DB_HOST=(Your mysql db host)
@@ -66,28 +75,31 @@ TRADIER_TOKEN=(Tradier API Key) // Available from [Tradier](https://developer.tr
 EDGAR_KEY=(Edgar API Key) // Available from [Edgar](http://developer.edgar-online.com/)
 ```
 
-## Usage
-
-![Splash](https://github.com/bryangxyz/ApplyMate/blob/dev/public/imgs/appleMe.png)
-
 ### Login
 
-apply(Me) needs to track your profile in order to learn about you, so start by signing up or logging in using Github.
+.apply(me) needs to track your profile in order to learn about you, so start by signing up or logging in using Github.
 
 Contact us if you have any questions!
 
 ## Built With
+![app_stack](https://user-images.githubusercontent.com/6298501/32752828-ab066652-c898-11e7-914a-87acab719bd1.png)
 
 * [React](https://facebook.github.io/react/) - Facebook's powerful JavaScript framework
 * [Node.js](https://nodejs.org) - JavaScript runtime
 * [Express](https://expressjs.com/)- Fantastic Node.js web server framework
 * [Firebase Authentication](https://firebase.google.com/docs/auth/)
-* [MySQL](https://www.postgresql.org/) - Object-relational database
+* [PostgreSQL](https://www.postgresql.org/) - Object-relational database
 * [Sequelize](www.sequelizejs.com) - Powerful ORM tool for SQL databases
 * [React Materialize](https://react-materialize.github.io/#/) - Material design for react
 * [Materialize](http://materializecss.com/) - A modern responsive front-end framework based on Material Design
 * [Webpack](https://webpack.github.io/) - Module bundler
-* [Nightmare.js](http://www.nightmarejs.org/) - End to end testing library
+* [Nightmare.js](http://www.nightmarejs.org/) - A high-level browser automation library
+
+
+### TODO
+- Add additional styling
+- Optimize pageload speed
+
 
 ## License
 
