@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { Card, Input, Button, Row, Col } from 'react-materialize';
-
+import FontAwesome from 'react-fontawesome';
 import Auth from './Auth';
 
 class Login extends React.Component {
@@ -197,7 +197,7 @@ class Login extends React.Component {
             <br />
             <Row>
               <Col s={12}>
-                <Button id="GitAuthButton" onClick={this.gitAuth}>Signin using Github</Button>
+                <Button onClick={this.gitAuth}>Sign In with Github <i className="fa fa-github" /></Button>
               </Col>
             </Row>
             <Row>
