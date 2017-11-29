@@ -10,6 +10,7 @@ const db = require('./backend/db/db');
 const emailer = require('./backend/utilities/emailer');
 const websiteChecker = require('./backend/utilities/websiteChecker');
 const router = require('./backend/router/routes.js');
+const compression = require('compression');
 const User = require('./backend/models/User');
 const SavedJobs = require('./backend/models/SavedJobs');
 const Contacts = require('./backend/models/Contacts');
@@ -22,6 +23,7 @@ const Texter = require('./backend/utilities/twilio');
 
 const app = express();
 
+app.use(compression());
 const compiler = webpack(webpackConfig);
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, '/public')));

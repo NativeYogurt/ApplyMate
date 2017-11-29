@@ -3,7 +3,6 @@ import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { Card, Input, Button, Row, Col } from 'react-materialize';
 import Modal from 'react-modal';
-import axios from 'axios';
 import Auth from './Auth';
 
 class Signup extends React.Component {
@@ -87,9 +86,7 @@ class Signup extends React.Component {
     return (
       <div className="bg">
         <Row>
-          <Col s={4}>
-          <h3></h3>
-          </Col>
+          <Col s={4} />
         </Row>
         <div className="container">
           <Card className="sign-up">
