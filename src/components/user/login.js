@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { Card, Input, Button, Row, Col } from 'react-materialize';
-
+import FontAwesome from 'react-fontawesome';
 import Auth from './Auth';
 
 class Login extends React.Component {
@@ -143,16 +143,18 @@ class Login extends React.Component {
     return (
       <div className="bg">
         <Row>
-          <Col s={4}>
-          <h3></h3>
-          </Col>
+          <Col s={4} />
         </Row>
         <div className="container">
           <Card className="sign-in">
             <h3 className="logo"><span className="login-logo">.apply(me)</span><p className="logo-slogan">Getting you jobs. Making you smarter.</p></h3>
             <Modal isOpen={this.state.gitMergeModal} onRequestClose={this.closeMergeModal}>
               <h3>Looks like your Github Email address already exists.</h3>
-              <p>You're seeing this because an account associated with your github email address, {this.state.mergeEmail} already exists within our authentication system. Please enter the password for that email address below, and we'll merge the two accounts.</p>
+              <p>You&rsquo;re seeing this because an account associated with your github
+              email address, {this.state.mergeEmail} already exists within our
+              authentication system. Please enter the password for that email address below,
+              and we&rsquo;ll merge the two accounts.
+              </p>
               <br />
               <form id="merge" onSubmit={this.GitMerge}>
                 <Input onChange={this.handleMergePassword} type="password" label="Email Password" />
@@ -162,14 +164,20 @@ class Login extends React.Component {
             </Modal>
             <Modal isOpen={this.state.resetPasswordModal} onRequestClose={this.closeResetPassModal}>
               <h3>Reset Password</h3>
-              <p>Forgot your password? Don't worry, happens to the best of us. Just enter your email address below and we'll send you an email with a reset password link.</p>
+              <p>Forgot your password? Don&rsquo;t worry, happens to the best of us.
+              Just enter your email address below and we&rsquo;ll send you an email with
+              a reset password link.
+              </p>
               <form onSubmit={this.resetPassword} >
                 <Input onChange={this.handleResetPassEmail} type="text" placeholder="pika@chu.com" />
                 <Button type="submit">Send Reset Link</Button>
               </form>
               <Button onClick={this.closeResetPassModal}> Close </Button>
             </Modal>
-            <Modal isOpen={this.state.resetEmailSetModal} onRequestClose={this.closeResPassConModal}>
+            <Modal
+              isOpen={this.state.resetEmailSetModal}
+              onRequestClose={this.closeResPassConModal}
+            >
               <h1>Email has been sent, please check your inbox</h1>
               <br />
               <Button onClick={this.closeResPassConModal}>Close</Button>
@@ -189,7 +197,7 @@ class Login extends React.Component {
             <br />
             <Row>
               <Col s={12}>
-                <Button id="GitAuthButton" onClick={this.gitAuth}>Signin using Github</Button>
+                <Button onClick={this.gitAuth}>Sign In with Github <i className="fa fa-github" /></Button>
               </Col>
             </Row>
             <Row>
@@ -204,5 +212,3 @@ class Login extends React.Component {
   }
 }
 export default Login;
-
-// <span id="login-blinking-cursor">|</span>
