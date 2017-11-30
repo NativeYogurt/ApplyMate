@@ -11,8 +11,8 @@ Wouldn't it be nice if there was one place to find jobs, highlight the skills yo
 - Save job applications and update statuses
 - Prioritize jobs based on status, location or company and see a complete picture of your job search
 - Add contacts at target companies and keep notes of your interactions
-- Visualize your job application status and preferrred language via Github
-- Receive reminders at every stage of the process to keep you engaged and proactive
+- Visualize your job application status and preferrred languages via Github
+- Receive SMS & email reminders at every stage of the process to keep you engaged and proactive
 
 ![app_screenshots](https://user-images.githubusercontent.com/6298501/32752089-e376c052-c895-11e7-8634-2298ad445d78.png)
 
