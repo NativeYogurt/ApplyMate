@@ -4,7 +4,7 @@
 
 You're a new software developer looking to break into the field or a seasoned vet looking for a new gig.
 
-Wouldn't it be nice if there was one place to find jobs, highlight the skills you need to get them, and get study material to level up?
+Wouldn't it be nice if there was one place to find jobs, highlight the skills you need to get them, get study material to level up and track your progress?
 
 .apply(me) is a job application tracker that replaces your spreadsheet or note-taking app with an elegant and intuitive web-based solution.  Main features include:
 - Recognize your missing skills required by the job and get recommended tutorials
