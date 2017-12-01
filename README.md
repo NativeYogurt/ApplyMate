@@ -97,9 +97,9 @@ Contact us if you have any questions!
 
 
 ### TODO
-- Add additional styling
+- Make site responsive
 - Optimize pageload speed
-
+- Add additional styling
 
 ## License
 
